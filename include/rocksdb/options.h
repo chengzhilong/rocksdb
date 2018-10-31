@@ -993,6 +993,8 @@ namespace rocksdb {
         // Currently, any WAL-enabled writes after atomic flush may be replayed
         // independently if the process crashes later and tries to recover.
         bool atomic_flush = false;
+
+        bool using_nvm_write_cache = false;
     };
 
 // Options to control the behavior of a database (passed to DB::Open)

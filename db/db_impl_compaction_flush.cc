@@ -227,8 +227,7 @@ namespace rocksdb {
             snapshot_checker = DisableGCSnapshotChecker::Instance();
         }
         NVMFlushJob nvm_flush_job(
-                dbname_, cfd, immutable_db_options_, mutable_cf_options,
-                immutable_db_options_.persistent_range_mem_set_, immutable_db_options_.range_list_);
+                dbname_, cfd, immutable_db_options_, mutable_cf_options);
 
         //FileMetaData file_meta;
 

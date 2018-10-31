@@ -80,13 +80,6 @@ namespace rocksdb {
         bool two_write_queues;
         bool manual_wal_flush;
         bool atomic_flush;
-
-        //new added
-        bool allow_nvm_write_cache_;
-        WriteCacheStrategy write_cache_strategy_;
-        RangeManagementStrategy range_strategy_;
-        PersistentRangeMemSet *persistent_range_mem_set_;
-        std::unordered_map<KeyRange, uint64_t> range_list_;
     };
 
     struct MutableDBOptions {

@@ -77,9 +77,7 @@ namespace rocksdb {
 
             NVMFlushJob(const std::string& dbname, ColumnFamilyData* cfd,
                     const ImmutableDBOptions& db_options,
-                    const MutableCFOptions& mutableCFOptions,
-                    PersistentRangeMemSet* range_mem_set,
-                    std::unordered_map<KeyRange, uint64_t> *range_list
+                    const MutableCFOptions& mutableCFOptions
                     );
 
             ~NVMFlushJob();

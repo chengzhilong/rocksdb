@@ -8,15 +8,13 @@ namespace rocksdb{
 
     NVMFlushJob::NVMFlushJob(const std::string &dbname, ColumnFamilyData *cfd,
                              const rocksdb::ImmutableDBOptions &db_options,
-                             const rocksdb::MutableCFOptions &mutableCFOptions,
-                             rocksdb::PersistentRangeMemSet *range_mem_set,
-                             std::unordered_map<KeyRange, uint64_t> *range_list)
+                             const rocksdb::MutableCFOptions &mutableCFOptions
                              :
                              dbname_(dbname),
                              db_options_(db_options),
                              mutable_cf_options_(mutableCFOptions),
-                             range_mem_set_(range_mem_set),
-                             range_list_(range_list){
+                             range_mem_set_(cfd->ioptions()->persistent_range_mem_set_),
+                             range_list_(cfd->ioptions()->range_list_){
 
     }
 
