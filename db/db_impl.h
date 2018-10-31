@@ -908,6 +908,13 @@ class DBImpl : public DB {
                                    SuperVersionContext* superversion_context,
                                    LogBuffer* log_buffer);
 
+  Status FlushMemTableToNVMCache( ColumnFamilyData* cfd,
+                                  const MutableCFOptions& mutable_cf_options,
+                                  bool* made_progress,
+                                  JobContext* job_context,
+                                  SuperVersionContext* superversion_context,
+                                  LogBuffer* log_buffer);
+
   // Argument required by background flush thread.
   struct BGFlushArg {
     BGFlushArg()

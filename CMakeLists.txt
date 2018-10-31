@@ -683,6 +683,8 @@ set(SOURCES
         utilities/ttl/db_ttl_impl.cc
         utilities/write_batch_with_index/write_batch_with_index.cc
         utilities/write_batch_with_index/write_batch_with_index_internal.cc
+        utilities/nvm_write_cache/range_memtable_set.cc
+        utilities/nvm_write_cache/nvm_flush_job.cc
         $<TARGET_OBJECTS:build_version>)
 
 if(HAVE_SSE42 AND NOT MSVC)
@@ -1015,8 +1017,7 @@ if(WITH_TESTS)
       monitoring/thread_status_updater_debug.cc
       table/mock_table.cc
       util/fault_injection_test_env.cc
-      utilities/cassandra/test_utils.cc
-  )
+      utilities/cassandra/test_utils.cc)
   # test utilities are only build in debug
   enable_testing()
   add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
