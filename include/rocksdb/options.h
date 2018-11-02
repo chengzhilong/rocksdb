@@ -65,7 +65,7 @@ namespace rocksdb {
 
     class WalFilter;
 
-    class NVMCacheOptions;
+    struct NVMCacheOptions;
 
 
 // DB contents are stored in a set of blocks, each of which holds a

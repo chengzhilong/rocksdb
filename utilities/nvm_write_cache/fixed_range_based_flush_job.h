@@ -16,8 +16,8 @@ namespace rocksdb{
 
     class ColumnFamilyData;
     class MemTable;
-    class NVMCacheOptions;
-    class FixedRangeChunkBasedCacheStat;
+    struct NVMCacheOptions;
+    struct FixedRangeChunkBasedCacheStats;
     class FixedRangeChunkBasedNVMWriteCache;
 
     class FixedRangeBasedFlushJob{
@@ -26,9 +26,9 @@ namespace rocksdb{
         explicit FixedRangeBasedFlushJob(
                 const std::string& dbname,
                 ColumnFamilyData* cfd,
-                NVMCacheOptions* nvm_cache_options,
                 InstrumentedMutex* db_mutex,
-                std::atomic<bool>* shutting_down);
+                std::atomic<bool>* shutting_down,
+                NVMCacheOptions* nvm_cache_options);
 
         ~FixedRangeBasedFlushJob();
 
@@ -47,7 +47,7 @@ namespace rocksdb{
 
         const NVMCacheOptions* nvm_cache_options_;
         FixedRangeChunkBasedNVMWriteCache* nvm_write_cache_;
-        FixedRangeChunkBasedCacheStat* cache_stat_;
+        FixedRangeChunkBasedCacheStats* cache_stat_;
         std::unordered_map<KeyRange, uint64_t >* range_list_;
 
         autovector<MemTable*> mems_;

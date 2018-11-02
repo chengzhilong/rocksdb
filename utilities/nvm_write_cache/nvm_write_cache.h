@@ -11,7 +11,6 @@
 
 namespace rocksdb{
 
-    class NVMCacheOptions;
 
     typedef std::pair<Slice, Slice> KeyRange;
 
@@ -43,9 +42,9 @@ namespace rocksdb{
 
         virtual Iterator* GetDraineddata() = 0;
 
-        virtual NVMCacheOptions* GetOptions() = 0;
+        virtual void* GetOptions() = 0;
 
-        virtual CacheStats* GetStas() = 0;
+        virtual CacheStats* GetStats() = 0;
 
     };
 

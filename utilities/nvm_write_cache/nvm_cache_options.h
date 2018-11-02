@@ -28,7 +28,7 @@ namespace rocksdb{
         kNoDrain;
     };
 
-    class NVMCacheOptions{
+    struct NVMCacheOptions{
         NVMCacheOptions();
 
         explicit NVMCacheOptions(Options& options);
