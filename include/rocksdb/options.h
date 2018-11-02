@@ -16,6 +16,7 @@
 #include <limits>
 #include <unordered_map>
 
+
 #include "rocksdb/advanced_options.h"
 #include "rocksdb/comparator.h"
 #include "rocksdb/env.h"
@@ -64,9 +65,8 @@ namespace rocksdb {
 
     class WalFilter;
 
-    class PersistentRangeMemSet;
+    class NVMCacheOptions;
 
-    typedef std::pair<Slice, Slice> KeyRange;
 
 // DB contents are stored in a set of blocks, each of which holds a
 // sequence of key,value pairs.  Each block may be compressed before
@@ -93,16 +93,6 @@ namespace rocksdb {
 
         // kDisableCompressionOption is used to disable some compression options.
                 kDisableCompressionOption = 0xff,
-    };
-
-    enum WriteCacheStrategy {
-        kChunkBased,
-        kTreeBased,
-    };
-
-    enum RangeManagementStrategy {
-        kDynamic,
-        kFixed,
     };
 
     struct Options;
@@ -994,7 +984,8 @@ namespace rocksdb {
         // independently if the process crashes later and tries to recover.
         bool atomic_flush = false;
 
-        bool using_nvm_write_cache = false;
+
+        NVMCacheOptions* nvm_cache_options_ = nullptr;
     };
 
 // Options to control the behavior of a database (passed to DB::Open)

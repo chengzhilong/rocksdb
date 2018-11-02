@@ -111,18 +111,18 @@ namespace rocksdb {
             VersionSet* versions_;
             InstrumentedMutex* db_mutex_;
             std::atomic<bool>* shutting_down_;
-            std::vector<SequenceNumber> existing_snapshots_;
-            SequenceNumber earliest_write_conflict_snapshot_;
-            SnapshotChecker* snapshot_checker_;
-            JobContext* job_context_;
-            LogBuffer* log_buffer_;
+            std::vector<SequenceNumber> existing_snapshots_; //有什么用
+            SequenceNumber earliest_write_conflict_snapshot_; //有什么用
+            SnapshotChecker* snapshot_checker_; //有什么用
+            JobContext* job_context_; //有什么用
+            LogBuffer* log_buffer_; //有什么用
             //Directory* db_directory_;
             //Directory* output_file_directory_;
             CompressionType output_compression_;
-            Statistics* stats_;
-            EventLogger* event_logger_;
-            TableProperties table_properties_;
-            bool measure_io_stats_;
+            Statistics* stats_; //有什么用
+            EventLogger* event_logger_; //有什么用
+            TableProperties table_properties_; //有什么用
+            bool measure_io_stats_; //有什么用
 
             //const bool write_manifest_;
 
@@ -132,14 +132,6 @@ namespace rocksdb {
             VersionEdit* edit_;
             Version* base_;
             bool pick_memtable_called;
-
-            PersistentRangeMemSet* range_mem_set_;
-            std::vector<PersistentRangeMem*> range_mems_;
-
-            typedef std::pair<Slice, Slice> KeyRange;
-            std::unordered_map<KeyRange, uint64_t> *range_list_;
-
-            std::vector<char*> global_bloom_filters_;
 
         };
 
