@@ -14,16 +14,18 @@ namespace rocksdb{
 
     typedef std::pair<Slice, Slice> KeyRange;
 
-    struct CacheStats{
-        uint64_t used_bits_;
-    };
 
-    struct FixedRangeChunkBasedCacheStats : public CacheStats{
+    struct FixedRangeChunkBasedCacheStats{
 
+        uint64_t  used_bits_;
 
         std::unordered_map<KeyRange, uint64_t> range_list_;
 
         std::vector<std::string*> chunk_bloom_data_;
+
+    };
+
+    struct DynamicRangeBasedCacheStats{
 
     };
 
@@ -42,9 +44,9 @@ namespace rocksdb{
 
         virtual Iterator* GetDraineddata() = 0;
 
-        virtual void* GetOptions() = 0;
+        //virtual void* GetOptions() = 0;
 
-        virtual CacheStats* GetStats() = 0;
+        //virtual CacheStats* GetStats() = 0;
 
     };
 
