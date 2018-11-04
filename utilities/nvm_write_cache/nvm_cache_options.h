@@ -10,7 +10,7 @@
 namespace rocksdb{
 
     class NVMWriteCache;
-    class PrefixExtractor;
+    //class PrefixExtractor;
 
     struct PMemInfo{
         std::string pmem_path_;
@@ -55,7 +55,7 @@ namespace rocksdb{
 
         const uint16_t prefix_bits_ = 3;
 
-        const PrefixExtractor* prefix_extractor_ = nullptr;
+        PrefixExtractor* prefix_extractor_ = nullptr;
 
         const uint64_t range_num_threshold_ = 0;
 

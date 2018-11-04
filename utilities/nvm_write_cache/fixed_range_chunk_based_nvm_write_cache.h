@@ -10,21 +10,43 @@
 
 namespace rocksdb{
 
+    struct FixedRangeChunkBasedCacheStats{
+
+        uint64_t  used_bits_;
+
+        std::unordered_map<std::string, uint64_t> range_list_;
+
+        std::vector<std::string*> chunk_bloom_data_;
+
+    };
+
     class RangeBasedChunk{
     public:
         explicit RangeBasedChunk();
 
         ~RangeBasedChunk();
 
-        void Insert(const Slice& data);
+        void Insert(const Slice& key, const Slice& value);
 
-        void TransferToPersistent();
+        void TransferToPersistent(const Slice& extra_data);
 
         void TranserToVolatile();
 
         Iterator* NewIterator();
 
         void ParseRawData();
+    };
+
+    class BuildingChunk{
+    public:
+        explicit BuildingChunk();
+        ~BuildingChunk();
+
+        void Insert(const Slice& key, const Slice& value);
+
+        const char* Finish();
+
+        uint64_t NumEntries();
     };
 
     class FixedRangeChunkBasedNVMWriteCache: public NVMWriteCache{
@@ -36,7 +58,7 @@ namespace rocksdb{
         ~FixedRangeChunkBasedNVMWriteCache();
 
         // insert data to cache
-        Status Insert(const Slice& cached_data, const Slice& meta_data);
+        Status Insert(const Slice& cached_data, void* insert_mark);
 
         // get data from cache
         Status Get(const Slice& key, std::string* value);
@@ -48,7 +70,7 @@ namespace rocksdb{
         Iterator* GetDraineddata();
 
         // add a range with a new prefix to range mem
-        void NewRange(char* prefix);
+        uint64_t NewRange(const std::string& prefix);
 
         // get internal options of this cache
         const FixedRangeBasedOptions* internal_options(){return internal_options_;}

@@ -23,7 +23,10 @@
 #include "monitoring/thread_status_util.h"
 #include "util/sst_file_manager_impl.h"
 #include "util/sync_point.h"
+
+#include "utilities/nvm_write_cache/nvm_cache_options.h"
 #include "utilities/nvm_write_cache/nvm_flush_job.h"
+#include "utilities/nvm_write_cache/fixed_range_based_flush_job.h"
 
 namespace rocksdb {
 
@@ -211,6 +214,24 @@ namespace rocksdb {
         return s;
     }
 
+    Status DBImpl::FlushMemTablesToNVMCache(const autovector<BGFlushArg> &bg_flush_args, bool *made_progress,
+                                            rocksdb::JobContext *job_context, rocksdb::LogBuffer *log_buffer) {
+        Status s;
+        for (auto &arg : bg_flush_args) {
+            ColumnFamilyData *cfd = arg.cfd_;
+            const MutableCFOptions &mutable_cf_options =
+                    *cfd->GetLatestMutableCFOptions();
+            SuperVersionContext *superversion_context = arg.superversion_context_;
+            s = FlushMemTableToNVMCache(cfd, mutable_cf_options, made_progress,
+                                          job_context, superversion_context,
+                                          log_buffer);
+            if (!s.ok()) {
+                break;
+            }
+        }
+        return s;
+    }
+
     Status DBImpl::FlushMemTableToNVMCache(ColumnFamilyData *cfd, const rocksdb::MutableCFOptions &mutable_cf_options,
                                            bool *made_progress, rocksdb::JobContext *job_context,SuperVersionContext* superversion_context,
                                            rocksdb::LogBuffer *log_buffer) {
@@ -226,17 +247,50 @@ namespace rocksdb {
         if (use_custom_gc_ && snapshot_checker == nullptr) {
             snapshot_checker = DisableGCSnapshotChecker::Instance();
         }
-        NVMFlushJob nvm_flush_job(
-                dbname_, cfd, immutable_db_options_, mutable_cf_options);
 
-        //FileMetaData file_meta;
+        NVMFlushJob* nvm_flush_job = nullptr;
 
-        nvm_flush_job.Prepare();
+        switch(immutable_db_options_.nvm_cache_options->nvm_cache_type_){
+            case kRangeFixedChunk:{
+                nvm_flush_job = new FixedRangeBasedFlushJob(
+                        dbname_,
+                        immutable_db_options_,
+                        job_context,
+                        event_logger_,
+                        cfd,
+                        snapshot_seqs,
+                        earliest_write_conflict_snapshot,
+                        snapshot_checker,
+                        mutex_,
+                        shutting_down_,
+                        log_buffer,
+                        immutable_db_options_.nvm_cache_options);
+                break;
+            }
+
+            case kRangeDynamic:{
+                nvm_flush_job = new EmptyFlushJob();
+                break;
+            }
+
+            case kTreeBased:{
+                nvm_flush_job = new EmptyFlushJob();
+                break;
+            }
+
+            default:
+                nvm_flush_job = new EmptyFlushJob();
+                break;
+        }
+
+        assert(nvm_flush_job != nullptr);
+
+        nvm_flush_job->Prepare();
 
 #ifndef ROCKSDB_LITE
         // may temporarily unlock and lock the mutex.
-        NotifyOnFlushBegin(cfd, &file_meta, mutable_cf_options, job_context->job_id,
-                           nvm_flush_job.GetTableProperties());
+        /*NotifyOnFlushBegin(cfd, &file_meta, mutable_cf_options, job_context->job_id,
+                           nvm_flush_job.GetTableProperties());*/
 #endif  // ROCKSDB_LITE
 
         Status s;
@@ -258,9 +312,9 @@ namespace rocksdb {
         // and EventListener callback will be called when the db_mutex
         // is unlocked by the current thread.
         if (s.ok()) {
-            s = nvm_flush_job.Run();
+            s = nvm_flush_job->Run();
         } else {
-            nvm_flush_job.Cancel();
+            nvm_flush_job->Cancel();
         }
 
         if (s.ok()) {
@@ -279,28 +333,13 @@ namespace rocksdb {
             Status new_bg_error = s;
             error_handler_.SetBGError(new_bg_error, BackgroundErrorReason::kFlush);
         }
-        if (s.ok()) {
+        /*if (s.ok()) {
 #ifndef ROCKSDB_LITE
             // may temporarily unlock and lock the mutex.
             NotifyOnFlushCompleted(cfd, &file_meta, mutable_cf_options,
                                    job_context->job_id, nvm_flush_job.GetTableProperties());
-            /*auto sfm = static_cast<SstFileManagerImpl *>(
-                    immutable_db_options_.sst_file_manager.get());
-            if (sfm) {
-                // Notify sst_file_manager that a new file was added
-                std::string file_path = MakeTableFileName(
-                        cfd->ioptions()->cf_paths[0].path, file_meta.fd.GetNumber());
-                sfm->OnAddFile(file_path);
-                if (sfm->IsMaxAllowedSpaceReached()) {
-                    Status new_bg_error = Status::SpaceLimit("Max allowed space was reached");
-                    TEST_SYNC_POINT_CALLBACK(
-                            "DBImpl::FlushMemTableToOutputFile:MaxAllowedSpaceReached",
-                            &new_bg_error);
-                    error_handler_.SetBGError(new_bg_error, BackgroundErrorReason::kFlush);
-                }
-            }*/
 #endif  // ROCKSDB_LITE
-        }
+        }*/
         return s;
 
     }
@@ -2016,7 +2055,10 @@ namespace rocksdb {
         }
 
         if (!bg_flush_args.empty()) {
+            // get max background compaction and flush
             auto bg_job_limits = GetBGJobLimits();
+
+            // bg_flush_args contains the cfd and max_memtabls_id
             for (const auto &arg : bg_flush_args) {
                 ColumnFamilyData *cfd = arg.cfd_;
                 ROCKS_LOG_BUFFER(
@@ -2029,8 +2071,12 @@ namespace rocksdb {
                         bg_job_limits.max_compactions, bg_flush_scheduled_,
                         bg_compaction_scheduled_);
             }
-            status = FlushMemTablesToOutputFiles(bg_flush_args, made_progress,
-                                                 job_context, log_buffer);
+            if(immutable_db_options_.nvm_cache_options->use_nvm_write_cache_){
+                status = FlushMemTablesToNVMCache(bg_flush_args, made_progress, job_context, log_buffer);
+            }else{
+                status = FlushMemTablesToOutputFiles(bg_flush_args, made_progress,
+                                                     job_context, log_buffer);
+            }
             // All the CFDs in the FlushReq must have the same flush reason, so just
             // grab the first one
             *reason = bg_flush_args[0].cfd_->GetFlushReason();

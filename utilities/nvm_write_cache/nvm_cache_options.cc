@@ -4,6 +4,7 @@
 
 #include "nvm_cache_options.h"
 
+
 namespace rocksdb{
     NVMCacheOptions::NVMCacheOptions()
         :   use_nvm_write_cache_(false)

@@ -11,6 +11,7 @@
 #include <monitoring/instrumented_mutex.h>
 
 #include "utilities/nvm_write_cache/nvm_write_cache.h"
+#include "utilities/nvm_write_cache/nvm_flush_job.h"
 
 namespace rocksdb{
 
@@ -20,12 +21,14 @@ namespace rocksdb{
     struct FixedRangeChunkBasedCacheStats;
     class FixedRangeChunkBasedNVMWriteCache;
     class LogBuffer;
-    class JobContext;
+    struct JobContext;
     class EventLogger;
     class InternalIterator;
     class SnapshotChecker;
+    class RangeBasedChunk;
+    class BuildingChunk;
 
-    class FixedRangeBasedFlushJob{
+    class FixedRangeBasedFlushJob: public NVMFlushJob{
     public:
 
         explicit FixedRangeBasedFlushJob(
@@ -81,9 +84,16 @@ namespace rocksdb{
         const NVMCacheOptions* nvm_cache_options_;
         FixedRangeChunkBasedNVMWriteCache* nvm_write_cache_;
         FixedRangeChunkBasedCacheStats* cache_stat_;
-        std::unordered_map<KeyRange, uint64_t >* range_list_;
+        std::unordered_map<std::string, uint64_t >* range_list_;
 
         autovector<MemTable*> mems_;
+
+        std::unordered_map<uint64_t, BuildingChunk*> pending_output_chunk;
+
+        std::string last_prefix;
+
+        BuildingChunk* last_chunk;
+
 
     };
 

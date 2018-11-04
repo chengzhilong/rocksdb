@@ -10,20 +10,20 @@
 
 namespace rocksdb{
 
-    class PrefixExtrctor{
+    class PrefixExtractor{
     public:
-        PrefixExtrctor() =default;
+        PrefixExtractor() =default;
 
-        virtual ~PrefixExtrctor() =default;
+        virtual ~PrefixExtractor() =default;
 
         virtual std::string operator ()(const char* input, size_t length) = 0;
 
     };
 
 
-    class SimplePrefixExtractor: public PrefixExtrctor{
+    class SimplePrefixExtractor: public PrefixExtractor{
     public:
-        SimplePrefixExtractor(uint16_t prefix_bits_);
+        explicit SimplePrefixExtractor(uint16_t prefix_bits_);
 
         ~SimplePrefixExtractor() =default;
 

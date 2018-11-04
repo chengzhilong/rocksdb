@@ -9,15 +9,18 @@
 #include <db/snapshot_checker.h>
 #include <db/compaction_iterator.h>
 #include <db/event_helpers.h>
-#include "fixed_range_based_flush_job.h"
-#include "nvm_cache_options.h"
-#include "fixed_range_chunk_based_nvm_write_cache.h"
 #include "nvm_write_cache.h"
 #include "db/column_family.h"
 #include "util/log_buffer.h"
 #include "util/event_logger.h"
 #include "db/job_context.h"
 #include "db/memtable.h"
+
+#include "nvm_cache_options.h"
+#include "prefix_extractor.h"
+#include "fixed_range_based_flush_job.h"
+#include "fixed_range_chunk_based_nvm_write_cache.h"
+
 
 namespace rocksdb {
 
@@ -78,7 +81,8 @@ namespace rocksdb {
               nvm_cache_options_(nvm_cache_options),
               nvm_write_cache_(dynamic_cast<FixedRangeChunkBasedNVMWriteCache *>(nvm_cache_options_->nvm_write_cache_)),
               cache_stat_(nvm_write_cache_->stats()),
-              range_list_(cache_stat_->range_list_) {
+              range_list_(&cache_stat_->range_list_),
+              last_chunk(nullptr){
 
     }
 
@@ -146,12 +150,12 @@ namespace rocksdb {
             uint64_t total_num_entries = 0, total_num_deletes = 0;
             size_t total_memory_usage = 0;
             for (MemTable *m : mems_) {
-                ROCKS_LOG_INFO(
+              /*  ROCKS_LOG_INFO(
                         db_options_.info_log,
                         "[%s] [JOB %d] Flushing memtable with next log file: %"
                                 PRIu64
                                 "\n",
-                        cfd_->GetName().c_str(), job_context_->job_id, m->GetNextLogNumber());
+                        cfd_->GetName().c_str(), job_context_->job_id, m->GetNextLogNumber());*/
                 memtables.push_back(m->NewIterator(ro, &arena));
                 auto *range_del_iter = m->NewRangeTombstoneIterator(ro);
                 if (range_del_iter != nullptr) {
@@ -229,34 +233,7 @@ namespace rocksdb {
 
 
         if (iter->Valid() || !range_del_agg->IsEmpty()) {
-            /*TableBuilder* builder;
-            unique_ptr<WritableFileWriter> file_writer;
-            {
-                unique_ptr<WritableFile> file;
-#ifndef NDEBUG
-                bool use_direct_writes = env_options.use_direct_writes;
-                TEST_SYNC_POINT_CALLBACK("BuildTable:create_file", &use_direct_writes);
-#endif  // !NDEBUG
-                s = NewWritableFile(env, fname, &file, env_options);
-                if (!s.ok()) {
-                    EventHelpers::LogAndNotifyTableFileCreationFinished(
-                            event_logger, ioptions.listeners, dbname, column_family_name, fname,
-                            job_id, meta->fd, tp, reason, s);
-                    return s;
-                }
-                file->SetIOPriority(io_priority);
-                file->SetWriteLifeTimeHint(write_hint);
-
-                file_writer.reset(new WritableFileWriter(std::move(file), fname,
-                                                         env_options, ioptions.statistics,
-                                                         ioptions.listeners));
-                builder = NewTableBuilder(
-                        ioptions, mutable_cf_options, internal_comparator,
-                        int_tbl_prop_collector_factories, column_family_id,
-                        column_family_name, file_writer.get(), compression, compression_opts,
-                        level, nullptr *//* compression_dict *//*, false *//* skip_filters *//*,
-                        creation_time, oldest_key_time);
-            }*/ //no need
+            PrefixExtractor *prefix_extractor = nvm_write_cache_->internal_options()->prefix_extractor_;
 
 
             MergeHelper merge(db_options_.env, internal_comparator.user_comparator(),
@@ -271,10 +248,44 @@ namespace rocksdb {
                     ShouldReportDetailedTime(db_options_.env, cfd_->ioptions()->statistics),
                     true /* internal key corruption is not ok */, range_del_agg.get());
             c_iter.SeekToFirst();
+
             for (; c_iter.Valid(); c_iter.Next()) {
                 const Slice &key = c_iter.key();
                 const Slice &value = c_iter.value();
-                builder->Add(key, value);
+
+                std::string now_prefix = (*prefix_extractor)(key.data_, key.size_);
+                if(now_prefix == last_prefix && last_chunk != nullptr){
+                    last_chunk->Insert(key, value);
+                }else{
+                    auto range_found = range_list_->find(now_prefix);
+                    if(range_found == range_list_->end()){
+                        // this is a new prefix, biuld a new range
+                        {
+                            // new a range mem and update range list
+                            uint64_t range_mem_id = nvm_write_cache_->NewRange(now_prefix);
+                            (*range_list_)[now_prefix] = range_mem_id;
+
+                        }
+
+                    }else{
+                        uint64_t now_range_id = range_found->second;
+                        BuildingChunk* now_chunk = nullptr;
+                        auto chunk_found = pending_output_chunk.find(now_range_id);
+                        if(chunk_found == pending_output_chunk.end()){
+                            //this is a new build a new chunk
+                            auto new_chunk = new BuildingChunk();
+                            pending_output_chunk[now_range_id] = new_chunk;
+                            now_chunk = new_chunk;
+                        }else{
+                            now_chunk = pending_output_chunk[now_range_id];
+                        }
+                        // add data to this chunk
+                        now_chunk->Insert(key, value);
+                        last_chunk = now_chunk;
+                        last_prefix = now_prefix;
+                    }
+                }
+                //builder->Add(key, value);
                 //meta->UpdateBoundaries(key, c_iter.ikey().sequence);
 
                 // TODO(noetzli): Update stats after flush, too.
@@ -284,6 +295,29 @@ namespace rocksdb {
                             ThreadStatus::FLUSH_BYTES_WRITTEN, IOSTATS(bytes_written));
                 }*/
             }
+            s = c_iter.status();
+            if(s.ok()){
+                // insert data of each range into nvm cache
+                std::vector<port::Thread > thread_pool;
+                thread_pool.clear();
+                auto finish_build_chunk = [&](uint64_t range_mem_id){
+                    const char* output_data = pending_output_chunk[range_mem_id]->Finish();
+                    nvm_write_cache_->Insert(output_data, static_cast<void*>(&range_mem_id));
+                };
+
+                auto pending_chunk = pending_output_chunk.begin();
+                pending_chunk++;
+                for(;pending_chunk != pending_output_chunk.end();pending_chunk++){
+                    thread_pool.emplace_back(finish_build_chunk, pending_chunk->first);
+                }
+                finish_build_chunk(pending_output_chunk.begin()->first);
+                for(auto& running_thread : thread_pool){
+                    running_thread.join();
+                }
+
+            }else{
+               return s;
+            };
 
             // not supprt range del currently
             /*for (auto it = range_del_agg->NewIterator(); it->Valid(); it->Next()) {
@@ -294,75 +328,11 @@ namespace rocksdb {
                                                tombstone.seq_, internal_comparator);*//*
             }*/
 
-            // Finish and check for builder errors
-            //tp = builder->GetTableProperties();
-            bool empty = builder->NumEntries() == 0 && tp.num_range_deletions == 0;
-            s = c_iter.status();
-            if (!s.ok() || empty) {
-                builder->Abandon();
-            } else {
-                s = builder->Finish();
-            }
-
-            if (s.ok() && !empty) {
-                uint64_t file_size = builder->FileSize();
-                meta->fd.file_size = file_size;
-                meta->marked_for_compaction = builder->NeedCompact();
-                assert(meta->fd.GetFileSize() > 0);
-                tp = builder->GetTableProperties(); // refresh now that builder is finished
-                if (table_properties) {
-                    *table_properties = tp;
-                }
-            }
-            delete builder;
-
             // Finish and check for file errors
-            if (s.ok() && !empty) {
-                StopWatch sw(env, ioptions.statistics, TABLE_SYNC_MICROS);
-                s = file_writer->Sync(ioptions.use_fsync);
+            if (s.ok()) {
+                StopWatch sw(db_options_.env, cfd_->ioptions()->statistics, TABLE_SYNC_MICROS);
             }
-            if (s.ok() && !empty) {
-                s = file_writer->Close();
-            }
-
-            /*if (s.ok() && !empty) {
-                // Verify that the table is usable
-                // We set for_compaction to false and don't OptimizeForCompactionTableRead
-                // here because this is a special case after we finish the table building
-                // No matter whether use_direct_io_for_flush_and_compaction is true,
-                // we will regrad this verification as user reads since the goal is
-                // to cache it here for further user reads
-                std::unique_ptr<InternalIterator> it(table_cache->NewIterator(
-                        ReadOptions(), env_options, internal_comparator, *meta,
-                        nullptr *//* range_del_agg *//*,
-                        mutable_cf_options.prefix_extractor.get(), nullptr,
-                        (internal_stats == nullptr) ? nullptr
-                                                    : internal_stats->GetFileReadHist(0),
-                        false *//* for_compaction *//*, nullptr *//* arena *//*,
-                        false *//* skip_filter *//*, level));
-                s = it->status();
-                if (s.ok() && paranoid_file_checks) {
-                    for (it->SeekToFirst(); it->Valid(); it->Next()) {
-                    }
-                    s = it->status();
-                }
-            }*/
         }
-
-        // Check for input iterator errors
-        if (!iter->status().ok()) {
-            s = iter->status();
-        }
-
-        if (!s.ok() || meta->fd.GetFileSize() == 0) {
-            env->DeleteFile(fname);
-        }
-
-        // Output to event logger and fire events.
-        EventHelpers::LogAndNotifyTableFileCreationFinished(
-                event_logger, ioptions.listeners, dbname, column_family_name, fname,
-                job_id, meta->fd, tp, reason, s);
-
         return s;
     }
 
