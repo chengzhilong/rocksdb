@@ -683,7 +683,6 @@ set(SOURCES
         utilities/ttl/db_ttl_impl.cc
         utilities/write_batch_with_index/write_batch_with_index.cc
         utilities/write_batch_with_index/write_batch_with_index_internal.cc
-        utilities/nvm_write_cache/range_memtable_set.cc
         utilities/nvm_write_cache/nvm_flush_job.cc
         utilities/nvm_write_cache/nvm_cache_options.cc
         utilities/nvm_write_cache/nvm_write_cache.cc
