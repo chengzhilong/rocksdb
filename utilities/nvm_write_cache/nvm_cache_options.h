@@ -37,6 +37,8 @@ namespace rocksdb{
 
         bool use_nvm_write_cache_;
 
+        bool reset_nvm_write_cache;
+
         PMemInfo pmem_info_;
 
         NVMCacheType nvm_cache_type_;

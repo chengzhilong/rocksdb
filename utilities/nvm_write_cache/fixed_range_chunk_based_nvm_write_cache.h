@@ -10,6 +10,23 @@
 
 namespace rocksdb{
 
+    class RangeBasedChunk{
+    public:
+        explicit RangeBasedChunk();
+
+        ~RangeBasedChunk();
+
+        void Insert(const Slice& data);
+
+        void TransferToPersistent();
+
+        void TranserToVolatile();
+
+        Iterator* NewIterator();
+
+        void ParseRawData();
+    };
+
     class FixedRangeChunkBasedNVMWriteCache: public NVMWriteCache{
 
     public:

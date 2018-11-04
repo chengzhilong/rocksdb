@@ -20,13 +20,23 @@ namespace rocksdb{
     struct FixedRangeChunkBasedCacheStats;
     class FixedRangeChunkBasedNVMWriteCache;
     class LogBuffer;
+    class JobContext;
+    class EventLogger;
+    class InternalIterator;
+    class SnapshotChecker;
 
     class FixedRangeBasedFlushJob{
     public:
 
         explicit FixedRangeBasedFlushJob(
                 const std::string& dbname,
+                const ImmutableDBOptions& db_options,
+                JobContext* job_context,
+                EventLogger* event_logger,
                 ColumnFamilyData* cfd,
+                std::vector<SequenceNumber> existing_snapshots,
+                SequenceNumber earliest_write_conflict_snapshot,
+                SnapshotChecker* snapshot_checker,
                 InstrumentedMutex* db_mutex,
                 std::atomic<bool>* shutting_down,
                 LogBuffer* log_buffer,
@@ -46,8 +56,24 @@ namespace rocksdb{
 
         Status InsertToNVMCache();
 
+        Status BuildChunkAndInsert(InternalIterator* iter,
+                                   std::unique_ptr<InternalIterator> range_del_iter,
+                                   const InternalKeyComparator& internal_comparator,
+                                   std::vector<SequenceNumber> snapshots,
+                                   SequenceNumber earliest_write_conflict_snapshot,
+                                   SnapshotChecker* snapshot_checker,
+                                   EventLogger* event_logger, int job_id);
+
         const std::string& dbname_;
+        const ImmutableDBOptions& db_options_;
+        JobContext* job_context_;
+        EventLogger* event_logger_;
         ColumnFamilyData* cfd_;
+
+        std::vector<SequenceNumber> existing_snapshots_;
+        SequenceNumber earliest_write_conflict_snapshot_;
+        SnapshotChecker* snapshot_checker_;
+
         InstrumentedMutex* db_mutex_;
         std::atomic<bool>* shutting_down_;
         LogBuffer* log_buffer_;
