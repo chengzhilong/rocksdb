@@ -690,6 +690,7 @@ set(SOURCES
         utilities/nvm_write_cache/fixed_range_based_flush_job.cc
         utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc
         utilities/nvm_write_cache/chunk.cc
+        utilities/nvm_write_cache/persistent_skip_list.cc
         $<TARGET_OBJECTS:build_version>)
 
 if (HAVE_SSE42 AND NOT MSVC)
