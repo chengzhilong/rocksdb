@@ -20,35 +20,6 @@ namespace rocksdb{
 
     };
 
-    class RangeBasedChunk{
-    public:
-        explicit RangeBasedChunk();
-
-        ~RangeBasedChunk();
-
-        void Insert(const Slice& key, const Slice& value);
-
-        void TransferToPersistent(const Slice& extra_data);
-
-        void TranserToVolatile();
-
-        Iterator* NewIterator();
-
-        void ParseRawData();
-    };
-
-    class BuildingChunk{
-    public:
-        explicit BuildingChunk();
-        ~BuildingChunk();
-
-        void Insert(const Slice& key, const Slice& value);
-
-        const char* Finish();
-
-        uint64_t NumEntries();
-    };
-
     class FixedRangeChunkBasedNVMWriteCache: public NVMWriteCache{
 
     public:
@@ -58,6 +29,7 @@ namespace rocksdb{
         ~FixedRangeChunkBasedNVMWriteCache();
 
         // insert data to cache
+        // insert_mark is (uint64_t)range_id
         Status Insert(const Slice& cached_data, void* insert_mark);
 
         // get data from cache
@@ -70,6 +42,7 @@ namespace rocksdb{
         Iterator* GetDraineddata();
 
         // add a range with a new prefix to range mem
+        // return the id of the range
         uint64_t NewRange(const std::string& prefix);
 
         // get internal options of this cache

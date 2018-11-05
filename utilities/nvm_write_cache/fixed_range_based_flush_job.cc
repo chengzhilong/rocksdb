@@ -15,11 +15,13 @@
 #include "util/event_logger.h"
 #include "db/job_context.h"
 #include "db/memtable.h"
+#include "include/rocksdb/table.h"
 
 #include "nvm_cache_options.h"
 #include "prefix_extractor.h"
 #include "fixed_range_based_flush_job.h"
 #include "fixed_range_chunk_based_nvm_write_cache.h"
+#include "chunk.h"
 
 
 namespace rocksdb {
@@ -273,7 +275,7 @@ namespace rocksdb {
                         auto chunk_found = pending_output_chunk.find(now_range_id);
                         if(chunk_found == pending_output_chunk.end()){
                             //this is a new build a new chunk
-                            auto new_chunk = new BuildingChunk();
+                            auto new_chunk = new BuildingChunk(static_cast<BlockBasedTableOptions*>(cfd_->ioptions()->table_factory->GetOptions())->filter_policy.get());
                             pending_output_chunk[now_range_id] = new_chunk;
                             now_chunk = new_chunk;
                         }else{
@@ -301,8 +303,9 @@ namespace rocksdb {
                 std::vector<port::Thread > thread_pool;
                 thread_pool.clear();
                 auto finish_build_chunk = [&](uint64_t range_mem_id){
-                    const char* output_data = pending_output_chunk[range_mem_id]->Finish();
-                    nvm_write_cache_->Insert(output_data, static_cast<void*>(&range_mem_id));
+                    std::string* output_data = pending_output_chunk[range_mem_id]->Finish();
+                    nvm_write_cache_->Insert(output_data->c_str(), static_cast<void*>(&range_mem_id));
+                    delete output_data;
                 };
 
                 auto pending_chunk = pending_output_chunk.begin();
