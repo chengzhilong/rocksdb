@@ -8,28 +8,19 @@
 #include <cstring>
 #include <string>
 #include <util/random.h>
-#include "libpmemobj++/p.hpp"
-#include "libpmemobj++/persistent_ptr.hpp"
-#include "libpmemobj++/transaction.hpp"
-#include "libpmemobj++/pool.hpp"
-#include "libpmemobj++/make_persistent.hpp"
+
 
 using namespace pmem::obj;
 
 namespace rocksdb {
 
-    static inline int
-    file_exists(char const *file)
-    {
-        return access(file, F_OK);
-    }
 
     const int kMaxHeight = 12;
 
     struct Node {
         explicit Node(const std::string &key, int height)
                 :
-                    key_(make_persistent<std::string>(key)){
+                key_(make_persistent<std::string>(key)){
         };
 
         ~Node() = default;
