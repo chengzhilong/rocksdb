@@ -214,7 +214,7 @@ int main(){
     auto skiplist = new rocksdb::volatile_SkipList(12, 4);
     auto rnd = rocksdb::Random::GetTLSInstance();
     time_t startt, endt;
-    time(&startt);
+    startt = clock();
     for(int i = 0; i < 1000 ; i++){
         auto number = rnd->Next();
         char buf[16];
@@ -222,8 +222,12 @@ int main(){
         printf("Insert %s\n", buf);
         skiplist->Insert(buf);
     }
-    time(&endt);
-    printf("cost  = %f\n", difftime(endt, startt));
+    endt = clock();
+    printf("cost  = %f\n", (double)(endt - startt) / CLOCKS_PER_SEC);
+
+    startt = clock();
     skiplist->Print();
+    endt = clock();
+    printf("cost  = %f\n", (double)(endt - startt) / CLOCKS_PER_SEC);
     return 0;
 }
