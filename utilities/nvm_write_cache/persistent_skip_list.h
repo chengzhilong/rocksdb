@@ -22,7 +22,6 @@ namespace rocksdb {
     struct Node {
         explicit Node(const std::string &key, int height)
                 :
-                    height_(height),
                     key_(make_persistent<std::string>(key)){
         };
 
@@ -38,7 +37,7 @@ namespace rocksdb {
             next_[n] = next;
         };
 
-        p<int> height_;
+        //p<int> height_;
         persistent_ptr<std::string> key_;
         persistent_ptr<Node> next_[kMaxHeight];
     };
@@ -53,22 +52,22 @@ namespace rocksdb {
 
         void Insert(const char *key);
 
-        bool Contains(const char *key);
+        //bool Contains(const char *key);
 
     private:
         pool_base pool_;
         persistent_ptr<Node> head_;
         persistent_ptr<Node> prev_[kMaxHeight];
-        uint32_t prev_height_;
-        const uint16_t kMaxHeight_;
-        const uint16_t kBranching_;
-        const uint32_t kScaledInverseBranching_;
+        p<uint32_t> prev_height_;
+        p<uint16_t> kMaxHeight_;
+        p<uint16_t> kBranching_;
+        p<uint32_t> kScaledInverseBranching_;
 
-        uint16_t max_height_;
+        p<uint16_t> max_height_;
 
 
         inline int GetMaxHeight() const {
-            return kMaxHeight_;
+            return max_height_;
         }
 
         persistent_ptr<Node> NewNode(const std::string &key, int height);
@@ -97,8 +96,8 @@ namespace rocksdb {
 
     persistent_SkipList::persistent_SkipList(const std::string &path, int32_t max_height, int32_t branching_factor)
             :
-            kMaxHeight_(static_cast<int16_t>(max_height)),
-            kBranching_(static_cast<int16_t>(branching_factor)),
+            kMaxHeight_(static_cast<uint16_t>(max_height)),
+            kBranching_(static_cast<uint16_t>(branching_factor)),
             kScaledInverseBranching_((Random::kMaxNext + 1) / kBranching_),
 
             max_height_(1) {
@@ -115,6 +114,8 @@ namespace rocksdb {
             head_->SetNext(i, nullptr);
             prev_[i] = head_;
         }
+
+        prev_height_ = 1;
     }
 
     persistent_ptr<Node> persistent_SkipList::NewNode(const std::string &key, int height) {
@@ -141,18 +142,16 @@ namespace rocksdb {
     }
 
     persistent_ptr<Node> persistent_SkipList::FindLessThan(const std::string &key,
-                                                           persistent_ptr<rocksdb::Node> *prev) const {
+                                                           persistent_ptr<rocksdb::Node> prev[]) const {
         persistent_ptr<Node> x = head_;
         int level = GetMaxHeight() - 1;
-        persistent_ptr<Node> last_not_after = nullptr;
+        persistent_ptr<Node> last_not_after;
         while(true){
             persistent_ptr<Node> next = x->Next(level);
             if(next != last_not_after && KeyIsAfterNode(key, next)){
                 x = next;
             }else{
-                if(prev != nullptr){
-                    prev[level] = x;
-                }
+                prev[level] = x;
                 if(level ==0 ){
                     return x;
                 }else{
@@ -182,7 +181,8 @@ namespace rocksdb {
             max_height_ = static_cast<uint16_t >(height);
         }
 
-        persistent_ptr<Node> x = make_persistent<Node>(key, height);
+
+        persistent_ptr<Node> x = NewNode(key, height);
         for(int i = 0; i < height; i++){
             x->SetNext(i, prev_[i]->Next(i));
             prev_[i]->SetNext(i ,x);
@@ -196,7 +196,7 @@ namespace rocksdb {
     persistent_ptr<Node> persistent_SkipList::FindGreaterOrEqual(const std::string &key) const {
         persistent_ptr<Node> x = head_;
         int level = GetMaxHeight() - 1;
-        persistent_ptr<Node> last_bigger = nullptr;
+        persistent_ptr<Node> last_bigger;
         while(true){
             persistent_ptr<Node> next = x->Next(level);
             int cmp = (next == nullptr || next == last_bigger) ? 1 : next->key_->compacre(key);
@@ -212,3 +212,11 @@ namespace rocksdb {
 
     }
 } // end rocksdb
+
+
+int main(int argc, char* argv[]){
+    std::string path(argv[1]);
+    auto skiplist = new rocksdb::persistent_SkipList(path, 12, 4);
+    skiplist->Insert("a");
+    return 0;
+}
