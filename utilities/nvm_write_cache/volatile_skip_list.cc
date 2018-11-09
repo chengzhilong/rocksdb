@@ -7,6 +7,7 @@
 #include <string>
 #include <util/random.h>
 #include <cassert>
+#include <fcntl.h>
 
 
 namespace rocksdb {
@@ -59,6 +60,8 @@ namespace rocksdb {
 
         uint16_t max_height_;
 
+        int fd_;
+
 
         inline int GetMaxHeight() const {
             return max_height_;
@@ -105,11 +108,14 @@ namespace rocksdb {
         }
 
         prev_height_ = 1;
+
+        fd_ = open("/tmp/skiplistlog", O_CREAT|O_SYNC|O_RDWR);
     }
 
     Node* volatile_SkipList::NewNode(const std::string &key, int height) {
         Node* n;
         n = new Node(key, height);
+        write(fd, key.c_str(), key.size());
         return n;
     }
 

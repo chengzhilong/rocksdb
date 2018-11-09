@@ -1,8 +1,4 @@
 //
-// Created by 张艺文 on 2018/11/8.
-//
-
-//
 // Created by 张艺文 on 2018/11/5.
 //
 
@@ -11,13 +7,16 @@
 
 #include <cstring>
 #include <string>
-#include <util/random.h>
 #include <io.h>
+#include <ctime>
+#include "util/random.h"
+#include "test_common.h"
 #include "libpmemobj++/p.hpp"
 #include "libpmemobj++/persistent_ptr.hpp"
 #include "libpmemobj++/transaction.hpp"
 #include "libpmemobj++/pool.hpp"
 #include "libpmemobj++/make_persistent.hpp"
+#include "libpmemobj++/make_persistent_array.hpp"
 
 using namespace pmem::obj;
 
@@ -31,59 +30,82 @@ namespace rocksdb {
 
     const int kMaxHeight = 12;
 
-    struct halfNode {
-        explicit halfNode(pool_base &pop, const std::string &key, int height) {
+    struct p_string{
+        persistent_ptr<char[]> data_;
+        p<size_t> size_;
+
+        p_string(pool_base& pop, const std::string& src){
             transaction::run(pop, [&]{
-                key_ = make_persistent<std::string>(key);
+                data_ = make_persistent<char[]>(src.size() + 1);
+                memcpy(&data_[0], src.c_str(), src.size());
+                data_[src.size()] = 0;
+                size_ = src.size();
             });
+
+        }
+
+        int compare(const std::string& right){
+            return strcmp(&data_[0], right.c_str());
+        }
+
+        const char* data(){
+            return &data_[0];
+        }
+
+        size_t size(){
+            return size_;
+        }
+    };
+
+    struct Node {
+        explicit Node() {
         };
 
-        ~halfNode() = default;
+        ~Node() = default;
 
-        halfNode* Next(int n) {
+        Node* Next(int n) {
             assert(n >= 0);
             return next_[n];
         }
 
-        void SetNext(int n, halfNode* next) {
+        void SetNext(int n, Node* next) {
             assert(n >= 0);
             next_[n] = next;
         };
 
-        //p<int> height_;
-        persistent_ptr<std::string> key_;
-        halfNode* next_[kMaxHeight];
+        persistent_ptr<p_string> key_;
+        std::string vkey_;
+        Node* next_[kMaxHeight];
     };
 
     class persistent_SkipList {
     public:
-        explicit persistent_SkipList(const std::string &path, int32_t max_height = 12, int32_t branching_factor = 4);
+        explicit persistent_SkipList(pool_base &pop, int32_t max_height = 12, int32_t branching_factor = 4);
 
-        ~persistent_SkipList() {
+        ~persistent_SkipList(){}
 
-        }
+        void Insert(pool_base& pop, const char *key);
 
-        void Insert(const char *key);
+        void Print() const;
 
         //bool Contains(const char *key);
 
     private:
-        pool_base pool_;
-        halfNode* head_;
-        halfNode* prev_[kMaxHeight];
-        p<uint32_t> prev_height_;
-        p<uint16_t> kMaxHeight_;
-        p<uint16_t> kBranching_;
-        p<uint32_t> kScaledInverseBranching_;
+        Node* head_;
+        Node** prev_;
+        uint32_t prev_height_;
+        uint16_t kMaxHeight_;
+        uint16_t kBranching_;
+        uint32_t kScaledInverseBranching_;
 
-        p<uint16_t> max_height_;
+        uint16_t max_height_;
 
 
         inline int GetMaxHeight() const {
             return max_height_;
         }
 
-        halfNode* NewNode(const std::string &key, int height);
+        Node* NewNode(pool_base& pop, const std::string &key, int height);
 
         int RandomHeight();
 
@@ -95,50 +117,44 @@ namespace rocksdb {
             return strcmp(a, b) < 0;
         }
 
-        bool KeyIsAfterNode(const std::string& key, halfNode* n) const;
+        bool KeyIsAfterNode(const std::string& key, Node* n) const;
 
-        halfNode* FindGreaterOrEqual(const std::string& key) const;
+        Node* FindGreaterOrEqual(const std::string& key) const;
 
-        halfNode* FindLessThan(const std::string& key, halfNode *prev[]) const;
+        Node* FindLessThan(const std::string& key, Node** prev = nullptr) const;
 
         //persistent_ptr<Node> FindLast() const;
-
-        void Print() const;
 
 
     };
 
 
-    persistent_SkipList::persistent_SkipList(const std::string &path, int32_t max_height, int32_t branching_factor)
+    persistent_SkipList::persistent_SkipList(pool_base &pop, int32_t max_height, int32_t branching_factor)
             :
             kMaxHeight_(static_cast<uint16_t>(max_height)),
             kBranching_(static_cast<uint16_t>(branching_factor)),
             kScaledInverseBranching_((Random::kMaxNext + 1) / kBranching_),
 
             max_height_(1) {
-        if (file_exists(path.c_str()) != 0) {
-            pool_ = pool<persistent_SkipList>::create(path.c_str(), "layout", PMEMOBJ_MIN_POOL, CREATE_MODE_RW);
-        } else {
-            pool_ = pool<persistent_SkipList>::open(path.c_str(), "layout");
-        }
+        head_ = NewNode(pop, " ", max_height);
+        prev_ = static_cast<Node**>(malloc(sizeof(Node*) * max_height));
 
-        head_ = NewNode("", max_height_);
-
-        //Node* v_head = pmemobj_direct(head_.raw());
         for (int i = 0; i < kMaxHeight_; i++) {
             head_->SetNext(i, nullptr);
             prev_[i] = head_;
         }
 
         prev_height_ = 1;
+
     }
 
-    halfNode* persistent_SkipList::NewNode(const std::string &key, int height) {
-        /*persistent_ptr<halfNode> n;
-        transaction::run(pool_, [&] {
-            n = make_persistent<halfNode>(pool_, key, height);
-        });*/
-        auto n = new halfNode(pool_, key, height);
+    Node* persistent_SkipList::NewNode(pool_base& pop, const std::string &key, int height) {
+        Node* n;
+        n = new Node;
+        n->vkey_ = key;
+        transaction::run(pop, [&] {
+            n->key_ = make_persistent<p_string>(pop, key);
+        });
         return n;
     }
 
@@ -153,17 +169,18 @@ namespace rocksdb {
 
     // when n < key returns true
     // n should be at behind of key means key is after node
-    bool persistent_SkipList::KeyIsAfterNode(const std::string& key, halfNode* n) const {
-        return (n != nullptr) && (n->key_->compare(key);
+    bool persistent_SkipList::KeyIsAfterNode(const std::string& key, Node* n) const {
+        printf("n is %s\n", n == nullptr?"null":"not null");
+        return (n != nullptr) && (n->vkey_.compare(key));
     }
 
-    halfNode* persistent_SkipList::FindLessThan(const std::string &key,
-                                                halfNode* prev[]) const {
-        halfNode* x = head_;
+    Node* persistent_SkipList::FindLessThan(const std::string &key,
+                                                           Node** prev) const {
+        Node* x = head_;
         int level = GetMaxHeight() - 1;
-        halfNode* last_not_after;
+        Node* last_not_after;
         while(true){
-            halfNode* next = x->Next(level);
+            Node* next = x->Next(level);
             if(next != last_not_after && KeyIsAfterNode(key, next)){
                 x = next;
             }else{
@@ -178,7 +195,7 @@ namespace rocksdb {
         }
     }
 
-    void persistent_SkipList::Insert(const char *key) {
+    void persistent_SkipList::Insert(pool_base& pop, const char *key) {
         // key < prev[0]->next(0) && prev[0] is head or key < prev[0]
         if (!KeyIsAfterNode(key, prev_[0]->Next(0)) &&
             (prev_[0] == head_ || KeyIsAfterNode(key, prev_[0]))) {
@@ -197,25 +214,26 @@ namespace rocksdb {
             max_height_ = static_cast<uint16_t >(height);
         }
 
-
-        halfNode* x = NewNode(key, height);
-        for(int i = 0; i < height; i++){
-            x->SetNext(i, prev_[i]->Next(i));
-            prev_[i]->SetNext(i ,x);
-        }
-        prev_[0] = x;
-        prev_height_ = static_cast<uint16_t >(height);
+        transaction::run(pop, [&]{
+            Node* x = NewNode(pop, key, height);
+            for(int i = 0; i < height; i++){
+                x->SetNext(i, prev_[i]->Next(i));
+                prev_[i]->SetNext(i ,x);
+            }
+            prev_[0] = x;
+            prev_height_ = static_cast<uint16_t >(height);
+        });
 
     }
 
 
-    halfNode* persistent_SkipList::FindGreaterOrEqual(const std::string &key) const {
-        halfNode* x = head_;
+    Node* persistent_SkipList::FindGreaterOrEqual(const std::string &key) const {
+        Node* x = head_;
         int level = GetMaxHeight() - 1;
-        halfNode* last_bigger;
+        Node* last_bigger;
         while(true){
-            halfNode* next = x->Next(level);
-            int cmp = (next == nullptr || next == last_bigger) ? 1 : next->key_->compacre(key);
+            Node* next = x->Next(level);
+            int cmp = (next == nullptr || next == last_bigger) ? 1 : next->vkey_.compare(key);
             if(cmp == 0 || (cmp > 0 && level ==0)){
                 return next;
             }else if(cmp < 0){
@@ -230,25 +248,92 @@ namespace rocksdb {
 
     void persistent_SkipList::Print() const {
         int i = 0;
-        halfNode* start = head_;
-        while(start->Next(0) != nullptr){
-            printf("get:%d %s\n", i++, start->key_.c_str());
+        Node* start = head_->Next(0);
+        while(start != nullptr){
+            printf("get:%d %s\n", i++, start->vkey_.data());
             start = start->Next(0);
         }
+
     }
-} // end rocksdb
+
+    class PersistentSkiplistWrapper {
+    public:
+        PersistentSkiplistWrapper();
+
+        ~PersistentSkiplistWrapper();
+
+        void Insert(pool_base &pop, const std::string& key);
+
+        void Print();
+
+        void Init(pool_base &pop, int32_t max_height = 12, int32_t branching_factor = 4);
+
+    private:
+        //pool<persistent_SkipList> pop_;
+        p<bool> been_inited_;
+        persistent_ptr<persistent_SkipList> skiplist_;
+
+    };
+
+    PersistentSkiplistWrapper::PersistentSkiplistWrapper() {
+
+    }
+
+    PersistentSkiplistWrapper::~PersistentSkiplistWrapper() {
+    }
+
+    void PersistentSkiplistWrapper::Init(pool_base &pop, int32_t max_height, int32_t branching_factor) {
+        printf("%d\n", been_inited_);
+        transaction::run(pop, [&]{
+            if(!been_inited_){
+                skiplist_ = make_persistent<persistent_SkipList>(pop, max_height, branching_factor);
+                been_inited_ = true;
+            }
+        });
+    }
+
+    void PersistentSkiplistWrapper::Insert(pool_base &pop, const std::string &key) {
+        skiplist_->Insert(pop, key.c_str());
+    }
+
+    void PersistentSkiplistWrapper::Print() {
+        skiplist_->Print();
+    }
+}; // end rocksdb
 
 
 int main(int argc, char* argv[]){
     std::string path(argv[1]);
-    auto skiplist = new rocksdb::persistent_SkipList(path, 12, 4);
-    auto rnd = rocksdb::Random::GetTLSInstance();
-    for(int i = 0; i < 1000 ; i++){
-        auto number = rnd->Next();
-        char buf[16];
-        sprintf(buf, "%15d", number);
-        skiplist->Insert(buf);
+    pool<rocksdb::PersistentSkiplistWrapper> pop;
+    if (rocksdb::file_exists(path.c_str()) != 0) {
+        pop = pool<rocksdb::PersistentSkiplistWrapper>::create(path.c_str(), "layout", uint64_t(1024*1024*1024), CREATE_MODE_RW);
+    } else {
+        pop = pool<rocksdb::PersistentSkiplistWrapper>::open(path.c_str(), "layout");
     }
-    //skiplist->Insert("a");
+
+    persistent_ptr<rocksdb::PersistentSkiplistWrapper> skiplist = pop.root();
+
+    skiplist->Init(pop, 12, 4);
+
+    skiplist->Print();
+
+    auto rnd = rocksdb::Random::GetTLSInstance();
+    time_t startt, endt;
+    startt = clock();
+    for(int i = 0; i < 10000 ; i++){
+        auto number = rnd->Next();
+        char buf[4096];
+        sprintf(buf, "%4095d", number);
+        skiplist->Insert(pop, buf);
+    }
+    endt = clock();
+    printf("insert cost  = %f\n", (double)(endt - startt) / CLOCKS_PER_SEC);
+    startt = clock();
+    skiplist->Print();
+    endt = clock();
+    printf("print cost  = %f\n", (double)(endt - startt) / CLOCKS_PER_SEC);
+
+    pop.close();
+
     return 0;
 }
