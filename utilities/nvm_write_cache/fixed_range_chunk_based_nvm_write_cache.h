@@ -60,6 +60,7 @@ namespace rocksdb{
         const FixedRangeBasedOptions* internal_options_;
         FixedRangeChunkBasedCacheStats* cache_stats_;
         std::queue<uint64_t> range_queue_;
+        uint64_t range_seq_;
 
 
     };

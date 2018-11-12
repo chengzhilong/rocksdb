@@ -8,7 +8,8 @@ namespace rocksdb {
             rocksdb::FixedRangeBasedOptions *cache_options_)
             :
                 internal_options_(cache_options_),
-                cache_stats_(new FixedRangeChunkBasedCacheStats)
+                cache_stats_(new FixedRangeChunkBasedCacheStats),
+                range_seq_(0)
                 {
         cache_stats_->range_list_.clear();
         cache_stats_->chunk_bloom_data_.clear();
@@ -32,7 +33,7 @@ namespace rocksdb {
 
     uint64_t FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
         printf("new range %s\n", prefix.c_str());
-        return 1;
+        return ++range_seq_;
     }
 
     Iterator* FixedRangeChunkBasedNVMWriteCache::NewIterator() {
