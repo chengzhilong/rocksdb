@@ -57,7 +57,7 @@ namespace rocksdb{
 
         const uint16_t prefix_bits_ = 3;
 
-        const PrefixExtractor* prefix_extractor_ = nullptr;
+        PrefixExtractor* prefix_extractor_ = nullptr;
 
         const FilterPolicy* filter_policy_ = nullptr;
 

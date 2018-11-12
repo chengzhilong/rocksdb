@@ -236,7 +236,7 @@ namespace rocksdb {
 
 
         if (iter->Valid() || !range_del_agg->IsEmpty()) {
-            const PrefixExtractor *prefix_extractor = nvm_write_cache_->internal_options()->prefix_extractor_;
+            PrefixExtractor *prefix_extractor = nvm_write_cache_->internal_options()->prefix_extractor_;
 
 
             MergeHelper merge(db_options_.env, internal_comparator.user_comparator(),
