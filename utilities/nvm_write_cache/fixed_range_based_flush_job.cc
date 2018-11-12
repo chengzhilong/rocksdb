@@ -26,7 +26,7 @@
 
 namespace rocksdb {
 
-    /*const char *GetFlushReasonString(FlushReason flush_reason) {
+    const char *NVMGetFlushReasonString(FlushReason flush_reason) {
         switch (flush_reason) {
             case FlushReason::kOthers:
                 return "Other Reasons";
@@ -55,7 +55,7 @@ namespace rocksdb {
             default:
                 return "Invalid";
         }
-    }*/
+    }
 
     FixedRangeBasedFlushJob::FixedRangeBasedFlushJob(const std::string &dbname,
                                                      const ImmutableDBOptions &db_options,
@@ -173,7 +173,7 @@ namespace rocksdb {
                     << "num_memtables" << mems_.size() << "num_entries" << total_num_entries
                     << "num_deletes" << total_num_deletes << "memory_usage"
                     << total_memory_usage << "flush_reason"
-                    << GetFlushReasonString(cfd_->GetFlushReason());
+                    << NVMGetFlushReasonString(cfd_->GetFlushReason());
 
             {
                 ScopedArenaIterator iter(
