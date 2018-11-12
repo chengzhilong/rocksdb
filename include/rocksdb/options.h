@@ -985,7 +985,7 @@ namespace rocksdb {
         bool atomic_flush = false;
 
 
-        NVMCacheOptions* nvm_cache_options_ = nullptr;
+        std::shared_ptr<NVMCacheOptions> nvm_cache_options = nullptr;
     };
 
 // Options to control the behavior of a database (passed to DB::Open)
