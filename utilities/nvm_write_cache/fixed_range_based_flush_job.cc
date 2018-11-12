@@ -213,6 +213,7 @@ namespace rocksdb {
                 LogFlush(db_options_.info_log);
             }
         }
+        return s;
     }
 
     Status FixedRangeBasedFlushJob::BuildChunkAndInsert(InternalIterator *iter,
