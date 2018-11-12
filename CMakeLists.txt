@@ -853,6 +853,8 @@ endif ()
 
 option(WITH_TESTS "build with tests" ON)
 if (WITH_TESTS)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
     set(TESTS
             cache/cache_test.cc
             cache/lru_cache_test.cc
