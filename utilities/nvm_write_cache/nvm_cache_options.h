@@ -69,7 +69,7 @@ namespace rocksdb{
                 uint16_t chunk_bloom_bits,
                 uint16_t prefix_bits,
                 PrefixExtractor* prefix_extractor,
-                FilterPolicy* filter_policy,
+                const FilterPolicy* filter_policy,
                 uint64_t range_num_threashold,
                 uint64_t range_size_threshold)
             :
