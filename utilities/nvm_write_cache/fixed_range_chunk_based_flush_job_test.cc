@@ -146,7 +146,7 @@ namespace rocksdb {
                 &mutex_,
                 &shutting_down_,
                 nullptr,
-                db_options_.nvm_cache_options
+                db_options_.nvm_cache_options.get()
         );
         {
             InstrumentedMutexLock l(&mutex_);
@@ -201,7 +201,7 @@ namespace rocksdb {
                 &mutex_,
                 &shutting_down_,
                 nullptr,
-                db_options_.nvm_cache_options
+                db_options_.nvm_cache_options.get()
         );
 
         HistogramData hist;
@@ -271,7 +271,7 @@ namespace rocksdb {
                 &mutex_,
                 &shutting_down_,
                 nullptr,
-                db_options_.nvm_cache_options
+                db_options_.nvm_cache_options.get()
         );
         HistogramData hist;
         //FileMetaData file_meta;
