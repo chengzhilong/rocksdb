@@ -45,8 +45,11 @@ namespace rocksdb {
                                               std::numeric_limits<uint64_t>::max());
             db_options_.statistics = rocksdb::CreateDBStatistics();
 
-            auto fixed_range_based_options = new FixedRangeBasedOptions;
-            fixed_range_based_options->prefix_extractor_ = new SimplePrefixExtractor(12);
+            auto fixed_range_based_options = new FixedRangeBasedOptions(
+                    16, 3,
+                    new SimplePrefixExtractor(3),
+                    NewBloomFilterPolicy(16, false),
+                    0, 64ul<<20);
 
             nvm_cache_options_->use_nvm_write_cache_ = true;
             nvm_cache_options_->nvm_cache_type_ = kRangeFixedChunk;

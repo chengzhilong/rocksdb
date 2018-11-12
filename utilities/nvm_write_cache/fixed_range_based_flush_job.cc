@@ -281,8 +281,7 @@ namespace rocksdb {
                     auto chunk_found = pending_output_chunk.find(now_range_id);
                     if (chunk_found == pending_output_chunk.end()) {
                         //this is a new build a new chunk
-                        auto new_chunk = new BuildingChunk(
-                                static_cast<BlockBasedTableOptions *>(cfd_->ioptions()->table_factory->GetOptions())->filter_policy.get());
+                        auto new_chunk = new BuildingChunk(nvm_write_cache_->internal_options()->filter_policy_);
                         pending_output_chunk[now_range_id] = new_chunk;
                         now_chunk = new_chunk;
                     } else {
