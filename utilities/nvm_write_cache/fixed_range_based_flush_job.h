@@ -9,6 +9,7 @@
 #include <util/autovector.h>
 #include <atomic>
 #include <monitoring/instrumented_mutex.h>
+#include <table/internal_iterator.h>
 
 #include "utilities/nvm_write_cache/nvm_write_cache.h"
 #include "utilities/nvm_write_cache/nvm_flush_job.h"
@@ -23,7 +24,6 @@ namespace rocksdb{
     class LogBuffer;
     struct JobContext;
     class EventLogger;
-    class InternalIterator;
     class SnapshotChecker;
     class RangeBasedChunk;
     class BuildingChunk;

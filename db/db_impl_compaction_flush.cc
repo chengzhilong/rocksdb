@@ -256,13 +256,13 @@ namespace rocksdb {
                         dbname_,
                         immutable_db_options_,
                         job_context,
-                        event_logger_,
+                        &event_logger_,
                         cfd,
                         snapshot_seqs,
                         earliest_write_conflict_snapshot,
                         snapshot_checker,
-                        mutex_,
-                        shutting_down_,
+                        &mutex_,
+                        &shutting_down_,
                         log_buffer,
                         immutable_db_options_.nvm_cache_options);
                 break;
