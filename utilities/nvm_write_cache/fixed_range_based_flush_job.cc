@@ -84,7 +84,7 @@ namespace rocksdb {
               nvm_write_cache_(dynamic_cast<FixedRangeChunkBasedNVMWriteCache *>(nvm_cache_options_->nvm_write_cache_)),
               cache_stat_(nvm_write_cache_->stats()),
               range_list_(&cache_stat_->range_list_),
-              last_chunk(nullptr){
+              last_chunk(nullptr) {
 
     }
 
@@ -152,12 +152,12 @@ namespace rocksdb {
             uint64_t total_num_entries = 0, total_num_deletes = 0;
             size_t total_memory_usage = 0;
             for (MemTable *m : mems_) {
-              /*  ROCKS_LOG_INFO(
-                        db_options_.info_log,
-                        "[%s] [JOB %d] Flushing memtable with next log file: %"
-                                PRIu64
-                                "\n",
-                        cfd_->GetName().c_str(), job_context_->job_id, m->GetNextLogNumber());*/
+                /*  ROCKS_LOG_INFO(
+                          db_options_.info_log,
+                          "[%s] [JOB %d] Flushing memtable with next log file: %"
+                                  PRIu64
+                                  "\n",
+                          cfd_->GetName().c_str(), job_context_->job_id, m->GetNextLogNumber());*/
                 memtables.push_back(m->NewIterator(ro, &arena));
                 auto *range_del_iter = m->NewRangeTombstoneIterator(ro);
                 if (range_del_iter != nullptr) {
@@ -255,38 +255,44 @@ namespace rocksdb {
             for (; c_iter.Valid(); c_iter.Next()) {
                 const Slice &key = c_iter.key();
                 const Slice &value = c_iter.value();
+                printf("get key %s\n", key.data_);
 
                 std::string now_prefix = (*prefix_extractor)(key.data_, key.size_);
-                if(now_prefix == last_prefix && last_chunk != nullptr){
+                if (now_prefix == last_prefix && last_chunk != nullptr) {
                     last_chunk->Insert(key, value);
-                }else{
+                } else {
+                    uint64_t now_range_id;
                     auto range_found = range_list_->find(now_prefix);
-                    if(range_found == range_list_->end()){
+                    if (range_found == range_list_->end()) {
                         // this is a new prefix, biuld a new range
                         {
                             // new a range mem and update range list
                             uint64_t range_mem_id = nvm_write_cache_->NewRange(now_prefix);
                             (*range_list_)[now_prefix] = range_mem_id;
+                            now_range_id = range_mem_id;
 
                         }
 
                     }else{
-                        uint64_t now_range_id = range_found->second;
-                        BuildingChunk* now_chunk = nullptr;
-                        auto chunk_found = pending_output_chunk.find(now_range_id);
-                        if(chunk_found == pending_output_chunk.end()){
-                            //this is a new build a new chunk
-                            auto new_chunk = new BuildingChunk(static_cast<BlockBasedTableOptions*>(cfd_->ioptions()->table_factory->GetOptions())->filter_policy.get());
-                            pending_output_chunk[now_range_id] = new_chunk;
-                            now_chunk = new_chunk;
-                        }else{
-                            now_chunk = pending_output_chunk[now_range_id];
-                        }
-                        // add data to this chunk
-                        now_chunk->Insert(key, value);
-                        last_chunk = now_chunk;
-                        last_prefix = now_prefix;
+                        now_range_id = range_found->second;
                     }
+
+                    BuildingChunk *now_chunk = nullptr;
+                    auto chunk_found = pending_output_chunk.find(now_range_id);
+                    if (chunk_found == pending_output_chunk.end()) {
+                        //this is a new build a new chunk
+                        auto new_chunk = new BuildingChunk(
+                                static_cast<BlockBasedTableOptions *>(cfd_->ioptions()->table_factory->GetOptions())->filter_policy.get());
+                        pending_output_chunk[now_range_id] = new_chunk;
+                        now_chunk = new_chunk;
+                    } else {
+                        now_chunk = chunk_found->second;
+                    }
+                    // add data to this chunk
+                    now_chunk->Insert(key, value);
+                    last_chunk = now_chunk;
+                    last_prefix = now_prefix;
+
                 }
                 //builder->Add(key, value);
                 //meta->UpdateBoundaries(key, c_iter.ikey().sequence);
@@ -299,28 +305,28 @@ namespace rocksdb {
                 }*/
             }
             s = c_iter.status();
-            if(s.ok()){
+            if (s.ok()) {
                 // insert data of each range into nvm cache
-                std::vector<port::Thread > thread_pool;
+                std::vector<port::Thread> thread_pool;
                 thread_pool.clear();
-                auto finish_build_chunk = [&](uint64_t range_mem_id){
-                    std::string* output_data = pending_output_chunk[range_mem_id]->Finish();
-                    nvm_write_cache_->Insert(output_data->c_str(), static_cast<void*>(&range_mem_id));
+                auto finish_build_chunk = [&](uint64_t range_mem_id) {
+                    std::string *output_data = pending_output_chunk[range_mem_id]->Finish();
+                    nvm_write_cache_->Insert(output_data->c_str(), static_cast<void *>(&range_mem_id));
                     delete output_data;
                 };
 
                 auto pending_chunk = pending_output_chunk.begin();
                 pending_chunk++;
-                for(;pending_chunk != pending_output_chunk.end();pending_chunk++){
+                for (; pending_chunk != pending_output_chunk.end(); pending_chunk++) {
                     thread_pool.emplace_back(finish_build_chunk, pending_chunk->first);
                 }
                 finish_build_chunk(pending_output_chunk.begin()->first);
-                for(auto& running_thread : thread_pool){
+                for (auto &running_thread : thread_pool) {
                     running_thread.join();
                 }
 
-            }else{
-               return s;
+            } else {
+                return s;
             };
 
             // not supprt range del currently
