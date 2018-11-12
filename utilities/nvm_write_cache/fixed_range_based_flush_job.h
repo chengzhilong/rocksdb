@@ -45,13 +45,13 @@ namespace rocksdb{
                 LogBuffer* log_buffer,
                 NVMCacheOptions* nvm_cache_options);
 
-        ~FixedRangeBasedFlushJob();
+        ~FixedRangeBasedFlushJob() override;
 
-        void Prepare();
+        void Prepare() override;
 
-        Status Run();
+        Status Run() override;
 
-        void Cancle();
+        void Cancel() override;
 
     private:
 

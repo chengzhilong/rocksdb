@@ -5,8 +5,10 @@
 
 #pragma once
 
+#include <queue>
 #include "utilities/nvm_write_cache/nvm_write_cache.h"
 #include "utilities/nvm_write_cache/nvm_cache_options.h"
+
 
 namespace rocksdb{
 
@@ -26,20 +28,20 @@ namespace rocksdb{
 
         explicit FixedRangeChunkBasedNVMWriteCache(FixedRangeBasedOptions* cache_options_);
 
-        ~FixedRangeChunkBasedNVMWriteCache();
+        ~FixedRangeChunkBasedNVMWriteCache() override;
 
         // insert data to cache
         // insert_mark is (uint64_t)range_id
-        Status Insert(const Slice& cached_data, void* insert_mark);
+        Status Insert(const Slice& cached_data, void* insert_mark) override;
 
         // get data from cache
-        Status Get(const Slice& key, std::string* value);
+        Status Get(const Slice& key, std::string* value) override;
 
         // get iterator of the total cache
-        Iterator* NewIterator();
+        Iterator* NewIterator() override;
 
         //get iterator of data that will be drained
-        Iterator* GetDraineddata();
+        Iterator* GetDraineddata() override;
 
         // add a range with a new prefix to range mem
         // return the id of the range
@@ -51,10 +53,13 @@ namespace rocksdb{
         // get stats of this cache
         FixedRangeChunkBasedCacheStats* stats(){return cache_stats_;}
 
+        bool NeedCompaction() override {return !range_queue_.empty();}
+
 
     private:
         const FixedRangeBasedOptions* internal_options_;
         FixedRangeChunkBasedCacheStats* cache_stats_;
+        std::queue<uint64_t> range_queue_;
 
 
     };

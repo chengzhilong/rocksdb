@@ -997,6 +997,7 @@ if (WITH_TESTS)
             utilities/transactions/write_unprepared_transaction_test.cc
             utilities/ttl/ttl_test.cc
             utilities/write_batch_with_index/write_batch_with_index_test.cc
+            utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc
             )
     if (WITH_LIBRADOS)
         list(APPEND TESTS utilities/env_librados_test.cc)

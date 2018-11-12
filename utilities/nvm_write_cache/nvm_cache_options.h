@@ -24,8 +24,8 @@ namespace rocksdb{
     };
 
     enum DrainStrategy{
-        kCompaction;
-        kNoDrain;
+        kCompaction,
+        kNoDrain,
     };
 
     struct NVMCacheOptions{
@@ -46,6 +46,8 @@ namespace rocksdb{
         NVMWriteCache* nvm_write_cache_;
 
         DrainStrategy drain_strategy_;
+
+        static NVMWriteCache* NewNVMWriteCache(NVMCacheOptions* nvm_write_cache_options, NVMCacheType cache_type);
 
     };
 

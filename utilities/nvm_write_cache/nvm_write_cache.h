@@ -26,6 +26,8 @@ namespace rocksdb{
 
         virtual Iterator* GetDraineddata() = 0;
 
+        virtual bool NeedCompaction() = 0;
+
         //virtual void* GetOptions() = 0;
 
         //virtual CacheStats* GetStats() = 0;

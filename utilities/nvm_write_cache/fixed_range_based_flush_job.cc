@@ -340,7 +340,7 @@ namespace rocksdb {
     }
 
 
-    void FixedRangeBasedFlushJob::Cancle() {
+    void FixedRangeBasedFlushJob::Cancel() {
 
     }
 
