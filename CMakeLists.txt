@@ -690,9 +690,9 @@ set(SOURCES
         utilities/nvm_write_cache/fixed_range_based_flush_job.cc
         utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc
         utilities/nvm_write_cache/chunk.cc
-        utilities/nvm_write_cache/persistent_skip_list.cc
-        utilities/nvm_write_cache/volatile_skip_list.cc
-        utilities/nvm_write_cache/nvm_test.cc
+        #utilities/nvm_write_cache/persistent_skip_list.cc
+        #utilities/nvm_write_cache/volatile_skip_list.cc
+        #utilities/nvm_write_cache/nvm_test.cc
         $<TARGET_OBJECTS:build_version>)
 
 if (HAVE_SSE42 AND NOT MSVC)
@@ -853,8 +853,6 @@ endif ()
 
 option(WITH_TESTS "build with tests" ON)
 if (WITH_TESTS)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
     set(TESTS
             cache/cache_test.cc
             cache/lru_cache_test.cc

@@ -40,6 +40,9 @@ namespace rocksdb{
 
     BuildingChunk::BuildingChunk(const FilterPolicy* filter_policy) : chunk_(new ArrayBasedChunk()),
                                                                       filter_policy_(filter_policy) {
+        if(filter_policy_ == nullptr){
+            printf("empty filter policy\n");
+        }
 
     }
 
