@@ -213,8 +213,8 @@ namespace rocksdb {
         nvm_flush_job.Prepare();
         ASSERT_OK(nvm_flush_job.Run());
         mutex_.Unlock();
-        db_options_.statistics->histogramData(FLUSH_TIME, &hist);
-        ASSERT_GT(hist.average, 0.0);
+        //db_options_.statistics->histogramData(FLUSH_TIME, &hist);
+        //ASSERT_GT(hist.average, 0.0);
 
         //ASSERT_EQ(ToString(0), file_meta.smallest.user_key().ToString());
         //ASSERT_EQ(
@@ -282,8 +282,8 @@ namespace rocksdb {
         nvm_flush_job.Prepare();
         ASSERT_OK(nvm_flush_job.Run());
         mutex_.Unlock();
-        db_options_.statistics->histogramData(FLUSH_TIME, &hist);
-        ASSERT_GT(hist.average, 0.0);
+        //db_options_.statistics->histogramData(FLUSH_TIME, &hist);
+        //ASSERT_GT(hist.average, 0.0);
 
         /*ASSERT_EQ(ToString(0), file_meta.smallest.user_key().ToString());
         ASSERT_EQ("99", file_meta.largest.user_key().ToString());
