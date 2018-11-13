@@ -27,7 +27,7 @@ namespace rocksdb{
     struct CompactionItem{
         FixedRange* pending_compated_range_;
         Slice start_key_, end_key_;
-        uint64_t range_size_, range_rum_;
+        uint64_t range_size_, chunk_num_;
     };
 
     class FixedRangeChunkBasedNVMWriteCache: public NVMWriteCache{

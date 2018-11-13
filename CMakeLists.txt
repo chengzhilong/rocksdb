@@ -693,6 +693,7 @@ set(SOURCES
         #utilities/nvm_write_cache/persistent_skip_list.cc
         #utilities/nvm_write_cache/volatile_skip_list.cc
         #utilities/nvm_write_cache/nvm_test.cc
+        utilities/nvm_write_cache/persistent_skiplist_without_transaction.cc
         $<TARGET_OBJECTS:build_version>)
 
 if (HAVE_SSE42 AND NOT MSVC)
