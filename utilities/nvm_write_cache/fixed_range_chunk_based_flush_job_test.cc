@@ -222,7 +222,7 @@ namespace rocksdb {
         //        file_meta.largest.user_key().ToString());  // range tombstone end key
         //ASSERT_EQ(1, file_meta.fd.smallest_seqno);
         //ASSERT_EQ(10000, file_meta.fd.largest_seqno);  // range tombstone seqnum 10000
-        mock_table_factory_->AssertSingleFile(inserted_keys);
+        //mock_table_factory_->AssertSingleFile(inserted_keys);
         job_context.Clean();
     }
 
