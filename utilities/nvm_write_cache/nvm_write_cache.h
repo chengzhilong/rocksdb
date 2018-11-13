@@ -24,7 +24,7 @@ namespace rocksdb{
 
         virtual Iterator* NewIterator() = 0;
 
-        virtual Iterator* GetDraineddata() = 0;
+        //virtual Iterator* GetDraineddata() = 0;
 
         virtual bool NeedCompaction() = 0;
 

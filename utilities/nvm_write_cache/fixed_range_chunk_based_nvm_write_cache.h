@@ -12,6 +12,8 @@
 
 namespace rocksdb{
 
+    class FixedRange;
+
     struct FixedRangeChunkBasedCacheStats{
 
         uint64_t  used_bits_;
@@ -20,6 +22,12 @@ namespace rocksdb{
 
         std::vector<std::string*> chunk_bloom_data_;
 
+    };
+
+    struct CompactionItem{
+        FixedRange* pending_compated_range_;
+        Slice start_key_, end_key_;
+        uint64_t range_size_, range_rum_;
     };
 
     class FixedRangeChunkBasedNVMWriteCache: public NVMWriteCache{
@@ -40,8 +48,11 @@ namespace rocksdb{
         // get iterator of the total cache
         Iterator* NewIterator() override;
 
+        // return there is need for compaction or not
+        bool NeedCompaction() override {return !range_queue_.empty();}
+
         //get iterator of data that will be drained
-        Iterator* GetDraineddata() override;
+        CompactionItem* GetCompactionData();
 
         // add a range with a new prefix to range mem
         // return the id of the range
@@ -53,13 +64,10 @@ namespace rocksdb{
         // get stats of this cache
         FixedRangeChunkBasedCacheStats* stats(){return cache_stats_;}
 
-        bool NeedCompaction() override {return !range_queue_.empty();}
-
-
     private:
         const FixedRangeBasedOptions* internal_options_;
         FixedRangeChunkBasedCacheStats* cache_stats_;
-        std::queue<uint64_t> range_queue_;
+        std::queue<CompactionItem*> range_queue_;
         uint64_t range_seq_;
 
 

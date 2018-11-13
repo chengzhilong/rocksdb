@@ -40,7 +40,7 @@ namespace rocksdb {
         return nullptr;
     }
 
-    Iterator* FixedRangeChunkBasedNVMWriteCache::GetDraineddata() {
+    CompactionItem* FixedRangeChunkBasedNVMWriteCache::GetCompactionData() {
         return nullptr;
     }
 
