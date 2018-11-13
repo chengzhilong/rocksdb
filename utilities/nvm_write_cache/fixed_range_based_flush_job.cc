@@ -140,6 +140,7 @@ namespace rocksdb {
         const uint64_t start_micros = db_options_.env->NowMicros();
         Status s;
         {
+            // unlock
             db_mutex_->Unlock();
             if (log_buffer_) {
                 log_buffer_->FlushBufferToLog();
@@ -212,6 +213,7 @@ namespace rocksdb {
 
                 LogFlush(db_options_.info_log);
             }
+            db_mutex_->Lock();
         }
         return s;
     }

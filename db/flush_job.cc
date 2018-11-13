@@ -287,6 +287,7 @@ Status FlushJob::WriteLevel0Table() {
   Status s;
   {
     auto write_hint = cfd_->CalculateSSTWriteHint(0);
+    // unlock
     db_mutex_->Unlock();
     if (log_buffer_) {
       log_buffer_->FlushBufferToLog();
