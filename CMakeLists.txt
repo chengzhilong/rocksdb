@@ -696,6 +696,7 @@ set(SOURCES
         utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc
         utilities/nvm_write_cache/skiplist/batch_skiplist.cc
         utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc
+        utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc
         $<TARGET_OBJECTS:build_version>)
 
 if (HAVE_SSE42 AND NOT MSVC)

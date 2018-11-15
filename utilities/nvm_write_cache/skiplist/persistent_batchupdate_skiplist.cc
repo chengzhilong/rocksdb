@@ -2,10 +2,35 @@
 // Created by 张艺文 on 2018/11/14.
 //
 
-#include <util/coding.h>
 #include "persistent_batchupdate_skiplist.h"
 
 namespace rocksdb{
+
+    void EncodeFixed64(char* buf, uint64_t value) {
+
+            buf[0] = value & 0xff;
+            buf[1] = (value >> 8) & 0xff;
+            buf[2] = (value >> 16) & 0xff;
+            buf[3] = (value >> 24) & 0xff;
+            buf[4] = (value >> 32) & 0xff;
+            buf[5] = (value >> 40) & 0xff;
+            buf[6] = (value >> 48) & 0xff;
+            buf[7] = (value >> 56) & 0xff;
+    }
+
+    uint32_t DecodeFixed32(const char* ptr) {
+            return ((static_cast<uint32_t>(static_cast<unsigned char>(ptr[0])))
+                    | (static_cast<uint32_t>(static_cast<unsigned char>(ptr[1])) << 8)
+                    | (static_cast<uint32_t>(static_cast<unsigned char>(ptr[2])) << 16)
+                    | (static_cast<uint32_t>(static_cast<unsigned char>(ptr[3])) << 24));
+    }
+
+    uint64_t DecodeFixed64(const char* ptr) {
+            uint64_t lo = DecodeFixed32(ptr);
+            uint64_t hi = DecodeFixed32(ptr + 4);
+            return (hi << 32) | lo;
+    }
+
     VolatileSkipList::VolatileSkipList(int32_t max_height, int32_t branching_factor)
             :
             kMaxHeight_(static_cast<uint16_t>(max_height)),
@@ -159,16 +184,16 @@ namespace rocksdb{
                                                                  kScaledInverseBranching_((Random::kMaxNext + 1) / kBranching_){
         //vlist_ = new VolatileSkipList(max_height, branching_factor);
         transaction::run(pop, [&]{
-            off_array_ = make_persistent<uint64_t[]>(10010);
+            off_array_ = make_persistent<int[]>(10010);
             key_log_ = make_persistent<char[]>(2ul * 1024 * 1024 * 1024);
             index_log_ = nullptr;
-            kTail = 10010;
-            max_accumu_height_ = 0;
             array_cur_ = 0;
             key_cur_ = 0;
-            head_ = kTail;
+            head_ = 0;
             pendding_sort_ = 0;
             count_ = 0;
+            index_cur_ = 0;
+            index_size_ = 0;
         });
 
     }
@@ -198,7 +223,7 @@ namespace rocksdb{
         }
 
         if(count_ > 100){
-            BuildExistingIndex();
+            BuildNewListAndPersist();
             count_ = 0;
         }
     }
@@ -224,8 +249,8 @@ namespace rocksdb{
             uint64_t prev_accumu_height;
             uint64_t accumu_height;
             GetKey(off_array_[next_sort], cur_key, accumu_height, prev_accumu_height);
-            vlist_->Insert(cur_key.c_str(), accumu_height-prev_accumu_height);
-            height.push_back(accumu_height-prev_accumu_height);
+            vlist_->Insert(cur_key.c_str(), accumu_height - prev_accumu_height);
+            height.push_back(accumu_height - prev_accumu_height);
             next_sort++;
         }
 
@@ -234,13 +259,20 @@ namespace rocksdb{
         std::vector<int> new_index;
         vlist_->GetIndex(index_size, height, new_index);
 
+        persistent_ptr<int[]> new_persistent_index;
         transaction::run(pop_, [&]{
-            index_log_ = make_persistent<int>(new_index.size());
-            size_t count = 0;
+            new_persistent_index = make_persistent<int[]>(new_index.size());
+            size_t i = 0;
             for(auto idx_num : new_index){
-                index_log_[count++] = idx_num;
+                index_log_[i++] = idx_num;
             }
         });
+
+        persistent_ptr<int[]> old_index = index_log_;
+        int old_size = index_size;
+        index_log_ = new_persistent_index;
+        index_size = new_index.size();
+        delete_persistent<int[]>(old_index, old_size);
 
         // set new pendding_sort pos
         pendding_sort_ = array_cur_;
@@ -259,7 +291,7 @@ namespace rocksdb{
             GetKey(off_array_[next_key], cur_key, accumu_height, prev_accumu_height);
             vlist_->Insert(cur_key.c_str(), static_cast<int>(accumu_height - prev_accumu_height));
             height.push_back(accumu_height - prev_accumu_height);
-            while(index_log_[prev_accumu_height + 1] != max_accumu_height_){
+            while(index_log_[prev_accumu_height + 1] != -1){
                 next_key = index_log_[prev_accumu_height + 1];
                 GetKey(off_array_[next_key], cur_key, accumu_height, prev_accumu_height);
                 vlist_->Insert(cur_key.c_str(), static_cast<int>(accumu_height - prev_accumu_height));
@@ -293,11 +325,13 @@ namespace rocksdb{
         return height;
     }
 
-    void SkiplistWrapper::init(pool_base &pop) {
-        transaction::run(pop, [&]{
-            batchskiplist = make_persistent<PersistentBatchUpdateSkiplist>(pop, 12, 4);
-            inited = true;
-        });
+    void SkiplistWrapper::Init(pool_base &pop, uint32_t max_height, uint32_t branching_factor) {
+        if(!inited){
+            transaction::run(pop, [&]{
+                batchskiplist = make_persistent<PersistentBatchUpdateSkiplist>(pop, max_height, branching_factor);
+                inited = true;
+            });
+        }
     }
 
 

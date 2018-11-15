@@ -99,7 +99,7 @@ namespace rocksdb{
 
     class PersistentBatchUpdateSkiplist{
     public:
-        PersistentBatchUpdateSkiplist(pool_base& pop, int32_t max_height = 12, int32_t branching_factor = 4);
+        explicit PersistentBatchUpdateSkiplist(pool_base& pop, int32_t max_height = 12, int32_t branching_factor = 4);
         ~PersistentBatchUpdateSkiplist();
 
         void Insert(const std::string& key);
@@ -112,18 +112,13 @@ namespace rocksdb{
 
         void GetKey(uint64_t offset, std::string& key, uint64_t& accumu_height, uint64_t prev_accumu_height);
 
-        void BuildExistingIndex();
-
         void TransferIntoVolatile(std::vector<uint64_t >& height);
 
         void BuildNewListAndPersist();
 
-        void GetPersistentKey(std::string& key, int& height);
-
         pool_base& pop_;
 
         persistent_ptr<int[]> off_array_;
-        p<size_t> kTail;
         p<size_t> array_cur_;
         p<size_t> head_;
         p<uint64_t> pendding_sort_;
@@ -135,8 +130,8 @@ namespace rocksdb{
 
 
         persistent_ptr<int[]> index_log_;
+        p<size_t > index_size_;
         p<size_t > index_cur_;
-        p<size_t > max_accumu_height_;
 
 
         const uint16_t kMaxHeight_;
@@ -151,7 +146,7 @@ namespace rocksdb{
         p<bool> inited = false;
         persistent_ptr<PersistentBatchUpdateSkiplist> batchskiplist = nullptr;
 
-        void init(pool_base& pop);
+        void Init(pool_base& pop, uint32_t max_height, uint32_t branching_factor);
     };
 } //end rocksdb
 
