@@ -25,11 +25,16 @@ int main(int argc, char* argv[]){
     auto rnd = rocksdb::Random::GetTLSInstance();
     time_t startt, endt;
     startt = clock();
+    int count = 0;
     for(int i = 0; i < 10000 ; i++){
         auto number = rnd->Next();
         char buf[4096];
         sprintf(buf, "%4095d", number);
         skiplist->batchskiplist->Insert(buf);
+        if(count++ == 100){
+            printf("finished %d\n", i);
+            count = 0;
+        }
     }
     endt = clock();
     printf("insert cost  = %f\n", (double)(endt - startt) / CLOCKS_PER_SEC);

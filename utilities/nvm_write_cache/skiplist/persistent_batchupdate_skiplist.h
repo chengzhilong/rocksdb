@@ -21,7 +21,7 @@ namespace rocksdb{
         explicit Node(const std::string &key, int height)
                 :
                 key_(key){
-            next_by_insert_ = nullptr;
+            //next_by_insert_ = nullptr;
         };
 
         ~Node() = default;
@@ -39,7 +39,8 @@ namespace rocksdb{
         //p<int> height_;
         std::string key_;
         int index_;
-        Node* next_by_insert_;
+        int height;
+        //Node* next_by_insert_;
         Node* next_[1];
     };
 
@@ -49,11 +50,11 @@ namespace rocksdb{
 
         ~VolatileSkipList();
 
-        void Insert(const char *key, int height);
+        void Insert(const char *key, int height, int seq);
 
         void Print() const;
 
-        void GetIndex(uint64_t& size, std::vector<uint64_t >& height, std::vector<int>& result);
+        void GetIndex(uint64_t& size, std::vector<int>& result);
 
         int head(){return head_->Next(0)->index_;}
 
@@ -69,15 +70,15 @@ namespace rocksdb{
 
         uint16_t max_height_;
 
-        Node* first_inserted_;
-        Node* prev_inserted_;
-        int seq_num_;
+        //Node* first_inserted_;
+        //Node* prev_inserted_;
+        //int seq_num_;
 
         inline int GetMaxHeight() const {
             return max_height_;
         }
 
-        Node* NewNode(const std::string &key, int height);
+        Node* NewNode(const std::string &key, int height, int seq);
 
 
         bool Equal(const char *a, const char *b) {
@@ -110,13 +111,14 @@ namespace rocksdb{
 
         uint64_t AppendToKeyLog(const char* data, size_t size);
 
-        void GetKey(uint64_t offset, std::string& key, uint64_t& accumu_height, uint64_t prev_accumu_height);
+        void GetKey(uint64_t offset, std::string& key, uint64_t& accumu_height, uint64_t& prev_accumu_height);
 
-        void TransferIntoVolatile(std::vector<uint64_t >& height);
+        void TransferIntoVolatile();
 
         void BuildNewListAndPersist();
 
         pool_base& pop_;
+        p<int> seq_;
 
         persistent_ptr<int[]> off_array_;
         p<size_t> array_cur_;
