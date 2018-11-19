@@ -1,9 +1,9 @@
-#include <libpmemobj++/make_persistent.hpp>
-#include <libpmemobj++/make_persistent_array.hpp>
-#include <libpmemobj++/p.hpp>
-#include <libpmemobj++/persistent_ptr.hpp>
-#include <libpmemobj++/pool.hpp>
-#include <libpmemobj++/transaction.hpp>
+#include "skiplist/libpmemobj++/make_persistent.hpp"
+#include "skiplist/libpmemobj++/make_persistent_array.hpp"
+#include "skiplist/libpmemobj++/p.hpp"
+#include "skiplist/libpmemobj++/persistent_ptr.hpp"
+#include "skiplist/libpmemobj++/pool.hpp"
+#include "skiplist/libpmemobj++/transaction.hpp"
 
 #include "fixed_range_chunk_based_nvm_write_cache.h"
 
@@ -14,30 +14,32 @@ namespace rocksdb {
     using p_range::pmem_hash_map;
     using p_range::p_node;
 
-    FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(const string &file, const string &layout)
-            : file_path(file), LAYOUT(layout), POOLSIZE(1 << 26) {
-        //    file_path.data()
-        bool justCreated = false;
-        if (file_exists(file_path) != 0) {
-            pop = pool<pmem_hash_map>::create(file_path, LAYOUT, POOLSIZE, CREATE_MODE_RW);
-            justCreated = true;
+    FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(const string &file, uint64_t pmem_size) {
+        //bool justCreated = false;
+        if (file_exists(file.c_str()) != 0) {
+            pop_ = pmem::obj::pool<PersistentInfo>::create(file.c_str(), "FixedRangeChunkBasedNVMWriteCache", pmem_size, CREATE_MODE_RW);
+            //justCreated = true;
 
         } else {
-            pop = pool<pmem_hash_map>::open(file_path, LAYOUT);
+            pop_ = pmem::obj::pool<PersistentInfo>::open(file.c_str(), "FixedRangeChunkBasedNVMWriteCache");
         }
-//  pmem_ptr = pop.root();
 
-        transaction::run(pop, [&] {
-            persistent_ptr <p_range::pmem_hash_map> p_map = pop.root();
-            if (justCreated) {
+        pinfo_ = pop_.root();
+        if(!pinfo_->inited_){
+            transaction::run(pop_, [&] {
                 // TODO 配置
-                p_map->tabLen =;
-                p_map->tab = make_persistent<p_node[]>(p_map->tabLen);
-                p_map->loadFactor = 0.75f;
-                p_map->threshold = p_map->tabLen * p_map->loadFactor;
-                p_map->size = 0;
-            }
-        });
+                pinfo_->range_map = make_persistent<p_range::pmem_hash_map>();
+                pinfo_->range_map_->tabLen = 0;
+                pinfo_->range_map_->tab = make_persistent<p_node[]>(p_map->tabLen);
+                pinfo_->range_map_->loadFactor = 0.75f;
+                pinfo_->range_map_->threshold = p_map->tabLen * p_map->loadFactor;
+                pinfo_->range_map_->size = 0;
+
+                pinfo_->allocator_ = make_persistent<PersistentAllocator>();
+            });
+        }
+
+
 
 //  if (file_exists(file_path) != 0) {
 //    if ((pop = pmemobj_create(file_path, POBJ_LAYOUT_NAME(range_mem),

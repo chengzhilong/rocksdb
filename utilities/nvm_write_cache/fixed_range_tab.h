@@ -2,17 +2,20 @@
 #define PERSISTENT_RANGE_MEM_H
 
 #include <list>
-
 #include <db/db_impl.h>
-//#include <rocksdb/slice.h>
-//#include <rocksdb/iterator.h>
-//#include <table/merging_iterator.h>
-
 #include <libpmemobj.h>
 
-#include <persistent_chunk.h>
+#include "persistent_chunk.h"
+#include "pmem_hash_map.h"
+#include "nvm_cache_options.h"
+#include "skiplist/libpmemobj++/make_persistent.hpp"
+#include "skiplist/libpmemobj++/make_persistent_array.hpp"
+#include "skiplist/libpmemobj++/p.hpp"
+#include "skiplist/libpmemobj++/persistent_ptr.hpp"
+#include "skiplist/libpmemobj++/pool.hpp"
+#include "skiplist/libpmemobj++/transaction.hpp"
 
-#include <pmem_hash_map.h>
+using namespace pmem::obj;
 
 namespace rocksdb {
 
@@ -21,15 +24,6 @@ namespace rocksdb {
 
         using std::list;
 
-        struct RangeStat {
-//    uint64_t  used_bits_;
-//    std::unordered_map<std::string, uint64_t> range_list_;
-//    std::vector<std::string*> chunk_bloom_data_;
-
-            // 预设的range
-//    Slice start_, end_;
-        };
-
         class freqUpdateInfo {
             public:
             explicit freqUpdateInfo(const Slice& real_start, const Slice& real_end)
@@ -37,17 +31,24 @@ namespace rocksdb {
 
             }
             void update(const Slice& real_start, const Slice& real_end) {
-                if (real_start.compare(real_start_) < 0)
-                    real_start_ = real_start;
-                if (real_end.compare(real_end_) > 0)
-                    real_end_ = real_end;
+                transaction::run(pop, [&]{
+                    real_start_ = make_persistent<char[]>(real_start.size());
+                    memcpy(&real_start_[0], real_start.data(), real_start.size());
+                    real_end_ = make_persistent<char[]>(real_end.size());
+                    memcpy(&real_end_[0], real_end.data(), real_end.size());
+                    chunk_num_ = chunk_num_ + 1;
+                    seq_num_ = seq_num_ + 1;
+                });
             }
 
             // 实际的range
             // TODO 初始值怎么定
-            Slice real_start_;
-            Slice real_end_;
-            size_t chunk_num;
+            const p<uint64_t> MAX_CHUNK_SIZE;
+            persistent_ptr<char[]> real_start_;
+            persistent_ptr<char[]> real_end_;
+            p<size_t> chunk_num_;
+            p<uint64_t> seq_num_;
+            p<uint64_t> total_size_;
         };
 
         class FixedRangeTab
@@ -104,24 +105,19 @@ namespace rocksdb {
             FixedRangeTab(const FixedRangeTab&) = delete;
             FixedRangeTab& operator=(const FixedRangeTab&) = delete;
 
-            RangeStat stat;
-            freqUpdateInfo info;
+            uint64_t max_chunk_num_to_flush() const{ return 100;}
+            Status DoInChunkSearch(const Slice& key, std::string* value, std::vector<uint64_t>& off, const char* chunk_data);
+            Slice GetKVData(const char* raw, uint64_t item_size)
 
-            unsigned int memid;
-            std::string file_path;
-
-            // 每个 chunk block 的偏移
-//    vector<size_t> chunkBlkOffset;
-
-//    persistent_ptr<char[]> buf_;
-
-            size_t chunk_sum_size;
-            const size_t MAX_CHUNK_SUM_SIZE;
-
+            // persistent info
+            p<char*> raw_;
             p_range::p_node node_in_pmem_map;
+            persistent_ptr<freqUpdateInfo> range_info_;
 
-//    list<size_t> psttChunkList;
-//    char *g_bloom_data;
+            // volatile info
+            FixedRangeBasedOptions* interal_options_;
+            std::vector<uint64_t> chunk_offset_;
+            Comparator* cmp_;
         };
 
 } // namespace rocksdb
