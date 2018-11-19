@@ -3,11 +3,12 @@
 
 
 #include <queue>
+#include <unordered_map>
 #include <rocksdb/iterator.h>
 #include "utilities/nvm_write_cache/nvm_write_cache.h"
 #include "utilities/nvm_write_cache/nvm_cache_options.h"
 
-#include "skiplist/libpmemobj++/pool.hpp"
+#include <libpmemobj++/pool.hpp>
 
 #include <fixed_range_tab.h>
 #include <pmem_hash_map.h>
@@ -15,25 +16,26 @@
 namespace rocksdb {
 
     using std::string;
+    using std::unordered_map;
     using namespace pmem;
     using namespace pmem::obj;
 
-    struct FixedRangeChunkBasedCacheStats{
-        uint64_t  used_bits_;
-        std::unordered_map<std::string, FixedRangeTab* > range_list_;
-        std::vector<std::string*> chunk_bloom_data_;
+    struct FixedRangeChunkBasedCacheStats {
+        uint64_t used_bits_;
+        std::unordered_map<std::string, uint64_t> range_list_;
+        std::vector<std::string *> chunk_bloom_data_;
     };
 
     struct CompactionItem {
-        FixedRangeTab* pending_compated_range_;
+        FixedRangeTab *pending_compated_range_;
         Slice start_key_, end_key_;
         uint64_t range_size_, range_rum_;
     };
 
-    class FixedRangeChunkBasedNVMWriteCache : public NVMWriteCache
-    {
+    class FixedRangeChunkBasedNVMWriteCache : public NVMWriteCache {
     public:
-        FixedRangeChunkBasedNVMWriteCache(const string& file, const string& layout);
+        FixedRangeChunkBasedNVMWriteCache(const string &file, const string &layout);
+
         ~FixedRangeChunkBasedNVMWriteCache();
 
         // insert data to cache
@@ -41,36 +43,38 @@ namespace rocksdb {
 //  Status Insert(const Slice& cached_data, void* insert_mark) override;
 
         // get data from cache
-        Status Get(const Slice& key, std::string* value) override;
+        Status Get(const Slice &key, std::string *value) override;
 
 
         // get iterator of the total cache
-        Iterator* NewIterator() override;
+        Iterator *NewIterator() override;
 
         // 获取range_mem_id对应的RangeMemtable结构
 //  FixedRangeTab* GetRangeMemtable(uint64_t range_mem_id);
 
         // return there is need for compaction or not
-        bool NeedCompaction() override {return !range_queue_.empty();}
+        bool NeedCompaction() override { return !range_queue_.empty(); }
 
         //get iterator of data that will be drained
         // get 之后释放没有 ?
-        CompactionItem* GetCompactionData() {
+        CompactionItem &GetCompactionData() {
             CompactionItem *item = range_queue_.front();
 //    range_queue_.pop();
             return item;
         }
+
         void addCompactionRangeTab(FixedRangeTab *tab);
 
         // add a range with a new prefix to range mem
         // return the id of the range
-        uint64_t NewRange(const std::string& prefix);
+        uint64_t NewRange(const std::string &prefix);
 
         // get internal options of this cache
-        const FixedRangeBasedOptions* internal_options(){return internal_options_;}
+        const FixedRangeBasedOptions *internal_options() { return internal_options_; }
 
         // get stats of this cache
-        FixedRangeChunkBasedCacheStats* stats(){return cache_stats_;}
+        FixedRangeChunkBasedCacheStats *stats() { return cache_stats_; }
+
     private:
         string file_path;
         const string LAYOUT;
@@ -81,12 +85,14 @@ namespace rocksdb {
         //  persistent_queue<uint64_t> compact_queue_;
 
         pool<p_range::pmem_hash_map> pop;
+        unordered_map<string, FixedRangeTab> prefix2range;
 
     private:
-        const FixedRangeBasedOptions* internal_options_;
-        FixedRangeChunkBasedCacheStats* cache_stats_;
-        std::queue<CompactionItem*> range_queue_;
+        const FixedRangeBasedOptions *internal_options_;
+        FixedRangeChunkBasedCacheStats *cache_stats_;
+        std::queue<CompactionItem> range_queue_;
         uint64_t range_seq_;
+
     };
 
 } // namespace rocksdb
