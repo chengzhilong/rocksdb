@@ -1,7 +1,6 @@
-#ifndef FIXED_RANGE_CHUNK_BASED_NVM_WRITE_CACHE_H
-#define FIXED_RANGE_CHUNK_BASED_NVM_WRITE_CACHE_H
 
 
+#pragma once
 #include <queue>
 #include <unordered_map>
 #include <rocksdb/iterator.h>
@@ -21,7 +20,7 @@ using namespace pmem::obj;
 
 namespace rocksdb {
 
-    class PersistentAllocator;
+    //class PersistentAllocator;
 
     static inline int
     file_exists(char const *file)
@@ -35,6 +34,34 @@ namespace rocksdb {
         uint64_t range_size_, range_rum_;
     };
 
+    class PersistentAllocator{
+    public:
+        explicit PersistentAllocator(char* raw_space, uint64_t total_size){
+            raw_ = raw_space;
+            total_size_ = total_size;
+            cur_ = 0;
+        }
+
+        ~PersistentAllocator() =default;
+
+        char* Allocate(size_t alloca_size){
+            char* alloc = raw_ + cur_;
+            cur_ = cur_ + alloca_size;
+            return alloc;
+        }
+
+        uint64_t Remain(){
+            return total_size_ - cur_;
+        }
+
+
+    private:
+        p<char*> raw_;
+        p<uint64_t > total_size_;
+        p<uint64_t > cur_;
+
+    };
+
     class FixedRangeChunkBasedNVMWriteCache : public NVMWriteCache {
     public:
         explicit FixedRangeChunkBasedNVMWriteCache(const string &file, uint64_t pmem_size);
@@ -46,8 +73,11 @@ namespace rocksdb {
 //  Status Insert(const Slice& cached_data, void* insert_mark) override;
 
         // get data from cache
-        Status Get(const Slice &key, std::string *value) override;
+        Status Get(const InternalKeyComparator& internal_comparator, const Slice &key, std::string *value) override;
 
+        void AppendToRange(FixedRangeTab* tab,
+                const char* bloom_data, const Slice& chunk_data,
+                const Slice &new_start, const Slice &new_end);
 
         // get iterator of the total cache
         Iterator *NewIterator() override;
@@ -74,6 +104,8 @@ namespace rocksdb {
         // get internal options of this cache
         const FixedRangeBasedOptions *internal_options() { return vinfo_->internal_options_; }
 
+        void MaybeScheduleCompaction();
+
         // get stats of this cache
         //FixedRangeChunkBasedCacheStats *stats() { return cache_stats_; }
 
@@ -81,7 +113,7 @@ namespace rocksdb {
 
         struct PersistentInfo {
             p<bool> inited_;
-            p<uint64_t> used_bits_;
+            p<uint64_t> allocated_bits_;
             persistent_ptr<p_range::pmem_hash_map> range_map_;
             persistent_ptr<PersistentAllocator> allocator_;
         };
@@ -100,4 +132,3 @@ namespace rocksdb {
     };
 
 } // namespace rocksdb
-#endif // FIXED_RANGE_CHUNK_BASED_NVM_WRITE_CACHE_H

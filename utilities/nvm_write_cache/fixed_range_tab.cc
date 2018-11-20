@@ -3,18 +3,12 @@
 
 #include <table/merging_iterator.h>
 
-#include <persistent_chunk.h>
+#include "persistent_chunk.h"
 
 namespace rocksdb {
 
     using pmem::obj::persistent_ptr;
 #define MAX_BUF_LEN 4096
-
-//POBJ_LAYOUT_BEGIN(range_mem);
-//POBJ_LAYOUT_ROOT(range_mem, struct my_root);
-//POBJ_LAYOUT_TOID(range_mem, struct foo_el);
-//POBJ_LAYOUT_TOID(range_mem, struct bar_el);
-//POBJ_LAYOUT_END(range_mem);
 
     struct my_root {
         size_t length; // mark end of chunk block sequence
@@ -22,8 +16,26 @@ namespace rocksdb {
     };
 
 
-    FixedRangeTab::FixedRangeTab(size_t chunk_count, char *data, int filterLen) {
-        // new
+    FixedRangeTab::FixedRangeTab(pool_base& pop, p_range::p_node node, FixedRangeBasedOptions* options)
+        : interal_options_(options) {
+        node_in_pmem_map = node;
+        transaction::run(pop, [&]{
+            // TODO：range的初始化
+            range_info_ = make_persistent<freqUpdateInfo>(node->bufSize);
+            range_info_->real_start_ = nullptr;
+            range_info_->real_end_ = nullptr;
+            range_info_->chunk_num = 0;
+            range_info_->seq_num_ = 0;
+            range_info_->total_size_ = 0;
+        });
+
+        raw_ = &node_in_pmem_map->buf[0];
+        // set cur_
+        EncodeFixed64(raw_, 0);
+        // set seq_
+        EncodeFixed64(raw_ + sizeof(uint64_t), 0);
+        raw_ += 2 * sizeof(uint64_t);
+        in_compaction_ = false;
     }
 
     FixedRangeTab::~FixedRangeTab() {
@@ -64,16 +76,26 @@ namespace rocksdb {
         internal_iter = merge_iter_builder.Finish();
     }
 
-    void FixedRangeTab::Append(const char *bloom_data,
-                               const Slice &chunk_data,
-                               const Slice &new_start,
-                               const Slice &new_end) {
+    /* range data format:
+     *
+     * |--  cur_  --|
+     * |--  seq_  --|
+     * |-- chunk1 --|
+     * |-- chunk2 --|
+     * |--   ...  --|
+     *
+     * */
+
+    void FixedRangeTab::Append( pool_base& pop,
+                                const char *bloom_data,
+                                const Slice &chunk_data,
+                                const Slice &new_start,
+                                const Slice &new_end) {
 
 
         if (range_info_->total_size + chunk_data.size_ >= range_info_->MAX_CHUNK_SIZE
             || range_info_.chunk_num_ > max_chunk_num_to_flush()) {
-            // TODO
-            // mark as flush
+            // TODO：mark tab as pendding compaction
         }
 
         //size_t cur_len = node_in_pmem_map->dataLen;
@@ -106,12 +128,13 @@ namespace rocksdb {
 
     }
 
-    Status FixedRangeTab::Get(const rocksdb::Slice &key, std::string *value) {
+    Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator, const rocksdb::Slice &key,
+                              std::string *value) {
         // 1.从下往上遍历所有的chunk
         uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
         for (size_t i = chunk_offset_.size() - 1; i >= 0; i--) {
             uint64_t off = chunk_offset_[i];
-            char* pchunk_data = raw_ + off;
+            char *pchunk_data = raw_ + off;
             char *chunk_start = pchunk_data;
             // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
             if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(chunk_start, bloom_bits))) {
@@ -121,13 +144,13 @@ namespace rocksdb {
                 uint64_t item_num = DecodeFixed64(chunk_start - sizeof(uint64_t));
                 chunk_start -= (item_num + 1) * sizeof(uint64_t);
                 std::vector<uint64_t> item_offs;
-                while(item_num-- > 0){
+                while (item_num-- > 0) {
                     item_offs.push_back(DecodeFixed64(chunk_start));
                     chunk_start += sizeof(uint64_t);
                 }
                 Status s = DoInChunkSearch(key, value, item_offs, pchunk_data + bloom_bits + sizeof(uint64_t));
-                if(s.ok()) return s;
-            }else{
+                if (s.ok()) return s;
+            } else {
                 continue;
             }
         }
@@ -135,28 +158,39 @@ namespace rocksdb {
         // 4.循环直到查找完所有的chunk
     }
 
-    Status FixedRangeTab::DoInChunkSearch(const rocksdb::Slice &key, std::string *value, std::vector<uint64_t> &off,
-                                          const char *chunk_data) {
+    Status FixedRangeTab::DoInChunkSearch(InternalKeyComparator &icmp, const rocksdb::Slice &key, std::string *value, std::vector<uint64_t> &off,
+                                          char* chunk_data) {
         size_t left = 0, right = off.size() - 1;
         size_t middle = (left + right) / 2;
-        while(left < right){
+        while (left < right) {
             Slice ml_key = GetKVData(chunk_data, off[middle]);
-            int result = cmp_->Compare(ml_key, key);
-            if(result == 0){
+            int result = icmp.Compare(ml_key, key);
+            if (result == 0) {
                 //found
                 uint64_t value_off = DecodeFixed64(chunk_data + off[middle] + ml_key.size());
                 Slice raw_value = GetKVData(chunk_data, value_off);
                 value = new std::string(raw_value.data(), raw_value.size());
                 return Status::OK();
-            }else if( result < 0){
+            } else if (result < 0) {
                 // middle < key
                 left = middle + 1;
-            }else if(result > 0){
+            } else if (result > 0) {
                 // middle >= key
                 right = middle - 1;
             }
         }
         return Status::NotFound("not found");
+    }
+
+    Slice FixedRangeTab::GetKVData(char* raw, uint64_t item_off) {
+        char* target = raw + item_off;
+        uint64_t target_size = DecodeFixed64(target);
+        return Slice(target + sizeof(uint64_t), target_size);
+    }
+
+    void FixedRangeTab::GetRealRange(rocksdb::Slice &real_start, rocksdb::Slice &real_end) {
+        real_start = GetKVData(&range_info_->real_start_[0], 0);
+        real_start = GetKVData(&range_info_->real_end_[0], 0);
     }
 
 } // namespace rocksdb

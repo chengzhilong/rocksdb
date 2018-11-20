@@ -17,7 +17,8 @@ namespace rocksdb {
     FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(const string &file, uint64_t pmem_size) {
         //bool justCreated = false;
         if (file_exists(file.c_str()) != 0) {
-            pop_ = pmem::obj::pool<PersistentInfo>::create(file.c_str(), "FixedRangeChunkBasedNVMWriteCache", pmem_size, CREATE_MODE_RW);
+            pop_ = pmem::obj::pool<PersistentInfo>::create(file.c_str(), "FixedRangeChunkBasedNVMWriteCache", pmem_size,
+                                                           CREATE_MODE_RW);
             //justCreated = true;
 
         } else {
@@ -25,7 +26,7 @@ namespace rocksdb {
         }
 
         pinfo_ = pop_.root();
-        if(!pinfo_->inited_){
+        if (!pinfo_->inited_) {
             transaction::run(pop_, [&] {
                 // TODO 配置
                 pinfo_->range_map = make_persistent<p_range::pmem_hash_map>();
@@ -36,6 +37,8 @@ namespace rocksdb {
                 pinfo_->range_map_->size = 0;
 
                 pinfo_->allocator_ = make_persistent<PersistentAllocator>();
+
+                pinfo_->inited_ = true;
             });
         }
 
@@ -62,14 +65,18 @@ namespace rocksdb {
 //    pmemobj_close(pop);
     }
 
-    Status FixedRangeChunkBasedNVMWriteCache::Get(const Slice &key, std::string *value) {
-        FixedRangeTab *tab;
-
-        // TODO
-        // 1. calc target FixedRangeTab
-        tab;
-        // 2.
-        return tab->Get(key, value);
+    Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &internal_comparator, const Slice &key,
+                                                  std::string *value) {
+        std::string prefix = (*vinfo_->internal_options_->prefix_extractor_)(key.data(), key.size());
+        auto found_tab = vinfo_->prefix2range.find(prefix);
+        if(found_tab == vinfo_->prefix2range.end()){
+            // not found
+            return Status::NotFound("no this range");
+        }else{
+            // found
+            FixedRangeTab* tab = found_tab->second;
+            return tab->Get(internal_comparator, key, value);
+        }
     }
 
     void FixedRangeChunkBasedNVMWriteCache::addCompactionRangeTab(FixedRangeTab *tab) {
@@ -79,14 +86,21 @@ namespace rocksdb {
     uint64_t FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
         // ( const void * key, int len, unsigned int seed );
 //  uint64_ _hash = CityHash64WithSeed(prefix, prefix.size(), 16);
-        persistent_ptr <p_range::pmem_hash_map> p_map = pop.root();
+        //persistent_ptr<p_range::pmem_hash_map> p_map = pop.root();
         size_t bufSize = 1 << 26; // 64 MB
         uint64_t _hash;
-        _hash = p_map->put(pop, prefix, bufSize);
+        _hash = vinfo_->range_map_->put(pop_, prefix, bufSize);
 //  return _hash;
 
         FixedRangeTab *range = new FixedRangeTab(p_map);
-        prefix2range.insert({prefix, range});
+        vinfo_->prefix2range.insert({prefix, range});
+    }
+
+    void FixedRangeChunkBasedNVMWriteCache::AppendToRange(rocksdb::FixedRangeTab *tab, const char *bloom_data,
+                                                          const rocksdb::Slice &chunk_data,
+                                                          const rocksdb::Slice &new_start,
+                                                          const rocksdb::Slice &new_end) {
+        tab->Append(pop_, bloom_data, chunk_data, new_start, new_end);
     }
 
 } // namespace rocksdb
