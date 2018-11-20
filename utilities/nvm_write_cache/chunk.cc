@@ -62,15 +62,19 @@ namespace rocksdb{
     }
 
 
-    std::string* BuildingChunk::Finish() {
+    std::string* BuildingChunk::Finish(char **bloom_data, rocksdb::Slice &cur_start, rocksdb::Slice &cur_end) {
         std::string *chunk_data, *chunk_bloom_data;
         chunk_data = chunk_->Finish();
+
         chunk_bloom_data = new std::string();
-
         filter_policy_->CreateFilter(&keys_[0], keys_.size(), chunk_bloom_data);
+        char* raw_bloom_data = new char[chunk_bloom_data->size()];
+        memcpy(raw_bloom_data, chunk_bloom_data->c_str(), chunk_bloom_data->size());
+        *bloom_data = raw_bloom_data;
 
-        chunk_data->resize(chunk_data->size() + chunk_bloom_data->size());
-        chunk_data->append(*chunk_bloom_data);
+        cur_start = keys_[0];
+        cur_end = keys_[keys_.size() - 1];
+
         delete chunk_bloom_data;
         return chunk_data;
     }

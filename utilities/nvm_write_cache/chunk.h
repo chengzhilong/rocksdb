@@ -43,7 +43,7 @@ namespace rocksdb{
 
         void Insert(const Slice& key, const Slice& value);
 
-        std::string* Finish();
+        std::string* Finish(char** bloom_data, Slice& cur_start, Slice& cur_end);
 
         uint64_t NumEntries();
 

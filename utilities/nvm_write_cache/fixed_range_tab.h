@@ -12,6 +12,7 @@
 #include "skiplist/libpmemobj++/make_persistent_array.hpp"
 #include "skiplist/libpmemobj++/p.hpp"
 #include "skiplist/libpmemobj++/persistent_ptr.hpp"
+#include "skiplist/libpmemobj++/detail/persistent_ptr_base.hpp"
 #include "skiplist/libpmemobj++/pool.hpp"
 #include "skiplist/libpmemobj++/transaction.hpp"
 
@@ -76,7 +77,7 @@ namespace rocksdb {
         void SetCompactionWorking(bool working){in_compaction_ = working;}
 
         // 将新的chunk数据添加到RangeMemtable
-        void Append(pool_base &pop,
+        void Append(InternalKeyComparator* icmp,
                     const char *bloom_data, const Slice &chunk_data,
                     const Slice &new_start, const Slice &new_end);
 
@@ -93,7 +94,7 @@ namespace rocksdb {
         // 重置Stat数据以及bloom filter
         void CleanUp(pool_base& pop);
 
-        void CheckForConsistency();
+        void RebuildFromNode(p_range::p_node pmap_node);
 
     private:
 
@@ -108,8 +109,11 @@ namespace rocksdb {
 
         Slice GetKVData(char *raw, uint64_t item_off);
 
+        void CheckAndUpdateKeyRange(InternalKeyComparator* icmp, const Slice& new_start, const Slice& new_end);
+
         // persistent info
         p_range::p_node pmap_node_;
+        pool_base& pop_;
 
         // volatile info
         const FixedRangeBasedOptions *interal_options_;

@@ -43,27 +43,10 @@ namespace rocksdb {
             });
         }
 
-
-
-//  if (file_exists(file_path) != 0) {
-//    if ((pop = pmemobj_create(file_path, POBJ_LAYOUT_NAME(range_mem),
-//                              PMEMOBJ_MIN_POOL, 0666)) == NULL) {
-//      perror("failed to create pool\n");
-//      return 1;
-//    }
-//  } else {
-//    if ((pop = pmemobj_open(file_path,
-//                            POBJ_LAYOUT_NAME(range_mem))) == NULL) {
-//      perror("failed to open pool\n");
-//      return 1;
-//    }
-//  }
     }
 
     FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
-        if (pop)
-            pop.close();
-//    pmemobj_close(pop);
+        pop_.close();
     }
 
     Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &internal_comparator, const Slice &key,
@@ -80,29 +63,43 @@ namespace rocksdb {
         }
     }
 
-    void FixedRangeChunkBasedNVMWriteCache::addCompactionRangeTab(FixedRangeTab *tab) {
-        range_queue_.pu
-    }
 
-    uint64_t FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
-        // ( const void * key, int len, unsigned int seed );
-//  uint64_ _hash = CityHash64WithSeed(prefix, prefix.size(), 16);
-        //persistent_ptr<p_range::pmem_hash_map> p_map = pop.root();
-        size_t bufSize = 1 << 26; // 64 MB
+    void FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
+        size_t bufSize = 1 << 27; // 128 MB
         uint64_t _hash;
-        _hash = vinfo_->range_map_->put(pop_, prefix, bufSize);
-//  return _hash;
+        _hash = pinfo_->range_map_->put(pop_, prefix, bufSize);
 
-        FixedRangeTab *range = new FixedRangeTab(p_map);
+        p_range::p_node new_node = pinfo_->range_map_->get_node(_hash, prefix);
+        FixedRangeTab *range = new FixedRangeTab(pop_, new_node, vinfo_->internal_options_);
         vinfo_->prefix2range.insert({prefix, range});
     }
 
-    void FixedRangeChunkBasedNVMWriteCache::AppendToRange(rocksdb::FixedRangeTab *tab, const char *bloom_data,
-                                                          const rocksdb::Slice &chunk_data,
-                                                          const rocksdb::Slice &new_start,
-                                                          const rocksdb::Slice &new_end) {
-        tab->Append(pop_, bloom_data, chunk_data, new_start, new_end);
+    void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
+        // TODO more reasonable compaction threashold
+        if(pinfo_->allocator_->Remain() < pinfo_->allocator_->Capacity() * 0.75){
+            uint64_t max_range_size = 0;
+            FixedRangeTab* pendding_range = nullptr;
+            Usage pendding_range_usage;
+            for(auto range : vinfo_->prefix2range){
+                Usage range_usage = range.second.RangeUsage();
+                if(max_range_size < range_usage.range_size){
+                    pendding_range = range.second;
+                    pendding_range_usage = range_usage;
+                }
+            }
+
+            CompactionItem* compaction_item = new CompactionItem;
+            compaction_item->pending_compated_range_ = pendding_range;
+            compaction_item->range_size_ = pendding_range_usage.range_size;
+            compaction_item->chunk_num_ = pendding_range_usage.chunk_num;
+            compaction_item->start_key_ = pendding_range_usage.start;
+            compaction_item->end_key_ = pendding_range_usage.end;
+
+            vinfo_->range_queue_.push(compaction_item);
+        }
     }
+
+
 
 } // namespace rocksdb
 

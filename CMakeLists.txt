@@ -701,6 +701,7 @@ set(SOURCES
         utilities/nvm_write_cache/pmem_hash_map.cc
         utilities/nvm_write_cache/persistent_chunk.cc
         utilities/nvm_write_cache/persistent_chunk_iterator.cc
+        utilities/nvm_write_cache/skiplist/persistentptr_test.cc
         $<TARGET_OBJECTS:build_version>)
 
 if (HAVE_SSE42 AND NOT MSVC)
