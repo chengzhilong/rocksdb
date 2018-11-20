@@ -22,6 +22,7 @@
 #include "fixed_range_based_flush_job.h"
 #include "fixed_range_chunk_based_nvm_write_cache.h"
 #include "chunk.h"
+#include "fixed_range_tab.h"
 
 
 namespace rocksdb {
@@ -82,8 +83,7 @@ namespace rocksdb {
               log_buffer_(log_buffer),
               nvm_cache_options_(nvm_cache_options),
               nvm_write_cache_(dynamic_cast<FixedRangeChunkBasedNVMWriteCache *>(nvm_cache_options_->nvm_write_cache_)),
-              cache_stat_(nvm_write_cache_->stats()),
-              range_list_(&cache_stat_->range_list_),
+              cache_stat_(nvm_write_cache_->GetRangeList()),
               last_chunk(nullptr) {
 
     }
@@ -263,28 +263,12 @@ namespace rocksdb {
                 if (now_prefix == last_prefix && last_chunk != nullptr) {
                     last_chunk->Insert(key, value);
                 } else {
-                    uint64_t now_range_id;
-                    auto range_found = range_list_->find(now_prefix);
-                    if (range_found == range_list_->end()) {
-                        // this is a new prefix, biuld a new range
-                        {
-                            // new a range mem and update range list
-                            uint64_t range_mem_id = nvm_write_cache_->NewRange(now_prefix);
-                            (*range_list_)[now_prefix] = range_mem_id;
-                            now_range_id = range_mem_id;
-
-                        }
-
-                    }else{
-                        now_range_id = range_found->second;
-                    }
-
                     BuildingChunk *now_chunk = nullptr;
-                    auto chunk_found = pending_output_chunk.find(now_range_id);
+                    auto chunk_found = pending_output_chunk.find(now_prefix);
                     if (chunk_found == pending_output_chunk.end()) {
                         //this is a new build a new chunk
                         auto new_chunk = new BuildingChunk(nvm_write_cache_->internal_options()->filter_policy_);
-                        pending_output_chunk[now_range_id] = new_chunk;
+                        pending_output_chunk[now_prefix] = new_chunk;
                         now_chunk = new_chunk;
                     } else {
                         now_chunk = chunk_found->second;
@@ -310,9 +294,25 @@ namespace rocksdb {
                 // insert data of each range into nvm cache
                 std::vector<port::Thread> thread_pool;
                 thread_pool.clear();
-                auto finish_build_chunk = [&](uint64_t range_mem_id) {
-                    std::string *output_data = pending_output_chunk[range_mem_id]->Finish();
-                    nvm_write_cache_->Insert(output_data->c_str(), static_cast<void *>(&range_mem_id));
+                auto finish_build_chunk = [&](std::string prefix) {
+                    FixedRangeTab* now_tab = nullptr;
+                    auto range_found = range_list_->find(prefix);
+                    if (range_found == range_list_->end()) {
+                        // this is a new prefix, biuld a new range
+                        {
+                            // new a range mem and update range list
+                            FixedRangeTab* new_tab = nvm_write_cache_->NewRange(prefix);
+                            //(*range_list_)[now_prefix] = range_mem_id;
+                            now_tab = new_tab;
+
+                        }
+
+                    }else{
+                        now_tab = range_found->second;
+                    }
+                    std::string *output_data = pending_output_chunk[prefix]->Finish();
+                    // TODO:修改
+                    nvm_write_cache_->AppendToRange(now_tab, output_data->c_str());
                     delete output_data;
                 };
 

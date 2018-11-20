@@ -36,7 +36,8 @@ namespace rocksdb {
                 pinfo_->range_map_->threshold = p_map->tabLen * p_map->loadFactor;
                 pinfo_->range_map_->size = 0;
 
-                pinfo_->allocator_ = make_persistent<PersistentAllocator>();
+                persistent_ptr<char[]> data_space = make_persistent<char[]>(pmem_size);
+                pinfo_->allocator_ = make_persistent<PersistentAllocator>(data_space, pmem_size);
 
                 pinfo_->inited_ = true;
             });

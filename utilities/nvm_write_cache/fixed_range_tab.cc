@@ -8,26 +8,40 @@
 namespace rocksdb {
 
     using pmem::obj::persistent_ptr;
-#define MAX_BUF_LEN 4096
+    #define MAX_BUF_LEN 4096
 
-    struct my_root {
+    /*struct my_root {
         size_t length; // mark end of chunk block sequence
         unsigned char data[MAX_BUF_LEN];
-    };
+    };*/
 
+
+/*    void freqUpdateInfo::update(pool_base &pop, uint64_t total_size, const rocksdb::Slice &real_start,
+                                const rocksdb::Slice &real_end) {
+        transaction::run(pop, [&] {
+            key_range_ = make_persistent<char[]>(real_start.size() + real_end.size() + 2 * sizeof(uint64_t));
+            char *buf = &key_range_[0];
+            EncodeFixed64(buf, real_start.size());
+            memcpy(buf + sizeof(uint64_t), real_start.data(), real_start.size());
+            buf += sizeof(uint64_t) + real_start.size();
+
+            EncodeFixed64(buf, real_end.size());
+            memcpy(buf + sizeof(uint64_t), real_end.data(), real_end.size());
+
+            chunk_num_ = chunk_num_ + 1;
+            seq_num_ = seq_num_ + 1;
+        });
+    }*/
+
+    void persistent_ptr_memcpy(persistent_ptr<char[]>& dst, const void* src, size_t count){
+        for(size_t i = 0; i < count; i++){
+            dst[i] = *(char*)(src + i);
+        }
+    }
 
     FixedRangeTab::FixedRangeTab(pool_base& pop, p_range::p_node node, FixedRangeBasedOptions* options)
         : interal_options_(options) {
-        node_in_pmem_map = node;
-        transaction::run(pop, [&]{
-            // TODO：range的初始化
-            range_info_ = make_persistent<freqUpdateInfo>(node->bufSize);
-            range_info_->real_start_ = nullptr;
-            range_info_->real_end_ = nullptr;
-            range_info_->chunk_num = 0;
-            range_info_->seq_num_ = 0;
-            range_info_->total_size_ = 0;
-        });
+        pmap_node_ = node;
 
         raw_ = &node_in_pmem_map->buf[0];
         // set cur_
@@ -36,10 +50,6 @@ namespace rocksdb {
         EncodeFixed64(raw_ + sizeof(uint64_t), 0);
         raw_ += 2 * sizeof(uint64_t);
         in_compaction_ = false;
-    }
-
-    FixedRangeTab::~FixedRangeTab() {
-
     }
 
 //| prefix data | prefix size |
@@ -62,7 +72,7 @@ namespace rocksdb {
         persistent_ptr<char[]> chunkBlkOffset = node_in_pmem_map->buf;
 
         PersistentChunk pchk;
-        for (int i = 0; i < info.chunk_num; ++i) {
+        for (int i = 0; i < range_info_->chunk_num; ++i) {
 //    chunk_blk *blk = reinterpret_cast<chunk_blk*>(chunkBlkOffset);
             persistent_ptr<char[]> sizeOffset = chunkBlkOffset + CHUNK_BLOOM_FILTER_SIZE;
             size_t blkSize;
@@ -93,8 +103,8 @@ namespace rocksdb {
                                 const Slice &new_end) {
 
 
-        if (range_info_->total_size + chunk_data.size_ >= range_info_->MAX_CHUNK_SIZE
-            || range_info_.chunk_num_ > max_chunk_num_to_flush()) {
+        if (pmap_node_->dataLen + chunk_data.size_ >= pmap_node_->bufSize
+            || pmap_node_->chunk_num_ > max_chunk_num_to_flush()) {
             // TODO：mark tab as pendding compaction
         }
 
@@ -107,7 +117,7 @@ namespace rocksdb {
 
         // append data
         memcpy(dst, bloom_data, interal_options_->chunk_bloom_bits_);
-        memcpy(dst + interal_options_->chunk_bloom_bits_, chunk_data.size_, sizeof(uint64_t));
+        memcpy((dst + interal_options_->chunk_bloom_bits_), chunk_data.data(), sizeof(uint64_t));
 
         dst += interal_options_->chunk_bloom_bits_ + sizeof(chunk_data.size_);
 
@@ -124,8 +134,24 @@ namespace rocksdb {
         chunk_offset_.push_back(raw_cur);
     }
 
-    void FixedRangeTab::Release() {
+    void FixedRangeTab::Release(pool_base& pop) {
+        //TODO: release
+        // 删除这个range
+        Slice start, end;
+        GetRealRange(start, end);
+        transaction::run(pop, [&]{
+            delete_persistent<char[]>(range_info_->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
+            delete_persistent<freqUpdateInfo>(range_info_);
+            // TODO: release of map node
+        });
+    }
 
+    void FixedRangeTab::CleanUp(pool_base& pop) {
+        // 清除这个range的数据
+        //TODO: 清除node中的数据
+
+        EncodeFixed64(raw_ - 2 * sizeof(uint64_t), 0);
+        EncodeFixed64(raw_ - sizeof(uint64_t), 0);
     }
 
     Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator, const rocksdb::Slice &key,
@@ -189,8 +215,21 @@ namespace rocksdb {
     }
 
     void FixedRangeTab::GetRealRange(rocksdb::Slice &real_start, rocksdb::Slice &real_end) {
-        real_start = GetKVData(&range_info_->real_start_[0], 0);
-        real_start = GetKVData(&range_info_->real_end_[0], 0);
+        char* raw = &range_info_->key_range_[0];
+        real_start = GetKVData(raw, 0);
+        real_end = GetKVData(raw, real_start.size() + sizeof(uint64_t));
+    }
+
+    void FixedRangeTab::CheckForConsistency() {
+        // TODO:check for consistency
+    }
+
+    Usage FixedRangeTab::RangeUsage() {
+        Usage usage;
+        usage.range_size = range_info_->total_size_;
+        usage.chunk_num = range_info_->chunk_num_;
+        GetRealRange(usage.start, usage.end);
+        return usage;
     }
 
 } // namespace rocksdb

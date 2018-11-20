@@ -31,12 +31,13 @@ namespace rocksdb {
     struct CompactionItem {
         FixedRangeTab *pending_compated_range_;
         Slice start_key_, end_key_;
-        uint64_t range_size_, range_rum_;
+        uint64_t range_size_, chunk_num_;
     };
+
 
     class PersistentAllocator{
     public:
-        explicit PersistentAllocator(char* raw_space, uint64_t total_size){
+        explicit PersistentAllocator(persistent_ptr<char[]> raw_space, uint64_t total_size){
             raw_ = raw_space;
             total_size_ = total_size;
             cur_ = 0;
@@ -45,7 +46,7 @@ namespace rocksdb {
         ~PersistentAllocator() =default;
 
         char* Allocate(size_t alloca_size){
-            char* alloc = raw_ + cur_;
+            char* alloc = &raw_[0] + cur_;
             cur_ = cur_ + alloca_size;
             return alloc;
         }
@@ -56,7 +57,7 @@ namespace rocksdb {
 
 
     private:
-        p<char*> raw_;
+        persistent_ptr<char[]> raw_;
         p<uint64_t > total_size_;
         p<uint64_t > cur_;
 
@@ -99,17 +100,21 @@ namespace rocksdb {
 
         // add a range with a new prefix to range mem
         // return the id of the range
-        uint64_t NewRange(const std::string &prefix);
+        FixedRangeTab* NewRange(const std::string &prefix);
 
         // get internal options of this cache
         const FixedRangeBasedOptions *internal_options() { return vinfo_->internal_options_; }
 
         void MaybeScheduleCompaction();
 
+        unordered_map<string, FixedRangeTab>* GetRangeList();
+
         // get stats of this cache
         //FixedRangeChunkBasedCacheStats *stats() { return cache_stats_; }
 
     private:
+
+        void RebuildFromPersistentNode();
 
         struct PersistentInfo {
             p<bool> inited_;

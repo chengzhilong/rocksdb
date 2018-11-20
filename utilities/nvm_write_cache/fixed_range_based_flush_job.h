@@ -27,6 +27,7 @@ namespace rocksdb{
     class SnapshotChecker;
     class RangeBasedChunk;
     class BuildingChunk;
+    class FixedRangeTab;
 
     class FixedRangeBasedFlushJob: public NVMFlushJob{
     public:
@@ -83,12 +84,12 @@ namespace rocksdb{
 
         const NVMCacheOptions* nvm_cache_options_;
         FixedRangeChunkBasedNVMWriteCache* nvm_write_cache_;
-        FixedRangeChunkBasedCacheStats* cache_stat_;
-        std::unordered_map<std::string, uint64_t >* range_list_;
+        //FixedRangeChunkBasedCacheStats* cache_stat_;
+        std::unordered_map<std::string, FixedRangeTab>* range_list_;
 
         autovector<MemTable*> mems_;
 
-        std::unordered_map<uint64_t, BuildingChunk*> pending_output_chunk;
+        std::unordered_map<std::string, BuildingChunk*> pending_output_chunk;
 
         std::string last_prefix;
 

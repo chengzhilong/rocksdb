@@ -24,28 +24,18 @@ namespace rocksdb {
 
     using std::list;
 
+    struct Usage{
+        uint64_t chunk_num;
+        uint64_t range_size;
+        Slice start,end;
+
+    };
+
     struct freqUpdateInfo {
     public:
-        explicit freqUpdateInfo(uint64_t max_size)
-                : MAX_CHUNK_SIZE(max_size) {
+        explicit freqUpdateInfo(uint64_t max_size) : MAX_CHUNK_SIZE(max_size) {}
 
-        }
-
-        void update(pool_base &pop, uint64_t total_size, const Slice &real_start, const Slice &real_end) {
-            transaction::run(pop, [&] {
-                key_range_ = make_persistent<char[]>(real_start.size() + real_end.size() + 2 * sizeof(uint64_t));
-                char *buf = &key_range_[0];
-                EncodeFixed64(buf, real_start.size());
-                memcpy(buf + sizeof(uint64_t), real_start.data(), real_start.size());
-                buf += sizeof(uint64_t) + real_start.size();
-
-                EncodeFixed64(buf, real_end.size());
-                memcpy(buf + sizeof(uint64_t), real_end.data(), real_end.size());
-
-                chunk_num_ = chunk_num_ + 1;
-                seq_num_ = seq_num_ + 1;
-            });
-        }
+        void update(pool_base &pop, uint64_t total_size, const Slice &real_start, const Slice &real_end);
 
         // 实际的range
         // TODO 初始值怎么定
@@ -66,9 +56,12 @@ namespace rocksdb {
     public:
         FixedRangeTab(pool_base &pop, p_range::p_node hash_node, FixedRangeBasedOptions *options);
 
-        ~FixedRangeTab();
+        FixedRangeTab(pool_base &pop, const FixedRangeTab &) = delete;
 
-    public:
+        FixedRangeTab &operator=(const FixedRangeTab &) = delete;
+
+        ~FixedRangeTab() = default;
+
         // 返回当前RangeMemtable中所有chunk的有序序列
         // 基于MergeIterator
         // 参考 DBImpl::NewInternalIterator
@@ -78,6 +71,9 @@ namespace rocksdb {
 
         // 返回当前RangeMemtable是否正在被compact
         bool IsCompactWorking() { return in_compaction_; }
+
+        // 设置compaction状态
+        void SetCompactionWorking(bool working){in_compaction_ = working;}
 
         // 将新的chunk数据添加到RangeMemtable
         void Append(pool_base &pop,
@@ -89,22 +85,22 @@ namespace rocksdb {
 
 
         // 判断是否需要compact，如果需要则将一个RangeMemid加入Compact队列
-        bool NeedCompaction();
+        Usage RangeUsage();
 
         // 释放当前RangeMemtable的所有chunk以及占用的空间
-        void Release();
+        void Release(pool_base& pop);
 
         // 重置Stat数据以及bloom filter
-        void CleanUp();
+        void CleanUp(pool_base& pop);
 
         void CheckForConsistency();
 
     private:
-        FixedRangeTab(pool_base &pop, const FixedRangeTab &) = delete;
 
-        FixedRangeTab &operator=(const FixedRangeTab &) = delete;
-
-        uint64_t max_chunk_num_to_flush() const { return 100; }
+        uint64_t max_chunk_num_to_flush() const {
+            // TODO: set a max chunk num
+            return 100;
+        }
 
         Status
         DoInChunkSearch(InternalKeyComparator &icmp, const Slice &key, std::string *value, std::vector<uint64_t> &off,
@@ -113,8 +109,7 @@ namespace rocksdb {
         Slice GetKVData(char *raw, uint64_t item_off);
 
         // persistent info
-        p_range::p_node node_in_pmem_map;
-        persistent_ptr<freqUpdateInfo> range_info_;
+        p_range::p_node pmap_node_;
 
         // volatile info
         const FixedRangeBasedOptions *interal_options_;
