@@ -34,6 +34,12 @@ struct CompactionItem {
     uint64_t range_size_, chunk_num_;
 };
 
+struct ChunkMeta {
+    string prefix;
+    Slice cur_start;
+    Slice cur_end;
+};
+
 
 class PersistentAllocator {
 public:
@@ -80,9 +86,8 @@ public:
     // get data from cache
     Status Get(const InternalKeyComparator &internal_comparator, const Slice &key, std::string *value) override;
 
-    /*void AppendToRange(FixedRangeTab* tab,
-            const char* bloom_data, const Slice& chunk_data,
-            const Slice &new_start, const Slice &new_end);*/
+    void AppendToRange(const InternalKeyComparator& icmp, const char* bloom_data, const Slice& chunk_data,
+            const ChunkMeta& meta);
 
     // get iterator of the total cache
     Iterator *NewIterator() override;
@@ -104,7 +109,7 @@ public:
 
     // add a range with a new prefix to range mem
     // return the id of the range
-    void NewRange(const std::string &prefix);
+
 
     // get internal options of this cache
     const FixedRangeBasedOptions *internal_options() { return vinfo_->internal_options_; }
@@ -118,6 +123,7 @@ public:
 
 private:
 
+    FixedRangeTab* NewRange(const std::string &prefix);
     void RebuildFromPersistentNode();
 
     struct PersistentInfo {

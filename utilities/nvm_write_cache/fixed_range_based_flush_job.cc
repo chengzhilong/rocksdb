@@ -257,23 +257,25 @@ Status FixedRangeBasedFlushJob::BuildChunkAndInsert(InternalIterator *iter,
         for (; c_iter.Valid(); c_iter.Next()) {
             const Slice &key = c_iter.key();
             const Slice &value = c_iter.value();
-            printf("get key %s\n", key.data_);
+            //printf("get key %s\n", key.data_);
 
             std::string now_prefix = (*prefix_extractor)(key.data_, key.size_);
             if (now_prefix == last_prefix && last_chunk != nullptr) {
                 last_chunk->Insert(key, value);
             } else {
-                auto range_found = range_list_->find(now_prefix);
+                /*auto range_found = range_list_->find(now_prefix);
                 if (range_found == range_list_->end()) {
                     // this is a new prefix, biuld a new range
                     // new a range mem and update range list
                     nvm_write_cache_->NewRange(now_prefix);
-                }
+                }*/
                 BuildingChunk *now_chunk = nullptr;
                 auto chunk_found = pending_output_chunk.find(now_prefix);
                 if (chunk_found == pending_output_chunk.end()) {
                     //this is a new build a new chunk
-                    auto new_chunk = new BuildingChunk(nvm_write_cache_->internal_options()->filter_policy_);
+                    auto new_chunk = new BuildingChunk(
+                            nvm_write_cache_->internal_options()->filter_policy_,
+                            now_prefix);
                     pending_output_chunk[now_prefix] = new_chunk;
                     now_chunk = new_chunk;
                 } else {
@@ -301,19 +303,15 @@ Status FixedRangeBasedFlushJob::BuildChunkAndInsert(InternalIterator *iter,
             std::vector<port::Thread> thread_pool;
             thread_pool.clear();
             auto finish_build_chunk = [&](std::string prefix) {
-                // get range_tab
-                auto range_found = range_list_->find(prefix);
-                assert(range_found != range_list_->end());
-
                 // get chunk data
                 char* bloom_data;
-                Slice cur_start, cur_end;
-                std::string *output_data = pending_output_chunk[prefix]->Finish(&bloom_data, cur_start, cur_end);
-
+                ChunkMeta meta;
+                meta.prefix = prefix;
+                std::string *output_data = pending_output_chunk[prefix]->Finish(&bloom_data,
+                        meta.cur_start, meta.cur_end);
                 // append to range tab
-                range_found->second.Append(internal_comparator, bloom_data/*char**/, output_data/*Slice*/,
-                        cur_start, cur_end/*Slice*/);
-
+                //range_found->second.Append(bloom_data/*char**/, output_data/*Slice*/,ChunkMeta(internal_comparator, cur_start, cur_end));
+                nvm_write_cache_->AppendToRange(internal_comparator, bloom_data, output_data->c_str(), meta);
                 // TODO:Slice是否需要delete
                 delete output_data;
                 delete[] bloom_data;

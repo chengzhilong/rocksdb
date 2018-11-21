@@ -63,8 +63,28 @@ namespace rocksdb {
         }
     }
 
+    void FixedRangeChunkBasedNVMWriteCache::AppendToRange(const rocksdb::InternalKeyComparator &icmp,
+                                                          const char *bloom_data, const rocksdb::Slice &chunk_data,
+                                                          const rocksdb::ChunkMeta &meta) {
+        /*
+         * 1. 获取prefix
+         * 2. 检查tab是否存在
+         * 2.1 tab不存在则NewRange
+         * 3. 调用tangetab的append
+         * */
+        FixedRangeTab* now_range = nullptr;
+        auto tab_found = vinfo_->prefix2range.find(meta.prefix);
+        if(tab_found == vinfo_->prefix2range.end()){
+            now_range = NewRange(meta.prefix);
+        }else{
+            now_range = &tab_found->second;
+        }
 
-    void FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
+        now_range->Append(icmp, bloom_data, chunk_data, meta.cur_start, meta.cur_end);
+    }
+
+
+    FixedRangeTab* FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
         size_t bufSize = 1 << 27; // 128 MB
         uint64_t _hash;
         _hash = pinfo_->range_map_->put(pop_, prefix, bufSize);
@@ -72,6 +92,7 @@ namespace rocksdb {
         p_range::p_node new_node = pinfo_->range_map_->get_node(_hash, prefix);
         FixedRangeTab *range = new FixedRangeTab(pop_, new_node, vinfo_->internal_options_);
         vinfo_->prefix2range.insert({prefix, range});
+        return range;
     }
 
     void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {

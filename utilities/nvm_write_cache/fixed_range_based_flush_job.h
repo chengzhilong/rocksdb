@@ -95,7 +95,7 @@ private:
     const NVMCacheOptions *nvm_cache_options_;
     FixedRangeChunkBasedNVMWriteCache *nvm_write_cache_;
     //FixedRangeChunkBasedCacheStats* cache_stat_;
-    std::unordered_map<std::string, FixedRangeTab> *range_list_;
+    //std::unordered_map<std::string, FixedRangeTab> *range_list_;
 
     autovector<MemTable *> mems_;
 
