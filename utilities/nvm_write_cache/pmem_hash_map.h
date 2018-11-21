@@ -46,9 +46,10 @@ namespace p_range {
             p_node getNode(const std::string& key, size_t prefixLen);
             p_node getNode(uint64_t hash, const std::string& key);
 
-            using std::string;
-            uint64_t put(pool_base& pop, const string& prefix, size_t bufSize);
-        };
+  using std::string;
+  uint64_t put(pool_base& pop, const string& prefix, size_t bufSize);
+  p_node putAndGet(pool_base& pop, const string& prefix, size_t bufSize);
+};
 
 } // end of namespace p_range
 

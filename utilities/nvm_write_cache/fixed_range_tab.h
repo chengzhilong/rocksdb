@@ -20,7 +20,6 @@ using namespace pmem::obj;
 
 namespace rocksdb {
 
-#define CHUNK_BLOOM_FILTER_SIZE 8
     using pmem::obj::persistent_ptr;
 
     using std::list;
@@ -32,27 +31,16 @@ namespace rocksdb {
 
     };
 
-    struct freqUpdateInfo {
-    public:
-        explicit freqUpdateInfo(uint64_t max_size) : MAX_CHUNK_SIZE(max_size) {}
 
-        void update(pool_base &pop, uint64_t total_size, const Slice &real_start, const Slice &real_end);
 
-        // 实际的range
-        // TODO 初始值怎么定
-        const p<uint64_t> MAX_CHUNK_SIZE;
-        persistent_ptr<char[]> key_range_;
-        p<size_t> chunk_num_;
-        p<uint64_t> seq_num_;
-        p<uint64_t> total_size_;
-    };
-
-    class FixedRangeTab {
-        struct chunk_blk {
-            unsigned char bloom_filter[CHUNK_BLOOM_FILTER_SIZE];
-            size_t size;
-            char data[];
-        };
+class FixedRangeTab
+{
+  using p_range::p_node;
+  //  struct chunk_blk {
+  //    unsigned char bloom_filter[CHUNK_BLOOM_FILTER_LEN];
+  //    size_t size;
+  //    char data[];
+  //  };
 
     public:
         FixedRangeTab(pool_base &pop, p_range::p_node hash_node, FixedRangeBasedOptions *options);
@@ -89,10 +77,10 @@ namespace rocksdb {
         Usage RangeUsage();
 
         // 释放当前RangeMemtable的所有chunk以及占用的空间
-        void Release(pool_base& pop);
+        void Release();
 
         // 重置Stat数据以及bloom filter
-        void CleanUp(pool_base& pop);
+        void CleanUp();
 
         void RebuildFromNode(p_range::p_node pmap_node);
 
