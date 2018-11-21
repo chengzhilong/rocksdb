@@ -30,7 +30,8 @@ file_exists(char const *file) {
 
 struct CompactionItem {
     FixedRangeTab *pending_compated_range_;
-    Slice start_key_, end_key_;
+    //Slice start_key_, end_key_;
+    InternalKey start_key_, end_key_;
     uint64_t range_size_, chunk_num_;
 };
 
@@ -75,7 +76,9 @@ private:
 
 class FixedRangeChunkBasedNVMWriteCache : public NVMWriteCache {
 public:
-    explicit FixedRangeChunkBasedNVMWriteCache(const string &file, uint64_t pmem_size);
+    explicit FixedRangeChunkBasedNVMWriteCache(
+            const FixedRangeBasedOptions* ioptions,
+            const string &file, uint64_t pmem_size);
 
     ~FixedRangeChunkBasedNVMWriteCache();
 
@@ -104,8 +107,6 @@ public:
         CompactionItem *item = vinfo_->range_queue_.front();
         return item;
     }
-
-    //void addCompactionRangeTab(FixedRangeTab *tab);
 
     // add a range with a new prefix to range mem
     // return the id of the range
@@ -137,10 +138,11 @@ private:
     persistent_ptr<PersistentInfo> pinfo_;
 
     struct VolatileInfo {
-        unordered_map<string, FixedRangeTab> prefix2range;
         const FixedRangeBasedOptions *internal_options_;
+        unordered_map<string, FixedRangeTab> prefix2range;
         std::queue<CompactionItem *> range_queue_;
-        uint64_t range_seq_;
+        VolatileInfo(const FixedRangeBasedOptions* ioptions)
+            :internal_options_(ioptions) {}
     };
 
     VolatileInfo *vinfo_;

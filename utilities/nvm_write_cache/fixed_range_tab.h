@@ -92,6 +92,8 @@ private:
 
     void CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, const Slice &new_start, const Slice &new_end);
 
+    void ConsistencyCheck();
+
     // persistent info
     p_range::p_node pmap_node_;
     pool_base &pop_;

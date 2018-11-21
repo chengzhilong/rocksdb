@@ -54,6 +54,7 @@ public:
             InstrumentedMutex *db_mutex,
             std::atomic<bool> *shutting_down,
             LogBuffer *log_buffer,
+            Statistics* stats,
             NVMCacheOptions *nvm_cache_options);
 
     ~FixedRangeBasedFlushJob() override;
@@ -91,6 +92,7 @@ private:
     InstrumentedMutex *db_mutex_;
     std::atomic<bool> *shutting_down_;
     LogBuffer *log_buffer_;
+    Statistics* stats_;
 
     const NVMCacheOptions *nvm_cache_options_;
     FixedRangeChunkBasedNVMWriteCache *nvm_write_cache_;

@@ -8,14 +8,18 @@
 #include "fixed_range_chunk_based_nvm_write_cache.h"
 
 #include <ex_common.h>
+#include <utilities/nvm_write_cache/skiplist/test_common.h>
 
 namespace rocksdb {
 
     using p_range::pmem_hash_map;
     using p_range::p_node;
 
-    FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(const string &file, uint64_t pmem_size) {
+    FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
+            const FixedRangeBasedOptions* ioptions,
+            const string &file, uint64_t pmem_size) {
         //bool justCreated = false;
+        vinfo_ = new VolatileInfo(ioptions);
         if (file_exists(file.c_str()) != 0) {
             pop_ = pmem::obj::pool<PersistentInfo>::create(file.c_str(), "FixedRangeChunkBasedNVMWriteCache", pmem_size,
                                                            CREATE_MODE_RW);
@@ -31,9 +35,9 @@ namespace rocksdb {
                 // TODO 配置
                 pinfo_->range_map = make_persistent<p_range::pmem_hash_map>();
                 pinfo_->range_map_->tabLen = 0;
-                pinfo_->range_map_->tab = make_persistent<p_node[]>(p_map->tabLen);
+                pinfo_->range_map_->tab = make_persistent<p_node[]>(pinfo_->range_map_->tabLen);
                 pinfo_->range_map_->loadFactor = 0.75f;
-                pinfo_->range_map_->threshold = p_map->tabLen * p_map->loadFactor;
+                pinfo_->range_map_->threshold = pinfo_->range_map_->tabLen * pinfo_->range_map_->loadFactor;
                 pinfo_->range_map_->size = 0;
 
                 persistent_ptr<char[]> data_space = make_persistent<char[]>(pmem_size);
@@ -41,11 +45,14 @@ namespace rocksdb {
 
                 pinfo_->inited_ = true;
             });
+        }else{
+            RebuildFromPersistentNode();
         }
 
     }
 
     FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
+        delete vinfo_;
         pop_.close();
     }
 
@@ -113,11 +120,44 @@ namespace rocksdb {
             compaction_item->pending_compated_range_ = pendding_range;
             compaction_item->range_size_ = pendding_range_usage.range_size;
             compaction_item->chunk_num_ = pendding_range_usage.chunk_num;
-            compaction_item->start_key_ = pendding_range_usage.start;
-            compaction_item->end_key_ = pendding_range_usage.end;
+            compaction_item->start_key_.DecodeFrom(pendding_range_usage.start);
+            compaction_item->end_key_.DecodeFrom(pendding_range_usage.end);
 
             vinfo_->range_queue_.push(compaction_item);
         }
+    }
+
+    using p_range::p_node ;
+    void FixedRangeChunkBasedNVMWriteCache::RebuildFromPersistentNode() {
+        // 遍历每个Node，重建vinfo中的prefix2range
+        // 遍历pmem_hash_map中的每个tab，每个tab是一个p_node指针数组
+        PersistentInfo* vpinfo = pinfo_.get();
+        pmem_hash_map* vhash_map = vpinfo->range_map_.get();
+
+        size_t hash_map_size = vhash_map->tabLen;
+
+        for(size_t i = 0; i < hash_map_size; i++){
+            p_node pnode = vhash_map->tab[0];
+            if(pnode != nullptr){
+                p_node tmp = pnode;
+                do{
+                    // 重建FixedRangeTab
+                    FixedRangeTab* recovered_tab = new FixedRangeTab(pop_, tmp, vinfo_->internal_options_);
+                    p_range::Node* tmp_node = tmp.get();
+                    std::string prefix(tmp_node->prefix_.get(), tmp_node->prefixLen);
+                    vinfo_->prefix2range[prefix] = recovered_tab;
+                    tmp = tmp_node->next;
+                }while(tmp != nullptr);
+            }
+        }
+
+
+
+    }
+
+
+    Iterator* FixedRangeChunkBasedNVMWriteCache::NewIterator() {
+        // TODO:NewIterator
     }
 
 

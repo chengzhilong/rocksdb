@@ -264,6 +264,7 @@ namespace rocksdb {
                         &mutex_,
                         &shutting_down_,
                         log_buffer,
+                        stats_,
                         immutable_db_options_.nvm_cache_options.get());
                 break;
             }

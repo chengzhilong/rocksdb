@@ -33,21 +33,32 @@ using pmem::obj::persistent_ptr;
 FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBasedOptions *options)
         :   pop_(pop),
             interal_options_(options) {
-    pmap_node_ = node;
-    raw_ = pmap_node_->buf->get();
-    // set cur_
-    EncodeFixed64(raw_, 0);
-    // set seq_
-    EncodeFixed64(raw_ + sizeof(uint64_t), 0);
-    raw_ += 2 * sizeof(uint64_t);
-    in_compaction_ = false;
+    if(!pmap_node_->seq_num_ == 0){
+        // new node
+        pmap_node_ = node;
+        raw_ = pmap_node_->buf->get();
+        // set cur_
+        EncodeFixed64(raw_, 0);
+        // set seq_
+        EncodeFixed64(raw_ + sizeof(uint64_t), 0);
+        raw_ += 2 * sizeof(uint64_t);
+        in_compaction_ = false;
+        pmap_node_->inited_ = true;
+    }else{
+        // rebuild
+        RebuildBlkList();
+    }
+
 }
 
-//| prefix data | prefix size |
-//| cur_ | seq_ |
-//| chunk blmFilter | chunk len | chunk data ..| 不定长
-//| chunk blmFilter | chunk len | chunk data ...| 不定长
-//| chunk blmFilter | chunk len | chunk data .| 不定长
+
+/* *
+ * | prefix data | prefix size |
+ * | cur_ | seq_ |
+ * | chunk blmFilter | chunk len | chunk data ..| 不定长
+ * | chunk blmFilter | chunk len | chunk data ...| 不定长
+ * | chunk blmFilter | chunk len | chunk data .| 不定长
+ * */
 
 
 InternalIterator* FixedRangeTab::NewInternalIterator(
@@ -239,6 +250,7 @@ void FixedRangeTab::GetRealRange(rocksdb::Slice &real_start, rocksdb::Slice &rea
 void FixedRangeTab::RebuildBlkList()
 {
     // TODO :check consistency
+    //ConsistencyCheck();
     size_t dataLen;
     dataLen = pmap_node_->dataLen;
     // TODO
@@ -261,6 +273,17 @@ Usage FixedRangeTab::RangeUsage() {
     usage.chunk_num = pmap_node_->chunk_num_;
     GetRealRange(usage.start, usage.end);
     return usage;
+}
+
+void FixedRangeTab::ConsistencyCheck() {
+    uint64_t data_seq_num;
+    data_seq_num = DecodeFixed64(raw_ - sizeof(uint64_t));
+    p_range::Node* vnode = pmap_node_.get();
+    if(data_seq_num != vnode->seq_num_){
+        // TODO:又需要一个comparator
+        /*Slice last_start, last_end;
+        GetLastChunkKeyRange(last_start, last_end);*/
+    }
 }
 
 } // namespace rocksdb

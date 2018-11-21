@@ -58,6 +58,7 @@ const char *NVMGetFlushReasonString(FlushReason flush_reason) {
     }
 }
 
+
 FixedRangeBasedFlushJob::FixedRangeBasedFlushJob(const std::string &dbname,
                                                  const ImmutableDBOptions &db_options,
                                                  JobContext *job_context,
@@ -69,6 +70,7 @@ FixedRangeBasedFlushJob::FixedRangeBasedFlushJob(const std::string &dbname,
                                                  rocksdb::InstrumentedMutex *db_mutex,
                                                  std::atomic<bool> *shutting_down,
                                                  LogBuffer *log_buffer,
+                                                 Statistics* stats,
                                                  rocksdb::NVMCacheOptions *nvm_cache_options)
         : dbname_(dbname),
           db_options_(db_options),
@@ -81,9 +83,10 @@ FixedRangeBasedFlushJob::FixedRangeBasedFlushJob(const std::string &dbname,
           db_mutex_(db_mutex),
           shutting_down_(shutting_down),
           log_buffer_(log_buffer),
+          stats_(stats),
           nvm_cache_options_(nvm_cache_options),
           nvm_write_cache_(dynamic_cast<FixedRangeChunkBasedNVMWriteCache *>(nvm_cache_options_->nvm_write_cache_)),
-          range_list_(nvm_write_cache_->GetRangeList()),
+          //range_list_(nvm_write_cache_->GetRangeList()),
           last_chunk(nullptr) {
 
 }
@@ -198,10 +201,10 @@ Status FixedRangeBasedFlushJob::InsertToNVMCache() {
                         "Status: %s",
                         status.ToString().c_str());
             }
-            const uint64_t current_time = static_cast<uint64_t>(_current_time);
+            /*const uint64_t current_time = static_cast<uint64_t>(_current_time);*/
 
-            uint64_t oldest_key_time =
-                    mems_.front()->ApproximateOldestKeyTime();
+            /*uint64_t oldest_key_time =
+                    mems_.front()->ApproximateOldestKeyTime();*/
 
             s = BuildChunkAndInsert(iter.get(),
                                     std::move(range_del_iter),
@@ -215,6 +218,9 @@ Status FixedRangeBasedFlushJob::InsertToNVMCache() {
         }
         db_mutex_->Lock();
     }
+    InternalStats::CompactionStats stats(CompactionReason::kFlush, 1);
+    stats.micros = db_options_.env->NowMicros() - start_micros;
+    MeasureTime(stats_, FLUSH_TIME, stats.micros);
     return s;
 }
 
