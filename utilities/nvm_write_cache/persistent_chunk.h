@@ -5,7 +5,8 @@
 
 #include "rocksdb/iterator.h"
 #include "table/merging_iterator.h"
-#include "skiplist/libpmemobj++/persistent_ptr.hpp"
+
+#include "libpmemobj++/persistent_ptr.hpp"
 
 #include "persistent_chunk_iterator.h"
 

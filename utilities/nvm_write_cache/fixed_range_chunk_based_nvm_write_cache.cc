@@ -1,14 +1,5 @@
-#include "skiplist/libpmemobj++/make_persistent.hpp"
-#include "skiplist/libpmemobj++/make_persistent_array.hpp"
-#include "skiplist/libpmemobj++/p.hpp"
-#include "skiplist/libpmemobj++/persistent_ptr.hpp"
-#include "skiplist/libpmemobj++/pool.hpp"
-#include "skiplist/libpmemobj++/transaction.hpp"
-
+#include "utilities/nvm_write_cache/skiplist/test_common.h"
 #include "fixed_range_chunk_based_nvm_write_cache.h"
-
-#include <ex_common.h>
-#include <utilities/nvm_write_cache/skiplist/test_common.h>
 
 namespace rocksdb {
 
@@ -124,6 +115,8 @@ namespace rocksdb {
             compaction_item->end_key_.DecodeFrom(pendding_range_usage.end);
 
             vinfo_->range_queue_.push(compaction_item);
+        } else{
+            // do nothing
         }
     }
 
@@ -156,8 +149,16 @@ namespace rocksdb {
     }
 
 
-    Iterator* FixedRangeChunkBasedNVMWriteCache::NewIterator() {
+    InternalIterator* FixedRangeChunkBasedNVMWriteCache::NewIterator(const InternalKeyComparator* icmp, Arena* arena) {
         // TODO:NewIterator
+        InternalIterator* internal_iter;
+        MergeIteratorBuilder merge_iter_builder(icmp, arena);
+        for (auto range : vinfo_->prefix2range) {
+            merge_iter_builder.AddIterator(range.second.NewInternalIterator(icmp, arena));
+        }
+
+        internal_iter = merge_iter_builder.Finish();
+        return internal_iter;
     }
 
 

@@ -1,16 +1,17 @@
-
-
 #pragma once
 
 #include <queue>
 #include <unordered_map>
-#include <rocksdb/iterator.h>
+#include "rocksdb/iterator.h"
 #include "utilities/nvm_write_cache/nvm_write_cache.h"
 #include "utilities/nvm_write_cache/nvm_cache_options.h"
 
-#include "skiplist/libpmemobj++/pool.hpp"
-#include "skiplist/libpmemobj++/persistent_ptr.hpp"
-#include "skiplist/libpmemobj++/p.hpp"
+#include "libpmemobj++/p.hpp"
+#include "libpmemobj++/persistent_ptr.hpp"
+#include "libpmemobj++/pool.hpp"
+#include "libpmemobj++/transaction.hpp"
+#include "libpmemobj++/make_persistent.hpp"
+#include "libpmemobj++/make_persistent_array.hpp"
 
 #include "fixed_range_tab.h"
 #include "pmem_hash_map.h"
@@ -21,7 +22,7 @@ using namespace pmem::obj;
 
 namespace rocksdb {
 
-//class PersistentAllocator;
+class InternalIterator;
 
 static inline int
 file_exists(char const *file) {
@@ -80,7 +81,7 @@ public:
             const FixedRangeBasedOptions* ioptions,
             const string &file, uint64_t pmem_size);
 
-    ~FixedRangeChunkBasedNVMWriteCache();
+    ~FixedRangeChunkBasedNVMWriteCache() override;
 
     // insert data to cache
     // insert_mark is (uint64_t)range_id
@@ -93,10 +94,7 @@ public:
             const ChunkMeta& meta);
 
     // get iterator of the total cache
-    Iterator *NewIterator() override;
-
-    // 获取range_mem_id对应的RangeMemtable结构
-//  FixedRangeTab* GetRangeMemtable(uint64_t range_mem_id);
+    InternalIterator *NewIterator(const InternalKeyComparator* icmp, Arena* arena) override;
 
     // return there is need for compaction or not
     bool NeedCompaction() override { return !vinfo_->range_queue_.empty(); }
@@ -108,19 +106,10 @@ public:
         return item;
     }
 
-    // add a range with a new prefix to range mem
-    // return the id of the range
-
-
     // get internal options of this cache
     const FixedRangeBasedOptions *internal_options() { return vinfo_->internal_options_; }
 
     void MaybeNeedCompaction();
-
-    unordered_map<string, FixedRangeTab> *GetRangeList(){return &vinfo_->prefix2range;}
-
-    // get stats of this cache
-    //FixedRangeChunkBasedCacheStats *stats() { return cache_stats_; }
 
 private:
 
@@ -131,6 +120,7 @@ private:
         p<bool> inited_;
         p<uint64_t> allocated_bits_;
         persistent_ptr<p_range::pmem_hash_map> range_map_;
+        // TODO: allocator分配的空间没法收回
         persistent_ptr<PersistentAllocator> allocator_;
     };
 
@@ -141,7 +131,7 @@ private:
         const FixedRangeBasedOptions *internal_options_;
         unordered_map<string, FixedRangeTab> prefix2range;
         std::queue<CompactionItem *> range_queue_;
-        VolatileInfo(const FixedRangeBasedOptions* ioptions)
+        explicit VolatileInfo(const FixedRangeBasedOptions* ioptions)
             :internal_options_(ioptions) {}
     };
 

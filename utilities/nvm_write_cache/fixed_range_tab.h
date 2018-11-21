@@ -3,18 +3,18 @@
 
 #include <list>
 #include <db/db_impl.h>
-#include <libpmemobj.h>
+
+//#include "libpmemobj.h"
+#include "libpmemobj++/p.hpp"
+#include "libpmemobj++/persistent_ptr.hpp"
+#include "libpmemobj++/pool.hpp"
+#include "libpmemobj++/transaction.hpp"
+#include "libpmemobj++/make_persistent.hpp"
+#include "libpmemobj++/make_persistent_array.hpp"
 
 #include "persistent_chunk.h"
 #include "pmem_hash_map.h"
 #include "nvm_cache_options.h"
-#include "skiplist/libpmemobj++/make_persistent.hpp"
-#include "skiplist/libpmemobj++/make_persistent_array.hpp"
-#include "skiplist/libpmemobj++/p.hpp"
-#include "skiplist/libpmemobj++/persistent_ptr.hpp"
-#include "skiplist/libpmemobj++/detail/persistent_ptr_base.hpp"
-#include "skiplist/libpmemobj++/pool.hpp"
-#include "skiplist/libpmemobj++/transaction.hpp"
 #include "chunkblk.h"
 
 using namespace pmem::obj;
@@ -35,7 +35,6 @@ struct Usage {
 
 
 class FixedRangeTab {
-    using p_range::p_node;
 
 public:
     FixedRangeTab(pool_base &pop, p_range::p_node hash_node, FixedRangeBasedOptions *options);
@@ -46,7 +45,7 @@ public:
     // 返回当前RangeMemtable中所有chunk的有序序列
     // 基于MergeIterator
     // 参考 DBImpl::NewInternalIterator
-    InternalIterator *NewInternalIterator(ColumnFamilyData *cfd, Arena *arena);
+    InternalIterator *NewInternalIterator(const InternalKeyComparator* icmp, Arena *arena);
 
     Status Get(const InternalKeyComparator &internal_comparator, const Slice &key,
                std::string *value);

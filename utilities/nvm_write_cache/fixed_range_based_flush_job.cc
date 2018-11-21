@@ -332,6 +332,8 @@ Status FixedRangeBasedFlushJob::BuildChunkAndInsert(InternalIterator *iter,
             for (auto &running_thread : thread_pool) {
                 running_thread.join();
             }
+            // check if there is need for compaction
+            nvm_write_cache_->MaybeNeedCompaction();
 
         } else {
             return s;

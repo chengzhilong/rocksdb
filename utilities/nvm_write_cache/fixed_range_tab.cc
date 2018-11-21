@@ -62,10 +62,10 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBas
 
 
 InternalIterator* FixedRangeTab::NewInternalIterator(
-    ColumnFamilyData *cfd, Arena *arena)
+        const InternalKeyComparator* icmp, Arena *arena)
 {
   InternalIterator* internal_iter;
-  MergeIteratorBuilder merge_iter_builder(&cfd->internal_comparator(),
+  MergeIteratorBuilder merge_iter_builder(icmp,
                                           arena);
   // TODO
   // 预设 range 持久化

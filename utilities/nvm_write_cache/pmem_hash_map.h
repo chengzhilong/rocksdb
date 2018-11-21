@@ -1,13 +1,15 @@
 #ifndef PMEM_HASH_MAP_H
 #define PMEM_HASH_MAP_H
 
-#include "skiplist/libpmemobj++/make_persistent.hpp"
-#include "skiplist/libpmemobj++/make_persistent_array.hpp"
-#include "skiplist/libpmemobj++/p.hpp"
-#include "skiplist/libpmemobj++/persistent_ptr.hpp"
-#include "skiplist/libpmemobj++/pool.hpp"
-#include "skiplist/libpmemobj++/transaction.hpp"
-#include <string.h>
+#include <string>
+
+#include "libpmemobj++/p.hpp"
+#include "libpmemobj++/persistent_ptr.hpp"
+#include "libpmemobj++/pool.hpp"
+#include "libpmemobj++/transaction.hpp"
+#include "libpmemobj++/make_persistent.hpp"
+#include "libpmemobj++/make_persistent_array.hpp"
+
 
 namespace p_range {
         using namespace pmem;
