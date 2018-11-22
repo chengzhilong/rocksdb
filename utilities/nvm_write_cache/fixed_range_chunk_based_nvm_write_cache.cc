@@ -66,18 +66,12 @@ namespace rocksdb {
                                                           const rocksdb::ChunkMeta &meta) {
         /*
          * 1. 获取prefix
-         * 2. 检查tab是否存在
-         * 2.1 tab不存在则NewRange
-         * 3. 调用tangetab的append
+         * 2. 调用tangetab的append
          * */
         FixedRangeTab* now_range = nullptr;
         auto tab_found = vinfo_->prefix2range.find(meta.prefix);
-        if(tab_found == vinfo_->prefix2range.end()){
-            now_range = NewRange(meta.prefix);
-        }else{
-            now_range = &tab_found->second;
-        }
-
+        assert(tab_found != vinfo_->prefix2range.end());
+        now_range = &tab_found->second;
         now_range->Append(icmp, bloom_data, chunk_data, meta.cur_start, meta.cur_end);
     }
 
@@ -94,29 +88,21 @@ namespace rocksdb {
     }
 
     void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
-        // TODO more reasonable compaction threashold
-        if(pinfo_->allocator_->Remain() < pinfo_->allocator_->Capacity() * 0.75){
-            uint64_t max_range_size = 0;
-            FixedRangeTab* pendding_range = nullptr;
-            Usage pendding_range_usage;
-            for(auto range : vinfo_->prefix2range){
-                Usage range_usage = range.second.RangeUsage();
-                if(max_range_size < range_usage.range_size){
-                    pendding_range = range.second;
-                    pendding_range_usage = range_usage;
-                }
+        // 选择所有range中数据大小占总容量80%的range并按照总容量的大小顺序插入compaction queue
+        std::vector<CompactionItem> pendding_compact;
+        for(auto range : vinfo_->prefix2range){
+            Usage range_usage = range.second.RangeUsage();
+            if(range_usage.range_size >= range.second.max_range_size() * 0.8){
+                pendding_compact.emplace_back(range.second);
             }
+        }
+        std::sort(pendding_compact.begin(), pendding_compact.end(),
+                [](FixedRangeTab* lrange, FixedRangeTab* rrange){
+                    return lrange->RangeUsage().range_size < rrange->RangeUsage().range_size;
+        });
 
-            CompactionItem* compaction_item = new CompactionItem;
-            compaction_item->pending_compated_range_ = pendding_range;
-            compaction_item->range_size_ = pendding_range_usage.range_size;
-            compaction_item->chunk_num_ = pendding_range_usage.chunk_num;
-            compaction_item->start_key_.DecodeFrom(pendding_range_usage.start);
-            compaction_item->end_key_.DecodeFrom(pendding_range_usage.end);
-
-            vinfo_->range_queue_.push(compaction_item);
-        } else{
-            // do nothing
+        for(auto pendding_range : pendding_compact){
+            vinfo_->range_queue_.push(std::move(pendding_range));
         }
     }
 
@@ -150,7 +136,6 @@ namespace rocksdb {
 
 
     InternalIterator* FixedRangeChunkBasedNVMWriteCache::NewIterator(const InternalKeyComparator* icmp, Arena* arena) {
-        // TODO:NewIterator
         InternalIterator* internal_iter;
         MergeIteratorBuilder merge_iter_builder(icmp, arena);
         for (auto range : vinfo_->prefix2range) {
@@ -161,6 +146,12 @@ namespace rocksdb {
         return internal_iter;
     }
 
+    void FixedRangeChunkBasedNVMWriteCache::RangeExistsOrCreat(const std::string &prefix) {
+        auto tab_idx = vinfo_->prefix2range.find(prefix);
+        if(tab_idx == vinfo_->prefix2range.end()){
+            NewRange(prefix);
+        }
+    }
 
 
 } // namespace rocksdb

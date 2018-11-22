@@ -3,33 +3,12 @@
 
 #include "fixed_range_tab.h"
 #include "persistent_chunk.h"
+#include "persistent_chunk_iterator.h"
 
 namespace rocksdb {
 
 using pmem::obj::persistent_ptr;
 
-/*    void freqUpdateInfo::update(pool_base &pop, uint64_t total_size, const rocksdb::Slice &real_start,
-                                const rocksdb::Slice &real_end) {
-        transaction::run(pop, [&] {
-            key_range_ = make_persistent<char[]>(real_start.size() + real_end.size() + 2 * sizeof(uint64_t));
-            char *buf = &key_range_[0];
-            EncodeFixed64(buf, real_start.size());
-            memcpy(buf + sizeof(uint64_t), real_start.data(), real_start.size());
-            buf += sizeof(uint64_t) + real_start.size();
-
-            EncodeFixed64(buf, real_end.size());
-            memcpy(buf + sizeof(uint64_t), real_end.data(), real_end.size());
-
-            chunk_num_ = chunk_num_ + 1;
-            seq_num_ = seq_num_ + 1;
-        });
-    }*/
-
-/*void persistent_ptr_memcpy(persistent_ptr<char[]> &dst, const void *src, size_t count) {
-    for (size_t i = 0; i < count; i++) {
-        dst[i] = *(static_cast<const char *>(src) + i);
-    }
-}*/
 FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBasedOptions *options)
         :   pop_(pop),
             interal_options_(options) {
@@ -51,7 +30,6 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBas
 
 }
 
-
 /* *
  * | prefix data | prefix size |
  * | cur_ | seq_ |
@@ -59,7 +37,6 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBas
  * | chunk blmFilter | chunk len | chunk data ...| 不定长
  * | chunk blmFilter | chunk len | chunk data .| 不定长
  * */
-
 
 InternalIterator* FixedRangeTab::NewInternalIterator(
         const InternalKeyComparator* icmp, Arena *arena)
@@ -82,7 +59,31 @@ InternalIterator* FixedRangeTab::NewInternalIterator(
     return internal_iter;
 }
 
-/** range data format:
+Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
+                          const Slice &key, std::string *value)
+{
+  // 1.从下往上遍历所有的chunk
+  PersistentChunkIterator *iter = new PersistentChunkIterator;
+  shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
+
+  uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
+  for (size_t i = blklist.size() - 1; i >= 0; i--) {
+    ChunkBlk &blk = blklist.at(i);
+    persistent_ptr<char[]> bloom_dat = pmap_node_->buf + blk.offset_;
+    // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
+    if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_dat.get(), bloom_bits))) {
+      // 3.如果有则读取元数据进行chunk内的查找
+      new (iter) PersistentChunkIterator(pmap_node_->buf + blk.getDatOffset(), blk.chunkLen_,
+                                        nullptr);
+      Status s = searchInChunk(iter, internal_comparator, key, value);
+      if (s.ok()) return s;
+    } else {
+      continue;
+    }
+  } // 4.循环直到查找完所有的chunk
+}
+
+/* range data format:
  *
  * |--  cur_  --|
  * |--  seq_  --|
@@ -100,25 +101,30 @@ void FixedRangeTab::Append(const InternalKeyComparator& icmp,
         // TODO：mark tab as pendding compaction
     }
 
+    if(in_compaction_){
+        // TODO: append when need compaction
+    }
+
     //size_t cur_len = node_in_pmem_map->dataLen;
-    size_t chunk_blk_len = interal_options_->chunk_bloom_bits_ + sizeof(chunk_data.size_)
-                           + chunk_data.size_;
+    size_t chunk_blk_len = interal_options_->chunk_bloom_bits_ + sizeof(uint64_t) + chunk_data.size();
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
-    uint64_t last_srq = DecodeFixed64(raw_ - sizeof(uint64_t));
+    uint64_t last_seq = DecodeFixed64(raw_ - sizeof(uint64_t));
+
     char *dst = raw_ + raw_cur;
+    // append bloom data
+    memcpy(dst, bloom_data, interal_options_->chunk_bloom_bits_);
+    // append chunk data size
+    EncodeFixed64(dst + interal_options_->chunk_bloom_bits_, chunk_data.size());
 
-    memcpy(dst, bloom_data, interal_options_->chunk_bloom_bits_); // append bloom data
-    memcpy((dst + interal_options_->chunk_bloom_bits_), chunk_data.data(), sizeof(uint64_t)); // append chunk data
-
-    dst += interal_options_->chunk_bloom_bits_ + sizeof(chunk_data.size_);
-
-    memcpy(dst, chunk_data.data_, chunk_data.size_);
+    dst += interal_options_->chunk_bloom_bits_ + sizeof(uint64_t);
+    // append data
+    memcpy(dst, chunk_data.data(), chunk_data.size());
 
     // update cur and seq
     // transaction
     {
         EncodeFixed64(raw_ - 2 * sizeof(uint64_t), raw_cur + chunk_blk_len);
-        EncodeFixed64(raw_ - sizeof(uint64_t), last_srq + 1);
+        EncodeFixed64(raw_ - sizeof(uint64_t), last_seq + 1);
     }
     // update meta info
 
@@ -176,13 +182,22 @@ void FixedRangeTab::Release() {
 
 void FixedRangeTab::CleanUp() {
     // 清除这个range的数据
-    //TODO: 清除node中的数据
+    EncodeFixed64(raw_ - 2 * sizeof(uint64_t), 0);//set cur to 0
+    blklist.clear();
+    p_range::Node* vnode = pmap_node_.get();
+    in_compaction_ = false;
+    transaction::run(pop_, [&]{
+        vnode->chunk_num_ = 0;
+        vnode->dataLen = 0;
+        Slice start, end;
+        GetRealRange(start, end);
+        delete_persistent<char[]>(vnode->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
+        vnode->key_range_ = nullptr;
+    });
 
-    EncodeFixed64(raw_ - 2 * sizeof(uint64_t), 0);
-    EncodeFixed64(raw_ - sizeof(uint64_t), 0);
 }
 
-Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator, const rocksdb::Slice &key,
+/*Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator, const rocksdb::Slice &key,
                           std::string *value) {
     // 1.从下往上遍历所有的chunk
     uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
@@ -207,44 +222,50 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator, cons
     }
 
     // 4.循环直到查找完所有的chunk
-}
+}*/
 
 
-Status FixedRangeTab::DoInChunkSearch(const InternalKeyComparator &icmp, const Slice &key, std::string *value,
-                                      std::vector<uint64_t> &off, char *chunk_data)
-{
-  size_t left = 0, right = off.size() - 1;
-  size_t middle = (left + right) / 2;
-  while (left < right) {
-    Slice ml_key = GetKVData(chunk_data, off[middle]);
-    int result = icmp.Compare(ml_key, key);
-    if (result == 0) {
-      //found
-      uint64_t value_off = DecodeFixed64(chunk_data + off[middle] + ml_key.size());
-      Slice raw_value = GetKVData(chunk_data, value_off);
-      value = new std::string(raw_value.data(), raw_value.size());
-      return Status::OK();
-    } else if (result < 0) {
-      // middle < key
-      left = middle + 1;
-    } else if (result > 0) {
-      // middle >= key
-      right = middle - 1;
+Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const InternalKeyComparator &icmp,
+                                    const Slice &key, std::string *value) {
+    size_t left = 0, right = iter->count() - 1;
+    while (left < right) {
+        size_t middle = left + ((right - left) >> 1);
+        iter->SeekTo(middle);
+        Slice& ml_key = iter->key();
+        int result = icmp.Compare(ml_key, key);
+        if (result == 0) {
+            //found
+            Slice& raw_value = iter->value();
+            value->assign(raw_value.data(), raw_value.size());
+            return Status::OK();
+        } else if (result < 0) {
+            // middle < key
+            left = middle + 1;
+        } else if (result > 0) {
+            // middle >= key
+            right = middle - 1;
+        }
     }
-  }
-  return Status::NotFound("not found");
+    return Status::NotFound("not found");
 }
 
 Slice FixedRangeTab::GetKVData(char *raw, uint64_t item_off) {
     char *target = raw + item_off;
     uint64_t target_size = DecodeFixed64(target);
-    return Slice(target + sizeof(uint64_t), target_size);
+    return Slice(target + sizeof(uint64_t), static_cast<size_t>(target_size));
 }
 
 void FixedRangeTab::GetRealRange(rocksdb::Slice &real_start, rocksdb::Slice &real_end) {
-    char *raw = pmap_node_->key_range_.get();
-    real_start = GetKVData(raw, 0);
-    real_end = GetKVData(raw, real_start.size() + sizeof(uint64_t));
+    if(pmap_node_->key_range_ != nullptr){
+        char *raw = pmap_node_->key_range_.get();
+        real_start = GetKVData(raw, 0);
+        real_end = GetKVData(raw, real_start.size() + sizeof(uint64_t));
+    }else{
+        // if there is no key_range return null Slice
+        real_start = Slice();
+        real_end = Slice();
+    }
+
 }
 
 void FixedRangeTab::RebuildBlkList()
@@ -266,12 +287,14 @@ void FixedRangeTab::RebuildBlkList()
     }
 }
 
-
 Usage FixedRangeTab::RangeUsage() {
     Usage usage;
+    Slice start, end;
+    GetRealRange(start, end);
     usage.range_size = pmap_node_->total_size_;
     usage.chunk_num = pmap_node_->chunk_num_;
-    GetRealRange(usage.start, usage.end);
+    usage.start.DecodeFrom(start);
+    usage.end.DecodeFrom(end);
     return usage;
 }
 

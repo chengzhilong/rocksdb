@@ -31,9 +31,12 @@ file_exists(char const *file) {
 
 struct CompactionItem {
     FixedRangeTab *pending_compated_range_;
-    //Slice start_key_, end_key_;
-    InternalKey start_key_, end_key_;
-    uint64_t range_size_, chunk_num_;
+
+    explicit CompactionItem(FixedRangeTab *range)
+            : pending_compated_range_(range) {}
+
+    CompactionItem(const CompactionItem &item)
+            : pending_compated_range_(item.pending_compated_range_) {}
 };
 
 struct ChunkMeta {
@@ -63,7 +66,7 @@ public:
         return total_size_ - cur_;
     }
 
-    uint64_t Capacity(){
+    uint64_t Capacity() {
         return total_size_;
     }
 
@@ -78,7 +81,7 @@ private:
 class FixedRangeChunkBasedNVMWriteCache : public NVMWriteCache {
 public:
     explicit FixedRangeChunkBasedNVMWriteCache(
-            const FixedRangeBasedOptions* ioptions,
+            const FixedRangeBasedOptions *ioptions,
             const string &file, uint64_t pmem_size);
 
     ~FixedRangeChunkBasedNVMWriteCache() override;
@@ -90,20 +93,20 @@ public:
     // get data from cache
     Status Get(const InternalKeyComparator &internal_comparator, const Slice &key, std::string *value) override;
 
-    void AppendToRange(const InternalKeyComparator& icmp, const char* bloom_data, const Slice& chunk_data,
-            const ChunkMeta& meta);
+    void AppendToRange(const InternalKeyComparator &icmp, const char *bloom_data, const Slice &chunk_data,
+                       const ChunkMeta &meta);
 
     // get iterator of the total cache
-    InternalIterator *NewIterator(const InternalKeyComparator* icmp, Arena* arena) override;
+    InternalIterator *NewIterator(const InternalKeyComparator *icmp, Arena *arena) override;
 
     // return there is need for compaction or not
     bool NeedCompaction() override { return !vinfo_->range_queue_.empty(); }
 
     //get iterator of data that will be drained
     // get 之后释放没有 ?
-    CompactionItem *GetCompactionData() {
-        CompactionItem *item = vinfo_->range_queue_.front();
-        return item;
+    void GetCompactionData(CompactionItem *compaction) {
+        *compaction = vinfo_->range_queue_.front();
+        vinfo_->range_queue_.pop();
     }
 
     // get internal options of this cache
@@ -111,9 +114,12 @@ public:
 
     void MaybeNeedCompaction();
 
+    void RangeExistsOrCreat(const std::string &prefix);
+
 private:
 
-    FixedRangeTab* NewRange(const std::string &prefix);
+    FixedRangeTab *NewRange(const std::string &prefix);
+
     void RebuildFromPersistentNode();
 
     struct PersistentInfo {
@@ -130,9 +136,10 @@ private:
     struct VolatileInfo {
         const FixedRangeBasedOptions *internal_options_;
         unordered_map<string, FixedRangeTab> prefix2range;
-        std::queue<CompactionItem *> range_queue_;
-        explicit VolatileInfo(const FixedRangeBasedOptions* ioptions)
-            :internal_options_(ioptions) {}
+        std::queue<CompactionItem> range_queue_;
+
+        explicit VolatileInfo(const FixedRangeBasedOptions *ioptions)
+                : internal_options_(ioptions) {}
     };
 
     VolatileInfo *vinfo_;

@@ -28,7 +28,7 @@ using std::list;
 struct Usage {
     uint64_t chunk_num;
     uint64_t range_size;
-    Slice start, end;
+    InternalKey start, end;
 
 };
 
@@ -63,11 +63,6 @@ public:
             const char *bloom_data, const Slice &chunk_data,
             const Slice& start, const Slice& end);
 
-    // 返回当前RangeMem的真实key range（stat里面记录）
-    void GetRealRange(Slice &real_start, Slice &real_end);
-
-
-    // 判断是否需要compact，如果需要则将一个RangeMemid加入Compact队列
     Usage RangeUsage();
 
     // 释放当前RangeMemtable的所有chunk以及占用的空间
@@ -76,16 +71,23 @@ public:
     // 重置Stat数据以及bloom filter
     void CleanUp();
 
+    uint64_t max_range_size(){
+        return pmap_node_->bufSize;
+    }
+
 private:
 
     uint64_t max_chunk_num_to_flush() const {
         // TODO: set a max chunk num
-        return 100;
+        return 1024;
     }
 
-    Status
-    DoInChunkSearch(const InternalKeyComparator &icmp, const Slice &key, std::string *value, std::vector<uint64_t> &off,
-                    char *chunk_data);
+    // 返回当前RangeMem的真实key range（stat里面记录）
+    void GetRealRange(Slice &real_start, Slice &real_end);
+
+    Status searchInChunk(PersistentChunkIterator *iter,
+                        const InternalKeyComparator &icmp,
+                        const Slice &key, std::string *value);
 
     Slice GetKVData(char *raw, uint64_t item_off);
 

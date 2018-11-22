@@ -293,18 +293,13 @@ Status FixedRangeBasedFlushJob::BuildChunkAndInsert(InternalIterator *iter,
                 last_prefix = now_prefix;
 
             }
-            //builder->Add(key, value);
-            //meta->UpdateBoundaries(key, c_iter.ikey().sequence);
-
-            // TODO(noetzli): Update stats after flush, too.
-            /*if (io_priority == Env::IO_HIGH &&
-                IOSTATS(bytes_written) >= kReportFlushIOStatsEvery) {
-                ThreadStatusUtil::SetThreadOperationProperty(
-                        ThreadStatus::FLUSH_BYTES_WRITTEN, IOSTATS(bytes_written));
-            }*/
         }
         s = c_iter.status();
         if (s.ok()) {
+            // check is the prefix existing in nvm cache or create it
+            for(auto pendding_chunk:pending_output_chunk){
+                nvm_write_cache_->RangeExistsOrCreat(pendding_chunk.first);
+            }
             // insert data of each range into nvm cache
             std::vector<port::Thread> thread_pool;
             thread_pool.clear();
