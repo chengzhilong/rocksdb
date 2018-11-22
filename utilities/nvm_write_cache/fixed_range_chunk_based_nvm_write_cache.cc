@@ -98,7 +98,7 @@ namespace rocksdb {
         }
         std::sort(pendding_compact.begin(), pendding_compact.end(),
                 [](FixedRangeTab* lrange, FixedRangeTab* rrange){
-                    return lrange->RangeUsage().range_size < rrange->RangeUsage().range_size;
+                    return lrange->RangeUsage().range_size > rrange->RangeUsage().range_size;
         });
 
         for(auto pendding_range : pendding_compact){
