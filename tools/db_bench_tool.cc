@@ -78,6 +78,8 @@
 
 #ifdef OS_WIN
 #include <io.h>  // open/close
+#include <utilities/nvm_write_cache/nvm_cache_options.h>
+
 #endif
 
 using GFLAGS_NAMESPACE::ParseCommandLineFlags;
@@ -1119,6 +1121,24 @@ static const bool FLAGS_deletepercent_dummy __attribute__((__unused__)) =
 static const bool FLAGS_table_cache_numshardbits_dummy __attribute__((__unused__)) =
     RegisterFlagValidator(&FLAGS_table_cache_numshardbits,
                           &ValidateTableCacheNumshardbits);
+
+DEFINE_bool(use_nvm_write_cache, false, "use nvm write cache");
+
+DEFINE_bool(reset_nvm_write_cache, false, "reset nvm cache");
+
+DEFINE_string(pmem_path, "/pmem/nvm_rocksdb");
+
+DEFINE_int64(pmem_size, 40 * 1024 * 1024 * 1024, "size of nvm space");
+
+DEFINE_int16(chunk_bloom_bits, 16, "size of bloom filer of chunk");
+
+DEFINE_int16(prefix_bits, 11, "prefix len of key");
+
+DEFINE_int16(range_num_threashold, 0 "max num of ranges");
+
+DEFINE_int64(range_size_threashold, 1<<27, "max size of a range");
+
+DEFINE_string(nvm_cache_type, "fixed_range_chunk_based");
 
 namespace rocksdb {
 
@@ -3557,6 +3577,28 @@ void VerifyDBFromDB(std::string& truth_db_name) {
           FLAGS_rate_limiter_auto_tuned));
     }
 
+    if(FLAGS_use_nvm_write_cache){
+        auto nvm_cache_options = new NVMCacheOptions;
+        nvm_cache_options->use_nvm_write_cache_ = FLAGS_use_nvm_write_cache;
+        nvm_cache_options->reset_nvm_write_cache = FLAGS_reset_nvm_write_cache;
+        nvm_cache_options->nvm_cache_type_ = kRangeFixedChunk;
+        if(FLAGS_nvm_cache_type == "fixed_range_chunk_based"){
+            auto foptions = new FixedRangeBasedOptions(
+                    FLAGS_chunk_bloom_bits,
+                    FLAGS_prefix_bits,
+                    new SimplePrefixExtractor(FLAGS_prefix_bits),
+                    NewBloomFilterPolicy(FLAGS_chunk_bloom_bits, false),
+                    FLAGS_range_num_threashold,
+                    FLAGS_range_size_threashold
+                    );
+            nvm_cache_options->nvm_write_cache_ = NVMCacheOptions::NewFixedRangeChunkBasedCache(
+                    nvm_cache_options,
+                    foptions);
+        }
+        options.nvm_cache_options.reset(nvm_cache_options);
+
+    }
+
     options.listeners.emplace_back(listener_);
     if (FLAGS_num_multi_db <= 1) {
       OpenDb(options, FLAGS_db, &db_);
@@ -3578,6 +3620,7 @@ void VerifyDBFromDB(std::string& truth_db_name) {
       options.compaction_filter = new KeepFilter();
       fprintf(stdout, "A noop compaction filter is used\n");
     }
+
   }
 
   void Open(Options* opts) {

@@ -82,7 +82,8 @@ class FixedRangeChunkBasedNVMWriteCache : public NVMWriteCache {
 public:
     explicit FixedRangeChunkBasedNVMWriteCache(
             const FixedRangeBasedOptions *ioptions,
-            const string &file, uint64_t pmem_size);
+            const string &file, uint64_t pmem_size,
+            bool reset = false);
 
     ~FixedRangeChunkBasedNVMWriteCache() override;
 

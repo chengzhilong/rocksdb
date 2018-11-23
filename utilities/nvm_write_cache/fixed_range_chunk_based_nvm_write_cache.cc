@@ -8,7 +8,8 @@ namespace rocksdb {
 
     FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
             const FixedRangeBasedOptions* ioptions,
-            const string &file, uint64_t pmem_size) {
+            const string &file, uint64_t pmem_size,
+            bool reset) {
         //bool justCreated = false;
         vinfo_ = new VolatileInfo(ioptions);
         if (file_exists(file.c_str()) != 0) {
@@ -21,7 +22,7 @@ namespace rocksdb {
         }
 
         pinfo_ = pop_.root();
-        if (!pinfo_->inited_) {
+        if (!pinfo_->inited_ || reset) {
             transaction::run(pop_, [&] {
                 // TODO 配置
                 pinfo_->range_map = make_persistent<p_range::pmem_hash_map>();
