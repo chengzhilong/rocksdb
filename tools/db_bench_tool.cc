@@ -3582,6 +3582,8 @@ void VerifyDBFromDB(std::string& truth_db_name) {
         nvm_cache_options->use_nvm_write_cache_ = FLAGS_use_nvm_write_cache;
         nvm_cache_options->reset_nvm_write_cache = FLAGS_reset_nvm_write_cache;
         nvm_cache_options->nvm_cache_type_ = kRangeFixedChunk;
+        nvm_cache_options->pmem_info_.pmem_path_ = FLAGS_pmem_path;
+        nvm_cache_options->pmem_info_.pmem_size_ = FLAGS_pmem_size;
         if(FLAGS_nvm_cache_type == "fixed_range_chunk_based"){
             auto foptions = new FixedRangeBasedOptions(
                     FLAGS_chunk_bloom_bits,

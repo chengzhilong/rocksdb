@@ -73,7 +73,7 @@ struct TreeBasedOptions{
 
         bool use_nvm_write_cache_;
         bool reset_nvm_write_cache;
-        PMeInfo pmem_info_;
+        PMemInfo pmem_info_;
         NVMCacheType nvm_cache_type_;
         NVMWriteCache* nvm_write_cache_;
         DrainStrategy drain_strategy_;
