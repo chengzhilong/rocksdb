@@ -32,15 +32,10 @@ namespace rocksdb{
 struct FixedRangeBasedOptions{
 
     const uint16_t chunk_bloom_bits_ = 16;
-
     const uint16_t prefix_bits_ = 3;
-
     PrefixExtractor* prefix_extractor_ = nullptr;
-
     const FilterPolicy* filter_policy_ = nullptr;
-
     const uint64_t range_num_threshold_ = 0;
-
     const uint64_t range_size_threshold_ = 64ul << 20;
 
     FixedRangeBasedOptions(
@@ -73,21 +68,14 @@ struct TreeBasedOptions{
 
     struct NVMCacheOptions{
         NVMCacheOptions();
-
         explicit NVMCacheOptions(Options& options);
-
         ~NVMCacheOptions();
 
         bool use_nvm_write_cache_;
-
         bool reset_nvm_write_cache;
-
-        PMemInfo pmem_info_;
-
+        PMeInfo pmem_info_;
         NVMCacheType nvm_cache_type_;
-
         NVMWriteCache* nvm_write_cache_;
-
         DrainStrategy drain_strategy_;
 
         static FixedRangeChunkBasedNVMWriteCache* NewFixedRangeChunkBasedCache(NVMCacheOptions* nvm_cache_options,
