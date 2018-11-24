@@ -42,12 +42,12 @@ using p_node = persistent_ptr<Node>;
 template<typename T>
 class pmem_hash_map {
     struct Node2 {
-        persistent_ptr<Node2<T> > next;
+        persistent_ptr<Node2> next;
         //  persistent_ptr<Node2<T>> next;
         persistent_ptr<T> p_content;
     };
 
-    using p_node_t = persistent_ptr<Node2<T> >;
+    using p_node_t = persistent_ptr<Node2>;
 
     void getAll(vector<persistent_ptr<T> > &nodeVec);
 
