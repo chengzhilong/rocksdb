@@ -26,16 +26,15 @@ namespace rocksdb {
 using pmem::obj::persistent_ptr;
 
 using p_buf = persistent_ptr<char[]>;
-
 struct NvRangeTab {
 public:
-    NvRangeTab(pool_base &pop, const string &prefix);
+    NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size);
 
-    uint64_t hashCode() {
-        // TODO \0 ?
-        std::string key(prefix_.get(), prefixLen + 1);
-        return CityHash64WithSeed(key, prefixLen, 16);
+    uint64_t hashCode(const string& prefix) {
+        return CityHash64WithSeed(prefix, prefix.size(), 16);
     }
+
+    char* GetRawBuf(){return buf.get();}
 
     // 通过比价前缀，比较两个NvRangeTab是否相等
     bool equals(const string &prefix);
@@ -46,22 +45,22 @@ public:
 
     p<uint64_t> hash_;
     p<size_t> prefixLen; // string prefix_ tail 0 not included
-    p_buf prefix_;
-    p_buf key_range_;
+    p_buf prefix_; // prefix
+    p_buf key_range_; //key range
     p<size_t> chunk_num_;
     p<uint64_t> seq_num_;
 
     p<size_t> bufSize; // capacity
-    p_buf buf;
+    p_buf buf; // buf data
     p<size_t> dataLen; // exact data len
 
 };
 
+
 struct Usage {
     uint64_t chunk_num;
     uint64_t range_size;
-    Slice start, end;
-
+    InternalKey start, end;
 };
 
 
@@ -69,12 +68,12 @@ class FixedRangeTab {
 
 
 public:
-    FixedRangeTab(pool_base &pop, FixedRangeBasedOptions *options);
+    //FixedRangeTab(pool_base &pop, FixedRangeBasedOptions *options);
 
     FixedRangeTab(pool_base &pop, FixedRangeBasedOptions *options,
                   persistent_ptr<NvRangeTab> &nonVolatileTab);
 
-    FixedRangeTab(pool_base &pop, p_node pmap_node_, FixedRangeBasedOptions *options);
+    //FixedRangeTab(pool_base &pop, p_node pmap_node_, FixedRangeBasedOptions *options);
 
 //  FixedRangeTab(pool_base& pop, p_node pmap_node_, FixedRangeBasedOptions *options);
 
@@ -93,7 +92,7 @@ public:
 
     void RebuildBlkList();
 
-    persistent_ptr<NvRangeTab> getPersistentData() { return nonVolatileTab; }
+    persistent_ptr<NvRangeTab> getPersistentData() { return nonVolatileTab_; }
 
     // 返回当前RangeMemtable是否正在被compact
     bool IsCompactWorking() { return in_compaction_; }
@@ -115,7 +114,7 @@ public:
     void CleanUp();
 
     uint64_t max_range_size() {
-        return pmap_node_->bufSize;
+        return nonVolatileTab_->bufSize;
     }
 
 private:
@@ -139,9 +138,9 @@ private:
     void ConsistencyCheck();
 
     // persistent info
-    p_node pmap_node_;
+    //p_node pmap_node_;
 
-    persistent_ptr<NvRangeTab> nonVolatileTab;
+    persistent_ptr<NvRangeTab> nonVolatileTab_;
     pool_base &pop_;
 
     // volatile info

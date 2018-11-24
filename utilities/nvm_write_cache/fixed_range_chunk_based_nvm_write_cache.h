@@ -19,6 +19,8 @@
 using std::string;
 using std::unordered_map;
 using namespace pmem::obj;
+using p_range::pmem_hash_map;
+using p_range::p_node_t;
 
 namespace rocksdb {
 
@@ -78,6 +80,8 @@ private:
 
 };
 
+using p_buf = persistent_ptr<char[]>;
+
 class FixedRangeChunkBasedNVMWriteCache : public NVMWriteCache {
 public:
     explicit FixedRangeChunkBasedNVMWriteCache(
@@ -126,9 +130,9 @@ private:
     struct PersistentInfo {
         p<bool> inited_;
         p<uint64_t> allocated_bits_;
-        persistent_ptr<p_range::pmem_hash_map> range_map_;
+        persistent_ptr<pmem_hash_map<NvRangeTab> > range_map_;
         // TODO: allocator分配的空间没法收回
-        persistent_ptr<PersistentAllocator> allocator_;
+        //persistent_ptr<PersistentAllocator> allocator_;
     };
 
     pool<PersistentInfo> pop_;

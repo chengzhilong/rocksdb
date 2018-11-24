@@ -3,8 +3,34 @@
 
 namespace rocksdb {
 
-    using p_range::pmem_hash_map;
-    using p_range::p_node;
+    NvRangeTab::NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size) {
+        transaction::run(pop,[&]{
+            prefix_ = make_persistent<char[]>(prefix.size());
+            memcpy(prefix_.get(), prefix.c_str(), prefix.size());
+
+            key_range_ = nullptr;
+            buf = make_persistent<char[]>(range_size);
+
+            hash_ = hashCode(prefix);
+            prefixLen = prefix.size();
+            chunk_num_ = 0;
+            seq_num_ = 0;
+            bufSize = range_size;
+            dataLen = 0;
+        });
+    }
+
+    bool NvRangeTab::equals(const string &prefix) {
+        // TODO: equal
+    }
+
+    bool NvRangeTab::equals(rocksdb::NvRangeTab &b) {
+        // TODO: equal
+    }
+
+    bool NvRangeTab::equals(rocksdb::p_buf &prefix, size_t len) {
+        // TODO: equal
+    }
 
     FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
             const FixedRangeBasedOptions* ioptions,
@@ -25,15 +51,15 @@ namespace rocksdb {
         if (!pinfo_->inited_ || reset) {
             transaction::run(pop_, [&] {
                 // TODO 配置
-                pinfo_->range_map = make_persistent<p_range::pmem_hash_map>();
-                pinfo_->range_map_->tabLen = 0;
-                pinfo_->range_map_->tab = make_persistent<p_node[]>(pinfo_->range_map_->tabLen);
+                pinfo_->range_map = make_persistent<pmem_hash_map<NvRangeTab>>();
+               /*pinfo_->range_map_->tabLen = 0;
+                pinfo_->range_map_->tab = make_persistent<p_node_t<NvRangeTab>[]>(pinfo_->range_map_->tabLen);
                 pinfo_->range_map_->loadFactor = 0.75f;
                 pinfo_->range_map_->threshold = pinfo_->range_map_->tabLen * pinfo_->range_map_->loadFactor;
                 pinfo_->range_map_->size = 0;
 
                 persistent_ptr<char[]> data_space = make_persistent<char[]>(pmem_size);
-                pinfo_->allocator_ = make_persistent<PersistentAllocator>(data_space, pmem_size);
+                pinfo_->allocator_ = make_persistent<PersistentAllocator>(data_space, pmem_size);*/
 
                 pinfo_->inited_ = true;
             });
@@ -79,11 +105,16 @@ namespace rocksdb {
 
     FixedRangeTab* FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
         size_t bufSize = 1 << 27; // 128 MB
-        uint64_t _hash;
-        _hash = pinfo_->range_map_->put(pop_, prefix, bufSize);
+        //uint64_t _hash;
+        persistent_ptr<NvRangeTab> p_content;
+        transaction::run(pop_, [&]{
+             p_content = make_persistent<NvRangeTab>(pop_, prefix, bufSize);
+        });
+        pinfo_->range_map_->put(pop_, p_content);
 
-        p_range::p_node new_node = pinfo_->range_map_->get_node(_hash, prefix);
-        FixedRangeTab *range = new FixedRangeTab(pop_, new_node, vinfo_->internal_options_);
+
+        //p_range::p_node new_node = pinfo_->range_map_->get_node(_hash, prefix);
+        FixedRangeTab *range = new FixedRangeTab(pop_, vinfo_->internal_options_, p_content);
         vinfo_->prefix2range.insert({prefix, range});
         return range;
     }
@@ -107,32 +138,31 @@ namespace rocksdb {
         }
     }
 
-    using p_range::p_node ;
+
+    //TODO 模板定义有问题
+    using p_range::pmem_hash_map::p_node_t ;
     void FixedRangeChunkBasedNVMWriteCache::RebuildFromPersistentNode() {
         // 遍历每个Node，重建vinfo中的prefix2range
         // 遍历pmem_hash_map中的每个tab，每个tab是一个p_node指针数组
         PersistentInfo* vpinfo = pinfo_.get();
-        pmem_hash_map* vhash_map = vpinfo->range_map_.get();
+        pmem_hash_map<NvRangeTab>* vhash_map = vpinfo->range_map_.get();
 
         size_t hash_map_size = vhash_map->tabLen;
 
         for(size_t i = 0; i < hash_map_size; i++){
-            p_node pnode = vhash_map->tab[0];
+            p_node_t pnode = vhash_map->tab_[0];
             if(pnode != nullptr){
-                p_node tmp = pnode;
+                p_node_t tmp = pnode;
                 do{
                     // 重建FixedRangeTab
                     FixedRangeTab* recovered_tab = new FixedRangeTab(pop_, tmp, vinfo_->internal_options_);
-                    p_range::Node* tmp_node = tmp.get();
+                    p_range::pmem_hash_map::Node2* tmp_node = tmp.get();
                     std::string prefix(tmp_node->prefix_.get(), tmp_node->prefixLen);
                     vinfo_->prefix2range[prefix] = recovered_tab;
                     tmp = tmp_node->next;
                 }while(tmp != nullptr);
             }
         }
-
-
-
     }
 
 

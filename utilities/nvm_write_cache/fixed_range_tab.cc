@@ -9,7 +9,7 @@ namespace rocksdb {
 
 using pmem::obj::persistent_ptr;
 
-FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBasedOptions *options)
+/*FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBasedOptions *options)
         :   pop_(pop),
             interal_options_(options) {
     if(!pmap_node_->seq_num_ == 0){
@@ -28,7 +28,29 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBas
         RebuildBlkList();
     }
 
+}*/
+
+FixedRangeTab::FixedRangeTab(pool_base &pop, rocksdb::FixedRangeBasedOptions *options,
+                             persistent_ptr<NvRangeTab> &nonVolatileTab)
+                             :pop_(pop),
+                             interal_options_(options),
+                             nonVolatileTab_(nonVolatileTab){
+    NvRangeTab* raw_tab = nonVolatileTab_.get();
+    if(0 == raw_tab->seq_num_){
+        // new node
+        raw_ = raw_tab->buf->get();
+        // set cur_
+        EncodeFixed64(raw_, 0);
+        // set seq_
+        EncodeFixed64(raw_ + sizeof(uint64_t), 0);
+        raw_ += 2 * sizeof(uint64_t);
+        in_compaction_ = false;
+    }else{
+        // rebuild
+        RebuildBlkList();
+    }
 }
+
 
 /* *
  * | prefix data | prefix size |
@@ -51,7 +73,7 @@ InternalIterator* FixedRangeTab::NewInternalIterator(
   PersistentChunk pchk;
   for (ChunkBlk &blk : blklist) {
     pchk.reset(interal_options_->chunk_bloom_bits_, blk.chunkLen_,
-               pmap_node_->buf + blk.getDatOffset());
+               nonVolatileTab_->buf + blk.getDatOffset());
     merge_iter_builder.AddIterator(pchk.NewIterator(arena));
   }
 
@@ -69,11 +91,11 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
   uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
   for (size_t i = blklist.size() - 1; i >= 0; i--) {
     ChunkBlk &blk = blklist.at(i);
-    persistent_ptr<char[]> bloom_dat = pmap_node_->buf + blk.offset_;
+    persistent_ptr<char[]> bloom_dat = nonVolatileTab_->buf + blk.offset_;
     // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
     if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_dat.get(), bloom_bits))) {
       // 3.如果有则读取元数据进行chunk内的查找
-      new (iter) PersistentChunkIterator(pmap_node_->buf + blk.getDatOffset(), blk.chunkLen_,
+      new (iter) PersistentChunkIterator(nonVolatileTab_->buf + blk.getDatOffset(), blk.chunkLen_,
                                         nullptr);
       Status s = searchInChunk(iter, internal_comparator, key, value);
       if (s.ok()) return s;
@@ -96,8 +118,8 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
 void FixedRangeTab::Append(const InternalKeyComparator& icmp,
                            const char *bloom_data, const Slice &chunk_data,
                            const Slice& start, const Slice& end) {
-    if (pmap_node_->dataLen + chunk_data.size_ >= pmap_node_->bufSize
-        || pmap_node_->chunk_num_ > max_chunk_num_to_flush()) {
+    if (nonVolatileTab_->dataLen + chunk_data.size_ >= nonVolatileTab_->bufSize
+        || nonVolatileTab_->chunk_num_ > max_chunk_num_to_flush()) {
         // TODO：mark tab as pendding compaction
     }
 
@@ -133,9 +155,9 @@ void FixedRangeTab::Append(const InternalKeyComparator& icmp,
     // update version
     // transaction
     {
-        pmap_node_->seq_num_ = pmap_node_->seq_num_ + 1;
-        pmap_node_->chunk_num_ = pmap_node_->chunk_num_ + 1;
-        pmap_node_->dataLen = pmap_node_->dataLen + chunk_blk_len
+        nonVolatileTab_->seq_num_ = nonVolatileTab_->seq_num_ + 1;
+        nonVolatileTab_->chunk_num_ = nonVolatileTab_->chunk_num_ + 1;
+        nonVolatileTab_->dataLen = nonVolatileTab_->dataLen + chunk_blk_len
     }
 
     // record this offset to volatile vector
@@ -184,15 +206,15 @@ void FixedRangeTab::CleanUp() {
     // 清除这个range的数据
     EncodeFixed64(raw_ - 2 * sizeof(uint64_t), 0);//set cur to 0
     blklist.clear();
-    p_range::Node* vnode = pmap_node_.get();
+    NvRangeTab* raw_tab = nonVolatileTab_.get();
     in_compaction_ = false;
     transaction::run(pop_, [&]{
-        vnode->chunk_num_ = 0;
-        vnode->dataLen = 0;
+        raw_tab->chunk_num_ = 0;
+        raw_tab->dataLen = 0;
         Slice start, end;
         GetRealRange(start, end);
-        delete_persistent<char[]>(vnode->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
-        vnode->key_range_ = nullptr;
+        delete_persistent<char[]>(raw_tab->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
+        raw_tab->key_range_ = nullptr;
     });
 
 }
@@ -256,8 +278,8 @@ Slice FixedRangeTab::GetKVData(char *raw, uint64_t item_off) {
 }
 
 void FixedRangeTab::GetRealRange(rocksdb::Slice &real_start, rocksdb::Slice &real_end) {
-    if(pmap_node_->key_range_ != nullptr){
-        char *raw = pmap_node_->key_range_.get();
+    if(nonVolatileTab_->key_range_ != nullptr){
+        char *raw = nonVolatileTab_->key_range_.get();
         real_start = GetKVData(raw, 0);
         real_end = GetKVData(raw, real_start.size() + sizeof(uint64_t));
     }else{
@@ -273,14 +295,14 @@ void FixedRangeTab::RebuildBlkList()
     // TODO :check consistency
     //ConsistencyCheck();
     size_t dataLen;
-    dataLen = pmap_node_->dataLen;
+    dataLen = nonVolatileTab_->dataLen;
     // TODO
     // range 从一开始就存 chunk ?
     size_t offset = 0;
     while(offset < dataLen) {
         size_t chunkLenOffset = offset + interal_options_->chunk_bloom_bits_;
         size_t chunkLen;
-        memcpy(&chunkLen, pmap_node_->buf + chunkLenOffset, sizeof(chunkLen));
+        memcpy(&chunkLen, nonVolatileTab_->buf + chunkLenOffset, sizeof(chunkLen));
         blklist.emplace_back(interal_options_->chunk_bloom_bits_, offset, chunkLen);
         // next chunk block
         offset += interal_options_->chunk_bloom_bits_ + sizeof(chunkLen) + chunkLen;
@@ -291,8 +313,8 @@ Usage FixedRangeTab::RangeUsage() {
     Usage usage;
     Slice start, end;
     GetRealRange(start, end);
-    usage.range_size = pmap_node_->total_size_;
-    usage.chunk_num = pmap_node_->chunk_num_;
+    usage.range_size = nonVolatileTab_->total_size_;
+    usage.chunk_num = nonVolatileTab_->chunk_num_;
     usage.start.DecodeFrom(start);
     usage.end.DecodeFrom(end);
     return usage;
@@ -301,8 +323,8 @@ Usage FixedRangeTab::RangeUsage() {
 void FixedRangeTab::ConsistencyCheck() {
     uint64_t data_seq_num;
     data_seq_num = DecodeFixed64(raw_ - sizeof(uint64_t));
-    p_range::Node* vnode = pmap_node_.get();
-    if(data_seq_num != vnode->seq_num_){
+    NvRangeTab* raw_tab = nonVolatileTab_.get();
+    if(data_seq_num != raw_tab->seq_num_){
         // TODO:又需要一个comparator
         /*Slice last_start, last_end;
         GetLastChunkKeyRange(last_start, last_end);*/
