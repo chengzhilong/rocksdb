@@ -101,7 +101,7 @@ public:
 
     // 设置compaction状态
     void SetCompactionWorking(bool working) {
-        pennding_clean_ = blklist.size();
+        pendding_clean_ = blklist.size();
         in_compaction_ = working;
     }
 

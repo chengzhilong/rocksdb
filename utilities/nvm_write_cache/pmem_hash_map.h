@@ -13,7 +13,6 @@
 
 using namespace pmem::obj;
 namespace p_range {
-//using pmem;
 using std::string;
 using std::vector;
 
@@ -139,7 +138,7 @@ p_node_t pmem_hash_map<T>::getNode(const string &key, size_t prefixLen) {
     return getNode(_hash, key);
 }*/
 
-template <typename T>
+/*template <typename T>
 persistent_ptr<char[]> pmem_hash_map<T>::get(const std::string &key, size_t prefixLen) {
     p_node_t node;
 
@@ -150,7 +149,7 @@ persistent_ptr<char[]> pmem_hash_map<T>::get(const std::string &key, size_t pref
     return node == nullptr ? nullptr : node->buf;
     // TODO
     // bufSize 需要么
-}
+}*/
 
 /*template <typename T>
 p_node_t pmem_hash_map<T>::putAndGet(pool_base &pop, const string &prefix, size_t bufSize) {
@@ -197,10 +196,6 @@ p_node_t pmem_hash_map<T>::putAndGet(pool_base &pop, const string &prefix, size_
     }
     return newhead;
 }*/
-
-
-
-
 
 } // end of namespace p_range
 

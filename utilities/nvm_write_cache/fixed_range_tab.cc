@@ -259,7 +259,7 @@ void FixedRangeTab::CleanUp() {
         nonVolatileTab_ = nonVolatileTab_->extra_buf;
         Slice start, end;
         GetRealRange(start, end);
-        transaction::run(pop, [&]{
+        transaction::run(pop_, [&]{
             delete_persistent<char[]>(vtab->prefix_, vtab->prefixLen);
             delete_persistent<char[]>(vtab->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
             delete_persistent<char[]>(vtab->buf, vtab->bufSize);
