@@ -3,186 +3,151 @@
 
 namespace rocksdb {
 
-    NvRangeTab::NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size) {
-        transaction::run(pop,[&]{
-            prefix_ = make_persistent<char[]>(prefix.size());
-            memcpy(prefix_.get(), prefix.c_str(), prefix.size());
+FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
+        const FixedRangeBasedOptions *ioptions,
+        const string &file, uint64_t pmem_size,
+        bool reset) {
+    //bool justCreated = false;
+    vinfo_ = new VolatileInfo(ioptions);
+    if (file_exists(file.c_str()) != 0) {
+        pop_ = pmem::obj::pool<PersistentInfo>::create(file.c_str(), "FixedRangeChunkBasedNVMWriteCache", pmem_size,
+                                                       CREATE_MODE_RW);
+        //justCreated = true;
 
-            key_range_ = nullptr;
-            buf = make_persistent<char[]>(range_size);
+    } else {
+        pop_ = pmem::obj::pool<PersistentInfo>::open(file.c_str(), "FixedRangeChunkBasedNVMWriteCache");
+    }
 
-            hash_ = hashCode(prefix);
-            prefixLen = prefix.size();
-            chunk_num_ = 0;
-            seq_num_ = 0;
-            bufSize = range_size;
-            dataLen = 0;
+    pinfo_ = pop_.root();
+    if (!pinfo_->inited_ || reset) {
+        transaction::run(pop_, [&] {
+            // TODO 配置
+            pinfo_->range_map = make_persistent<pmem_hash_map<NvRangeTab>>();
+            /*pinfo_->range_map_->tabLen = 0;
+             pinfo_->range_map_->tab = make_persistent<p_node_t<NvRangeTab>[]>(pinfo_->range_map_->tabLen);
+             pinfo_->range_map_->loadFactor = 0.75f;
+             pinfo_->range_map_->threshold = pinfo_->range_map_->tabLen * pinfo_->range_map_->loadFactor;
+             pinfo_->range_map_->size = 0;
+
+             persistent_ptr<char[]> data_space = make_persistent<char[]>(pmem_size);
+             pinfo_->allocator_ = make_persistent<PersistentAllocator>(data_space, pmem_size);*/
+
+            pinfo_->inited_ = true;
         });
+    } else {
+        RebuildFromPersistentNode();
     }
 
-    bool NvRangeTab::equals(const string &prefix) {
-        // TODO: equal
+}
+
+FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
+    delete vinfo_;
+    pop_.close();
+}
+
+Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &internal_comparator, const Slice &key,
+                                              std::string *value) {
+    std::string prefix = (*vinfo_->internal_options_->prefix_extractor_)(key.data(), key.size());
+    auto found_tab = vinfo_->prefix2range.find(prefix);
+    if (found_tab == vinfo_->prefix2range.end()) {
+        // not found
+        return Status::NotFound("no this range");
+    } else {
+        // found
+        FixedRangeTab *tab = found_tab->second;
+        return tab->Get(internal_comparator, key, value);
     }
+}
 
-    bool NvRangeTab::equals(rocksdb::NvRangeTab &b) {
-        // TODO: equal
+void FixedRangeChunkBasedNVMWriteCache::AppendToRange(const rocksdb::InternalKeyComparator &icmp,
+                                                      const char *bloom_data, const rocksdb::Slice &chunk_data,
+                                                      const rocksdb::ChunkMeta &meta) {
+    /*
+     * 1. 获取prefix
+     * 2. 调用tangetab的append
+     * */
+    FixedRangeTab *now_range = nullptr;
+    auto tab_found = vinfo_->prefix2range.find(meta.prefix);
+    assert(tab_found != vinfo_->prefix2range.end());
+    now_range = &tab_found->second;
+    if(now_range->IsCompactWorking()){
+        persistent_ptr<NvRangeTab> p_content = NewContent(meta.prefix, vinfo_->internal_options_->range_size_);
+        now_range->SetExtraBuf(p_content);
     }
+    now_range->Append(icmp, bloom_data, chunk_data, meta.cur_start, meta.cur_end);
+}
 
-    bool NvRangeTab::equals(rocksdb::p_buf &prefix, size_t len) {
-        // TODO: equal
-    }
-
-    FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
-            const FixedRangeBasedOptions* ioptions,
-            const string &file, uint64_t pmem_size,
-            bool reset) {
-        //bool justCreated = false;
-        vinfo_ = new VolatileInfo(ioptions);
-        if (file_exists(file.c_str()) != 0) {
-            pop_ = pmem::obj::pool<PersistentInfo>::create(file.c_str(), "FixedRangeChunkBasedNVMWriteCache", pmem_size,
-                                                           CREATE_MODE_RW);
-            //justCreated = true;
-
-        } else {
-            pop_ = pmem::obj::pool<PersistentInfo>::open(file.c_str(), "FixedRangeChunkBasedNVMWriteCache");
-        }
-
-        pinfo_ = pop_.root();
-        if (!pinfo_->inited_ || reset) {
-            transaction::run(pop_, [&] {
-                // TODO 配置
-                pinfo_->range_map = make_persistent<pmem_hash_map<NvRangeTab>>();
-               /*pinfo_->range_map_->tabLen = 0;
-                pinfo_->range_map_->tab = make_persistent<p_node_t<NvRangeTab>[]>(pinfo_->range_map_->tabLen);
-                pinfo_->range_map_->loadFactor = 0.75f;
-                pinfo_->range_map_->threshold = pinfo_->range_map_->tabLen * pinfo_->range_map_->loadFactor;
-                pinfo_->range_map_->size = 0;
-
-                persistent_ptr<char[]> data_space = make_persistent<char[]>(pmem_size);
-                pinfo_->allocator_ = make_persistent<PersistentAllocator>(data_space, pmem_size);*/
-
-                pinfo_->inited_ = true;
-            });
-        }else{
-            RebuildFromPersistentNode();
-        }
-
-    }
-
-    FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
-        delete vinfo_;
-        pop_.close();
-    }
-
-    Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &internal_comparator, const Slice &key,
-                                                  std::string *value) {
-        std::string prefix = (*vinfo_->internal_options_->prefix_extractor_)(key.data(), key.size());
-        auto found_tab = vinfo_->prefix2range.find(prefix);
-        if(found_tab == vinfo_->prefix2range.end()){
-            // not found
-            return Status::NotFound("no this range");
-        }else{
-            // found
-            FixedRangeTab* tab = found_tab->second;
-            return tab->Get(internal_comparator, key, value);
-        }
-    }
-
-    void FixedRangeChunkBasedNVMWriteCache::AppendToRange(const rocksdb::InternalKeyComparator &icmp,
-                                                          const char *bloom_data, const rocksdb::Slice &chunk_data,
-                                                          const rocksdb::ChunkMeta &meta) {
-        /*
-         * 1. 获取prefix
-         * 2. 调用tangetab的append
-         * */
-        FixedRangeTab* now_range = nullptr;
-        auto tab_found = vinfo_->prefix2range.find(meta.prefix);
-        assert(tab_found != vinfo_->prefix2range.end());
-        now_range = &tab_found->second;
-        now_range->Append(icmp, bloom_data, chunk_data, meta.cur_start, meta.cur_end);
-    }
+persistent_ptr<NvRangeTab> FixedRangeChunkBasedNVMWriteCache::NewContent(const string &prefix, size_t bufSize) {
+    persistent_ptr<NvRangeTab> p_content;
+    transaction::run(pop_, [&] {
+        p_content = make_persistent<NvRangeTab>(pop_, prefix, bufSize);
+    });
+    return p_content;
+}
 
 
-    FixedRangeTab* FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
-        size_t bufSize = 1 << 27; // 128 MB
-        //uint64_t _hash;
-        persistent_ptr<NvRangeTab> p_content;
-        transaction::run(pop_, [&]{
-             p_content = make_persistent<NvRangeTab>(pop_, prefix, bufSize);
-        });
-        pinfo_->range_map_->put(pop_, p_content);
+FixedRangeTab *FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &prefix) {
+    persistent_ptr<NvRangeTab> p_content = NewContent(prefix, vinfo_->internal_options_->range_size_);
+    pinfo_->range_map_->put(pop_, p_content);
 
 
-        //p_range::p_node new_node = pinfo_->range_map_->get_node(_hash, prefix);
-        FixedRangeTab *range = new FixedRangeTab(pop_, vinfo_->internal_options_, p_content);
-        vinfo_->prefix2range.insert({prefix, range});
-        return range;
-    }
+    //p_range::p_node new_node = pinfo_->range_map_->get_node(_hash, prefix);
+    FixedRangeTab *range = new FixedRangeTab(pop_, vinfo_->internal_options_, p_content);
+    vinfo_->prefix2range.insert({prefix, range});
+    return range;
+}
 
-    void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
-        // 选择所有range中数据大小占总容量80%的range并按照总容量的大小顺序插入compaction queue
-        std::vector<CompactionItem> pendding_compact;
-        for(auto range : vinfo_->prefix2range){
-            Usage range_usage = range.second.RangeUsage();
-            if(range_usage.range_size >= range.second.max_range_size() * 0.8){
-                pendding_compact.emplace_back(range.second);
-            }
-        }
-        std::sort(pendding_compact.begin(), pendding_compact.end(),
-                [](FixedRangeTab* lrange, FixedRangeTab* rrange){
-                    return lrange->RangeUsage().range_size > rrange->RangeUsage().range_size;
-        });
-
-        for(auto pendding_range : pendding_compact){
-            vinfo_->range_queue_.push(std::move(pendding_range));
+void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
+    // 选择所有range中数据大小占总容量80%的range并按照总容量的大小顺序插入compaction queue
+    std::vector<CompactionItem> pendding_compact;
+    for (auto range : vinfo_->prefix2range) {
+        Usage range_usage = range.second.RangeUsage();
+        if (range_usage.range_size >= range.second.max_range_size() * 0.8) {
+            pendding_compact.emplace_back(range.second);
         }
     }
+    std::sort(pendding_compact.begin(), pendding_compact.end(),
+              [](FixedRangeTab *lrange, FixedRangeTab *rrange) {
+                  return lrange->RangeUsage().range_size > rrange->RangeUsage().range_size;
+              });
+
+    for (auto pendding_range : pendding_compact) {
+        vinfo_->range_queue_.push(std::move(pendding_range));
+    }
+}
+
+void FixedRangeChunkBasedNVMWriteCache::RebuildFromPersistentNode() {
+    // 遍历每个Node，获取NvRangeTab
+    // 根据NvRangeTab构建FixeRangeTab
+    PersistentInfo *vpinfo = pinfo_.get();
+    pmem_hash_map<NvRangeTab> *vhash_map = vpinfo->range_map_.get();
+    vector<persistent_ptr<NvRangeTab> > tab_vec;
+    vhash_map->getAll(tab_vec);
+    for (auto content : tab_vec) {
+        FixedRangeTab *recovered_tab = new FixedRangeTab(pop_, vinfo_->internal_options_, content);
+        string recoverd_prefix = content->prefix_;
+        vinfo_->prefix2range[recoverd_prefix] = recovered_tab;
+    }
+}
 
 
-    //TODO 模板定义有问题
-    using p_range::pmem_hash_map::p_node_t ;
-    void FixedRangeChunkBasedNVMWriteCache::RebuildFromPersistentNode() {
-        // 遍历每个Node，重建vinfo中的prefix2range
-        // 遍历pmem_hash_map中的每个tab，每个tab是一个p_node指针数组
-        PersistentInfo* vpinfo = pinfo_.get();
-        pmem_hash_map<NvRangeTab>* vhash_map = vpinfo->range_map_.get();
-
-        size_t hash_map_size = vhash_map->tabLen;
-
-        for(size_t i = 0; i < hash_map_size; i++){
-            p_node_t pnode = vhash_map->tab_[0];
-            if(pnode != nullptr){
-                p_node_t tmp = pnode;
-                do{
-                    // 重建FixedRangeTab
-                    FixedRangeTab* recovered_tab = new FixedRangeTab(pop_, tmp, vinfo_->internal_options_);
-                    p_range::pmem_hash_map::Node2* tmp_node = tmp.get();
-                    std::string prefix(tmp_node->prefix_.get(), tmp_node->prefixLen);
-                    vinfo_->prefix2range[prefix] = recovered_tab;
-                    tmp = tmp_node->next;
-                }while(tmp != nullptr);
-            }
-        }
+InternalIterator *FixedRangeChunkBasedNVMWriteCache::NewIterator(const InternalKeyComparator *icmp, Arena *arena) {
+    InternalIterator *internal_iter;
+    MergeIteratorBuilder merge_iter_builder(icmp, arena);
+    for (auto range : vinfo_->prefix2range) {
+        merge_iter_builder.AddIterator(range.second.NewInternalIterator(icmp, arena));
     }
 
+    internal_iter = merge_iter_builder.Finish();
+    return internal_iter;
+}
 
-    InternalIterator* FixedRangeChunkBasedNVMWriteCache::NewIterator(const InternalKeyComparator* icmp, Arena* arena) {
-        InternalIterator* internal_iter;
-        MergeIteratorBuilder merge_iter_builder(icmp, arena);
-        for (auto range : vinfo_->prefix2range) {
-            merge_iter_builder.AddIterator(range.second.NewInternalIterator(icmp, arena));
-        }
-
-        internal_iter = merge_iter_builder.Finish();
-        return internal_iter;
+void FixedRangeChunkBasedNVMWriteCache::RangeExistsOrCreat(const std::string &prefix) {
+    auto tab_idx = vinfo_->prefix2range.find(prefix);
+    if (tab_idx == vinfo_->prefix2range.end()) {
+        NewRange(prefix);
     }
-
-    void FixedRangeChunkBasedNVMWriteCache::RangeExistsOrCreat(const std::string &prefix) {
-        auto tab_idx = vinfo_->prefix2range.find(prefix);
-        if(tab_idx == vinfo_->prefix2range.end()){
-            NewRange(prefix);
-        }
-    }
+}
 
 
 } // namespace rocksdb

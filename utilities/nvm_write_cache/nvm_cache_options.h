@@ -35,23 +35,23 @@ struct FixedRangeBasedOptions{
     const uint16_t prefix_bits_ = 3;
     PrefixExtractor* prefix_extractor_ = nullptr;
     const FilterPolicy* filter_policy_ = nullptr;
-    const uint64_t range_num_threshold_ = 0;
-    const uint64_t range_size_threshold_ = 64ul << 20;
+    //const uint64_t range_num_threshold_ = 0;
+    const size_t range_size_ = 1 << 27;
 
     FixedRangeBasedOptions(
             uint16_t chunk_bloom_bits,
             uint16_t prefix_bits,
             PrefixExtractor* prefix_extractor,
             const FilterPolicy* filter_policy,
-            uint64_t range_num_threashold,
-            uint64_t range_size_threshold)
+            //uint64_t range_num_threashold,
+            uint64_t range_size)
             :
             chunk_bloom_bits_(chunk_bloom_bits),
             prefix_bits_(prefix_bits),
             prefix_extractor_(prefix_extractor),
             filter_policy_(filter_policy),
-            range_num_threshold_(range_num_threashold),
-            range_size_threshold_(range_size_threshold){
+            //range_num_threshold_(range_num_threashold),
+            range_size_(range_size){
 
     }
 

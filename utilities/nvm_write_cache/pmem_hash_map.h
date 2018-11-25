@@ -35,7 +35,7 @@ using std::vector;
 
 template<typename T>
 class pmem_hash_map {
-public:
+private:
     struct Node2 {
         persistent_ptr<Node2> next;
         persistent_ptr<T> p_content;
@@ -50,23 +50,22 @@ public:
     p<uint32_t> threshold_;
     p<uint32_t> size_;
 
+public:
     pmem_hash_map(pool_base& pop, double loadFactor, uint64_t tabLen);
 
     void getAll(vector<persistent_ptr<T> > &nodeVec);
 
-    bool put(pool_base &pop, persistent_ptr<T> &p_content);
+    void put(pool_base &pop, persistent_ptr<T> &p_content);
 
-    persistent_ptr<char[]> get(const std::string &key, size_t prefixLen);
+    //persistent_ptr<char[]> get(const std::string &key, size_t prefixLen);
 
-    p_node_t getNode(const std::string &key, size_t prefixLen);
+    //p_node_t getNode(const std::string &key, size_t prefixLen);
 
-    p_node_t getNode(uint64_t hash, const std::string &key);
+    //p_node_t getNode(uint64_t hash, const std::string &key);
 
-    uint64_t put(pool_base &pop, const string &prefix, size_t bufSize);
+    //uint64_t put(pool_base &pop, const string &prefix, size_t bufSize);
 
-    p_node_t putAndGet(pool_base &pop, const string &prefix, size_t bufSize);
-
-
+    //p_node_t putAndGet(pool_base &pop, const string &prefix, size_t bufSize);
 };
 
 template <typename T>
@@ -94,30 +93,33 @@ void pmem_hash_map<T>::getAll(std::vector<pmem::obj::persistent_ptr<T>> &nodeVec
 }
 
 template <typename T>
-bool pmem_hash_map<T>::put(pool_base &pop, persistent_ptr<T> &p_content) {
+void pmem_hash_map<T>::put(pool_base &pop, persistent_ptr<T> &p_content) {
     // 调用者自己构建 map ，检查是否已经有同样的 key
     uint64_t _hash = p_content->hashCode();
     p_node_t bucketHeadNode = tab_[_hash % tabLen_];
 
     p_node_t newhead;
+    transaction::run(pop, [&] {
+        newhead = make_persistent<p_node_t>();
+        newhead->p_content = p_content;
+        newhead->next = nullptr;
+        //tab_[_hash % tabLen_] = newhead;
+    });
+
     if (nullptr == bucketHeadNode) {
-        //TODO 插入逻辑是不是有问题
-        transaction::run(pop, [&] {
-            newhead = make_persistent<p_node_t>();
-            newhead->p_content = p_content;
-            newhead->next = nullptr;
-            tab_[_hash % tabLen_] = newhead;
-        });
+         bucketHeadNode = newhead;
+    }else{
+        newhead -> next = bucketHeadNode->next;
+        bucketHeadNode->next = newhead;
     }
-    return true;
 }
 
-template <typename T>
+/*template <typename T>
 uint64_t pmem_hash_map<T>::put(pool_base &pop, const string &prefix, size_t bufSize) {
     return putAndGet(pop, prefix, bufSize)->hash_;
-}
+}*/
 
-template <typename T>
+/*template <typename T>
 p_node_t pmem_hash_map<T>::getNode(uint64_t hash, const std::string &key) {
     p_node_t nod = tab_[hash % tabLen_];
 
@@ -129,13 +131,13 @@ p_node_t pmem_hash_map<T>::getNode(uint64_t hash, const std::string &key) {
         tmp = tmp->next;
     }
     return tmp;
-}
+}*/
 
-template <typename T>
+/*template <typename T>
 p_node_t pmem_hash_map<T>::getNode(const string &key, size_t prefixLen) {
     uint64_t _hash = CityHash64WithSeed(key, prefixLen, 16);
     return getNode(_hash, key);
-}
+}*/
 
 template <typename T>
 persistent_ptr<char[]> pmem_hash_map<T>::get(const std::string &key, size_t prefixLen) {
@@ -150,7 +152,7 @@ persistent_ptr<char[]> pmem_hash_map<T>::get(const std::string &key, size_t pref
     // bufSize 需要么
 }
 
-template <typename T>
+/*template <typename T>
 p_node_t pmem_hash_map<T>::putAndGet(pool_base &pop, const string &prefix, size_t bufSize) {
     // ( const void * key, int len, unsigned int seed );
     uint64_t _hash = CityHash64WithSeed(prefix, prefix.length(), 16);
@@ -194,7 +196,7 @@ p_node_t pmem_hash_map<T>::putAndGet(pool_base &pop, const string &prefix, size_
         // 已经插入过了
     }
     return newhead;
-}
+}*/
 
 
 

@@ -29,6 +29,37 @@ using pmem::obj::persistent_ptr;
     }
 
 }*/
+NvRangeTab::NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size) {
+    transaction::run(pop, [&] {
+        prefix_ = make_persistent<char[]>(prefix.size());
+        memcpy(prefix_.get(), prefix.c_str(), prefix.size());
+
+        key_range_ = nullptr;
+        extra_buf = nullptr;
+        buf = make_persistent<char[]>(range_size);
+
+        hash_ = hashCode(prefix);
+        prefixLen = prefix.size();
+        chunk_num_ = 0;
+        seq_num_ = 0;
+        bufSize = range_size;
+        dataLen = 0;
+    });
+}
+
+
+bool NvRangeTab::equals(const string &prefix) {
+    string cur_prefix(prefix_.get(), prefixLen);
+    return cur_prefix == prefix;
+}
+
+bool NvRangeTab::equals(rocksdb::p_buf &prefix, size_t len) {
+    return equals(string(prefix.get(), len));
+}
+
+bool NvRangeTab::equals(rocksdb::NvRangeTab &b) {
+    return equals(b.prefix_, b.prefixLen);
+}
 
 FixedRangeTab::FixedRangeTab(pool_base &pop, rocksdb::FixedRangeBasedOptions *options,
                              persistent_ptr<NvRangeTab> &nonVolatileTab)
@@ -36,6 +67,7 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, rocksdb::FixedRangeBasedOptions *op
                              interal_options_(options),
                              nonVolatileTab_(nonVolatileTab){
     NvRangeTab* raw_tab = nonVolatileTab_.get();
+    pendding_clean_ = 0;
     if(0 == raw_tab->seq_num_){
         // new node
         raw_ = raw_tab->buf->get();
@@ -123,9 +155,8 @@ void FixedRangeTab::Append(const InternalKeyComparator& icmp,
         // TODO：mark tab as pendding compaction
     }
 
-    if(in_compaction_){
-        // TODO: append when need compaction
-    }
+    /*if(in_compaction_){
+    }*/
 
     //size_t cur_len = node_in_pmem_map->dataLen;
     size_t chunk_blk_len = interal_options_->chunk_bloom_bits_ + sizeof(uint64_t) + chunk_data.size();
@@ -154,7 +185,11 @@ void FixedRangeTab::Append(const InternalKeyComparator& icmp,
 
     // update version
     // transaction
-    {
+    if(nonVolatileTab_->extra_buf != nullptr){
+        nonVolatileTab_->extra_buf->seq_num_ = nonVolatileTab_->seq_num_ + 1;
+        nonVolatileTab_->extra_buf->chunk_num_ = nonVolatileTab_->chunk_num_ + 1;
+        nonVolatileTab_->extra_buf->dataLen = nonVolatileTab_->dataLen + chunk_blk_len
+    }else{
         nonVolatileTab_->seq_num_ = nonVolatileTab_->seq_num_ + 1;
         nonVolatileTab_->chunk_num_ = nonVolatileTab_->chunk_num_ + 1;
         nonVolatileTab_->dataLen = nonVolatileTab_->dataLen + chunk_blk_len
@@ -180,8 +215,9 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
     }
 
     if(update_start || update_end){
+        persistent_ptr<char[]> new_range = nullptr;
         transaction::run(pop_, [&]{
-            persistent_ptr<char[]> new_range = make_persistent<char[]>(cur_start.size() + cur_end.size()
+            new_range = make_persistent<char[]>(cur_start.size() + cur_end.size()
                     + 2 * sizeof(uint64_t));
             // get raw ptr
             char* p_new_range = new_range.get();
@@ -192,8 +228,14 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
             p_new_range += sizeof(uint64_t) + cur_start.size();
             EncodeFixed64(p_new_range, cur_end.size());
             memcpy(p_new_range + sizeof(uint64_t), cur_end.data(), cur_end.size());
-
         });
+        if(nonVolatileTab_->extra_buf != nullptr){
+            nonVolatileTab_->prefix_ = new_range;
+        }else{
+            nonVolatileTab_->extra_buf->prefix_ = new_range;
+        }
+
+
     }
 }
 
@@ -205,17 +247,35 @@ void FixedRangeTab::Release() {
 void FixedRangeTab::CleanUp() {
     // 清除这个range的数据
     EncodeFixed64(raw_ - 2 * sizeof(uint64_t), 0);//set cur to 0
-    blklist.clear();
-    NvRangeTab* raw_tab = nonVolatileTab_.get();
+    // 清除被compact的chunk
+    blklist.erase(blklist.begin(), blklist.begin() + pendding_clean_);
+    pendding_clean_ = 0;
     in_compaction_ = false;
-    transaction::run(pop_, [&]{
-        raw_tab->chunk_num_ = 0;
-        raw_tab->dataLen = 0;
+
+    NvRangeTab* raw_tab = nonVolatileTab_.get();
+    if(raw_tab->extra_buf != nullptr){
+        persistent_ptr<NvRangeTab> obsolete_tab = nonVolatileTab_;
+        NvRangeTab* vtab = obsolete_tab.get();
+        nonVolatileTab_ = nonVolatileTab_->extra_buf;
         Slice start, end;
         GetRealRange(start, end);
-        delete_persistent<char[]>(raw_tab->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
-        raw_tab->key_range_ = nullptr;
-    });
+        transaction::run(pop, [&]{
+            delete_persistent<char[]>(vtab->prefix_, vtab->prefixLen);
+            delete_persistent<char[]>(vtab->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
+            delete_persistent<char[]>(vtab->buf, vtab->bufSize);
+            delete_persistent<NvRangeTab>(obsolete_tab);
+        });
+    }else{
+        transaction::run(pop_, [&]{
+            raw_tab->chunk_num_ = 0;
+            raw_tab->dataLen = 0;
+            Slice start, end;
+            GetRealRange(start, end);
+            delete_persistent<char[]>(raw_tab->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
+            raw_tab->key_range_ = nullptr;
+        });
+    }
+
 
 }
 
@@ -329,6 +389,13 @@ void FixedRangeTab::ConsistencyCheck() {
         /*Slice last_start, last_end;
         GetLastChunkKeyRange(last_start, last_end);*/
     }
+}
+
+void FixedRangeTab::SetExtraBuf(persistent_ptr<rocksdb::NvRangeTab> extra_buf) {
+    NvRangeTab* vtab = nonVolatileTab_.get();
+    vtab->extra_buf = extra_buf;
+    extra_buf->seq_num_ = vtab->seq_num_;
+    raw_ = extra_buf->buf.get();
 }
 
 } // namespace rocksdb

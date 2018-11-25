@@ -123,6 +123,7 @@ public:
 
 private:
 
+    persistent_ptr<NvRangeTab> NewContent(const string& prefix, size_t bufSize);
     FixedRangeTab *NewRange(const std::string &prefix);
 
     void RebuildFromPersistentNode();

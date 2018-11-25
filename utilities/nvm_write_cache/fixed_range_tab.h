@@ -51,8 +51,10 @@ public:
     p<uint64_t> seq_num_;
 
     p<size_t> bufSize; // capacity
-    p_buf buf; // buf data
     p<size_t> dataLen; // exact data len
+    persistent_ptr<NvRangeTab> extra_buf;
+    p_buf buf; // buf data
+
 
 };
 
@@ -80,7 +82,7 @@ public:
     ~FixedRangeTab() = default;
 
 public:
-    void reservePersistent();
+    //void reservePersistent();
 
     // 返回当前RangeMemtable中所有chunk的有序序列
     // 基于MergeIterator
@@ -98,12 +100,17 @@ public:
     bool IsCompactWorking() { return in_compaction_; }
 
     // 设置compaction状态
-    void SetCompactionWorking(bool working) { in_compaction_ = working; }
+    void SetCompactionWorking(bool working) {
+        pennding_clean_ = blklist.size();
+        in_compaction_ = working;
+    }
 
     // 将新的chunk数据添加到RangeMemtable
     void Append(const InternalKeyComparator &icmp,
                 const char *bloom_data, const Slice &chunk_data,
                 const Slice &start, const Slice &end);
+
+    void SetExtraBuf(persistent_ptr<NvRangeTab> extra_buf);
 
     Usage RangeUsage();
 
@@ -139,15 +146,16 @@ private:
 
     // persistent info
     //p_node pmap_node_;
-
-    persistent_ptr<NvRangeTab> nonVolatileTab_;
     pool_base &pop_;
+    persistent_ptr<NvRangeTab> nonVolatileTab_;
+
 
     // volatile info
     const FixedRangeBasedOptions *interal_options_;
     vector<ChunkBlk> blklist;
     char *raw_;
     bool in_compaction_;
+    size_t pendding_clean_;
 
 
 };

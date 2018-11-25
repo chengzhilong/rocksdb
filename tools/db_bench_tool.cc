@@ -3590,8 +3590,7 @@ void VerifyDBFromDB(std::string& truth_db_name) {
                     FLAGS_prefix_bits,
                     new SimplePrefixExtractor(FLAGS_prefix_bits),
                     NewBloomFilterPolicy(FLAGS_chunk_bloom_bits, false),
-                    FLAGS_range_num_threashold,
-                    FLAGS_range_size_threashold
+                    FLAGS_range_size
                     );
             nvm_cache_options->nvm_write_cache_ = NVMCacheOptions::NewFixedRangeChunkBasedCache(
                     nvm_cache_options,
