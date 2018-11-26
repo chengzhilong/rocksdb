@@ -701,7 +701,8 @@ set(SOURCES
         utilities/nvm_write_cache/pmem_hash_map.cc
         utilities/nvm_write_cache/persistent_chunk.cc
         utilities/nvm_write_cache/persistent_chunk_iterator.cc
-        utilities/nvm_write_cache/skiplist/persistentptr_test.cc
+        #utilities/nvm_write_cache/skiplist/persistentptr_test.cc
+        utilities/nvm_write_cache/range_tab_test.cc
         $<TARGET_OBJECTS:build_version>)
 
 if (HAVE_SSE42 AND NOT MSVC)
@@ -753,12 +754,20 @@ if (WITH_LIBRADOS)
     list(APPEND THIRDPARTY_LIBS rados)
 endif ()
 
+include(FindThreads)
 if (WIN32)
     set(SYSTEM_LIBS ${SYSTEM_LIBS} Shlwapi.lib Rpcrt4.lib)
     set(LIBS ${ROCKSDB_STATIC_LIB} ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
 else ()
+    find_package(PkgConfig QUIET)
+    if(PKG_CONFIG_FOUND)
+        pkg_check_modules(LIBPMEMOBJ++ REQUIRED libpmemobj++)
+    else()
+        find_package(LIBPMEMOBJ++ REQUIRED)
+    endif()
+    link_libraries(${LIBPMEMOBJ++_LIBRARY_PATH})
     set(SYSTEM_LIBS ${CMAKE_THREAD_LIBS_INIT})
-    set(LIBS ${ROCKSDB_SHARED_LIB} ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
+    set(LIBS ${ROCKSDB_SHARED_LIB} ${THIRDPARTY_LIBS} ${SYSTEM_LIBS} ${LIBPMEMOBJ++_LIBRARIES})
 
     add_library(${ROCKSDB_SHARED_LIB} SHARED ${SOURCES})
     target_link_libraries(${ROCKSDB_SHARED_LIB}
@@ -1007,6 +1016,7 @@ if (WITH_TESTS)
             utilities/ttl/ttl_test.cc
             utilities/write_batch_with_index/write_batch_with_index_test.cc
             utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc
+            utilities/nvm_write_cache/range_tab_test.cc
             )
     if (WITH_LIBRADOS)
         list(APPEND TESTS utilities/env_librados_test.cc)
@@ -1063,7 +1073,10 @@ if (WITH_TESTS)
                 EXCLUDE_FROM_DEFAULT_BUILD_RELWITHDEBINFO 1
                 OUTPUT_NAME ${exename}${ARTIFACT_SUFFIX}
                 )
-        target_link_libraries(${CMAKE_PROJECT_NAME}_${exename}${ARTIFACT_SUFFIX} testutillib${ARTIFACT_SUFFIX} gtest ${LIBS})
+        target_link_libraries(${CMAKE_PROJECT_NAME}_${exename}${ARTIFACT_SUFFIX} testutillib${ARTIFACT_SUFFIX} gtest ${LIBS} )
+        if("${exename}" MATCHES "range_tab_test")
+            target_include_directories(${CMAKE_PROJECT_NAME}_${exename}${ARTIFACT_SUFFIX} /usr/local/include ${LIBPMEMOBJ++_INCLUDE_DIRS})
+        endif()
         if (NOT "${exename}" MATCHES "db_sanity_test")
             add_test(NAME ${exename} COMMAND ${exename}${ARTIFACT_SUFFIX})
             add_dependencies(check ${CMAKE_PROJECT_NAME}_${exename}${ARTIFACT_SUFFIX})

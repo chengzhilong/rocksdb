@@ -147,7 +147,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
  *
  * */
 
-void FixedRangeTab::Append(const InternalKeyComparator& icmp,
+Status FixedRangeTab::Append(const InternalKeyComparator& icmp,
                            const char *bloom_data, const Slice &chunk_data,
                            const Slice& start, const Slice& end) {
     if (nonVolatileTab_->dataLen + chunk_data.size_ >= nonVolatileTab_->bufSize
@@ -198,6 +198,8 @@ void FixedRangeTab::Append(const InternalKeyComparator& icmp,
 
     // record this offset to volatile vector
     blklist.emplace_back(interal_options_->chunk_bloom_bits_, raw_cur, chunk_data.size());
+
+    return Status::OK();
 }
 
 void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, const Slice &new_start,
@@ -391,7 +393,7 @@ Usage FixedRangeTab::RangeUsage() {
     Usage usage;
     Slice start, end;
     GetRealRange(start, end);
-    usage.range_size = nonVolatileTab_->total_size_;
+    usage.range_size = nonVolatileTab_->dataLen_;
     usage.chunk_num = nonVolatileTab_->chunk_num_;
     usage.start.DecodeFrom(start);
     usage.end.DecodeFrom(end);
@@ -416,7 +418,7 @@ void FixedRangeTab::SetExtraBuf(persistent_ptr<rocksdb::NvRangeTab> extra_buf) {
     raw_ = extra_buf->buf.get();
 }
 
-#ifdef TAB_DEBUG
+//#ifdef TAB_DEBUG
 void FixedRangeTab::GetProperties(){
     NvRangeTab* vtab = nonVolatileTab_.get();
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
@@ -430,6 +432,6 @@ void FixedRangeTab::GetProperties(){
     printf("keyrange = [%s]-[%s]\n", usage.start.user_key().data(), usage.end.user_key().data());
 
 }
-#endif
+//#endif
 
 } // namespace rocksdb

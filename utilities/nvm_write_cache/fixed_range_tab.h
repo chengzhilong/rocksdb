@@ -26,15 +26,16 @@ namespace rocksdb {
 using pmem::obj::persistent_ptr;
 
 using p_buf = persistent_ptr<char[]>;
+
 struct NvRangeTab {
 public:
     NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size);
 
-    uint64_t hashCode(const string& prefix) {
+    uint64_t hashCode(const string &prefix) {
         return CityHash64WithSeed(prefix, prefix.size(), 16);
     }
 
-    char* GetRawBuf(){return buf.get();}
+    char *GetRawBuf() { return buf.get(); }
 
     // 通过比价前缀，比较两个NvRangeTab是否相等
     bool equals(const string &prefix);
@@ -104,9 +105,9 @@ public:
     }
 
     // 将新的chunk数据添加到RangeMemtable
-    void Append(const InternalKeyComparator &icmp,
-                const char *bloom_data, const Slice &chunk_data,
-                const Slice &start, const Slice &end);
+    Status Append(const InternalKeyComparator &icmp,
+                  const char *bloom_data, const Slice &chunk_data,
+                  const Slice &start, const Slice &end);
 
     void SetExtraBuf(persistent_ptr<NvRangeTab> extra_buf);
 
@@ -122,9 +123,9 @@ public:
         return nonVolatileTab_->bufSize;
     }
 
-#ifdef TAB_DEBUG
-void GetProperties();
-#endif
+//#ifdef TAB_DEBUG
+    void GetProperties();
+//#endif
 
 private:
 
@@ -147,7 +148,6 @@ private:
     void CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, const Slice &new_start, const Slice &new_end);
 
     void ConsistencyCheck();
-
 
 
     // persistent info
