@@ -153,6 +153,7 @@ void FixedRangeTab::Append(const InternalKeyComparator& icmp,
     if (nonVolatileTab_->dataLen + chunk_data.size_ >= nonVolatileTab_->bufSize
         || nonVolatileTab_->chunk_num_ > max_chunk_num_to_flush()) {
         // TODO：mark tab as pendding compaction
+        printf("full\n");
     }
 
     /*if(in_compaction_){
@@ -229,14 +230,31 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
             EncodeFixed64(p_new_range, cur_end.size());
             memcpy(p_new_range + sizeof(uint64_t), cur_end.data(), cur_end.size());
         });
+
+        auto switch_pbuf = [&](persistent_ptr<char[]> old_buf, size_t size, persistent_ptr<char[]> new_buf){
+            delete_persistent<char[]>(old_buf, size);
+            old_buf = new_buf;
+        };
+
         if(nonVolatileTab_->extra_buf != nullptr){
-            nonVolatileTab_->prefix_ = new_range;
+            if(nonVolatileTab_->extra_buf->key_range_ != nullptr){
+                switch_pbuf(nonVolatileTab_->extra_buf->key_range_,
+                        cur_start.size() + cur_end.size() + 2 * sizeof(uint64_t),
+                        new_range);
+            }else{
+                nonVolatileTab_->extra_buf->key_range_ = new_range;
+            }
         }else{
-            nonVolatileTab_->extra_buf->prefix_ = new_range;
+            if(nonVolatileTab_->key_range_ != nullptr){
+                switch_pbuf(nonVolatileTab_->key_range_,
+                            cur_start.size() + cur_end.size() + 2 * sizeof(uint64_t),
+                            new_range);
+            }else{
+                nonVolatileTab_->key_range_ = new_range;
+            }
         }
-
-
     }
+
 }
 
 void FixedRangeTab::Release() {
@@ -397,5 +415,21 @@ void FixedRangeTab::SetExtraBuf(persistent_ptr<rocksdb::NvRangeTab> extra_buf) {
     extra_buf->seq_num_ = vtab->seq_num_;
     raw_ = extra_buf->buf.get();
 }
+
+#ifdef TAB_DEBUG
+void FixedRangeTab::GetProperties(){
+    NvRangeTab* vtab = nonVolatileTab_.get();
+    uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
+    uint64_t raw_seq = DecodeFixed64(raw_ - sizeof(uint64_t));
+    printf("raw_cur = [%llu], raw_seq = [%llu]\n", raw_cur, raw_seq);
+    string prefix(vtab->prefix_.get(), vtab->prefixLen);
+    printf("prefix = [%s]\n", prefix.c_str());
+    Usage usage = RangeUsage();
+    printf("datalen in vtab = [%llu]\n", vtab->dataLen);
+    printf("range size = [%f]MB, chunk_num = [%d]\n", usage.range_size / 1048576, usage.chunk_num);
+    printf("keyrange = [%s]-[%s]\n", usage.start.user_key().data(), usage.end.user_key().data());
+
+}
+#endif
 
 } // namespace rocksdb

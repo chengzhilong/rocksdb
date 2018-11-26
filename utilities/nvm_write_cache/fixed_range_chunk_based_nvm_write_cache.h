@@ -20,7 +20,7 @@ using std::string;
 using std::unordered_map;
 using namespace pmem::obj;
 using p_range::pmem_hash_map;
-using p_range::p_node_t;
+//using p_range::p_node_t;
 
 namespace rocksdb {
 
@@ -47,8 +47,8 @@ struct ChunkMeta {
     Slice cur_end;
 };
 
-
-class PersistentAllocator {
+// TODO:是否需要自定义Allocator
+/*class PersistentAllocator {
 public:
     explicit PersistentAllocator(persistent_ptr<char[]> raw_space, uint64_t total_size) {
         raw_ = raw_space;
@@ -78,7 +78,7 @@ private:
     p<uint64_t> total_size_;
     p<uint64_t> cur_;
 
-};
+};*/
 
 using p_buf = persistent_ptr<char[]>;
 

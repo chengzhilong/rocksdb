@@ -92,8 +92,6 @@ public:
     Status Get(const InternalKeyComparator &internal_comparator, const Slice &key,
                std::string *value);
 
-    void RebuildBlkList();
-
     persistent_ptr<NvRangeTab> getPersistentData() { return nonVolatileTab_; }
 
     // 返回当前RangeMemtable是否正在被compact
@@ -124,7 +122,13 @@ public:
         return nonVolatileTab_->bufSize;
     }
 
+#ifdef TAB_DEBUG
+void GetProperties();
+#endif
+
 private:
+
+    void RebuildBlkList();
 
     uint64_t max_chunk_num_to_flush() const {
         // TODO: set a max chunk num
@@ -143,6 +147,8 @@ private:
     void CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, const Slice &new_start, const Slice &new_end);
 
     void ConsistencyCheck();
+
+
 
     // persistent info
     //p_node pmap_node_;
