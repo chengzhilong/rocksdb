@@ -5,6 +5,7 @@
 #include "rocksdb/iterator.h"
 #include "utilities/nvm_write_cache/nvm_write_cache.h"
 #include "utilities/nvm_write_cache/nvm_cache_options.h"
+#include "table/internal_iterator.h"
 
 #include "libpmemobj++/p.hpp"
 #include "libpmemobj++/persistent_ptr.hpp"
@@ -23,8 +24,6 @@ using p_range::pmem_hash_map;
 //using p_range::p_node_t;
 
 namespace rocksdb {
-
-class InternalIterator;
 
 static inline int
 file_exists(char const *file) {

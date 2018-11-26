@@ -4,16 +4,17 @@
 
 #pragma once
 
-#include <include/rocksdb/iterator.h>
+
 #include <unordered_map>
 #include <vector>
+#include "rocksdb/iterator.h"
+#include "table/internal_iterator.h"
 
 
 namespace rocksdb {
 
 class InternalKeyComparator;
 class Arena;
-class InternalIterator;
 
 class NVMWriteCache {
 public:
