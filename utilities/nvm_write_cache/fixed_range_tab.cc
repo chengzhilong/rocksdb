@@ -270,7 +270,7 @@ void FixedRangeTab::CleanUp() {
     // 清除被compact的chunk
     blklist.erase(blklist.begin(), blklist.begin() + pendding_clean_);
     pendding_clean_ = 0;
-    in_compaction_ = false;
+    //in_compaction_ = false;
 
     NvRangeTab* raw_tab = nonVolatileTab_.get();
     if(raw_tab->extra_buf != nullptr){

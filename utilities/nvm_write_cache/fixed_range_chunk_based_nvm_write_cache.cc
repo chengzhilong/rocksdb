@@ -112,7 +112,9 @@ void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
               });
 
     for (auto pendding_range : pendding_compact) {
-        vinfo_->range_queue_.push(std::move(pendding_range));
+        if(!pendding_range.pending_compated_range_->IsCompactWorking()){
+            vinfo_->range_queue_.push(std::move(pendding_range));
+        }
     }
 }
 
