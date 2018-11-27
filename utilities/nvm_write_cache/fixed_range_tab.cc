@@ -35,7 +35,7 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
                              persistent_ptr<NvRangeTab> &nonVolatileTab)
         : pop_(pop),
           nonVolatileTab_(nonVolatileTab),
-          interal_options_(options),{
+          interal_options_(options){
     NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
     if (0 == raw_tab->seq_num_) {
@@ -67,6 +67,8 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
     InternalIterator *internal_iter;
     MergeIteratorBuilder merge_iter_builder(icmp,
                                             arena);
+
+    persistent_ptr<char> pbuf = nonVolatileTab_->buf[0];
     // TODO
     // 预设 range 持久化
     //  char *chunkBlkOffset = data_ + sizeof(stat.used_bits_) + sizeof(stat.start_)
@@ -74,7 +76,7 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
     PersistentChunk pchk;
     for (ChunkBlk &blk : blklist) {
         pchk.reset(interal_options_->chunk_bloom_bits_, blk.chunkLen_,
-                   nonVolatileTab_->buf + blk.getDatOffset());
+                   pbuf + blk.getDatOffset());
         merge_iter_builder.AddIterator(pchk.NewIterator(arena));
     }
 

@@ -34,14 +34,14 @@ using std::vector;
 
 template<typename T>
 class pmem_hash_map {
-private:
-    struct Node2 {
-        persistent_ptr<Node2> next;
-        persistent_ptr<T> p_content;
-    };
-
+    struct Node2;
     using p_node_t = persistent_ptr<Node2>;
 
+private:
+    struct Node2 {
+        p_node_t next;
+        persistent_ptr<T> p_content;
+    };
     p<uint32_t> tabLen_;
     persistent_ptr<p_node_t[]> tab_;
 
