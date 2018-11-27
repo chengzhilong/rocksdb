@@ -101,14 +101,15 @@ void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
     // 选择所有range中数据大小占总容量80%的range并按照总容量的大小顺序插入compaction queue
     std::vector<CompactionItem> pendding_compact;
     for (auto range : vinfo_->prefix2range) {
-        Usage range_usage = range.second.RangeUsage();
-        if (range_usage.range_size >= range.second.max_range_size() * 0.8) {
+        Usage range_usage = range.second->RangeUsage();
+        if (range_usage.range_size >= range.second->max_range_size() * 0.8) {
             pendding_compact.emplace_back(range.second);
         }
     }
     std::sort(pendding_compact.begin(), pendding_compact.end(),
-              [](FixedRangeTab *lrange, FixedRangeTab *rrange) {
-                  return lrange->RangeUsage().range_size > rrange->RangeUsage().range_size;
+              [](const CompactionItem &litem, const CompactionItem &ritem) {
+                  return litem.pending_compated_range_->RangeUsage().range_size >
+                    ritem.pending_compated_range_->RangeUsage().range_size;
               });
 
     for (auto pendding_range : pendding_compact) {
@@ -127,7 +128,7 @@ void FixedRangeChunkBasedNVMWriteCache::RebuildFromPersistentNode() {
     vhash_map->getAll(tab_vec);
     for (auto content : tab_vec) {
         FixedRangeTab *recovered_tab = new FixedRangeTab(pop_, vinfo_->internal_options_, content);
-        string recoverd_prefix(content->prefix_, content->prefixLen);
+        string recoverd_prefix(content->prefix_.get(), content->prefixLen);
         vinfo_->prefix2range[recoverd_prefix] = recovered_tab;
     }
 }
@@ -137,7 +138,7 @@ InternalIterator *FixedRangeChunkBasedNVMWriteCache::NewIterator(const InternalK
     InternalIterator *internal_iter;
     MergeIteratorBuilder merge_iter_builder(icmp, arena);
     for (auto range : vinfo_->prefix2range) {
-        merge_iter_builder.AddIterator(range.second.NewInternalIterator(icmp, arena));
+        merge_iter_builder.AddIterator(range.second->NewInternalIterator(icmp, arena));
     }
 
     internal_iter = merge_iter_builder.Finish();
