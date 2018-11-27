@@ -27,7 +27,7 @@ public:
     NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size);
 
     uint64_t hashCode(const string &prefix) {
-        return CityHash64WithSeed(prefix, prefix.size(), 16);
+        return CityHash64WithSeed(prefix.c_str(), prefix.size(), 16);
     }
 
     char *GetRawBuf() { return buf.get(); }

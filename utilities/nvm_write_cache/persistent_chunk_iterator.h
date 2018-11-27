@@ -5,22 +5,22 @@
 
 #include "rocksdb/iterator.h"
 #include "table/merging_iterator.h"
+#include "table/internal_iterator.h"
 
 #include "libpmemobj++/persistent_ptr.hpp"
-
+using namespace pmem::obj;
 namespace rocksdb {
 
-class PersistentChunkIterator : public InternalIterator {
-    using std::vector;
-    using std::pair;
-    using namespace pmem::obj;
+using std::vector;
+using std::pair;
+using p_buf = persistent_ptr<char[]>;
 
-    using p_buf = persistent_ptr<char[]>;
+class PersistentChunkIterator : public InternalIterator {
 public:
     explicit PersistentChunkIterator(p_buf data, size_t size, Arena *arena);
 
-    Slice key() override {
-        _Dat_ &dat = vKey_.at(current_);
+    Slice key() const override {
+        const _Dat_ &dat = vKey_.at(current_);
         return Slice(dat.buf.get(), dat.size);
 
 
@@ -29,8 +29,8 @@ public:
 
     }
 
-    Slice value() override {
-        _Dat_ &dat = vValue_.at(current_);
+    Slice value() const override {
+        const _Dat_ &dat = vValue_.at(current_);
         return Slice(dat.buf.get(), dat.size);
 //    Slice slc(dat.buf, dat.size);
 //    return slc;
@@ -58,7 +58,7 @@ public:
 
     size_t count() { return vKey_.size(); }
 
-    bool Valid() override { return current_ < vKey_.size(); }
+    bool Valid() const override { return current_ < vKey_.size(); }
 
     void Next() override {
         assert(Valid());

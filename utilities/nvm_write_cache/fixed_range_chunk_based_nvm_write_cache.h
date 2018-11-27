@@ -2,6 +2,7 @@
 
 #include <queue>
 #include <unordered_map>
+
 #include "rocksdb/iterator.h"
 #include "utilities/nvm_write_cache/nvm_write_cache.h"
 #include "utilities/nvm_write_cache/nvm_cache_options.h"
@@ -16,6 +17,7 @@
 
 #include "fixed_range_tab.h"
 #include "pmem_hash_map.h"
+#include "common.h"
 
 using std::string;
 using std::unordered_map;
@@ -24,11 +26,6 @@ using p_range::pmem_hash_map;
 //using p_range::p_node_t;
 
 namespace rocksdb {
-
-static inline int
-file_exists(char const *file) {
-    return access(file, F_OK);
-}
 
 struct CompactionItem {
     FixedRangeTab *pending_compated_range_;

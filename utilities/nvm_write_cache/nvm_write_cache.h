@@ -22,7 +22,7 @@ public:
 
     virtual ~NVMWriteCache() = default;
 
-    virtual Status Insert(const Slice &cached_data, void *insert_mark = nullptr) = 0;
+    //virtual Status Insert(const Slice &cached_data, void *insert_mark = nullptr) = 0;
 
     virtual Status Get(const InternalKeyComparator &internal_comparator, const Slice &key, std::string *value) = 0;
 
