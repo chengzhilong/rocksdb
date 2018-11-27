@@ -92,7 +92,7 @@ void pmem_hash_map<T>::getAll(std::vector<pmem::obj::persistent_ptr<T>> &nodeVec
 }
 
 template <typename T>
-void pmem_hash_map<T>::put(pool_base &pop, persistent_ptr<T> &p_content) {
+void pmem_hash_map<T>::put(pool_base &pop, persistent_ptr<T> p_content) {
     // 调用者自己构建 map ，检查是否已经有同样的 key
     uint64_t _hash = p_content->hashCode();
     p_node_t bucketHeadNode = tab_[_hash % tabLen_];

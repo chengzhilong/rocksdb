@@ -104,6 +104,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
             continue;
         }
     } // 4.循环直到查找完所有的chunk
+    return Status::NotFound("not found");
 }
 
 /* range data format:
@@ -391,12 +392,12 @@ void FixedRangeTab::GetProperties() {
     NvRangeTab *vtab = nonVolatileTab_.get();
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
     uint64_t raw_seq = DecodeFixed64(raw_ - sizeof(uint64_t));
-    printf("raw_cur = [%llu], raw_seq = [%llu]\n", raw_cur, raw_seq);
-    string prefix(vtab->prefix_.get(), vtab->prefixLen);
+    printf("raw_cur = [%lu], raw_seq = [%lu]\n", raw_cur, raw_seq);
+    string prefix(vtab->prefix_.get(), vtab->prefixLen.get_ro());
     printf("prefix = [%s]\n", prefix.c_str());
     Usage usage = RangeUsage();
-    printf("datalen in vtab = [%lu]\n", vtab->dataLen);
-    printf("range size = [%f]MB, chunk_num = [%d]\n", usage.range_size / 1048576.0, usage.chunk_num);
+    printf("datalen in vtab = [%lu]\n", vtab->dataLen.get_ro());
+    printf("range size = [%f]MB, chunk_num = [%lu]\n", usage.range_size / 1048576.0, usage.chunk_num);
     printf("keyrange = [%s]-[%s]\n", usage.start.user_key().data(), usage.end.user_key().data());
 
 }
