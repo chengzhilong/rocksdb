@@ -54,7 +54,7 @@ public:
 
     void getAll(vector<persistent_ptr<T> > &nodeVec);
 
-    void put(pool_base &pop, persistent_ptr<T> &p_content);
+    void put(pool_base &pop, persistent_ptr<T> p_content);
 
     //persistent_ptr<char[]> get(const std::string &key, size_t prefixLen);
 
