@@ -31,7 +31,7 @@ using pmem::obj::persistent_ptr;
 }*/
 
 
-FixedRangeTab::FixedRangeTab(pool_base &pop, rocksdb::FixedRangeBasedOptions *options,
+FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptions *options,
                              persistent_ptr<NvRangeTab> &nonVolatileTab)
                              :pop_(pop),
                              interal_options_(options),
@@ -87,7 +87,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
                           const Slice &key, std::string *value)
 {
   // 1.从下往上遍历所有的chunk
-  PersistentChunkIterator *iter = new PersistentChunkIterator;
+  PersistentChunkIterator *iter = new PersistentChunkIterator();
   shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
 
   uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
@@ -303,11 +303,11 @@ Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const Interna
     while (left <= right) {
         size_t middle = left + ((right - left) >> 1);
         iter->SeekTo(middle);
-        Slice& ml_key = iter->key();
+        const Slice& ml_key = iter->key();
         int result = icmp.Compare(ml_key, key);
         if (result == 0) {
             //found
-            Slice& raw_value = iter->value();
+            const Slice& raw_value = iter->value();
             value->assign(raw_value.data(), raw_value.size());
             return Status::OK();
         } else if (result < 0) {

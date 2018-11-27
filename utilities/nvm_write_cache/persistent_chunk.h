@@ -23,6 +23,8 @@ public:
               chunkData_(chunkData) {
     }
 
+    PersistentChunk() = delete;
+
     InternalIterator *NewIterator(Arena *arena) {
         assert(arena != nullptr);
         auto mem = arena->AllocateAligned(sizeof(PersistentChunkIterator));

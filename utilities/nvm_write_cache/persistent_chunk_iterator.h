@@ -8,6 +8,7 @@
 #include "table/internal_iterator.h"
 
 #include "libpmemobj++/persistent_ptr.hpp"
+
 using namespace pmem::obj;
 namespace rocksdb {
 
@@ -18,6 +19,32 @@ using p_buf = persistent_ptr<char[]>;
 class PersistentChunkIterator : public InternalIterator {
 public:
     explicit PersistentChunkIterator(p_buf data, size_t size, Arena *arena);
+
+    PersistentChunkIterator() =default;
+
+    bool Valid() const override { return current_ < vKey_.size(); }
+
+    void SeekToFirst() override { current_ = 0; }
+
+    void SeekToLast() override { current_ = vKey_.size() - 1; }
+
+    void Seek(const Slice& tartget) override{
+        // TODO : PersistentChunkIterator::Seek
+    }
+
+    void SeekForPrev(const Slice& target) override{
+        // TODO : PersistentChunkIterator::SeekForPrev
+    }
+
+    void Next() override {
+        assert(Valid());
+        ++current_;
+    }
+
+    void Prev() override {
+        assert(Valid());
+        --current_;
+    }
 
     Slice key() const override {
         const _Dat_ &dat = vKey_.at(current_);
@@ -49,26 +76,15 @@ public:
 //    memcpy(dest, valsizeOffset + sizeof(valSize), valSize);
     }
 
-    void SeekToFirst() override { current_ = 0; }
-
-    void SeekToLast() override { current_ = vKey_.size() - 1; }
+    Status status() const override{
+        return Status::OK();
+    }
 
     // add by xiaohu
     void SeekTo(size_t idx) { current_ = idx; }
 
     size_t count() { return vKey_.size(); }
 
-    bool Valid() const override { return current_ < vKey_.size(); }
-
-    void Next() override {
-        assert(Valid());
-        ++current_;
-    }
-
-    void Prev() override {
-        assert(Valid());
-        --current_;
-    }
 
 //  char *data_; // 数据起点
     p_buf data_;

@@ -48,6 +48,7 @@ struct Usage {
             start = u.start;
             end = u.end;
         }
+        return *this;
     }
 
 };
@@ -59,7 +60,7 @@ class FixedRangeTab {
 public:
     //FixedRangeTab(pool_base &pop, FixedRangeBasedOptions *options);
 
-    FixedRangeTab(pool_base &pop, FixedRangeBasedOptions *options,
+    FixedRangeTab(pool_base &pop, const FixedRangeBasedOptions *options,
                   persistent_ptr<NvRangeTab> &nonVolatileTab);
 
     //FixedRangeTab(pool_base &pop, p_node pmap_node_, FixedRangeBasedOptions *options);

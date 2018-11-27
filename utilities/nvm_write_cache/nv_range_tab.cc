@@ -14,12 +14,12 @@ NvRangeTab::NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size
         extra_buf = nullptr;
         buf = make_persistent<char[]>(range_size);
 
-        hash_ = hashCode(prefix);
         prefixLen = prefix.size();
         chunk_num_ = 0;
         seq_num_ = 0;
         bufSize = range_size;
         dataLen = 0;
+        hash_ = CityHash64WithSeed(prefix_.get(), prefixLen, 16);
     });
 }
 

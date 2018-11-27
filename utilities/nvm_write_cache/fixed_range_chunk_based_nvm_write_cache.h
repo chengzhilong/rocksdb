@@ -137,7 +137,7 @@ private:
 
     struct VolatileInfo {
         const FixedRangeBasedOptions *internal_options_;
-        unordered_map<string, FixedRangeTab> prefix2range;
+        unordered_map<string, FixedRangeTab*> prefix2range;
         std::queue<CompactionItem> range_queue_;
 
         explicit VolatileInfo(const FixedRangeBasedOptions *ioptions)

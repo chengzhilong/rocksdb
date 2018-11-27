@@ -22,7 +22,7 @@ FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
     if (!pinfo_->inited_ || reset) {
         transaction::run(pop_, [&] {
             // TODO 配置
-            pinfo_->range_map = make_persistent<pmem_hash_map<NvRangeTab>>();
+            pinfo_->range_map_ = make_persistent<pmem_hash_map<NvRangeTab>>();
             /*pinfo_->range_map_->tabLen = 0;
              pinfo_->range_map_->tab = make_persistent<p_node_t<NvRangeTab>[]>(pinfo_->range_map_->tabLen);
              pinfo_->range_map_->loadFactor = 0.75f;
@@ -69,7 +69,7 @@ void FixedRangeChunkBasedNVMWriteCache::AppendToRange(const rocksdb::InternalKey
     FixedRangeTab *now_range = nullptr;
     auto tab_found = vinfo_->prefix2range.find(meta.prefix);
     assert(tab_found != vinfo_->prefix2range.end());
-    now_range = &tab_found->second;
+    now_range = tab_found->second;
     if(now_range->IsCompactWorking()){
         persistent_ptr<NvRangeTab> p_content = NewContent(meta.prefix, vinfo_->internal_options_->range_size_);
         now_range->SetExtraBuf(p_content);
@@ -127,7 +127,7 @@ void FixedRangeChunkBasedNVMWriteCache::RebuildFromPersistentNode() {
     vhash_map->getAll(tab_vec);
     for (auto content : tab_vec) {
         FixedRangeTab *recovered_tab = new FixedRangeTab(pop_, vinfo_->internal_options_, content);
-        string recoverd_prefix = content->prefix_;
+        string recoverd_prefix(content->prefix_, content->prefixLen);
         vinfo_->prefix2range[recoverd_prefix] = recovered_tab;
     }
 }
