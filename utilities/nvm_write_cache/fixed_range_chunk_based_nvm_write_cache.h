@@ -1,6 +1,7 @@
 #pragma once
 
 #include <queue>
+#include <mutex>
 #include <unordered_map>
 
 #include "rocksdb/iterator.h"
@@ -20,6 +21,7 @@
 #include "common.h"
 
 using std::string;
+using std::mutex;
 using std::unordered_map;
 using namespace pmem::obj;
 using p_range::pmem_hash_map;
@@ -105,10 +107,7 @@ public:
 
     //get iterator of data that will be drained
     // get 之后释放没有 ?
-    void GetCompactionData(CompactionItem *compaction) {
-        *compaction = vinfo_->range_queue_.front();
-        vinfo_->range_queue_.pop();
-    }
+    void GetCompactionData(CompactionItem *compaction);
 
     // get internal options of this cache
     const FixedRangeBasedOptions *internal_options() { return vinfo_->internal_options_; }
@@ -139,6 +138,8 @@ private:
         const FixedRangeBasedOptions *internal_options_;
         unordered_map<string, FixedRangeTab*> prefix2range;
         std::queue<CompactionItem> range_queue_;
+        InstrumentedMutex queue_lock_;
+
 
         explicit VolatileInfo(const FixedRangeBasedOptions *ioptions)
                 : internal_options_(ioptions) {}

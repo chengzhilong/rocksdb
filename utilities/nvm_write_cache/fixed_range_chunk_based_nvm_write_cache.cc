@@ -41,6 +41,10 @@ FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
 }
 
 FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
+    for(auto range: vinfo_->prefix2range){
+        delete range.second;
+    }
+    vinfo_->prefix2range.clear();
     delete vinfo_;
     pop_.close();
 }
@@ -70,7 +74,7 @@ void FixedRangeChunkBasedNVMWriteCache::AppendToRange(const rocksdb::InternalKey
     auto tab_found = vinfo_->prefix2range.find(meta.prefix);
     assert(tab_found != vinfo_->prefix2range.end());
     now_range = tab_found->second;
-    if(now_range->IsCompactWorking()){
+    if (now_range->IsCompactWorking()) {
         persistent_ptr<NvRangeTab> p_content = NewContent(meta.prefix, vinfo_->internal_options_->range_size_);
         now_range->SetExtraBuf(p_content);
     }
@@ -101,6 +105,10 @@ void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
     // 选择所有range中数据大小占总容量80%的range并按照总容量的大小顺序插入compaction queue
     std::vector<CompactionItem> pendding_compact;
     for (auto range : vinfo_->prefix2range) {
+        if (range.second->IsCompactPendding()) {
+            // this range has already in compaction queue
+            continue;
+        }
         Usage range_usage = range.second->RangeUsage();
         if (range_usage.range_size >= range.second->max_range_size() * 0.8) {
             pendding_compact.emplace_back(range.second);
@@ -109,14 +117,28 @@ void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
     std::sort(pendding_compact.begin(), pendding_compact.end(),
               [](const CompactionItem &litem, const CompactionItem &ritem) {
                   return litem.pending_compated_range_->RangeUsage().range_size >
-                    ritem.pending_compated_range_->RangeUsage().range_size;
+                         ritem.pending_compated_range_->RangeUsage().range_size;
               });
 
+    // TODO 是否需要重新添加queue
+    vinfo_->queue_lock_.lock();
     for (auto pendding_range : pendding_compact) {
-        if(!pendding_range.pending_compated_range_->IsCompactWorking()){
+        if (!pendding_range.pending_compated_range_->IsCompactPendding()) {
+            pendding_range.pending_compated_range_->SetCompactionPendding(true);
             vinfo_->range_queue_.push(std::move(pendding_range));
         }
     }
+    vinfo_->queue_lock_.unlock();
+}
+
+void FixedRangeChunkBasedNVMWriteCache::GetCompactionData(rocksdb::CompactionItem *compaction) {
+
+    assert(!vinfo_->range_queue_.empty());
+    vinfo_->queue_lock_.lock();
+    *compaction = vinfo_->range_queue_.front();
+    vinfo_->range_queue_.pop();
+    vinfo_->queue_lock_.unlock();
+
 }
 
 void FixedRangeChunkBasedNVMWriteCache::RebuildFromPersistentNode() {

@@ -47,8 +47,9 @@ public:
     }
 
     Slice key() const override {
-        const _Dat_ &dat = vKey_.at(current_);
-        return Slice(dat.buf.get(), dat.size);
+        /*const _Dat_ &dat = vKey_.at(current_);
+        return Slice(dat.buf.get(), dat.size);*/
+        return vKey_.at(current_);
 
 
         // TODO
@@ -57,8 +58,9 @@ public:
     }
 
     Slice value() const override {
-        const _Dat_ &dat = vValue_.at(current_);
-        return Slice(dat.buf.get(), dat.size);
+        /*const _Dat_ &dat = vValue_.at(current_);
+        return Slice(dat.buf.get(), dat.size);*/
+        return vValue_.at(current_);
 //    Slice slc(dat.buf, dat.size);
 //    return slc;
 //    return vValue_.at(current_);
@@ -94,15 +96,15 @@ public:
 //  vector<Slice> vKey_;
 //  vector<Slice> vValue_;
 
-    struct _Dat_ {
+    /*struct _Dat_ {
         size_t size;
         p_buf buf;
 
         _Dat_(size_t _size, p_buf _buf) : size(_size), buf(_buf) {}
-    };
+    };*/
 
-    vector<_Dat_> vKey_;
-    vector<_Dat_> vValue_;
+    vector<Slice> vKey_;
+    vector<Slice> vValue_;
 
 //  vector<pair<size_t, p_buf>> vKey_;
     size_t current_;

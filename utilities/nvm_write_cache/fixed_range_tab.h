@@ -93,6 +93,13 @@ public:
         in_compaction_ = working;
     }
 
+    bool IsCompactPendding() { return pendding_compaction_; }
+
+    // 设置compaction状态
+    void SetCompactionPendding(bool pendding) {
+        pendding_compaction_ = pendding;
+    }
+
     // 将新的chunk数据添加到RangeMemtable
     Status Append(const InternalKeyComparator &icmp,
                   const char *bloom_data, const Slice &chunk_data,
@@ -150,6 +157,7 @@ private:
     vector<ChunkBlk> blklist;
     char *raw_;
     bool in_compaction_;
+    bool pendding_compaction_;
     size_t pendding_clean_;
 
 
