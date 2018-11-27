@@ -99,7 +99,7 @@ void pmem_hash_map<T>::put(pool_base &pop, persistent_ptr<T> p_content) {
 
     p_node_t newhead;
     transaction::run(pop, [&] {
-        newhead = make_persistent<p_node_t>();
+        newhead = make_persistent<Node2>();
         newhead->p_content = p_content;
         newhead->next = nullptr;
         //tab_[_hash % tabLen_] = newhead;
