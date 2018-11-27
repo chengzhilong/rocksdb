@@ -34,8 +34,8 @@ using pmem::obj::persistent_ptr;
 FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptions *options,
                              persistent_ptr<NvRangeTab> &nonVolatileTab)
         : pop_(pop),
-          interal_options_(options),
-          nonVolatileTab_(nonVolatileTab) {
+          nonVolatileTab_(nonVolatileTab),
+          interal_options_(options),{
     NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
     if (0 == raw_tab->seq_num_) {

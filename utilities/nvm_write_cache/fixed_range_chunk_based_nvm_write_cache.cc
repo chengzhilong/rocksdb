@@ -22,7 +22,7 @@ FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
     if (!pinfo_->inited_ || reset) {
         transaction::run(pop_, [&] {
             // TODO 配置
-            pinfo_->range_map_ = make_persistent<pmem_hash_map<NvRangeTab>>();
+            pinfo_->range_map_ = make_persistent<pmem_hash_map<NvRangeTab>>(pop_, 0.75, 256);
             /*pinfo_->range_map_->tabLen = 0;
              pinfo_->range_map_->tab = make_persistent<p_node_t<NvRangeTab>[]>(pinfo_->range_map_->tabLen);
              pinfo_->range_map_->loadFactor = 0.75f;
