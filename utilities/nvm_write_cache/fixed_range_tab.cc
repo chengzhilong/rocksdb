@@ -33,21 +33,21 @@ using pmem::obj::persistent_ptr;
 
 FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptions *options,
                              persistent_ptr<NvRangeTab> &nonVolatileTab)
-                             :pop_(pop),
-                             interal_options_(options),
-                             nonVolatileTab_(nonVolatileTab){
-    NvRangeTab* raw_tab = nonVolatileTab_.get();
+        : pop_(pop),
+          interal_options_(options),
+          nonVolatileTab_(nonVolatileTab) {
+    NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
-    if(0 == raw_tab->seq_num_){
+    if (0 == raw_tab->seq_num_) {
         // new node
-        raw_ = raw_tab->buf->get();
+        raw_ = raw_tab->buf.get();
         // set cur_
         EncodeFixed64(raw_, 0);
         // set seq_
         EncodeFixed64(raw_ + sizeof(uint64_t), 0);
         raw_ += 2 * sizeof(uint64_t);
         in_compaction_ = false;
-    }else{
+    } else {
         // rebuild
         RebuildBlkList();
     }
@@ -62,49 +62,48 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
  * | chunk blmFilter | chunk len | chunk data .| 不定长
  * */
 
-InternalIterator* FixedRangeTab::NewInternalIterator(
-        const InternalKeyComparator* icmp, Arena *arena)
-{
-  InternalIterator* internal_iter;
-  MergeIteratorBuilder merge_iter_builder(icmp,
-                                          arena);
-  // TODO
-  // 预设 range 持久化
-  //  char *chunkBlkOffset = data_ + sizeof(stat.used_bits_) + sizeof(stat.start_)
-  //      + sizeof(stat.end_);
-  PersistentChunk pchk;
-  for (ChunkBlk &blk : blklist) {
-    pchk.reset(interal_options_->chunk_bloom_bits_, blk.chunkLen_,
-               nonVolatileTab_->buf + blk.getDatOffset());
-    merge_iter_builder.AddIterator(pchk.NewIterator(arena));
-  }
+InternalIterator *FixedRangeTab::NewInternalIterator(
+        const InternalKeyComparator *icmp, Arena *arena) {
+    InternalIterator *internal_iter;
+    MergeIteratorBuilder merge_iter_builder(icmp,
+                                            arena);
+    // TODO
+    // 预设 range 持久化
+    //  char *chunkBlkOffset = data_ + sizeof(stat.used_bits_) + sizeof(stat.start_)
+    //      + sizeof(stat.end_);
+    PersistentChunk pchk;
+    for (ChunkBlk &blk : blklist) {
+        pchk.reset(interal_options_->chunk_bloom_bits_, blk.chunkLen_,
+                   nonVolatileTab_->buf + blk.getDatOffset());
+        merge_iter_builder.AddIterator(pchk.NewIterator(arena));
+    }
 
     internal_iter = merge_iter_builder.Finish();
     return internal_iter;
 }
 
 Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
-                          const Slice &key, std::string *value)
-{
-  // 1.从下往上遍历所有的chunk
-  PersistentChunkIterator *iter = new PersistentChunkIterator();
-  shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
+                          const Slice &key, std::string *value) {
+    // 1.从下往上遍历所有的chunk
+    PersistentChunkIterator *iter = new PersistentChunkIterator();
+    shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
 
-  uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
-  for (size_t i = blklist.size() - 1; i >= 0; i--) {
-    ChunkBlk &blk = blklist.at(i);
-    persistent_ptr<char[]> bloom_dat = nonVolatileTab_->buf + blk.offset_;
-    // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
-    if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_dat.get(), bloom_bits))) {
-      // 3.如果有则读取元数据进行chunk内的查找
-      new (iter) PersistentChunkIterator(nonVolatileTab_->buf + blk.getDatOffset(), blk.chunkLen_,
-                                        nullptr);
-      Status s = searchInChunk(iter, internal_comparator, key, value);
-      if (s.ok()) return s;
-    } else {
-      continue;
-    }
-  } // 4.循环直到查找完所有的chunk
+    uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
+    for (int i = blklist.size() - 1; i >= 0; i--) {
+        assert(i >= 0);
+        ChunkBlk &blk = blklist.at(i);
+        persistent_ptr<char[]> bloom_dat = nonVolatileTab_->buf + blk.offset_;
+        // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
+        if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_dat.get(), bloom_bits))) {
+            // 3.如果有则读取元数据进行chunk内的查找
+            new(iter) PersistentChunkIterator(nonVolatileTab_->buf + blk.getDatOffset(), blk.chunkLen_,
+                                              nullptr);
+            Status s = searchInChunk(iter, internal_comparator, key, value);
+            if (s.ok()) return s;
+        } else {
+            continue;
+        }
+    } // 4.循环直到查找完所有的chunk
 }
 
 /* range data format:
@@ -117,9 +116,9 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
  *
  * */
 
-Status FixedRangeTab::Append(const InternalKeyComparator& icmp,
-                           const char *bloom_data, const Slice &chunk_data,
-                           const Slice& start, const Slice& end) {
+Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
+                             const char *bloom_data, const Slice &chunk_data,
+                             const Slice &start, const Slice &end) {
     if (nonVolatileTab_->dataLen + chunk_data.size_ >= nonVolatileTab_->bufSize
         || nonVolatileTab_->chunk_num_ > max_chunk_num_to_flush()) {
         // TODO：mark tab as pendding compaction
@@ -156,14 +155,14 @@ Status FixedRangeTab::Append(const InternalKeyComparator& icmp,
 
     // update version
     // transaction
-    if(nonVolatileTab_->extra_buf != nullptr){
+    if (nonVolatileTab_->extra_buf != nullptr) {
         nonVolatileTab_->extra_buf->seq_num_ = nonVolatileTab_->seq_num_ + 1;
         nonVolatileTab_->extra_buf->chunk_num_ = nonVolatileTab_->chunk_num_ + 1;
-        nonVolatileTab_->extra_buf->dataLen = nonVolatileTab_->dataLen + chunk_blk_len
-    }else{
+        nonVolatileTab_->extra_buf->dataLen = nonVolatileTab_->dataLen + chunk_blk_len;
+    } else {
         nonVolatileTab_->seq_num_ = nonVolatileTab_->seq_num_ + 1;
         nonVolatileTab_->chunk_num_ = nonVolatileTab_->chunk_num_ + 1;
-        nonVolatileTab_->dataLen = nonVolatileTab_->dataLen + chunk_blk_len
+        nonVolatileTab_->dataLen = nonVolatileTab_->dataLen + chunk_blk_len;
     }
 
     // record this offset to volatile vector
@@ -177,23 +176,23 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
     Slice cur_start, cur_end;
     bool update_start = false, update_end = false;
     GetRealRange(cur_start, cur_end);
-    if(icmp.Compare(cur_start, new_start) > 0){
+    if (icmp.Compare(cur_start, new_start) > 0) {
         cur_start = new_start;
         update_start = true;
     }
 
-    if(icmp.Compare(cur_end, new_end) < 0){
+    if (icmp.Compare(cur_end, new_end) < 0) {
         cur_end = new_end;
         update_end = true;
     }
 
-    if(update_start || update_end){
+    if (update_start || update_end) {
         persistent_ptr<char[]> new_range = nullptr;
-        transaction::run(pop_, [&]{
+        transaction::run(pop_, [&] {
             new_range = make_persistent<char[]>(cur_start.size() + cur_end.size()
-                    + 2 * sizeof(uint64_t));
+                                                + 2 * sizeof(uint64_t));
             // get raw ptr
-            char* p_new_range = new_range.get();
+            char *p_new_range = new_range.get();
             // put start
             EncodeFixed64(p_new_range, cur_start.size());
             memcpy(p_new_range + sizeof(uint64_t), cur_start.data(), cur_start.size());
@@ -203,25 +202,25 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
             memcpy(p_new_range + sizeof(uint64_t), cur_end.data(), cur_end.size());
         });
 
-        auto switch_pbuf = [&](persistent_ptr<char[]> old_buf, size_t size, persistent_ptr<char[]> new_buf){
+        auto switch_pbuf = [&](persistent_ptr<char[]> old_buf, size_t size, persistent_ptr<char[]> new_buf) {
             delete_persistent<char[]>(old_buf, size);
             old_buf = new_buf;
         };
 
-        if(nonVolatileTab_->extra_buf != nullptr){
-            if(nonVolatileTab_->extra_buf->key_range_ != nullptr){
+        if (nonVolatileTab_->extra_buf != nullptr) {
+            if (nonVolatileTab_->extra_buf->key_range_ != nullptr) {
                 switch_pbuf(nonVolatileTab_->extra_buf->key_range_,
-                        cur_start.size() + cur_end.size() + 2 * sizeof(uint64_t),
-                        new_range);
-            }else{
+                            cur_start.size() + cur_end.size() + 2 * sizeof(uint64_t),
+                            new_range);
+            } else {
                 nonVolatileTab_->extra_buf->key_range_ = new_range;
             }
-        }else{
-            if(nonVolatileTab_->key_range_ != nullptr){
+        } else {
+            if (nonVolatileTab_->key_range_ != nullptr) {
                 switch_pbuf(nonVolatileTab_->key_range_,
                             cur_start.size() + cur_end.size() + 2 * sizeof(uint64_t),
                             new_range);
-            }else{
+            } else {
                 nonVolatileTab_->key_range_ = new_range;
             }
         }
@@ -242,21 +241,21 @@ void FixedRangeTab::CleanUp() {
     pendding_clean_ = 0;
     //in_compaction_ = false;
 
-    NvRangeTab* raw_tab = nonVolatileTab_.get();
-    if(raw_tab->extra_buf != nullptr){
+    NvRangeTab *raw_tab = nonVolatileTab_.get();
+    if (raw_tab->extra_buf != nullptr) {
         persistent_ptr<NvRangeTab> obsolete_tab = nonVolatileTab_;
-        NvRangeTab* vtab = obsolete_tab.get();
+        NvRangeTab *vtab = obsolete_tab.get();
         nonVolatileTab_ = nonVolatileTab_->extra_buf;
         Slice start, end;
         GetRealRange(start, end);
-        transaction::run(pop_, [&]{
+        transaction::run(pop_, [&] {
             delete_persistent<char[]>(vtab->prefix_, vtab->prefixLen);
             delete_persistent<char[]>(vtab->key_range_, start.size() + end.size() + 2 * sizeof(uint64_t));
             delete_persistent<char[]>(vtab->buf, vtab->bufSize);
             delete_persistent<NvRangeTab>(obsolete_tab);
         });
-    }else{
-        transaction::run(pop_, [&]{
+    } else {
+        transaction::run(pop_, [&] {
             raw_tab->chunk_num_ = 0;
             raw_tab->dataLen = 0;
             Slice start, end;
@@ -303,11 +302,11 @@ Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const Interna
     while (left <= right) {
         size_t middle = left + ((right - left) >> 1);
         iter->SeekTo(middle);
-        const Slice& ml_key = iter->key();
+        const Slice &ml_key = iter->key();
         int result = icmp.Compare(ml_key, key);
         if (result == 0) {
             //found
-            const Slice& raw_value = iter->value();
+            const Slice &raw_value = iter->value();
             value->assign(raw_value.data(), raw_value.size());
             return Status::OK();
         } else if (result < 0) {
@@ -328,11 +327,11 @@ Slice FixedRangeTab::GetKVData(char *raw, uint64_t item_off) {
 }
 
 void FixedRangeTab::GetRealRange(rocksdb::Slice &real_start, rocksdb::Slice &real_end) {
-    if(nonVolatileTab_->key_range_ != nullptr){
+    if (nonVolatileTab_->key_range_ != nullptr) {
         char *raw = nonVolatileTab_->key_range_.get();
         real_start = GetKVData(raw, 0);
         real_end = GetKVData(raw, real_start.size() + sizeof(uint64_t));
-    }else{
+    } else {
         // if there is no key_range return null Slice
         real_start = Slice();
         real_end = Slice();
@@ -340,8 +339,7 @@ void FixedRangeTab::GetRealRange(rocksdb::Slice &real_start, rocksdb::Slice &rea
 
 }
 
-void FixedRangeTab::RebuildBlkList()
-{
+void FixedRangeTab::RebuildBlkList() {
     // TODO :check consistency
     //ConsistencyCheck();
     size_t dataLen;
@@ -349,10 +347,10 @@ void FixedRangeTab::RebuildBlkList()
     // TODO
     // range 从一开始就存 chunk ?
     size_t offset = 0;
-    while(offset < dataLen) {
+    while (offset < dataLen) {
         size_t chunkLenOffset = offset + interal_options_->chunk_bloom_bits_;
         size_t chunkLen;
-        memcpy(&chunkLen, nonVolatileTab_->buf + chunkLenOffset, sizeof(chunkLen));
+        memcpy(&chunkLen, nonVolatileTab_->buf.get() + chunkLenOffset, sizeof(chunkLen));
         blklist.emplace_back(interal_options_->chunk_bloom_bits_, offset, chunkLen);
         // next chunk block
         offset += interal_options_->chunk_bloom_bits_ + sizeof(chunkLen) + chunkLen;
@@ -363,7 +361,7 @@ Usage FixedRangeTab::RangeUsage() {
     Usage usage;
     Slice start, end;
     GetRealRange(start, end);
-    usage.range_size = nonVolatileTab_->dataLen_;
+    usage.range_size = nonVolatileTab_->dataLen;
     usage.chunk_num = nonVolatileTab_->chunk_num_;
     usage.start.DecodeFrom(start);
     usage.end.DecodeFrom(end);
@@ -373,8 +371,8 @@ Usage FixedRangeTab::RangeUsage() {
 void FixedRangeTab::ConsistencyCheck() {
     uint64_t data_seq_num;
     data_seq_num = DecodeFixed64(raw_ - sizeof(uint64_t));
-    NvRangeTab* raw_tab = nonVolatileTab_.get();
-    if(data_seq_num != raw_tab->seq_num_){
+    NvRangeTab *raw_tab = nonVolatileTab_.get();
+    if (data_seq_num != raw_tab->seq_num_) {
         // TODO:又需要一个comparator
         /*Slice last_start, last_end;
         GetLastChunkKeyRange(last_start, last_end);*/
@@ -382,23 +380,23 @@ void FixedRangeTab::ConsistencyCheck() {
 }
 
 void FixedRangeTab::SetExtraBuf(persistent_ptr<rocksdb::NvRangeTab> extra_buf) {
-    NvRangeTab* vtab = nonVolatileTab_.get();
+    NvRangeTab *vtab = nonVolatileTab_.get();
     vtab->extra_buf = extra_buf;
     extra_buf->seq_num_ = vtab->seq_num_;
     raw_ = extra_buf->buf.get();
 }
 
 //#ifdef TAB_DEBUG
-void FixedRangeTab::GetProperties(){
-    NvRangeTab* vtab = nonVolatileTab_.get();
+void FixedRangeTab::GetProperties() {
+    NvRangeTab *vtab = nonVolatileTab_.get();
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
     uint64_t raw_seq = DecodeFixed64(raw_ - sizeof(uint64_t));
     printf("raw_cur = [%llu], raw_seq = [%llu]\n", raw_cur, raw_seq);
     string prefix(vtab->prefix_.get(), vtab->prefixLen);
     printf("prefix = [%s]\n", prefix.c_str());
     Usage usage = RangeUsage();
-    printf("datalen in vtab = [%llu]\n", vtab->dataLen);
-    printf("range size = [%f]MB, chunk_num = [%d]\n", usage.range_size / 1048576, usage.chunk_num);
+    printf("datalen in vtab = [%lu]\n", vtab->dataLen);
+    printf("range size = [%f]MB, chunk_num = [%d]\n", usage.range_size / 1048576.0, usage.chunk_num);
     printf("keyrange = [%s]-[%s]\n", usage.start.user_key().data(), usage.end.user_key().data());
 
 }

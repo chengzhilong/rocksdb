@@ -23,7 +23,7 @@ public:
               chunkData_(chunkData) {
     }
 
-    PersistentChunk() = delete;
+    PersistentChunk() = default;
 
     InternalIterator *NewIterator(Arena *arena) {
         assert(arena != nullptr);
