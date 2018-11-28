@@ -18,7 +18,7 @@ using pmem::obj::persistent_ptr;
 class PersistentChunk {
 public:
     PersistentChunk(size_t bloomFilterSize, size_t chunkSize,
-                    persistent_ptr<char[]> chunkData)
+                    char* chunkData)
             : bloomFilterSize_(bloomFilterSize), chunkSize_(chunkSize),
               chunkData_(chunkData) {
     }
@@ -32,7 +32,7 @@ public:
     }
 
     void reset(size_t bloomFilterSize, size_t chunkSize,
-               persistent_ptr<char[]> chunkData) {
+               char* chunkData) {
         bloomFilterSize_ = bloomFilterSize;
         chunkSize_ = chunkSize;
         chunkData_ = chunkData;
@@ -42,7 +42,7 @@ public:
 
     size_t bloomFilterSize_;
     size_t chunkSize_;
-    persistent_ptr<char[]> chunkData_;
+    char* chunkData_;
 };
 } // namespace rocksdb
 #endif // PERSISTENT_CHUNK_H

@@ -122,7 +122,7 @@ void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
               });
 
     // TODO 是否需要重新添加queue
-    vinfo_->queue_lock_.Uock();
+    vinfo_->queue_lock_.Lock();
     for (auto pendding_range : pendding_compact) {
         if (!pendding_range.pending_compated_range_->IsCompactPendding()) {
             pendding_range.pending_compated_range_->SetCompactionPendding(true);

@@ -68,7 +68,7 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
     MergeIteratorBuilder merge_iter_builder(icmp,
                                             arena);
 
-    persistent_ptr<char> pbuf = nonVolatileTab_->buf[0];
+    char* pbuf = nonVolatileTab_->buf.get();
     // TODO
     // 预设 range 持久化
     //  char *chunkBlkOffset = data_ + sizeof(stat.used_bits_) + sizeof(stat.start_)

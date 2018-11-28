@@ -158,12 +158,11 @@ TEST_F(RangeTabTest, Append){
     Random64 rand(16);
     KeyGenerator key_gen(&rand, SEQUENTIAL, 100);
     RandomGenerator value_gen;
-    BuildingChunk chunk(foptions_->filter_policy_, prefix);
     for(int i = 0; i < 10; i++){
         BuildingChunk chunk(foptions_->filter_policy_, prefix);
         for(int j = 0; j < 10; j++){
             char key[17];
-            sprintf(key, "%016d", key_gen.Next());
+            sprintf(key, "%016lu", key_gen.Next());
             key[16] = 0;
             chunk.Insert(Slice(key, 16), value_gen.Generate(value_size_));
         }
@@ -179,14 +178,16 @@ TEST_F(RangeTabTest, Append){
 TEST_F(RangeTabTest, Get){
     Random64 rand(16);
     KeyGenerator key_gen(&rand, SEQUENTIAL, 100);
+    string* get_value;
     for(int i = 0; i < 10; i++){
         char key[17];
-        sprintf(key, "%016d", key_gen.Next());
+        sprintf(key, "%016lu", key_gen.Next());
         key[16] = 0;
-        string* get_value;
+        get_value = new string();
         Status s = tab->Get(icmp_, Slice(key, 16), get_value);
         ASSERT_OK(s);
     }
+    delete get_value;
     tab->GetProperties();
 }
 
@@ -198,7 +199,7 @@ TEST_F(RangeTabTest, Iterator){
     iter->SeekToFirst();
     for(; iter->Valid(); iter->Next()){
         char key[17];
-        sprintf(key, "%016d", key_gen.Next());
+        sprintf(key, "%016lu", key_gen.Next());
         key[16] = 0;
         ASSERT_EQ(Slice(key, 16), iter->key());
     }
