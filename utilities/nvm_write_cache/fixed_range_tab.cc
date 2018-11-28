@@ -137,7 +137,8 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     if (nonVolatileTab_->dataLen + chunk_data.size_ >= nonVolatileTab_->bufSize
         || nonVolatileTab_->chunk_num_ > max_chunk_num_to_flush()) {
         // TODO：mark tab as pendding compaction
-        cout<<"chunk data size : [" << chunk_data.size() << "]" << endl;
+        cout<<"chunk data size : [" << chunk_data.size() / 1048576.0 << "]MB" << endl;
+        GetProperties();
         printf("full\n");
     }
 
@@ -413,7 +414,7 @@ void FixedRangeTab::GetProperties() {
     cout<<"raw_seq = [" << raw_seq << "]"<<endl;
     string prefix(vtab->prefix_.get(), vtab->prefixLen.get_ro());
     cout<<"prefix = [" << prefix << "]"<<endl;
-    cout<<"capacity = [" << vtab->bufSize / 1048576.0 << "]"<<endl;
+    cout<<"capacity = [" << vtab->bufSize / 1048576.0 << "]MB"<<endl;
     Usage usage = RangeUsage();
     cout<<"datalen in vtab = [" << vtab->dataLen << "]"<<endl;
     cout<<"range size = [" << usage.range_size / 1048576.0 << "]MB, chunk_num = ["<< usage.chunk_num <<"]"<<endl;
