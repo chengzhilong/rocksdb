@@ -222,8 +222,10 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
         });
 
         auto switch_pbuf = [&](persistent_ptr<char[]> old_buf, size_t size, persistent_ptr<char[]> new_buf) {
-            delete_persistent<char[]>(old_buf, size);
-            old_buf = new_buf;
+            transaction::run(pop_, [&]{
+                delete_persistent<char[]>(old_buf, size);
+                old_buf = new_buf;
+            });
         };
 
         if (nonVolatileTab_->extra_buf != nullptr) {
