@@ -2,7 +2,6 @@
 #pragma once
 
 #include <string>
-#include <city.h>
 
 #include "libpmemobj++/p.hpp"
 #include "libpmemobj++/persistent_ptr.hpp"

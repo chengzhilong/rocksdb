@@ -3,6 +3,7 @@
 //
 
 #include "nv_range_tab.h"
+#include "city.h"
 
 namespace rocksdb{
 NvRangeTab::NvRangeTab(pool_base &pop, const string &prefix, uint64_t range_size) {
