@@ -172,7 +172,7 @@ TEST_F(RangeTabTest, Append){
             InternalKey ikey;
             ikey.Set(Slice(key, 17), static_cast<uint64_t >(i * 10 + j), kTypeValue);
             //key[16] = 0;
-            printf("put userkey %s\n", ikey.user_key().data());
+            printf("put userkey %s\n", ExtractUserKey(ikey.Encode()).data());
             chunk.Insert(ikey.Encode(), value_gen.Generate(value_size_));
         }
         char* bloom_data;
