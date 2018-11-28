@@ -40,14 +40,14 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
         : pop_(pop),
           nonVolatileTab_(nonVolatileTab),
           interal_options_(options){
-    NvRangeTab *raw_tab = nonVolatileTab_.get();
+    //NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
     in_compaction_ = false;
     pendding_compaction_ = false;
-    if (0 == raw_tab->seq_num_) {
+    if (0 == nonVolatileTab_->seq_num_) {
         cout<<"new node"<<endl;
         // new node
-        raw_ = raw_tab->buf.get();
+        raw_ = nonVolatileTab_->buf.get();
         // set cur_
         EncodeFixed64(raw_, 0);
         // set seq_
