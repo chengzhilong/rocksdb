@@ -166,7 +166,7 @@ TEST_F(RangeTabTest, Append){
     for(int i = 0; i < 10; i++){
         BuildingChunk chunk(foptions_->filter_policy_, prefix);
         for(int j = 0; j < 10; j++){
-            char key[16];
+            char key[17];
             sprintf(key, "%016lu", key_gen.Next());
             InternalKey ikey;
             ikey.Set(Slice(key, 16), static_cast<uint64_t >(i * 10 + j), kTypeValue);
