@@ -42,6 +42,7 @@ FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
 
 FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
     for(auto range: vinfo_->prefix2range){
+        // 释放FixedRangeTab的空间
         delete range.second;
     }
     vinfo_->prefix2range.clear();
@@ -74,7 +75,7 @@ void FixedRangeChunkBasedNVMWriteCache::AppendToRange(const rocksdb::InternalKey
     auto tab_found = vinfo_->prefix2range.find(meta.prefix);
     assert(tab_found != vinfo_->prefix2range.end());
     now_range = tab_found->second;
-    if (now_range->IsCompactWorking()) {
+    if (now_range->IsCompactWorking() && !now_range->IsExtraBufExists()) {
         persistent_ptr<NvRangeTab> p_content = NewContent(meta.prefix, vinfo_->internal_options_->range_size_);
         now_range->SetExtraBuf(p_content);
     }

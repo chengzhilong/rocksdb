@@ -88,8 +88,8 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
                           const Slice &key, std::string *value) {
     // 1.从下往上遍历所有的chunk
     PersistentChunkIterator *iter = new PersistentChunkIterator();
+    // shared_ptr能够保证资源回收
     shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
-
     uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
     for (int i = blklist.size() - 1; i >= 0; i--) {
         assert(i >= 0);
