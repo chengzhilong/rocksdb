@@ -122,23 +122,23 @@ void FixedRangeChunkBasedNVMWriteCache::MaybeNeedCompaction() {
               });
 
     // TODO 是否需要重新添加queue
-    vinfo_->queue_lock_.lock();
+    vinfo_->queue_lock_.Uock();
     for (auto pendding_range : pendding_compact) {
         if (!pendding_range.pending_compated_range_->IsCompactPendding()) {
             pendding_range.pending_compated_range_->SetCompactionPendding(true);
             vinfo_->range_queue_.push(std::move(pendding_range));
         }
     }
-    vinfo_->queue_lock_.unlock();
+    vinfo_->queue_lock_.Unlock();
 }
 
 void FixedRangeChunkBasedNVMWriteCache::GetCompactionData(rocksdb::CompactionItem *compaction) {
 
     assert(!vinfo_->range_queue_.empty());
-    vinfo_->queue_lock_.lock();
+    vinfo_->queue_lock_.Lock();
     *compaction = vinfo_->range_queue_.front();
     vinfo_->range_queue_.pop();
-    vinfo_->queue_lock_.unlock();
+    vinfo_->queue_lock_.Unlock();
 
 }
 
