@@ -194,13 +194,13 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
     cout<<"cur_start["<<cur_start.data()<<"]"<<"cur_end["<<cur_end.data()<<"]"<<endl;
     cout<<"new_start["<<new_start.data()<<"]"<<"new_end["<<new_end.data()<<"]"<<endl;
     if (cur_start.size() == 0 || icmp.Compare(cur_start, new_start) > 0) {
-        cout<<icmp.Compare(cur_start, new_start)<<endl;
+        cout<<"update start"<<endl;
         cur_start = new_start;
         update_start = true;
     }
 
     if (cur_end.size() == 0 || icmp.Compare(cur_end, new_end) < 0) {
-        cout<<icmp.Compare(cur_end, new_end)<<endl;
+        cout<<"update end"<<endl;
         cur_end = new_end;
         update_end = true;
     }
