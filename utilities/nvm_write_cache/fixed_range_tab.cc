@@ -137,6 +137,7 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     if (nonVolatileTab_->dataLen + chunk_data.size_ >= nonVolatileTab_->bufSize
         || nonVolatileTab_->chunk_num_ > max_chunk_num_to_flush()) {
         // TODO：mark tab as pendding compaction
+        cout<<"chunk data size : [" << chunk_data.size() << "]" << endl;
         printf("full\n");
     }
 
