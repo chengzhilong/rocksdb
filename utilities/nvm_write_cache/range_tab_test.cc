@@ -139,7 +139,7 @@ public:
         }
         tab = new FixedRangeTab(pop_, foptions_, rootp_->p_content);
 
-        value_size_ = 4 * 1024 * 1024;
+        value_size_ = 4 * 1024;
     }
 
     string pmem_path_;
@@ -172,6 +172,7 @@ TEST_F(RangeTabTest, Append){
         meta.prefix = prefix;
         std::string *output_data = chunk.Finish(&bloom_data, meta.cur_start, meta.cur_end);
         ASSERT_OK(tab->Append(icmp_, bloom_data, *output_data, meta.cur_start, meta.cur_end));
+        tab->GetProperties();
     }
     tab->GetProperties();
 }
