@@ -57,6 +57,7 @@ public:
         if(!start_.empty()){
             unique_ptr<InternalKey> ptr(new InternalKey());
             ptr->DecodeFrom(start_);
+            return ptr;
         }else{
             return nullptr;
         }
@@ -66,6 +67,7 @@ public:
         if(!end_.empty()){
             unique_ptr<InternalKey> ptr(new InternalKey());
             ptr->DecodeFrom(end_);
+            return ptr;
         }else{
             return nullptr;
         }
