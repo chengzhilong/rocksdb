@@ -409,14 +409,17 @@ void FixedRangeTab::GetProperties() {
     NvRangeTab *vtab = nonVolatileTab_.get();
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
     uint64_t raw_seq = DecodeFixed64(raw_ - sizeof(uint64_t));
-    printf("raw_cur = [%lu], raw_seq = [%lu]\n", raw_cur, raw_seq);
+    cout<<"raw_cur [" << raw_cur << "]"<<endl;
+    cout<<"raw_seq = [" << raw_seq << "]"<<endl;
     string prefix(vtab->prefix_.get(), vtab->prefixLen.get_ro());
-    printf("prefix = [%s]\n", prefix.c_str());
+    cout<<"prefix = [" << prefix << "]"<<endl;
+    cout<<"capacity = [" << vtab->bufSize / 1048576.0 << "]"<<endl;
     Usage usage = RangeUsage();
-    printf("datalen in vtab = [%lu]\n", vtab->dataLen.get_ro());
-    printf("range size = [%f]MB, chunk_num = [%lu]\n", usage.range_size / 1048576.0, usage.chunk_num);
+    cout<<"datalen in vtab = [" << vtab->dataLen << "]"<<endl;
+    cout<<"range size = [" << usage.range_size / 1048576.0 << "]MB, chunk_num = ["<< usage.chunk_num <<"]"<<endl;
     if(vtab->key_range_ != nullptr){
-        printf("keyrange = [%s]-[%s]\n", usage.start()->user_key().data(), usage.end()->user_key().data());
+        //printf("keyrange = [%s]-[%s]\n", usage.start()->user_key().data(), usage.end()->user_key().data());
+        cout << "keyrange = [" << usage.start()->user_key().data() << "][" << usage.end()->user_key().data()<<endl;
     }
 }
 //#endif
