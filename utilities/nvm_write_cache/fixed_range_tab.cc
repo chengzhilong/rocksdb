@@ -420,7 +420,7 @@ void FixedRangeTab::GetProperties() {
     cout<<"range size = [" << usage.range_size / 1048576.0 << "]MB, chunk_num = ["<< usage.chunk_num <<"]"<<endl;
     if(vtab->key_range_ != nullptr){
         //printf("keyrange = [%s]-[%s]\n", usage.start()->user_key().data(), usage.end()->user_key().data());
-        cout << "keyrange = [" << usage.start()->user_key().data() << "][" << usage.end()->user_key().data()<<endl;
+        cout << "keyrange = [" << usage.start()->user_key().data() << "][" << usage.end()->user_key().data()<<"]"<<endl;
     }
 }
 //#endif
