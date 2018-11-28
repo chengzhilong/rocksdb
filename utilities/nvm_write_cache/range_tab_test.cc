@@ -168,8 +168,9 @@ TEST_F(RangeTabTest, Append){
         for(int j = 0; j < 10; j++){
             char key[17];
             sprintf(key, "%016lu", key_gen.Next());
+            key[16] = 0;
             InternalKey ikey;
-            ikey.Set(Slice(key, 16), static_cast<uint64_t >(i * 10 + j), kTypeValue);
+            ikey.Set(Slice(key, 17), static_cast<uint64_t >(i * 10 + j), kTypeValue);
             //key[16] = 0;
             printf("put userkey %s\n", ikey.user_key().data());
             chunk.Insert(ikey.Encode(), value_gen.Generate(value_size_));
