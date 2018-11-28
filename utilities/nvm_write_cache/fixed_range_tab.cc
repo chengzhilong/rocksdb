@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "util/coding.h"
 #include "table/merging_iterator.h"
 
@@ -7,6 +9,8 @@
 
 namespace rocksdb {
 
+using std::cout;
+using std::endl;
 using pmem::obj::persistent_ptr;
 
 /*FixedRangeTab::FixedRangeTab(pool_base &pop, p_range::p_node node, FixedRangeBasedOptions *options)
@@ -38,7 +42,10 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
           interal_options_(options){
     NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
+    in_compaction_ = false;
+    pendding_compaction_ = false;
     if (0 == raw_tab->seq_num_) {
+        cout<<"new node"<<endl;
         // new node
         raw_ = raw_tab->buf.get();
         // set cur_
@@ -46,7 +53,7 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
         // set seq_
         EncodeFixed64(raw_ + sizeof(uint64_t), 0);
         raw_ += 2 * sizeof(uint64_t);
-        in_compaction_ = false;
+        GetProperties();
     } else {
         // rebuild
         RebuildBlkList();
