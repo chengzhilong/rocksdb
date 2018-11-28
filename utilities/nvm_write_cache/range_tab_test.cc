@@ -161,7 +161,7 @@ public:
 
 TEST_F(RangeTabTest, Append){
     Random64 rand(16);
-    KeyGenerator key_gen(&rand, /*SEQUENTIAL*/RANDOM, 100);
+    KeyGenerator key_gen(&rand, SEQUENTIAL/*RANDOM*/, 100);
     RandomGenerator value_gen;
     for(int i = 0; i < 10; i++){
         BuildingChunk chunk(foptions_->filter_policy_, prefix);
