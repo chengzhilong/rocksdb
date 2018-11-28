@@ -166,10 +166,12 @@ TEST_F(RangeTabTest, Append){
     for(int i = 0; i < 10; i++){
         BuildingChunk chunk(foptions_->filter_policy_, prefix);
         for(int j = 0; j < 10; j++){
-            char key[24];
+            char key[16];
             sprintf(key, "%016lu", key_gen.Next());
+            InternalKey ikey;
+            ikey.Set(Slice(key, 16), static_cast<uint64_t >(i * 10 + j), kTypeValue);
             //key[16] = 0;
-            chunk.Insert(Slice(key, 24), value_gen.Generate(value_size_));
+            chunk.Insert(ikey.Encode(), value_gen.Generate(value_size_));
         }
         char* bloom_data;
         ChunkMeta meta;
