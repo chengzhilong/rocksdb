@@ -422,6 +422,7 @@ void FixedRangeTab::GetProperties() {
         //printf("keyrange = [%s]-[%s]\n", usage.start()->user_key().data(), usage.end()->user_key().data());
         cout << "keyrange = [" << usage.start()->user_key().data() << "][" << usage.end()->user_key().data()<<"]"<<endl;
     }
+    cout<<endl;
 }
 //#endif
 
