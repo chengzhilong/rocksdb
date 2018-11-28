@@ -40,15 +40,15 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
         : pop_(pop),
           nonVolatileTab_(nonVolatileTab),
           interal_options_(options){
-    cout<<"constructor of FixedRangeTab"<<endl;
+    //cout<<"constructor of FixedRangeTab"<<endl;
     NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
     in_compaction_ = false;
     pendding_compaction_ = false;
-    GetProperties();
-    cout<<"before <if>"<<endl;
+    //GetProperties();
+    //cout<<"before <if>"<<endl;
     if (0 == raw_tab->seq_num_.get_ro()) {
-        cout<<"new node"<<endl;
+        //cout<<"new node"<<endl;
         // new node
         raw_ = raw_tab->buf.get();
         // set cur_
@@ -60,6 +60,7 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
     } else {
         // rebuild
         RebuildBlkList();
+        GetProperties();
     }
 }
 

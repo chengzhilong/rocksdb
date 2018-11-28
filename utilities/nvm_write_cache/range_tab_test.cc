@@ -130,11 +130,12 @@ public:
         }
         rootp_ = pop_.root();
 
-        if (rootp_->inited) {
+        if (!rootp_->inited) {
             transaction::run(pop_, [&] {
                 rootp_->p_content = make_persistent<NvRangeTab>(pop_, "test", foptions_->range_size_);
                 rootp_->inited = true;
             });
+            rootp_->inited = true;
         }
         tab = new FixedRangeTab(pop_, foptions_, rootp_->p_content);
 
