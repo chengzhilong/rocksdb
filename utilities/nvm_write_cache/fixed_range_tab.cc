@@ -380,8 +380,8 @@ Usage FixedRangeTab::RangeUsage() {
     GetRealRange(start, end);
     usage.range_size = nonVolatileTab_->dataLen;
     usage.chunk_num = nonVolatileTab_->chunk_num_;
-    usage.start.DecodeFrom(start);
-    usage.end.DecodeFrom(end);
+    usage.start_ = start;
+    usage.end_ = end;
     return usage;
 }
 
@@ -414,8 +414,9 @@ void FixedRangeTab::GetProperties() {
     Usage usage = RangeUsage();
     printf("datalen in vtab = [%lu]\n", vtab->dataLen.get_ro());
     printf("range size = [%f]MB, chunk_num = [%lu]\n", usage.range_size / 1048576.0, usage.chunk_num);
-    printf("keyrange = [%s]-[%s]\n", usage.start.user_key().data(), usage.end.user_key().data());
-
+    if(vtab->key_range_ != nullptr){
+        printf("keyrange = [%s]-[%s]\n", usage.start()->user_key().data(), usage.end()->user_key().data());
+    }
 }
 //#endif
 

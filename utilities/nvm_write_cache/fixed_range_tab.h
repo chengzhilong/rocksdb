@@ -2,6 +2,7 @@
 #define PERSISTENT_RANGE_MEM_H
 
 #include <list>
+#include <memory>
 #include <db/db_impl.h>
 
 //#include "libpmemobj.h"
@@ -21,6 +22,7 @@
 using namespace pmem::obj;
 using namespace p_range;
 using std::string;
+using std::unique_ptr;
 
 namespace rocksdb {
 
@@ -28,10 +30,11 @@ using pmem::obj::persistent_ptr;
 
 using p_buf = persistent_ptr<char[]>;
 
-struct Usage {
+class Usage {
+public:
     uint64_t chunk_num;
     uint64_t range_size;
-    InternalKey start, end;
+    Slice start_, end_;
 
     Usage() {}
 
@@ -44,12 +47,31 @@ struct Usage {
             chunk_num = u.chunk_num;
             range_size = u.range_size;
             //start.DecodeFrom(Slice(*u.start.rep()));
-            //TODO InternalKey是否可以直接赋值
-            start = u.start;
-            end = u.end;
+            start_ = u.start_;
+            end_ = u.end_;
         }
         return *this;
     }
+
+    unique_ptr<InternalKey> start() {
+        if(!start_.empty()){
+            unique_ptr<InternalKey> ptr(new InternalKey());
+            ptr->DecodeFrom(start_);
+        }else{
+            return nullptr;
+        }
+    }
+
+    unique_ptr<InternalKey> end() const{
+        if(!end_.empty()){
+            unique_ptr<InternalKey> ptr(new InternalKey());
+            ptr->DecodeFrom(end_);
+        }else{
+            return nullptr;
+        }
+    }
+
+
 
 };
 
