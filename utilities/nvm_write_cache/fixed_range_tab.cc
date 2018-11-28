@@ -194,11 +194,13 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
     cout<<"cur_start["<<cur_start.data()<<"]"<<"cur_end["<<cur_end.data()<<"]"<<endl;
     cout<<"new_start["<<new_start.data()<<"]"<<"new_end["<<new_end.data()<<"]"<<endl;
     if (cur_start.size() == 0 || icmp.Compare(cur_start, new_start) > 0) {
+        cout<<icmp.Compare(cur_start, new_start)<<endl;
         cur_start = new_start;
         update_start = true;
     }
 
     if (cur_end.size() == 0 || icmp.Compare(cur_end, new_end) < 0) {
+        cout<<icmp.Compare(cur_end, new_end)<<endl;
         cur_end = new_end;
         update_end = true;
     }
@@ -220,7 +222,7 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
             memcpy(p_new_range + sizeof(uint64_t), cur_end.data(), cur_end.size());
         });
 
-        auto switch_pbuf = [&](persistent_ptr<char[]> old_buf, size_t size, persistent_ptr<char[]> new_buf) {
+        auto switch_pbuf = [&](persistent_ptr<char[]>& old_buf, size_t size, persistent_ptr<char[]>& new_buf) {
             transaction::run(pop_, [&]{
                 delete_persistent<char[]>(old_buf, size);
                 old_buf = new_buf;
