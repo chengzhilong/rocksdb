@@ -91,14 +91,15 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
     // shared_ptr能够保证资源回收
     shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
     uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
+    char* buf = nonVolatileTab_->buf.get();
     for (int i = blklist.size() - 1; i >= 0; i--) {
         assert(i >= 0);
         ChunkBlk &blk = blklist.at(i);
-        persistent_ptr<char[]> bloom_dat = nonVolatileTab_->buf + blk.offset_;
+        char* bloom_data = buf + blk.offset_;
         // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
-        if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_dat.get(), bloom_bits))) {
+        if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_data, bloom_bits))) {
             // 3.如果有则读取元数据进行chunk内的查找
-            new(iter) PersistentChunkIterator(nonVolatileTab_->buf + blk.getDatOffset(), blk.chunkLen_,
+            new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_,
                                               nullptr);
             Status s = searchInChunk(iter, internal_comparator, key, value);
             if (s.ok()) return s;

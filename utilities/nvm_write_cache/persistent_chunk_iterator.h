@@ -18,7 +18,7 @@ using p_buf = persistent_ptr<char[]>;
 
 class PersistentChunkIterator : public InternalIterator {
 public:
-    explicit PersistentChunkIterator(p_buf data, size_t size, Arena *arena);
+    explicit PersistentChunkIterator(char* data, size_t size, Arena *arena);
 
     PersistentChunkIterator() =default;
 
@@ -88,8 +88,8 @@ public:
     size_t count() { return vKey_.size(); }
 
 
-//  char *data_; // 数据起点
-    p_buf data_;
+    char *data_; // 数据起点
+    //p_buf data_;
 
     Arena *arena_;
 //  vector<char*> pair_offset;

@@ -2,7 +2,7 @@
 
 namespace rocksdb {
 
-PersistentChunkIterator::PersistentChunkIterator(p_buf data,
+PersistentChunkIterator::PersistentChunkIterator(char* data,
                                                  size_t size, Arena *arena)
         : data_(data), arena_(arena) {
     // keysize | key | valsize | val | ... | 1st pair offset
@@ -10,7 +10,7 @@ PersistentChunkIterator::PersistentChunkIterator(p_buf data,
     uint64_t nPairs;
     size_t sizeof_uint64_t = sizeof(uint64_t);
 
-    char* raw_buf = data.get();
+    char* raw_buf = data;
     //p_buf nPairsOffset = data + size - sizeof(nPairs);
     char* n_pairs_off = raw_buf + size - sizeof_uint64_t;
     nPairs = DecodeFixed64(n_pairs_off);
