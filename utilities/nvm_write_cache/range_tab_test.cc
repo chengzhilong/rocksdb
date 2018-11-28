@@ -142,6 +142,10 @@ public:
         value_size_ = 4 * 1024;
     }
 
+    ~RangeTabTest(){
+        pop_.close();
+    }
+
     string pmem_path_;
     string prefix;
     pool<pRangeRoot> pop_;
@@ -171,6 +175,9 @@ TEST_F(RangeTabTest, Append){
         ChunkMeta meta;
         meta.prefix = prefix;
         std::string *output_data = chunk.Finish(&bloom_data, meta.cur_start, meta.cur_end);
+        // TODO 谁申请谁释放
+        delete[] bloom_data;
+        delete output_data;
         ASSERT_OK(tab->Append(icmp_, bloom_data, *output_data, meta.cur_start, meta.cur_end));
         tab->GetProperties();
     }

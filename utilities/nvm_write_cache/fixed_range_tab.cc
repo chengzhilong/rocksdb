@@ -141,10 +141,6 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
         GetProperties();
         printf("full\n");
     }
-
-    /*if(in_compaction_){
-    }*/
-
     //size_t cur_len = node_in_pmem_map->dataLen;
     size_t chunk_blk_len = interal_options_->chunk_bloom_bits_ + sizeof(uint64_t) + chunk_data.size();
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
@@ -195,6 +191,8 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
     Slice cur_start, cur_end;
     bool update_start = false, update_end = false;
     GetRealRange(cur_start, cur_end);
+    cout<<"cur_start["<<cur_start.data()<<"]"<<"cur_end["<<cur_end.data()<<"]"<<endl;
+    cout<<"new_start["<<new_start.data()<<"]"<<"new_end["<<new_end.data()<<"]"<<endl;
     if (cur_start.size() == 0 || icmp.Compare(cur_start, new_start) > 0) {
         cur_start = new_start;
         update_start = true;
