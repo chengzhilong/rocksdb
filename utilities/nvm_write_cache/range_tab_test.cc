@@ -115,7 +115,7 @@ public:
     RangeTabTest()
             : pmem_path_("/pmem/rangetab_test"),
               prefix("test_prefix"),
-              icmp_(BytewiseComparator()) {
+              icmp_(InternalKeyComparator(BytewiseComparator())) {
         foptions_ = new FixedRangeBasedOptions(
                 16,
                 prefix.size(),
