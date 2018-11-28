@@ -203,6 +203,7 @@ void FixedRangeTab::CheckAndUpdateKeyRange(const InternalKeyComparator &icmp, co
         update_end = true;
     }
 
+    cout<<"update_start["<<cur_start.data()<<"]"<<"update_end["<<cur_end.data()<<"]"<<endl;
     if (update_start || update_end) {
         persistent_ptr<char[]> new_range = nullptr;
         transaction::run(pop_, [&] {
