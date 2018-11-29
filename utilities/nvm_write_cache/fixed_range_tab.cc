@@ -346,7 +346,7 @@ Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const Interna
         const Slice &ml_key = iter->key();
         ParsedInternalKey ikey;
         ParseInternalKey(ml_key, &ikey);
-        printf("ml_key size[%lu] lkey size[%lu]\n", ml_key.size(), key.size());
+        printf("ikey[%s] size[%lu] lkey[%s] size[%lu]\n",ikey.user_key.data(), ikey.user_key.size(),key.data(), key.size());
         int result = cmp->Compare(ikey.user_key, key);
         if (result == 0) {
             //found
