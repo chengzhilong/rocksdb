@@ -171,11 +171,21 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     EncodeFixed64(dst, bloom_data.size()); //+8
     memcpy(dst + sizeof(uint64_t), bloom_data.c_str(), bloom_data.size()); //+bloom data size
     // append chunk data size
-    EncodeFixed64(dst + bloom_data.size(), chunk_data.size()); //+8
+    EncodeFixed64(dst + bloom_data.size() + sizeof(uint64_t), chunk_data.size()); //+8
 
     dst += bloom_data.size() + sizeof(uint64_t) * 2;
     // append data
     memcpy(dst, chunk_data.data(), chunk_data.size()); //+chunk data size
+
+    {
+        //debug
+        char* debug = raw_ + raw_cur;
+        uint64_t chunk_size, bloom_size;
+        bloom_size = DecodeFixed64(debug);
+        chunk_size = DecodeFixed64(debug + 8 + bloom_size);
+        DBG_PRINT("read bloom size [%lu]", bloom_size);
+        DBG_PRINT("read chunk size [%lu]", chunk_size);
+    }
 
     //printf("kv num[%lu]\n", DecodeFixed64(dst+chunk_data.size()- sizeof(uint64_t)));
 
