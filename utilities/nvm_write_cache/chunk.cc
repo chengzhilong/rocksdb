@@ -98,7 +98,7 @@ void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &valu
     keys_.emplace_back(key_rep, key.size());
     InternalKey ikey;
     ikey.DecodeFrom(key);
-    DBG_PRINT("insert user key [%s]", ikey.user_key());
+    DBG_PRINT("insert user key [%s]", ikey.user_key().data());
     user_keys_.emplace_back(ikey.user_key());
     //printf("BuildingChunk::Insert [%s]\n", keys_.back().data());
 }
