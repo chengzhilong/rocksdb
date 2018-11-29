@@ -87,7 +87,7 @@ void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &valu
     chunk_->Insert(key, value);
     char *key_rep = new char[key.size_];
     memcpy(key_rep, key.data_, key.size_);
-    keys_.emplace_back(key_rep);
+    keys_.emplace_back(key_rep, key.size());
 }
 
 

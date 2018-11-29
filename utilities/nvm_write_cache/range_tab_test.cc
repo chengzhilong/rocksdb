@@ -16,6 +16,7 @@
 #include "common.h"
 
 #define TAB_DEBUG
+//#export PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig/:$PKG_CONFIG_PATH
 
 namespace rocksdb {
 
