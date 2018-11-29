@@ -101,7 +101,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
     PersistentChunkIterator *iter = new PersistentChunkIterator();
     // shared_ptr能够保证资源回收
     cout<<"Get:new iter"<<endl;
-    shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
+    //shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
     uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
     char* buf = nonVolatileTab_->buf.get();
     for (int i = blklist.size() - 1; i >= 0; i--) {
@@ -117,6 +117,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
             cout<<"Get:after search in chunk"<<endl;
             if (s.ok()) {
                 cout<<"Get:found"<<endl;
+                delete iter;
                 return s;
             }
         } else {
@@ -124,6 +125,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         }
     } // 4.循环直到查找完所有的chunk
     cout<<"Get:found"<<endl;
+    delete iter;
     return Status::NotFound("not found");
 }
 
