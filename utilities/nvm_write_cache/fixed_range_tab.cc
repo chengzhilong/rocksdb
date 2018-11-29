@@ -62,8 +62,10 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
         // rebuild
         RebuildBlkList();
         DBG_PRINT("after rebuild");
+        raw_ = raw_tab->buf.get();
         raw_ += 2 * sizeof(uint64_t);
         GetProperties();
+        DBG_PRINT("end rebuild");
     }
 }
 
