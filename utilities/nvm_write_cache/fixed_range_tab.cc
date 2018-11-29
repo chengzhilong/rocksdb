@@ -104,6 +104,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
     //shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
     uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
     char* buf = raw_;
+    printf("blklist size = [%lu]\n", blklist.size());
     for (int i = blklist.size() - 1; i >= 0; i--) {
         assert(i >= 0);
         ChunkBlk &blk = blklist.at(i);
