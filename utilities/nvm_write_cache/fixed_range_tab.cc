@@ -154,6 +154,7 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     size_t chunk_blk_len = interal_options_->chunk_bloom_bits_ + sizeof(uint64_t) + chunk_data.size();
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
     uint64_t last_seq = DecodeFixed64(raw_ - sizeof(uint64_t));
+    printf("raw_cur[%lu] chunk size[%lu]\n", raw_cur, chunk_data.size());
 
     char *dst = raw_ + raw_cur;
     // append bloom data
