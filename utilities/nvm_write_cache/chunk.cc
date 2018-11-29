@@ -118,7 +118,7 @@ std::string *BuildingChunk::Finish(char **bloom_data, rocksdb::Slice &cur_start,
         if(filter_policy_->KeyMayMatch(key, Slice(raw_bloom_data, 16))){
             printf("BuildingChunk::Finish::filter found [%s]\n", key.data());
         } else{
-            printf("BuildingChunk::Finish::filter found [%s]\n", key.data());
+            printf("BuildingChunk::Finish::filter not found [%s]\n", key.data());
         }
     }
 
