@@ -16,7 +16,7 @@ PersistentChunkIterator::PersistentChunkIterator(char* data,
     nPairs = DecodeFixed64(n_pairs_off);
 
 //  nPairs = *(reinterpret_cast<size_t*>(nPairsOffset));
-    printf("nPairs [%d]\n", nPairs);
+    printf("nPairs [%lu]\n", nPairs);
     vKey_.reserve(nPairs);
     vValue_.reserve(nPairs);
 
