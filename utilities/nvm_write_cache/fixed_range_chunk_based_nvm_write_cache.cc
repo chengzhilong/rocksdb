@@ -3,6 +3,8 @@
 
 namespace rocksdb {
 
+using std::string;
+
 FixedRangeChunkBasedNVMWriteCache::FixedRangeChunkBasedNVMWriteCache(
         const FixedRangeBasedOptions *ioptions,
         const string &file, uint64_t pmem_size,
