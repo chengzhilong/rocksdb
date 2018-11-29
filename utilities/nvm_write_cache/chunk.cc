@@ -6,6 +6,7 @@
 
 #include "chunk.h"
 #include "fixed_range_chunk_based_nvm_write_cache.h"
+#include "debug.h"
 
 
 namespace rocksdb {
@@ -118,13 +119,13 @@ std::string *BuildingChunk::Finish(string& bloom_data, rocksdb::Slice &cur_start
         printf("%d", raw_bloom_data[i]);
     }*/
     //printf("\n");
-    /*for(auto key : keys_){
+    for(auto key : user_keys_){
         if(filter_policy_->KeyMayMatch(key, Slice(bloom_data))){
-            printf("BuildingChunk::Finish::filter found [%s]\n", key.data());
+            DBG_PRINT("BuildingChunk::Finish::filter found [%s]\n", key.data());
         } else{
-            printf("BuildingChunk::Finish::filter not found [%s]\n", key.data());
+            DBG_PRINT("BuildingChunk::Finish::filter not found [%s]\n", key.data());
         }
-    }*/
+    }
 
     // get key range
     cur_start = keys_[0];
