@@ -144,6 +144,7 @@ public:
     }
 
     ~RangeTabTest(){
+        delete tab;
         pop_.close();
     }
 

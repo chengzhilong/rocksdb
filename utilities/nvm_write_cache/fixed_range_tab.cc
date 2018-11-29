@@ -41,16 +41,12 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
         : pop_(pop),
           nonVolatileTab_(nonVolatileTab),
           interal_options_(options){
-    //cout<<"constructor of FixedRangeTab"<<endl;
-    DBG_PRINT("constructor of FixedRangeTab\n");
+    DBG_PRINT("constructor of FixedRangeTab");
     NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
     in_compaction_ = false;
     pendding_compaction_ = false;
-    //GetProperties();
-    //cout<<"before <if>"<<endl;
     if (0 == raw_tab->seq_num_.get_ro()) {
-        //cout<<"new node"<<endl;
         // new node
         raw_ = raw_tab->buf.get();
         // set cur_
@@ -62,6 +58,7 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
     } else {
         // rebuild
         RebuildBlkList();
+        raw_ += 2 * sizeof(uint64_t);
         GetProperties();
     }
 }
@@ -102,7 +99,6 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
     PersistentChunkIterator *iter = new PersistentChunkIterator();
     // shared_ptr能够保证资源回收
     char* buf = raw_;
-    //printf("blklist size = [%lu]\n", blklist.size());
     for (int i = blklist.size() - 1; i >= 0; i--) {
         assert(i >= 0);
         ChunkBlk &blk = blklist.at(i);
@@ -322,12 +318,12 @@ Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const Interna
     const Comparator* cmp = icmp.user_comparator();
     while (left <= right) {
         int middle = left + ((right - left) >> 1);
-        printf("lest[%d], right[%d], middle[%d]\n", left, right, middle);
+        //printf("lest[%d], right[%d], middle[%d]\n", left, right, middle);
         iter->SeekTo(middle);
         const Slice &ml_key = iter->key();
         ParsedInternalKey ikey;
         ParseInternalKey(ml_key, &ikey);
-        printf("ikey[%s] size[%lu] lkey[%s] size[%lu]\n",ikey.user_key.data(), ikey.user_key.size(),key.data(), key.size());
+        //printf("ikey[%s] size[%lu] lkey[%s] size[%lu]\n",ikey.user_key.data(), ikey.user_key.size(),key.data(), key.size());
         int result = cmp->Compare(ikey.user_key, key);
         if (result == 0) {
             //found
@@ -370,7 +366,7 @@ void FixedRangeTab::RebuildBlkList() {
     size_t dataLen;
     dataLen = nonVolatileTab_->dataLen;
     char* raw_buf = nonVolatileTab_->buf.get();
-    char* chunk_head = raw_buf;
+    char* chunk_head = raw_buf + 2 * sizeof(uint64_t);
     // TODO
     // range 从一开始就存 chunk ?
     uint64_t offset = 0;
