@@ -337,10 +337,10 @@ void FixedRangeTab::CleanUp() {
 
 Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const InternalKeyComparator &icmp,
                                     const Slice &key, std::string *value) {
-    size_t left = 0, right = iter->count() - 1;
+    int left = 0, right = iter->count() - 1;
     while (left <= right) {
-        size_t middle = left + ((right - left) >> 1);
-        printf("lest[%lu], right[%lu], middle[%lu]\n", left, right, middle);
+        int middle = left + ((right - left) >> 1);
+        printf("lest[%d], right[%d], middle[%d]\n", left, right, middle);
         iter->SeekTo(middle);
         const Slice &ml_key = iter->key();
         printf("ml_key size[%lu] lkey size[%lu]\n", ml_key.size(), key.size());
