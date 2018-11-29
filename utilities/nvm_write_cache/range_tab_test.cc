@@ -166,6 +166,7 @@ TEST_F(RangeTabTest, Append){
     RandomGenerator value_gen;
     for(int i = 0; i < 10; i++){
         BuildingChunk chunk(foptions_->filter_policy_, prefix);
+        vector<string > inserted_key_;
         for(int j = 0; j < 10; j++){
             char key[17];
             sprintf(key, "%016lu", key_gen.Next());
@@ -176,6 +177,7 @@ TEST_F(RangeTabTest, Append){
             //printf("put userkey %s\n", ExtractUserKey(ikey.Encode()).data());
             //printf("ikey size = [%lu]\n", ikey.Encode().size());
             chunk.Insert(ikey.Encode(), value_gen.Generate(value_size_));
+            inserted_key_.emplace_back(key, 17);
         }
         char* bloom_data;
         ChunkMeta meta;
@@ -185,6 +187,13 @@ TEST_F(RangeTabTest, Append){
         delete[] bloom_data;
         delete output_data;
         ASSERT_OK(tab->Append(icmp_, bloom_data, *output_data, meta.cur_start, meta.cur_end));
+        for(auto key : inserted_key_){
+            LookupKey lkey(Slice(key), 100);
+            string* get_value = new string();
+            Status s = tab->Get(icmp_, lkey, get_value);
+            ASSERT_OK(s);
+        }
+
         tab->GetProperties();
     }
     tab->GetProperties();
