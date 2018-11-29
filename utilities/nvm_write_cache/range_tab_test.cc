@@ -14,6 +14,7 @@
 #include "chunk.h"
 #include "fixed_range_chunk_based_nvm_write_cache.h"
 #include "common.h"
+#include "debug.h"
 
 #define TAB_DEBUG
 //#export PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig/:$PKG_CONFIG_PATH
@@ -125,13 +126,16 @@ public:
                 1 << 27
         );
         if (file_exists(pmem_path_.c_str()) != 0) {
+            DBG_PRINT("New Tab");
             pop_ = pool<pRangeRoot>::create(pmem_path_, "rangetab", 256 * 1024 * 1024, CREATE_MODE_RW);
         } else {
+            DBG_PRINT("Reopen Tab");
             pop_ = pool<pRangeRoot>::open(pmem_path_, "rangetab");
         }
         rootp_ = pop_.root();
 
         if (!rootp_->inited) {
+            DBG_PRINT("New P_Content");
             transaction::run(pop_, [&] {
                 rootp_->p_content = make_persistent<NvRangeTab>(pop_, "test", foptions_->range_size_);
                 rootp_->inited = true;
