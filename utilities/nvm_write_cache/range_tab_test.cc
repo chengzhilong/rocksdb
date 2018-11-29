@@ -194,12 +194,13 @@ TEST_F(RangeTabTest, Get){
     Random64 rand(16);
     KeyGenerator key_gen(&rand, SEQUENTIAL, 100);
     string* get_value;
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 100; i++){
         char key[17];
         sprintf(key, "%016lu", key_gen.Next());
         key[16] = 0;
+        LookupKey lkey(Slice(key, 17), 100);
         get_value = new string();
-        Status s = tab->Get(icmp_, Slice(key, 16), get_value);
+        Status s = tab->Get(icmp_, lkey, get_value);
         ASSERT_OK(s);
     }
     delete get_value;

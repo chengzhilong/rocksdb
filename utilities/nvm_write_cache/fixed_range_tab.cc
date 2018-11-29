@@ -96,7 +96,7 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
 }
 
 Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
-                          const Slice &key, std::string *value) {
+                          const LookupKey &lkey, std::string *value) {
     // 1.从下往上遍历所有的chunk
     PersistentChunkIterator *iter = new PersistentChunkIterator();
     // shared_ptr能够保证资源回收
@@ -108,11 +108,11 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         ChunkBlk &blk = blklist.at(i);
         char* bloom_data = buf + blk.offset_;
         // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
-        if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_data, bloom_bits))) {
+        if (interal_options_->filter_policy_->KeyMayMatch(lkey.internal_key(), Slice(bloom_data, bloom_bits))) {
             // 3.如果有则读取元数据进行chunk内的查找
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_,
                                               nullptr);
-            Status s = searchInChunk(iter, internal_comparator, key, value);
+            Status s = searchInChunk(iter, internal_comparator, lkey.internal_key(), value);
             if (s.ok()) return s;
         } else {
             continue;
