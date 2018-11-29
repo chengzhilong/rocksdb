@@ -116,6 +116,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
             printf("%d", bloom_data[j]);
         }
         printf("\n");
+        printf("FixedRangeTab::Get :[%p]\n", interal_options_->filter_policy_);
         if (interal_options_->filter_policy_->KeyMayMatch(lkey.user_key(), Slice(bloom_data, bloom_bits))) {
             // 3.如果有则读取元数据进行chunk内的查找
             printf("blk get dataoffset[%lu]\n", blk.getDatOffset());
