@@ -28,7 +28,7 @@ ArrayBasedChunk::ArrayBasedChunk() {
  * */
 void ArrayBasedChunk::Insert(const Slice &key, const Slice &value) {
     unsigned int total_size = key.size_ + value.size_ + 8 + 8;
-    printf("insert keysize[%lu], valuesize[%lu], at off[%lu]\n", key.size(), value.size(), raw_data_.size());
+    //printf("insert keysize[%lu], valuesize[%lu], at off[%lu]\n", key.size(), value.size(), raw_data_.size());
     //raw_data_.resize(raw_data_.size() + total_size);
     PutFixed64(&raw_data_, key.size_);
     raw_data_.append(key.data_, key.size_);
@@ -52,15 +52,15 @@ void ArrayBasedChunk::Insert(const Slice &key, const Slice &value) {
 std::string *ArrayBasedChunk::Finish() {
     //raw_data_.resize(raw_data_.size() + sizeof(uint64_t) * (entry_offset_.size() + 1));
     for (auto offset : entry_offset_) {
-        printf("out offset[%lu]\n", offset);
+        //printf("out offset[%lu]\n", offset);
         PutFixed64(&raw_data_, offset);
     }
 
     // 写num_pairs
-    printf("%lu\n",raw_data_.size());
-    printf("put num entries[%lu]\n", entry_offset_.size());
+    //printf("%lu\n",raw_data_.size());
+    //printf("put num entries[%lu]\n", entry_offset_.size());
     PutFixed64(&raw_data_, entry_offset_.size());
-    printf("put num entries[%lu]\n", DecodeFixed64(raw_data_.c_str()+raw_data_.size() - 8));
+    //printf("put num entries[%lu]\n", DecodeFixed64(raw_data_.c_str()+raw_data_.size() - 8));
 
     auto *result = new std::string(raw_data_);
 
@@ -94,7 +94,7 @@ void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &valu
     char *key_rep = new char[key.size_ - 8];
     memcpy(key_rep, key.data_, key.size_ - 8);
     keys_.emplace_back(key_rep, key.size() - 8);
-    printf("BuildingChunk::Insert [%s]\n", keys_.back().data());
+    //printf("BuildingChunk::Insert [%s]\n", keys_.back().data());
 }
 
 
@@ -105,21 +105,21 @@ std::string *BuildingChunk::Finish(string& bloom_data, rocksdb::Slice &cur_start
 
     // get bloom data
     filter_policy_->CreateFilter(&keys_[0], keys_.size(), &bloom_data);
-    printf("BuildingChunk::bloom data size :[%lu]\n", bloom_data.size());
+    //printf("BuildingChunk::bloom data size :[%lu]\n", bloom_data.size());
     //char *raw_bloom_data = new char[chunk_bloom_data->size()];
     //memcpy(raw_bloom_data, chunk_bloom_data->c_str(), chunk_bloom_data->size());
     //*bloom_data = raw_bloom_data;
     /*for(int i = 0; i < 16; i++){
         printf("%d", raw_bloom_data[i]);
     }*/
-    printf("\n");
-    for(auto key : keys_){
+    //printf("\n");
+    /*for(auto key : keys_){
         if(filter_policy_->KeyMayMatch(key, Slice(bloom_data))){
             printf("BuildingChunk::Finish::filter found [%s]\n", key.data());
         } else{
             printf("BuildingChunk::Finish::filter not found [%s]\n", key.data());
         }
-    }
+    }*/
 
     // get key range
     cur_start = keys_[0];
