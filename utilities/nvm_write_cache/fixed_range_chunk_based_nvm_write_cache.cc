@@ -50,9 +50,9 @@ FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
     pop_.close();
 }
 
-Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &internal_comparator, const Slice &key,
+Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &internal_comparator, const LookupKey &lkey,
                                               std::string *value) {
-    std::string prefix = (*vinfo_->internal_options_->prefix_extractor_)(key.data(), key.size());
+    std::string prefix = (*vinfo_->internal_options_->prefix_extractor_)(lkey.user_key().data(), lkey.user_key().size());
     auto found_tab = vinfo_->prefix2range.find(prefix);
     if (found_tab == vinfo_->prefix2range.end()) {
         // not found
@@ -60,7 +60,7 @@ Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &inter
     } else {
         // found
         FixedRangeTab *tab = found_tab->second;
-        return tab->Get(internal_comparator, key, value);
+        return tab->Get(internal_comparator, lkey, value);
     }
 }
 
