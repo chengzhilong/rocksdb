@@ -106,7 +106,7 @@ std::string *BuildingChunk::Finish(char **bloom_data, rocksdb::Slice &cur_start,
     // get bloom data
     chunk_bloom_data = new std::string();
     filter_policy_->CreateFilter(&keys_[0], keys_.size(), chunk_bloom_data);
-    printf("BuildingChunk::Finish :[%p]\n", filter_policy_);
+    printf("BuildingChunk::bloom data size :[%lu]\n", chunk_bloom_data->size());
     char *raw_bloom_data = new char[chunk_bloom_data->size()];
     memcpy(raw_bloom_data, chunk_bloom_data->c_str(), chunk_bloom_data->size());
     *bloom_data = raw_bloom_data;
