@@ -165,6 +165,8 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     // append data
     memcpy(dst, chunk_data.data(), chunk_data.size());
 
+    printf("kv num[%lu]\n", dst+chunk_data.size()- sizeof(uint64_t));
+
     // update cur and seq
     // transaction
 
