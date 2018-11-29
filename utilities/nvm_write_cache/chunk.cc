@@ -12,6 +12,7 @@ namespace rocksdb {
 ArrayBasedChunk::ArrayBasedChunk() {
     raw_data_.clear();
     entry_offset_.clear();
+    now_offset_ = 0;
 }
 
 
