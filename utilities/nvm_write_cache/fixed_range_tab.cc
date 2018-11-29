@@ -42,7 +42,7 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
           nonVolatileTab_(nonVolatileTab),
           interal_options_(options){
     //cout<<"constructor of FixedRangeTab"<<endl;
-    NVM_DEBUG("constrctor of FixedRangeTab\n");
+    DBG_PRINT("constructor of FixedRangeTab\n");
     NvRangeTab *raw_tab = nonVolatileTab_.get();
     pendding_clean_ = 0;
     in_compaction_ = false;
