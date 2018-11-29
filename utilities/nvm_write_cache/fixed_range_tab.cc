@@ -113,11 +113,15 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_,
                                               nullptr);
             Status s = searchInChunk(iter, internal_comparator, lkey.internal_key(), value);
-            if (s.ok()) return s;
+            if (s.ok()) {
+                cout<<"Get:found"<<endl;
+                return s;
+            }
         } else {
             continue;
         }
     } // 4.循环直到查找完所有的chunk
+    cout<<"Get:found"<<endl;
     return Status::NotFound("not found");
 }
 
