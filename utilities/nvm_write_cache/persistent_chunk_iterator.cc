@@ -48,6 +48,7 @@ PersistentChunkIterator::PersistentChunkIterator(char* data,
         // next pair
         metaOffset += sizeof_uint64_t;
     }
+    printf("finish consrtuctor of persistent chunk iter\n");
 }
 
 } // namespace rocksdb
