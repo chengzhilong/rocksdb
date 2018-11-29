@@ -53,6 +53,7 @@ namespace rocksdb{
         uint64_t num_entries_;
         ArrayBasedChunk* chunk_;
         std::vector<Slice> keys_;
+        std::vector<Slice> user_keys_;
         const FilterPolicy* filter_policy_;
     };
 }

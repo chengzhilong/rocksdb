@@ -93,7 +93,11 @@ void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &valu
     chunk_->Insert(key, value);
     char *key_rep = new char[key.size_];
     memcpy(key_rep, key.data_, key.size_);
+    // InternalKey in keys
     keys_.emplace_back(key_rep, key.size());
+    InternalKey ikey;
+    ikey.DecodeFrom(key);
+    user_keys_.push_back(ikey.user_key());
     //printf("BuildingChunk::Insert [%s]\n", keys_.back().data());
 }
 
@@ -104,7 +108,8 @@ std::string *BuildingChunk::Finish(string& bloom_data, rocksdb::Slice &cur_start
     chunk_data = chunk_->Finish();
 
     // get bloom data
-    filter_policy_->CreateFilter(&keys_[0], keys_.size(), &bloom_data);
+    // Build bloom filter by internal_key
+    filter_policy_->CreateFilter(&user_keys_[0], user_keys_.size(), &bloom_data);
     //printf("BuildingChunk::bloom data size :[%lu]\n", bloom_data.size());
     //char *raw_bloom_data = new char[chunk_bloom_data->size()];
     //memcpy(raw_bloom_data, chunk_bloom_data->c_str(), chunk_bloom_data->size());
