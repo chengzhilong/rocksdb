@@ -86,8 +86,7 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
     //      + sizeof(stat.end_);
     PersistentChunk pchk;
     for (ChunkBlk &blk : blklist) {
-        pchk.reset(interal_options_->chunk_bloom_bits_, blk.chunkLen_,
-                   pbuf + blk.getDatOffset());
+        pchk.reset(blk.bloom_bytes_, blk.chunkLen_, pbuf + blk.getDatOffset());
         merge_iter_builder.AddIterator(pchk.NewIterator(arena));
     }
 
@@ -100,42 +99,29 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
     // 1.从下往上遍历所有的chunk
     PersistentChunkIterator *iter = new PersistentChunkIterator();
     // shared_ptr能够保证资源回收
-    cout<<"Get:new iter"<<endl;
-    //shared_ptr<PersistentChunkIterator> sp_persistent_chunk_iter(iter);
-    uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
     char* buf = raw_;
-    printf("blklist size = [%lu]\n", blklist.size());
+    //printf("blklist size = [%lu]\n", blklist.size());
     for (int i = blklist.size() - 1; i >= 0; i--) {
         assert(i >= 0);
         ChunkBlk &blk = blklist.at(i);
-        printf("FixedRangeTab::Get::chunk off[%lu]\n", blk.offset_);
-        char* bloom_data = buf + blk.offset_;
-        // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
-        printf("FixedRangeTab::Get[%s]size[%lu]\n", lkey.user_key().data(), lkey.user_key().size());
-        for(int j = 0; j < 16; j++){
-            printf("%d", bloom_data[j]);
-        }
-        printf("\n");
-        printf("FixedRangeTab::Get :[%p]\n", interal_options_->filter_policy_);
-        if (interal_options_->filter_policy_->KeyMayMatch(lkey.user_key(), Slice(bloom_data, bloom_bits))) {
+        // |--bloom len--|--bloom data--|--chunk len--|--chunk data|
+        // ^
+        // |
+        // bloom data
+        char* chunk_head = buf + blk.offset_;
+        uint64_t bloom_bytes = blk.bloom_bytes_;
+        if (interal_options_->filter_policy_->KeyMayMatch(lkey.user_key(), Slice(chunk_head + 8, bloom_bytes))) {
             // 3.如果有则读取元数据进行chunk内的查找
-            printf("blk get dataoffset[%lu]\n", blk.getDatOffset());
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_, nullptr);
-            cout<<"Get:new iter on allocated memory"<<endl;
-            printf("count = %lu\n", iter->count());
             Status s = searchInChunk(iter, internal_comparator, lkey.user_key(), value);
-            cout<<"Get:after search in chunk"<<endl;
             if (s.ok()) {
-                cout<<"Get:found"<<endl;
                 delete iter;
                 return s;
             }
         } else {
-            printf("filted by bloom\n");
             continue;
         }
     } // 4.循环直到查找完所有的chunk
-    cout<<"Get:found"<<endl;
     delete iter;
     return Status::NotFound("not found");
 }
@@ -150,8 +136,19 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
  *
  * */
 
+
+/* chunk data format:
+ *
+ * |--  bloom len  --| // 8bytes
+ * |--  bloom data --| // variant
+ * |--  chunk len  --| // 8bytes
+ * |--  chunk data --| // variant
+ * |--    . . .    --|
+ *
+ * */
+
 Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
-                             const char *bloom_data, const Slice &chunk_data,
+                             const string& bloom_data, const Slice &chunk_data,
                              const Slice &start, const Slice &end) {
     if (nonVolatileTab_->dataLen + chunk_data.size_ >= nonVolatileTab_->bufSize
         || nonVolatileTab_->chunk_num_ > max_chunk_num_to_flush()) {
@@ -161,23 +158,24 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
         printf("full\n");
     }
     //size_t cur_len = node_in_pmem_map->dataLen;
-    size_t chunk_blk_len = interal_options_->chunk_bloom_bits_ + sizeof(uint64_t) + chunk_data.size();
+    size_t chunk_blk_len = bloom_data.size() + chunk_data.size() + 2 * sizeof(uint64_t);
     uint64_t raw_cur = DecodeFixed64(raw_ - 2 * sizeof(uint64_t));
     uint64_t last_seq = DecodeFixed64(raw_ - sizeof(uint64_t));
-    printf("raw_cur[%lu] chunk size[%lu]\n", raw_cur, chunk_data.size());
-    printf("num from chunk[%lu]\n", DecodeFixed64(chunk_data.data() + chunk_data.size() - 8));
+    //printf("raw_cur[%lu] chunk size[%lu]\n", raw_cur, chunk_data.size());
+    //printf("num from chunk[%lu]\n", DecodeFixed64(chunk_data.data() + chunk_data.size() - 8));
 
-    char *dst = raw_ + raw_cur;
+    char *dst = raw_ + raw_cur; // move to start of this chunk
     // append bloom data
-    memcpy(dst, bloom_data, interal_options_->chunk_bloom_bits_);
+    EncodeFixed64(dst, bloom_data.size()); //+8
+    memcpy(dst + sizeof(uint64_t), bloom_data.c_str(), bloom_data.size()); //+bloom data size
     // append chunk data size
-    EncodeFixed64(dst + interal_options_->chunk_bloom_bits_, chunk_data.size());
+    EncodeFixed64(dst + bloom_data.size(), chunk_data.size()); //+8
 
-    dst += interal_options_->chunk_bloom_bits_ + sizeof(uint64_t);
+    dst += bloom_data.size() + sizeof(uint64_t) * 2;
     // append data
-    memcpy(dst, chunk_data.data(), chunk_data.size());
+    memcpy(dst, chunk_data.data(), chunk_data.size()); //+chunk data size
 
-    printf("kv num[%lu]\n", DecodeFixed64(dst+chunk_data.size()- sizeof(uint64_t)));
+    //printf("kv num[%lu]\n", DecodeFixed64(dst+chunk_data.size()- sizeof(uint64_t)));
 
     // update cur and seq
     // transaction
@@ -204,7 +202,7 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     }
 
     // record this offset to volatile vector
-    blklist.emplace_back(interal_options_->chunk_bloom_bits_, raw_cur, chunk_data.size());
+    blklist.emplace_back(bloom_data.size(), raw_cur, chunk_data.size());
 
     return Status::OK();
 }
@@ -316,34 +314,6 @@ void FixedRangeTab::CleanUp() {
 
 }
 
-/*Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator, const rocksdb::Slice &key,
-                          std::string *value) {
-    // 1.从下往上遍历所有的chunk
-    uint64_t bloom_bits = interal_options_->chunk_bloom_bits_;
-    for(size_t i = blklist.size() - 1; i >= 0; i--){
-        size_t chunk_off = blklist[i].getDatOffset();
-        char* bloom_data = raw_ + (chunk_off - sizeof(uint64_t) - interal_options_->chunk_bloom_bits_);
-        if (interal_options_->filter_policy_->KeyMayMatch(key, Slice(bloom_data, bloom_bits))) {
-            // 3.如果有则读取元数据进行chunk内的查找
-            uint64_t chunk_len = DecodeFixed64(bloom_data + bloom_bits);
-            uint64_t item_num = DecodeFixed64(raw_ + chunk_len - sizeof(uint64_t));
-            char *chunk_index = raw_ + (chunk_off +  (item_num + 1) * sizeof(uint64_t));
-            std::vector<uint64_t> item_offs;
-            while (item_num-- > 0) {
-                item_offs.push_back(DecodeFixed64(chunk_index));
-                chunk_index += sizeof(uint64_t);
-            }
-            Status s = DoInChunkSearch(internal_comparator, key, value, item_offs, raw_+chunk_off);
-            if (s.ok()) return s;
-        } else {
-            continue;
-        }
-    }
-
-    // 4.循环直到查找完所有的chunk
-}*/
-
-
 Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const InternalKeyComparator &icmp,
                                     const Slice &key, std::string *value) {
     int left = 0, right = iter->count() - 1;
@@ -397,16 +367,20 @@ void FixedRangeTab::RebuildBlkList() {
     //ConsistencyCheck();
     size_t dataLen;
     dataLen = nonVolatileTab_->dataLen;
+    char* raw_buf = nonVolatileTab_->buf.get();
+    char* chunk_head = raw_buf;
     // TODO
     // range 从一开始就存 chunk ?
-    size_t offset = 0;
+    uint64_t offset = 0;
     while (offset < dataLen) {
-        size_t chunkLenOffset = offset + interal_options_->chunk_bloom_bits_;
+        uint64_t bloom_size = DecodeFixed64(chunk_head);
+        uint64_t chunk_size = DecodeFixed64(chunk_head + bloom_size + sizeof(uint64_t));
+        /*size_t chunkLenOffset = offset + interal_options_->chunk_bloom_bits_;
         size_t chunkLen;
-        memcpy(&chunkLen, nonVolatileTab_->buf.get() + chunkLenOffset, sizeof(chunkLen));
-        blklist.emplace_back(interal_options_->chunk_bloom_bits_, offset, chunkLen);
+        memcpy(&chunkLen, nonVolatileTab_->buf.get() + chunkLenOffset, sizeof(chunkLen));*/
+        blklist.emplace_back(bloom_size, offset, chunk_size);
         // next chunk block
-        offset += interal_options_->chunk_bloom_bits_ + sizeof(chunkLen) + chunkLen;
+        offset += bloom_size + chunk_size + sizeof(uint64_t) * 2;
     }
 }
 

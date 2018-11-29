@@ -179,13 +179,13 @@ TEST_F(RangeTabTest, Append){
             chunk.Insert(ikey.Encode(), value_gen.Generate(value_size_));
             inserted_key_.emplace_back(key, 17);
         }
-        char* bloom_data;
+        string bloom_data;
         ChunkMeta meta;
         meta.prefix = prefix;
-        std::string *output_data = chunk.Finish(&bloom_data, meta.cur_start, meta.cur_end);
+        std::string *output_data = chunk.Finish(bloom_data, meta.cur_start, meta.cur_end);
         // TODO 谁申请谁释放
         ASSERT_OK(tab->Append(icmp_, bloom_data, *output_data, meta.cur_start, meta.cur_end));
-        delete[] bloom_data;
+        //delete[] bloom_data;
         delete output_data;
         for(auto key : inserted_key_){
             LookupKey lkey(Slice(key), 100);

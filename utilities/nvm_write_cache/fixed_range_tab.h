@@ -108,7 +108,7 @@ public:
 
     // 将新的chunk数据添加到RangeMemtable
     Status Append(const InternalKeyComparator &icmp,
-                  const char *bloom_data, const Slice &chunk_data,
+                  const string& bloom_data, const Slice &chunk_data,
                   const Slice &start, const Slice &end);
 
     // 返回当前range tab是否正在被compact

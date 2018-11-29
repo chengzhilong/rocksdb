@@ -13,6 +13,7 @@
 namespace rocksdb{
     class Slice;
     class FilterPolicy;
+    using std::string;
 
     class ArrayBasedChunk{
     public:
@@ -43,7 +44,7 @@ namespace rocksdb{
 
         void Insert(const Slice& key, const Slice& value);
 
-        std::string* Finish(char** bloom_data, Slice& cur_start, Slice& cur_end);
+        std::string* Finish(string& bloom_data, Slice& cur_start, Slice& cur_end);
 
         uint64_t NumEntries();
 

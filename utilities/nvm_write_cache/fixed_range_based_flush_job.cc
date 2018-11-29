@@ -306,17 +306,16 @@ Status FixedRangeBasedFlushJob::BuildChunkAndInsert(InternalIterator *iter,
             thread_pool.clear();
             auto finish_build_chunk = [&](std::string prefix) {
                 // get chunk data
-                char* bloom_data;
+                string bloom_data;
                 ChunkMeta meta;
                 meta.prefix = prefix;
-                std::string *output_data = pending_output_chunk[prefix]->Finish(&bloom_data,
+                std::string *output_data = pending_output_chunk[prefix]->Finish(bloom_data,
                         meta.cur_start, meta.cur_end);
                 // append to range tab
                 //range_found->second.Append(bloom_data/*char**/, output_data/*Slice*/,ChunkMeta(internal_comparator, cur_start, cur_end));
                 nvm_write_cache_->AppendToRange(internal_comparator, bloom_data, output_data->c_str(), meta);
                 // TODO:Slice是否需要delete
                 delete output_data;
-                delete[] bloom_data;
             };
 
             auto pending_chunk = pending_output_chunk.begin();

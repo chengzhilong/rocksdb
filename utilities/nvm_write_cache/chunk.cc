@@ -98,24 +98,23 @@ void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &valu
 }
 
 
-std::string *BuildingChunk::Finish(char **bloom_data, rocksdb::Slice &cur_start, rocksdb::Slice &cur_end) {
-    std::string *chunk_data, *chunk_bloom_data;
+std::string *BuildingChunk::Finish(string& bloom_data, rocksdb::Slice &cur_start, rocksdb::Slice &cur_end) {
+    std::string *chunk_data;
     // get kv data
     chunk_data = chunk_->Finish();
 
     // get bloom data
-    chunk_bloom_data = new std::string();
-    filter_policy_->CreateFilter(&keys_[0], keys_.size(), chunk_bloom_data);
-    printf("BuildingChunk::bloom data size :[%lu]\n", chunk_bloom_data->size());
-    char *raw_bloom_data = new char[chunk_bloom_data->size()];
-    memcpy(raw_bloom_data, chunk_bloom_data->c_str(), chunk_bloom_data->size());
-    *bloom_data = raw_bloom_data;
-    for(int i = 0; i < 16; i++){
+    filter_policy_->CreateFilter(&keys_[0], keys_.size(), &bloom_data);
+    printf("BuildingChunk::bloom data size :[%lu]\n", bloom_data.size());
+    //char *raw_bloom_data = new char[chunk_bloom_data->size()];
+    //memcpy(raw_bloom_data, chunk_bloom_data->c_str(), chunk_bloom_data->size());
+    //*bloom_data = raw_bloom_data;
+    /*for(int i = 0; i < 16; i++){
         printf("%d", raw_bloom_data[i]);
-    }
+    }*/
     printf("\n");
     for(auto key : keys_){
-        if(filter_policy_->KeyMayMatch(key, Slice(raw_bloom_data, 16))){
+        if(filter_policy_->KeyMayMatch(key, Slice(bloom_data))){
             printf("BuildingChunk::Finish::filter found [%s]\n", key.data());
         } else{
             printf("BuildingChunk::Finish::filter not found [%s]\n", key.data());
@@ -127,7 +126,7 @@ std::string *BuildingChunk::Finish(char **bloom_data, rocksdb::Slice &cur_start,
     cur_end = keys_[keys_.size() - 1];
     //printf("cur_start_size[%lu], cur_end_size[%lu] in [BuildingChunk::Finish]\n", cur_start.size(), cur_end.size());
 
-    delete chunk_bloom_data;
+    //delete chunk_bloom_data;
     return chunk_data;
 }
 }

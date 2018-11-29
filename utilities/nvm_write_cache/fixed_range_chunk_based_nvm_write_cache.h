@@ -96,7 +96,7 @@ public:
     // get data from cache
     Status Get(const InternalKeyComparator &internal_comparator, const LookupKey &lkey, std::string *value) override;
 
-    void AppendToRange(const InternalKeyComparator &icmp, const char *bloom_data, const Slice &chunk_data,
+    void AppendToRange(const InternalKeyComparator &icmp, const string& bloom_data, const Slice &chunk_data,
                        const ChunkMeta &meta);
 
     // get iterator of the total cache

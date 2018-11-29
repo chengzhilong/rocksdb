@@ -65,7 +65,7 @@ Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &inter
 }
 
 void FixedRangeChunkBasedNVMWriteCache::AppendToRange(const rocksdb::InternalKeyComparator &icmp,
-                                                      const char *bloom_data, const rocksdb::Slice &chunk_data,
+                                                      const srting &bloom_data, const rocksdb::Slice &chunk_data,
                                                       const rocksdb::ChunkMeta &meta) {
     /*
      * 1. 获取prefix
