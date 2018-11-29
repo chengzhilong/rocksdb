@@ -115,7 +115,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_, nullptr);
             cout<<"Get:new iter on allocated memory"<<endl;
             printf("count = %lu\n", iter->count());
-            Status s = searchInChunk(iter, internal_comparator, lkey.internal_key(), value);
+            Status s = searchInChunk(iter, internal_comparator, lkey.user_key(), value);
             cout<<"Get:after search in chunk"<<endl;
             if (s.ok()) {
                 cout<<"Get:found"<<endl;
@@ -338,13 +338,16 @@ void FixedRangeTab::CleanUp() {
 Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const InternalKeyComparator &icmp,
                                     const Slice &key, std::string *value) {
     int left = 0, right = iter->count() - 1;
+    const Comparator* cmp = icmp.user_comparator();
     while (left <= right) {
         int middle = left + ((right - left) >> 1);
         printf("lest[%d], right[%d], middle[%d]\n", left, right, middle);
         iter->SeekTo(middle);
         const Slice &ml_key = iter->key();
+        ParsedInternalKey ikey;
+        ParseInternalKey(ml_key, &ikey);
         printf("ml_key size[%lu] lkey size[%lu]\n", ml_key.size(), key.size());
-        int result = icmp.Compare(ml_key, key);
+        int result = cmp->Compare(ikey.user_key, key);
         if (result == 0) {
             //found
             const Slice &raw_value = iter->value();
