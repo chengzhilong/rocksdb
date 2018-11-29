@@ -84,7 +84,7 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
     MergeIteratorBuilder merge_iter_builder(icmp,
                                             arena);
 
-    char* pbuf = nonVolatileTab_->buf.get();
+    char* pbuf = nonVolatileTab_->buf.get() + 2 * sizeof(uint64_t);
     // TODO
     // 预设 range 持久化
     //  char *chunkBlkOffset = data_ + sizeof(stat.used_bits_) + sizeof(stat.start_)
@@ -339,7 +339,7 @@ Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const Interna
         const Slice &ml_key = iter->key();
         ParsedInternalKey ikey;
         ParseInternalKey(ml_key, &ikey);
-        DBG_PRINT("ikey[%s] size[%lu] lkey[%s] size[%lu]",ikey.user_key.data(), ikey.user_key.size(),key.data(), key.size());
+        //DBG_PRINT("ikey[%s] size[%lu] lkey[%s] size[%lu]",ikey.user_key.data(), ikey.user_key.size(),key.data(), key.size());
         int result = cmp->Compare(ikey.user_key, key);
         if (result == 0) {
             //found
@@ -393,7 +393,7 @@ void FixedRangeTab::RebuildBlkList() {
         blklist.emplace_back(bloom_size, offset, chunk_size);
         // next chunk block
         offset += bloom_size + chunk_size + sizeof(uint64_t) * 2;
-        DBG_PRINT("off = %lu, bloom_size = %lu, chunk_size = %lu", offset, bloom_size, chunk_size);
+        //DBG_PRINT("off = %lu, bloom_size = %lu, chunk_size = %lu", offset, bloom_size, chunk_size);
     }
 }
 

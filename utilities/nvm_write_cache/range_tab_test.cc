@@ -229,9 +229,12 @@ TEST_F(RangeTabTest, Iterator){
     iter->SeekToFirst();
     for(; iter->Valid(); iter->Next()){
         char key[17];
-        sprintf(key, "%016lu", key_gen.Next());
+        uint64_t i = key_gen.Next();
+        sprintf(key, "%016lu", i);
         key[16] = 0;
-        ASSERT_EQ(Slice(key, 16), iter->key());
+        InternalKey ikey;
+        ikey.Set(Slice(key, 17), static_cast<uint64_t >(i), kTypeValue);
+        ASSERT_EQ(ikey.Encode(), iter->key());
     }
 }
 

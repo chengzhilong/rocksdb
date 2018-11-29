@@ -99,7 +99,7 @@ void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &valu
     //InternalKey ikey;
     //ikey.DecodeFrom(key);
     //DBG_PRINT("insert user key [%s]", ikey.user_key().data());
-    user_keys_.emplace_back(key_rep, key.size()-8);
+    user_keys_.emplace_back(key_rep, key.size() - 8);
     //printf("BuildingChunk::Insert [%s]\n", keys_.back().data());
 }
 
@@ -120,13 +120,13 @@ std::string *BuildingChunk::Finish(string& bloom_data, rocksdb::Slice &cur_start
         printf("%d", raw_bloom_data[i]);
     }*/
     //printf("\n");
-    for(auto key : user_keys_){
+    /*for(auto key : user_keys_){
         if(filter_policy_->KeyMayMatch(key, Slice(bloom_data))){
             DBG_PRINT("BuildingChunk::Finish::filter found [%s]", key.data());
         } else{
             DBG_PRINT("BuildingChunk::Finish::filter not found [%s]", key.data());
         }
-    }
+    }*/
 
     // get key range
     cur_start = keys_[0];
