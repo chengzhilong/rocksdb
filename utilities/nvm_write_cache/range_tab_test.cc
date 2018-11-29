@@ -240,7 +240,7 @@ TEST_F(RangeTabTest, Iterator){
 
 TEST_F(RangeTabTest, Compaction){
     tab->SetCompactionWorking(true);
-    sleep(1000);
+    sleep(10);
     tab->CleanUp();
     tab->SetCompactionWorking(false);
     tab->GetProperties();
