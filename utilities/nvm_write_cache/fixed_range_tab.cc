@@ -115,6 +115,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_,
                                               nullptr);
             Status s = searchInChunk(iter, internal_comparator, lkey.internal_key(), value);
+            cout<<"Get:after search in chunk"<<endl;
             if (s.ok()) {
                 cout<<"Get:found"<<endl;
                 return s;
