@@ -56,7 +56,9 @@ std::string *ArrayBasedChunk::Finish() {
 
     // 写num_pairs
     printf("%lu\n",raw_data_.size());
+    printf("put num entries[%lu]\n", entry_offset_.size());
     PutFixed64(&raw_data_, entry_offset_.size());
+    printf("put num entries[%lu]\n", DecodeFixed64(raw_data_.c_str()+raw_data_.size() - 8));
 
     auto *result = new std::string(raw_data_);
 
