@@ -27,8 +27,8 @@ ArrayBasedChunk::ArrayBasedChunk() {
  * */
 void ArrayBasedChunk::Insert(const Slice &key, const Slice &value) {
     unsigned int total_size = key.size_ + value.size_ + 8 + 8;
+    printf("insert keysize[%lu], valuesize[%lu], at off[%lu]", key.size(), value.size(), raw_data_.size());
     raw_data_.resize(raw_data_.size() + total_size);
-
     PutFixed64(&raw_data_, key.size_);
     raw_data_.append(key.data_, key.size_);
     PutFixed64(&raw_data_, value.size_);

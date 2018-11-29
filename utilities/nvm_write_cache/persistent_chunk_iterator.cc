@@ -24,6 +24,7 @@ PersistentChunkIterator::PersistentChunkIterator(char* data,
 
     for (size_t i = 0; i < nPairs; ++i) {
         uint64_t pairOffset = DecodeFixed64(metaOffset);
+        printf("get kv off[%lu]\n", pairOffset);
 
         //memcpy(&pairOffset, metaOffset, sizeof(pairOffset));
 //    *(reinterpret_cast<size_t*>(metaOffset));
