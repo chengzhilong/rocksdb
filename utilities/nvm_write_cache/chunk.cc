@@ -91,9 +91,9 @@ uint64_t BuildingChunk::NumEntries() {
 
 void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &value) {
     chunk_->Insert(key, value);
-    char *key_rep = new char[key.size_];
-    memcpy(key_rep, key.data_, key.size_);
-    keys_.emplace_back(key_rep, key.size());
+    char *key_rep = new char[key.size_ - 8];
+    memcpy(key_rep, key.data_, key.size_ - 8);
+    keys_.emplace_back(key_rep, key.size() - 8);
 }
 
 
