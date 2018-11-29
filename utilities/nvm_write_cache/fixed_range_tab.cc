@@ -341,7 +341,7 @@ Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const Interna
         size_t middle = left + ((right - left) >> 1);
         iter->SeekTo(middle);
         const Slice &ml_key = iter->key();
-        printf("ml_key size[%lu]\n", ml_key.size());
+        printf("ml_key size[%lu] lkey size[%lu]\n", ml_key.size(), key.size());
         int result = icmp.Compare(ml_key, key);
         if (result == 0) {
             //found
