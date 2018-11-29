@@ -32,6 +32,7 @@ PersistentChunkIterator::PersistentChunkIterator(char* data,
 
         // key size
         uint64_t _size = DecodeFixed64(pairAddr);
+        printf("get key size [%lu]\n", _size);
         // key
         vKey_.emplace_back(pairAddr + sizeof_uint64_t, _size);
 //    size_t _size = *(reinterpret_cast<size_t*>(pairAddr));
@@ -41,6 +42,7 @@ PersistentChunkIterator::PersistentChunkIterator(char* data,
         pairAddr += sizeof_uint64_t + _size;
         // value size
         _size = DecodeFixed64(pairAddr);
+        printf("get value size [%lu]\n", _size);
         // value
         vValue_.emplace_back(pairAddr + sizeof_uint64_t, _size);
 //    _size = *(reinterpret_cast<size_t*>(pairAddr));
