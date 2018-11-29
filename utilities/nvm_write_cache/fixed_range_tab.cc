@@ -124,6 +124,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
                 return s;
             }
         } else {
+            printf("filted by bloom\n");
             continue;
         }
     } // 4.循环直到查找完所有的chunk
