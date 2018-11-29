@@ -111,6 +111,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
         if (interal_options_->filter_policy_->KeyMayMatch(lkey.internal_key(), Slice(bloom_data, bloom_bits))) {
             // 3.如果有则读取元数据进行chunk内的查找
+            printf("blk get dataoffset[%lu]\n", blk.getDatOffset());
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_, nullptr);
             cout<<"Get:new iter on allocated memory"<<endl;
             Status s = searchInChunk(iter, internal_comparator, lkey.internal_key(), value);
