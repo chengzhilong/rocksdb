@@ -109,6 +109,10 @@ std::string *BuildingChunk::Finish(char **bloom_data, rocksdb::Slice &cur_start,
     char *raw_bloom_data = new char[chunk_bloom_data->size()];
     memcpy(raw_bloom_data, chunk_bloom_data->c_str(), chunk_bloom_data->size());
     *bloom_data = raw_bloom_data;
+    for(int i = 0; i < 16; i++){
+        printf("%d", raw_bloom_data[i]);
+    }
+    printf("\n");
     for(auto key : keys_){
         if(filter_policy_->KeyMayMatch(key, Slice(raw_bloom_data, 16))){
             printf("BuildingChunk::Finish::filter found [%s]\n", key.data());

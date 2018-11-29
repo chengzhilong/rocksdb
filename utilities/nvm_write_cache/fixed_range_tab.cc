@@ -112,6 +112,10 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         char* bloom_data = buf + blk.offset_;
         // 2.获取当前chunk的bloom data，查找这个bloom data判断是否包含对应的key
         printf("FixedRangeTab::Get[%s]\n", lkey.user_key().data());
+        for(int i = 0; i < 16; i++){
+            printf("%d", bloom_data[i]);
+        }
+        printf("\n");
         if (interal_options_->filter_policy_->KeyMayMatch(lkey.user_key(), Slice(bloom_data, bloom_bits))) {
             // 3.如果有则读取元数据进行chunk内的查找
             printf("blk get dataoffset[%lu]\n", blk.getDatOffset());
