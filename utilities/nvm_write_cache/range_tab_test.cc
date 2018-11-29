@@ -184,9 +184,9 @@ TEST_F(RangeTabTest, Append){
         meta.prefix = prefix;
         std::string *output_data = chunk.Finish(&bloom_data, meta.cur_start, meta.cur_end);
         // TODO 谁申请谁释放
+        ASSERT_OK(tab->Append(icmp_, bloom_data, *output_data, meta.cur_start, meta.cur_end));
         delete[] bloom_data;
         delete output_data;
-        ASSERT_OK(tab->Append(icmp_, bloom_data, *output_data, meta.cur_start, meta.cur_end));
         for(auto key : inserted_key_){
             LookupKey lkey(Slice(key), 100);
             string* get_value = new string();
