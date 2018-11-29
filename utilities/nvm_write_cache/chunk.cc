@@ -50,7 +50,7 @@ void ArrayBasedChunk::Insert(const Slice &key, const Slice &value) {
  * |    chunk num    |
  * */
 std::string *ArrayBasedChunk::Finish() {
-    raw_data_.resize(raw_data_.size() + sizeof(uint64_t) * (entry_offset_.size() + 1));
+    //raw_data_.resize(raw_data_.size() + sizeof(uint64_t) * (entry_offset_.size() + 1));
     for (auto offset : entry_offset_) {
         printf("out offset[%lu]\n", offset);
         PutFixed64(&raw_data_, offset);
