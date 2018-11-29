@@ -94,6 +94,7 @@ void BuildingChunk::Insert(const rocksdb::Slice &key, const rocksdb::Slice &valu
     char *key_rep = new char[key.size_ - 8];
     memcpy(key_rep, key.data_, key.size_ - 8);
     keys_.emplace_back(key_rep, key.size() - 8);
+    printf("BuildingChunk::Insert [%s]\n", keys_.back().data());
 }
 
 
