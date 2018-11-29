@@ -173,6 +173,7 @@ TEST_F(RangeTabTest, Append){
             ikey.Set(Slice(key, 17), static_cast<uint64_t >(i * 10 + j), kTypeValue);
             //key[16] = 0;
             printf("put userkey %s\n", ExtractUserKey(ikey.Encode()).data());
+            printf("ikey size = [%lu]\n", ikey.Encode().size());
             chunk.Insert(ikey.Encode(), value_gen.Generate(value_size_));
         }
         char* bloom_data;

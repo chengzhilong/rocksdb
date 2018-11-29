@@ -106,6 +106,7 @@ std::string *BuildingChunk::Finish(char **bloom_data, rocksdb::Slice &cur_start,
     // get key range
     cur_start = keys_[0];
     cur_end = keys_[keys_.size() - 1];
+    printf("cur_start_size[%lu], cur_end_size[%lu] in [BuildingChunk::Finish]\n", cur_start.size(), cur_end.size());
 
     delete chunk_bloom_data;
     return chunk_data;
