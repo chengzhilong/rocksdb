@@ -61,6 +61,7 @@ FixedRangeTab::FixedRangeTab(pool_base &pop, const rocksdb::FixedRangeBasedOptio
         DBG_PRINT("seq != 0");
         // rebuild
         RebuildBlkList();
+        DBG_PRINT("after rebuild");
         raw_ += 2 * sizeof(uint64_t);
         GetProperties();
     }
@@ -368,6 +369,7 @@ void FixedRangeTab::RebuildBlkList() {
     //ConsistencyCheck();
     size_t dataLen;
     dataLen = nonVolatileTab_->dataLen;
+    DBG_PRINT("dataLen = %lu", dataLen);
     char* raw_buf = nonVolatileTab_->buf.get();
     char* chunk_head = raw_buf + 2 * sizeof(uint64_t);
     // TODO
@@ -376,12 +378,10 @@ void FixedRangeTab::RebuildBlkList() {
     while (offset < dataLen) {
         uint64_t bloom_size = DecodeFixed64(chunk_head);
         uint64_t chunk_size = DecodeFixed64(chunk_head + bloom_size + sizeof(uint64_t));
-        /*size_t chunkLenOffset = offset + interal_options_->chunk_bloom_bits_;
-        size_t chunkLen;
-        memcpy(&chunkLen, nonVolatileTab_->buf.get() + chunkLenOffset, sizeof(chunkLen));*/
         blklist.emplace_back(bloom_size, offset, chunk_size);
         // next chunk block
         offset += bloom_size + chunk_size + sizeof(uint64_t) * 2;
+        DBG_PRINT("off = %lu, bloom_size = %lu, chunk_size = %lu", offset, bloom_size, chunk_size);
     }
 }
 
