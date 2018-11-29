@@ -23,7 +23,7 @@ public:
     }
 
     size_t getDatOffset() {
-        return offset_ + bloom_bits_ + sizeof(chunkLen_);
+        return offset_ + bloom_bits_ + sizeof(uint64_t);
     }
 
     size_t bloom_bits_;
