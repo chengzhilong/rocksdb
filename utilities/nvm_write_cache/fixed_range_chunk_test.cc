@@ -193,10 +193,14 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
                 now_chunk->Insert(ikey.Encode(), value_gen.Generate(value_size_));
                 last_chunk = now_chunk;
                 last_prefix = now_prefix;
+
+                DBG_PRINT("end insert");
             }
             insert_key.emplace_back(key, 17);
         }
     }
+
+    DBG_PRINT("prepare to call RangeExistsOrCreat(): pending_output_chunk size[%lu]", pending_output_chunk.size());
 
     for (auto pending_chunk : pending_output_chunk) {
         fixed_range_chunk_->RangeExistsOrCreat(pending_chunk.first);
@@ -213,6 +217,7 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         delete output_data;
     };
 
+    DBG_PRINT("Prepare to call finish_build_chunk()");
     for (auto pending_chunk = pending_output_chunk.begin(); pending_chunk != pending_output_chunk.end();
             pending_chunk++) {
         finish_build_chunk(pending_chunk->first);

@@ -97,7 +97,6 @@ FixedRangeTab *FixedRangeChunkBasedNVMWriteCache::NewRange(const std::string &pr
     persistent_ptr<NvRangeTab> p_content = NewContent(prefix, vinfo_->internal_options_->range_size_);
     pinfo_->range_map_->put(pop_, p_content);
 
-
     //p_range::p_node new_node = pinfo_->range_map_->get_node(_hash, prefix);
     FixedRangeTab *range = new FixedRangeTab(pop_, vinfo_->internal_options_, p_content);
     vinfo_->prefix2range.insert({prefix, range});
@@ -171,9 +170,12 @@ InternalIterator *FixedRangeChunkBasedNVMWriteCache::NewIterator(const InternalK
 }
 
 void FixedRangeChunkBasedNVMWriteCache::RangeExistsOrCreat(const std::string &prefix) {
+    DBG_PRINT("prefix:[%s]", prefix.c_str());
     auto tab_idx = vinfo_->prefix2range.find(prefix);
     if (tab_idx == vinfo_->prefix2range.end()) {
+        DBG_PRINT("Need to create range");
         NewRange(prefix);
+        DBG_PRINT("End of creating range");
     }
 }
 

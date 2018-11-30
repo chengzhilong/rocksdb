@@ -732,19 +732,6 @@ rocksdb_db_compaction_filter_test/fast:
 .PHONY : rocksdb_db_compaction_filter_test/fast
 
 #=============================================================================
-# Target rules for targets named rocksdb_range_tab_test
-
-# Build rule for target.
-rocksdb_range_tab_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_range_tab_test
-.PHONY : rocksdb_range_tab_test
-
-# fast build rule for target.
-rocksdb_range_tab_test/fast:
-	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/build
-.PHONY : rocksdb_range_tab_test/fast
-
-#=============================================================================
 # Target rules for targets named rocksdb_db_block_cache_test
 
 # Build rule for target.
@@ -12587,39 +12574,6 @@ utilities/nvm_write_cache/prefix_extractor.cc.s:
 	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/prefix_extractor.cc.s
 .PHONY : utilities/nvm_write_cache/prefix_extractor.cc.s
 
-utilities/nvm_write_cache/range_tab_test.obj: utilities/nvm_write_cache/range_tab_test.cc.obj
-
-.PHONY : utilities/nvm_write_cache/range_tab_test.obj
-
-# target to build an object file
-utilities/nvm_write_cache/range_tab_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/range_tab_test.cc.obj
-	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/range_tab_test.cc.obj
-	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/utilities/nvm_write_cache/range_tab_test.cc.obj
-.PHONY : utilities/nvm_write_cache/range_tab_test.cc.obj
-
-utilities/nvm_write_cache/range_tab_test.i: utilities/nvm_write_cache/range_tab_test.cc.i
-
-.PHONY : utilities/nvm_write_cache/range_tab_test.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/range_tab_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/range_tab_test.cc.i
-	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/range_tab_test.cc.i
-	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/utilities/nvm_write_cache/range_tab_test.cc.i
-.PHONY : utilities/nvm_write_cache/range_tab_test.cc.i
-
-utilities/nvm_write_cache/range_tab_test.s: utilities/nvm_write_cache/range_tab_test.cc.s
-
-.PHONY : utilities/nvm_write_cache/range_tab_test.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/range_tab_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/range_tab_test.cc.s
-	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/range_tab_test.cc.s
-	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/utilities/nvm_write_cache/range_tab_test.cc.s
-.PHONY : utilities/nvm_write_cache/range_tab_test.cc.s
-
 utilities/object_registry_test.obj: utilities/object_registry_test.cc.obj
 
 .PHONY : utilities/object_registry_test.obj
@@ -13945,7 +13899,6 @@ help:
 	@echo ... rocksdb_cuckoo_table_db_test
 	@echo ... rocksdb_deletefile_test
 	@echo ... rocksdb_db_compaction_filter_test
-	@echo ... rocksdb_range_tab_test
 	@echo ... rocksdb_db_block_cache_test
 	@echo ... rocksdb_dynamic_bloom_test
 	@echo ... rocksdb_db_bloom_filter_test
@@ -15139,9 +15092,6 @@ help:
 	@echo ... utilities/nvm_write_cache/prefix_extractor.obj
 	@echo ... utilities/nvm_write_cache/prefix_extractor.i
 	@echo ... utilities/nvm_write_cache/prefix_extractor.s
-	@echo ... utilities/nvm_write_cache/range_tab_test.obj
-	@echo ... utilities/nvm_write_cache/range_tab_test.i
-	@echo ... utilities/nvm_write_cache/range_tab_test.s
 	@echo ... utilities/object_registry_test.obj
 	@echo ... utilities/object_registry_test.i
 	@echo ... utilities/object_registry_test.s

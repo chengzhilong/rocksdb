@@ -20,6 +20,8 @@
 #include "pmem_hash_map.h"
 #include "common.h"
 
+#include "debug.h"
+
 using std::string;
 using std::mutex;
 using std::unordered_map;
