@@ -234,6 +234,8 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         ASSERT_OK(s);
         delete get_value;
     }
+
+    DBG_PRINT("end of Get");
 }
 
 }

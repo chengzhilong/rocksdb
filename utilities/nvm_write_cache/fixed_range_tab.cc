@@ -105,6 +105,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
     PersistentChunkIterator *iter = new PersistentChunkIterator();
     // shared_ptr能够保证资源回收
     char* buf = raw_;
+    DBG_PRINT("blklist: size[%lu]", blklist.size());
     for (int i = blklist.size() - 1; i >= 0; i--) {
         assert(i >= 0);
         ChunkBlk &blk = blklist.at(i);
@@ -114,12 +115,14 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         // bloom data
         char* chunk_head = buf + blk.offset_;
         uint64_t bloom_bytes = blk.bloom_bytes_;
+        DBG_PRINT("blk.offset_:[%lu]    bloom_bytes:[%lu]", blk.offset_, bloom_bytes);
         if (interal_options_->filter_policy_->KeyMayMatch(lkey.user_key(), Slice(chunk_head + 8, bloom_bytes))) {
             // 3.如果有则读取元数据进行chunk内的查找
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_, nullptr);
             Status s = searchInChunk(iter, internal_comparator, lkey.user_key(), value);
             if (s.ok()) {
                 delete iter;
+                DBG_PRINT("found it!");
                 return s;
             }
         } else {
@@ -127,6 +130,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         }
     } // 4.循环直到查找完所有的chunk
     delete iter;
+    DBG_PRINT("Not found");
     return Status::NotFound("not found");
 }
 
@@ -332,6 +336,7 @@ Status FixedRangeTab::searchInChunk(PersistentChunkIterator *iter, const Interna
                                     const Slice &key, std::string *value) {
     int left = 0, right = iter->count() - 1;
     const Comparator* cmp = icmp.user_comparator();
+    DBG_PRINT("left[%d]   right[%d]", left, right);
     while (left <= right) {
         int middle = left + ((right - left) >> 1);
         //printf("lest[%d], right[%d], middle[%d]\n", left, right, middle);
