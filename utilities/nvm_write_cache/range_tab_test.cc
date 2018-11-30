@@ -4,6 +4,9 @@
 #include <string>
 #include <util/testharness.h>
 #include <unistd.h>
+#include <dbformat.h>
+#include <gtest.h>
+#include <testharness.h>
 
 #include "third-party/gtest-1.7.0/fused-src/gtest/gtest.h"
 #include "util/testutil.h"
