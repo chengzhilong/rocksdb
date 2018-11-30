@@ -185,7 +185,7 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
                     auto new_chunk = new BuildingChunk(foptions_->filter_policy_, now_prefix);
                     DBG_PRINT("end create chunk");
                     pending_output_chunk[now_prefix] = new_chunk;
-
+                    now_chunk = new_chunk;
                 } else {
                     now_chunk = chunk_found->second;
                 }
