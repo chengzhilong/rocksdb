@@ -1,14 +1,13 @@
 #include <string>
-#include <util/testharness.h>
 #include <unistd.h>
 #include <testharness.h>
 #include <gtest.h>
 
-#include "third-party/gtest-1.7.0/fused-src/gtest/gtest.h"
-#include "util/testutil.h"
-#include "util/random.h"
+#include "gtest.h"
+#include "testutil.h"
+#include "random.h"
 
-#include "utilities/nvm_write_cache/skiplist/test_common.h"
+#include "test_common.h"
 #include "fixed_range_tab.h"
 #include "chunk.h"
 #include "fixed_range_chunk_based_nvm_write_cache.h"

@@ -55,17 +55,6 @@ CMAKE_BINARY_DIR = D:\git\rocksdb_flush_full\cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2018.2.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -76,6 +65,28 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	"C:\Program Files\JetBrains\CLion 2018.2.4\bin\cmake\win\bin\ctest.exe" --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	"C:\Program Files\JetBrains\CLion 2018.2.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -110,17 +121,2228 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named rocksdb_flush_full
+# Target rules for targets named build_version
 
 # Build rule for target.
-rocksdb_flush_full: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_flush_full
-.PHONY : rocksdb_flush_full
+build_version: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 build_version
+.PHONY : build_version
 
 # fast build rule for target.
-rocksdb_flush_full/fast:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/build
-.PHONY : rocksdb_flush_full/fast
+build_version/fast:
+	$(MAKE) -f CMakeFiles\build_version.dir\build.make CMakeFiles/build_version.dir/build
+.PHONY : build_version/fast
+
+#=============================================================================
+# Target rules for targets named testharness
+
+# Build rule for target.
+testharness: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 testharness
+.PHONY : testharness
+
+# fast build rule for target.
+testharness/fast:
+	$(MAKE) -f CMakeFiles\testharness.dir\build.make CMakeFiles/testharness.dir/build
+.PHONY : testharness/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb
+
+# Build rule for target.
+rocksdb: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb
+.PHONY : rocksdb
+
+# fast build rule for target.
+rocksdb/fast:
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/build
+.PHONY : rocksdb/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_io_failure_test
+
+# Build rule for target.
+rocksdb_db_io_failure_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_io_failure_test
+.PHONY : rocksdb_db_io_failure_test
+
+# fast build rule for target.
+rocksdb_db_io_failure_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_io_failure_test.dir\build.make CMakeFiles/rocksdb_db_io_failure_test.dir/build
+.PHONY : rocksdb_db_io_failure_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_manual_compaction_test
+
+# Build rule for target.
+rocksdb_manual_compaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_manual_compaction_test
+.PHONY : rocksdb_manual_compaction_test
+
+# fast build rule for target.
+rocksdb_manual_compaction_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_manual_compaction_test.dir\build.make CMakeFiles/rocksdb_manual_compaction_test.dir/build
+.PHONY : rocksdb_manual_compaction_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb-shared
+
+# Build rule for target.
+rocksdb-shared: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb-shared
+.PHONY : rocksdb-shared
+
+# fast build rule for target.
+rocksdb-shared/fast:
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/build
+.PHONY : rocksdb-shared/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cassandra_serialize_test
+
+# Build rule for target.
+rocksdb_cassandra_serialize_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cassandra_serialize_test
+.PHONY : rocksdb_cassandra_serialize_test
+
+# fast build rule for target.
+rocksdb_cassandra_serialize_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_serialize_test.dir\build.make CMakeFiles/rocksdb_cassandra_serialize_test.dir/build
+.PHONY : rocksdb_cassandra_serialize_test/fast
+
+#=============================================================================
+# Target rules for targets named memtablerep_bench
+
+# Build rule for target.
+memtablerep_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 memtablerep_bench
+.PHONY : memtablerep_bench
+
+# fast build rule for target.
+memtablerep_bench/fast:
+	$(MAKE) -f CMakeFiles\memtablerep_bench.dir\build.make CMakeFiles/memtablerep_bench.dir/build
+.PHONY : memtablerep_bench/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_blob_index_test
+
+# Build rule for target.
+rocksdb_db_blob_index_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_blob_index_test
+.PHONY : rocksdb_db_blob_index_test
+
+# fast build rule for target.
+rocksdb_db_blob_index_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_blob_index_test.dir\build.make CMakeFiles/rocksdb_db_blob_index_test.dir/build
+.PHONY : rocksdb_db_blob_index_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_bloom_test
+
+# Build rule for target.
+rocksdb_bloom_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_bloom_test
+.PHONY : rocksdb_bloom_test
+
+# fast build rule for target.
+rocksdb_bloom_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_bloom_test.dir\build.make CMakeFiles/rocksdb_bloom_test.dir/build
+.PHONY : rocksdb_bloom_test/fast
+
+#=============================================================================
+# Target rules for targets named cache_bench
+
+# Build rule for target.
+cache_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 cache_bench
+.PHONY : cache_bench
+
+# fast build rule for target.
+cache_bench/fast:
+	$(MAKE) -f CMakeFiles\cache_bench.dir\build.make CMakeFiles/cache_bench.dir/build
+.PHONY : cache_bench/fast
+
+#=============================================================================
+# Target rules for targets named range_del_aggregator_bench
+
+# Build rule for target.
+range_del_aggregator_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 range_del_aggregator_bench
+.PHONY : range_del_aggregator_bench
+
+# fast build rule for target.
+range_del_aggregator_bench/fast:
+	$(MAKE) -f CMakeFiles\range_del_aggregator_bench.dir\build.make CMakeFiles/range_del_aggregator_bench.dir/build
+.PHONY : range_del_aggregator_bench/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_external_sst_file_basic_test
+
+# Build rule for target.
+rocksdb_external_sst_file_basic_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_external_sst_file_basic_test
+.PHONY : rocksdb_external_sst_file_basic_test
+
+# fast build rule for target.
+rocksdb_external_sst_file_basic_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_basic_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_basic_test.dir/build
+.PHONY : rocksdb_external_sst_file_basic_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_lru_cache_test
+
+# Build rule for target.
+rocksdb_lru_cache_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_lru_cache_test
+.PHONY : rocksdb_lru_cache_test
+
+# fast build rule for target.
+rocksdb_lru_cache_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_lru_cache_test.dir\build.make CMakeFiles/rocksdb_lru_cache_test.dir/build
+.PHONY : rocksdb_lru_cache_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_error_handler_test
+
+# Build rule for target.
+rocksdb_error_handler_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_error_handler_test
+.PHONY : rocksdb_error_handler_test
+
+# fast build rule for target.
+rocksdb_error_handler_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_error_handler_test.dir\build.make CMakeFiles/rocksdb_error_handler_test.dir/build
+.PHONY : rocksdb_error_handler_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_column_aware_encoding_test
+
+# Build rule for target.
+rocksdb_column_aware_encoding_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_column_aware_encoding_test
+.PHONY : rocksdb_column_aware_encoding_test
+
+# fast build rule for target.
+rocksdb_column_aware_encoding_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_column_aware_encoding_test.dir\build.make CMakeFiles/rocksdb_column_aware_encoding_test.dir/build
+.PHONY : rocksdb_column_aware_encoding_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_corruption_test
+
+# Build rule for target.
+rocksdb_corruption_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_corruption_test
+.PHONY : rocksdb_corruption_test
+
+# fast build rule for target.
+rocksdb_corruption_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_corruption_test.dir\build.make CMakeFiles/rocksdb_corruption_test.dir/build
+.PHONY : rocksdb_corruption_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_iterator_test
+
+# Build rule for target.
+rocksdb_db_iterator_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_iterator_test
+.PHONY : rocksdb_db_iterator_test
+
+# fast build rule for target.
+rocksdb_db_iterator_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_iterator_test.dir\build.make CMakeFiles/rocksdb_db_iterator_test.dir/build
+.PHONY : rocksdb_db_iterator_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_repair_test
+
+# Build rule for target.
+rocksdb_repair_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_repair_test
+.PHONY : rocksdb_repair_test
+
+# fast build rule for target.
+rocksdb_repair_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_repair_test.dir\build.make CMakeFiles/rocksdb_repair_test.dir/build
+.PHONY : rocksdb_repair_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_iter_test
+
+# Build rule for target.
+rocksdb_db_iter_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_iter_test
+.PHONY : rocksdb_db_iter_test
+
+# fast build rule for target.
+rocksdb_db_iter_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_test.dir\build.make CMakeFiles/rocksdb_db_iter_test.dir/build
+.PHONY : rocksdb_db_iter_test/fast
+
+#=============================================================================
+# Target rules for targets named table_reader_bench
+
+# Build rule for target.
+table_reader_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 table_reader_bench
+.PHONY : table_reader_bench
+
+# fast build rule for target.
+table_reader_bench/fast:
+	$(MAKE) -f CMakeFiles\table_reader_bench.dir\build.make CMakeFiles/table_reader_bench.dir/build
+.PHONY : table_reader_bench/fast
+
+#=============================================================================
+# Target rules for targets named db_bench
+
+# Build rule for target.
+db_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 db_bench
+.PHONY : db_bench
+
+# fast build rule for target.
+db_bench/fast:
+	$(MAKE) -f CMakeFiles\db_bench.dir\build.make CMakeFiles/db_bench.dir/build
+.PHONY : db_bench/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_compact_files_test
+
+# Build rule for target.
+rocksdb_compact_files_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_compact_files_test
+.PHONY : rocksdb_compact_files_test
+
+# fast build rule for target.
+rocksdb_compact_files_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_compact_files_test.dir\build.make CMakeFiles/rocksdb_compact_files_test.dir/build
+.PHONY : rocksdb_compact_files_test/fast
+
+#=============================================================================
+# Target rules for targets named column_aware_encoding_exp
+
+# Build rule for target.
+column_aware_encoding_exp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 column_aware_encoding_exp
+.PHONY : column_aware_encoding_exp
+
+# fast build rule for target.
+column_aware_encoding_exp/fast:
+	$(MAKE) -f CMakeFiles\column_aware_encoding_exp.dir\build.make CMakeFiles/column_aware_encoding_exp.dir/build
+.PHONY : column_aware_encoding_exp/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_tailing_iter_test
+
+# Build rule for target.
+rocksdb_db_tailing_iter_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_tailing_iter_test
+.PHONY : rocksdb_db_tailing_iter_test
+
+# fast build rule for target.
+rocksdb_db_tailing_iter_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_tailing_iter_test.dir\build.make CMakeFiles/rocksdb_db_tailing_iter_test.dir/build
+.PHONY : rocksdb_db_tailing_iter_test/fast
+
+#=============================================================================
+# Target rules for targets named check
+
+# Build rule for target.
+check: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 check
+.PHONY : check
+
+# fast build rule for target.
+check/fast:
+	$(MAKE) -f CMakeFiles\check.dir\build.make CMakeFiles/check.dir/build
+.PHONY : check/fast
+
+#=============================================================================
+# Target rules for targets named hash_table_bench
+
+# Build rule for target.
+hash_table_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 hash_table_bench
+.PHONY : hash_table_bench
+
+# fast build rule for target.
+hash_table_bench/fast:
+	$(MAKE) -f CMakeFiles\hash_table_bench.dir\build.make CMakeFiles/hash_table_bench.dir/build
+.PHONY : hash_table_bench/fast
+
+#=============================================================================
+# Target rules for targets named testutillib
+
+# Build rule for target.
+testutillib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 testutillib
+.PHONY : testutillib
+
+# fast build rule for target.
+testutillib/fast:
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/build
+.PHONY : testutillib/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cache_test
+
+# Build rule for target.
+rocksdb_cache_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cache_test
+.PHONY : rocksdb_cache_test
+
+# fast build rule for target.
+rocksdb_cache_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cache_test.dir\build.make CMakeFiles/rocksdb_cache_test.dir/build
+.PHONY : rocksdb_cache_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_test2
+
+# Build rule for target.
+rocksdb_db_test2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_test2
+.PHONY : rocksdb_db_test2
+
+# fast build rule for target.
+rocksdb_db_test2/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_test2.dir\build.make CMakeFiles/rocksdb_db_test2.dir/build
+.PHONY : rocksdb_db_test2/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_column_family_test
+
+# Build rule for target.
+rocksdb_column_family_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_column_family_test
+.PHONY : rocksdb_column_family_test
+
+# fast build rule for target.
+rocksdb_column_family_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_column_family_test.dir\build.make CMakeFiles/rocksdb_column_family_test.dir/build
+.PHONY : rocksdb_column_family_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_basic_test
+
+# Build rule for target.
+rocksdb_db_basic_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_basic_test
+.PHONY : rocksdb_db_basic_test
+
+# fast build rule for target.
+rocksdb_db_basic_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_basic_test.dir\build.make CMakeFiles/rocksdb_db_basic_test.dir/build
+.PHONY : rocksdb_db_basic_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_compaction_iterator_test
+
+# Build rule for target.
+rocksdb_compaction_iterator_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_compaction_iterator_test
+.PHONY : rocksdb_compaction_iterator_test
+
+# fast build rule for target.
+rocksdb_compaction_iterator_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_iterator_test.dir\build.make CMakeFiles/rocksdb_compaction_iterator_test.dir/build
+.PHONY : rocksdb_compaction_iterator_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_dbformat_test
+
+# Build rule for target.
+rocksdb_dbformat_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_dbformat_test
+.PHONY : rocksdb_dbformat_test
+
+# fast build rule for target.
+rocksdb_dbformat_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_dbformat_test.dir\build.make CMakeFiles/rocksdb_dbformat_test.dir/build
+.PHONY : rocksdb_dbformat_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_backupable_db_test
+
+# Build rule for target.
+rocksdb_backupable_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_backupable_db_test
+.PHONY : rocksdb_backupable_db_test
+
+# fast build rule for target.
+rocksdb_backupable_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_backupable_db_test.dir\build.make CMakeFiles/rocksdb_backupable_db_test.dir/build
+.PHONY : rocksdb_backupable_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_range_del_aggregator_test
+
+# Build rule for target.
+rocksdb_range_del_aggregator_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_range_del_aggregator_test
+.PHONY : rocksdb_range_del_aggregator_test
+
+# fast build rule for target.
+rocksdb_range_del_aggregator_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_range_del_aggregator_test.dir\build.make CMakeFiles/rocksdb_range_del_aggregator_test.dir/build
+.PHONY : rocksdb_range_del_aggregator_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_compaction_job_stats_test
+
+# Build rule for target.
+rocksdb_compaction_job_stats_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_compaction_job_stats_test
+.PHONY : rocksdb_compaction_job_stats_test
+
+# fast build rule for target.
+rocksdb_compaction_job_stats_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_stats_test.dir\build.make CMakeFiles/rocksdb_compaction_job_stats_test.dir/build
+.PHONY : rocksdb_compaction_job_stats_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_dynamic_level_test
+
+# Build rule for target.
+rocksdb_db_dynamic_level_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_dynamic_level_test
+.PHONY : rocksdb_db_dynamic_level_test
+
+# fast build rule for target.
+rocksdb_db_dynamic_level_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_dynamic_level_test.dir\build.make CMakeFiles/rocksdb_db_dynamic_level_test.dir/build
+.PHONY : rocksdb_db_dynamic_level_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_compaction_job_test
+
+# Build rule for target.
+rocksdb_compaction_job_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_compaction_job_test
+.PHONY : rocksdb_compaction_job_test
+
+# fast build rule for target.
+rocksdb_compaction_job_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_test.dir\build.make CMakeFiles/rocksdb_compaction_job_test.dir/build
+.PHONY : rocksdb_compaction_job_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_crc32c_test
+
+# Build rule for target.
+rocksdb_crc32c_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_crc32c_test
+.PHONY : rocksdb_crc32c_test
+
+# fast build rule for target.
+rocksdb_crc32c_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_crc32c_test.dir\build.make CMakeFiles/rocksdb_crc32c_test.dir/build
+.PHONY : rocksdb_crc32c_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_compaction_picker_test
+
+# Build rule for target.
+rocksdb_compaction_picker_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_compaction_picker_test
+.PHONY : rocksdb_compaction_picker_test
+
+# fast build rule for target.
+rocksdb_compaction_picker_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_picker_test.dir\build.make CMakeFiles/rocksdb_compaction_picker_test.dir/build
+.PHONY : rocksdb_compaction_picker_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_table_properties_test
+
+# Build rule for target.
+rocksdb_db_table_properties_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_table_properties_test
+.PHONY : rocksdb_db_table_properties_test
+
+# fast build rule for target.
+rocksdb_db_table_properties_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_table_properties_test.dir\build.make CMakeFiles/rocksdb_db_table_properties_test.dir/build
+.PHONY : rocksdb_db_table_properties_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_comparator_db_test
+
+# Build rule for target.
+rocksdb_comparator_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_comparator_db_test
+.PHONY : rocksdb_comparator_db_test
+
+# fast build rule for target.
+rocksdb_comparator_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_comparator_db_test.dir\build.make CMakeFiles/rocksdb_comparator_db_test.dir/build
+.PHONY : rocksdb_comparator_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_log_test
+
+# Build rule for target.
+rocksdb_log_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_log_test
+.PHONY : rocksdb_log_test
+
+# fast build rule for target.
+rocksdb_log_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_log_test.dir\build.make CMakeFiles/rocksdb_log_test.dir/build
+.PHONY : rocksdb_log_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cuckoo_table_db_test
+
+# Build rule for target.
+rocksdb_cuckoo_table_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cuckoo_table_db_test
+.PHONY : rocksdb_cuckoo_table_db_test
+
+# fast build rule for target.
+rocksdb_cuckoo_table_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_db_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_db_test.dir/build
+.PHONY : rocksdb_cuckoo_table_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_deletefile_test
+
+# Build rule for target.
+rocksdb_deletefile_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_deletefile_test
+.PHONY : rocksdb_deletefile_test
+
+# fast build rule for target.
+rocksdb_deletefile_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_deletefile_test.dir\build.make CMakeFiles/rocksdb_deletefile_test.dir/build
+.PHONY : rocksdb_deletefile_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_compaction_filter_test
+
+# Build rule for target.
+rocksdb_db_compaction_filter_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_compaction_filter_test
+.PHONY : rocksdb_db_compaction_filter_test
+
+# fast build rule for target.
+rocksdb_db_compaction_filter_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_filter_test.dir\build.make CMakeFiles/rocksdb_db_compaction_filter_test.dir/build
+.PHONY : rocksdb_db_compaction_filter_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_range_tab_test
+
+# Build rule for target.
+rocksdb_range_tab_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_range_tab_test
+.PHONY : rocksdb_range_tab_test
+
+# fast build rule for target.
+rocksdb_range_tab_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/build
+.PHONY : rocksdb_range_tab_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_block_cache_test
+
+# Build rule for target.
+rocksdb_db_block_cache_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_block_cache_test
+.PHONY : rocksdb_db_block_cache_test
+
+# fast build rule for target.
+rocksdb_db_block_cache_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_block_cache_test.dir\build.make CMakeFiles/rocksdb_db_block_cache_test.dir/build
+.PHONY : rocksdb_db_block_cache_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_dynamic_bloom_test
+
+# Build rule for target.
+rocksdb_dynamic_bloom_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_dynamic_bloom_test
+.PHONY : rocksdb_dynamic_bloom_test
+
+# fast build rule for target.
+rocksdb_dynamic_bloom_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_dynamic_bloom_test.dir\build.make CMakeFiles/rocksdb_dynamic_bloom_test.dir/build
+.PHONY : rocksdb_dynamic_bloom_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_bloom_filter_test
+
+# Build rule for target.
+rocksdb_db_bloom_filter_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_bloom_filter_test
+.PHONY : rocksdb_db_bloom_filter_test
+
+# fast build rule for target.
+rocksdb_db_bloom_filter_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_bloom_filter_test.dir\build.make CMakeFiles/rocksdb_db_bloom_filter_test.dir/build
+.PHONY : rocksdb_db_bloom_filter_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_coding_test
+
+# Build rule for target.
+rocksdb_coding_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_coding_test
+.PHONY : rocksdb_coding_test
+
+# fast build rule for target.
+rocksdb_coding_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_coding_test.dir\build.make CMakeFiles/rocksdb_coding_test.dir/build
+.PHONY : rocksdb_coding_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_range_del_test
+
+# Build rule for target.
+rocksdb_db_range_del_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_range_del_test
+.PHONY : rocksdb_db_range_del_test
+
+# fast build rule for target.
+rocksdb_db_range_del_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_range_del_test.dir\build.make CMakeFiles/rocksdb_db_range_del_test.dir/build
+.PHONY : rocksdb_db_range_del_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_compaction_test
+
+# Build rule for target.
+rocksdb_db_compaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_compaction_test
+.PHONY : rocksdb_db_compaction_test
+
+# fast build rule for target.
+rocksdb_db_compaction_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_test.dir\build.make CMakeFiles/rocksdb_db_compaction_test.dir/build
+.PHONY : rocksdb_db_compaction_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_options_test
+
+# Build rule for target.
+rocksdb_db_options_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_options_test
+.PHONY : rocksdb_db_options_test
+
+# fast build rule for target.
+rocksdb_db_options_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_options_test.dir\build.make CMakeFiles/rocksdb_db_options_test.dir/build
+.PHONY : rocksdb_db_options_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_sst_test
+
+# Build rule for target.
+rocksdb_db_sst_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_sst_test
+.PHONY : rocksdb_db_sst_test
+
+# fast build rule for target.
+rocksdb_db_sst_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_sst_test.dir\build.make CMakeFiles/rocksdb_db_sst_test.dir/build
+.PHONY : rocksdb_db_sst_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_flush_test
+
+# Build rule for target.
+rocksdb_db_flush_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_flush_test
+.PHONY : rocksdb_db_flush_test
+
+# fast build rule for target.
+rocksdb_db_flush_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_flush_test.dir\build.make CMakeFiles/rocksdb_db_flush_test.dir/build
+.PHONY : rocksdb_db_flush_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_inplace_update_test
+
+# Build rule for target.
+rocksdb_db_inplace_update_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_inplace_update_test
+.PHONY : rocksdb_db_inplace_update_test
+
+# fast build rule for target.
+rocksdb_db_inplace_update_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_inplace_update_test.dir\build.make CMakeFiles/rocksdb_db_inplace_update_test.dir/build
+.PHONY : rocksdb_db_inplace_update_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_flush_job_test
+
+# Build rule for target.
+rocksdb_flush_job_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_flush_job_test
+.PHONY : rocksdb_flush_job_test
+
+# fast build rule for target.
+rocksdb_flush_job_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_flush_job_test.dir\build.make CMakeFiles/rocksdb_flush_job_test.dir/build
+.PHONY : rocksdb_flush_job_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_iter_stress_test
+
+# Build rule for target.
+rocksdb_db_iter_stress_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_iter_stress_test
+.PHONY : rocksdb_db_iter_stress_test
+
+# fast build rule for target.
+rocksdb_db_iter_stress_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_stress_test.dir\build.make CMakeFiles/rocksdb_db_iter_stress_test.dir/build
+.PHONY : rocksdb_db_iter_stress_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_fault_injection_test
+
+# Build rule for target.
+rocksdb_fault_injection_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_fault_injection_test
+.PHONY : rocksdb_fault_injection_test
+
+# fast build rule for target.
+rocksdb_fault_injection_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_fault_injection_test.dir\build.make CMakeFiles/rocksdb_fault_injection_test.dir/build
+.PHONY : rocksdb_fault_injection_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_log_iter_test
+
+# Build rule for target.
+rocksdb_db_log_iter_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_log_iter_test
+.PHONY : rocksdb_db_log_iter_test
+
+# fast build rule for target.
+rocksdb_db_log_iter_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_log_iter_test.dir\build.make CMakeFiles/rocksdb_db_log_iter_test.dir/build
+.PHONY : rocksdb_db_log_iter_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_memtable_test
+
+# Build rule for target.
+rocksdb_db_memtable_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_memtable_test
+.PHONY : rocksdb_db_memtable_test
+
+# fast build rule for target.
+rocksdb_db_memtable_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_memtable_test.dir\build.make CMakeFiles/rocksdb_db_memtable_test.dir/build
+.PHONY : rocksdb_db_memtable_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_properties_test
+
+# Build rule for target.
+rocksdb_db_properties_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_properties_test
+.PHONY : rocksdb_db_properties_test
+
+# fast build rule for target.
+rocksdb_db_properties_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_properties_test.dir\build.make CMakeFiles/rocksdb_db_properties_test.dir/build
+.PHONY : rocksdb_db_properties_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_merge_operator_test
+
+# Build rule for target.
+rocksdb_db_merge_operator_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_merge_operator_test
+.PHONY : rocksdb_db_merge_operator_test
+
+# fast build rule for target.
+rocksdb_db_merge_operator_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_merge_operator_test.dir\build.make CMakeFiles/rocksdb_db_merge_operator_test.dir/build
+.PHONY : rocksdb_db_merge_operator_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_statistics_test
+
+# Build rule for target.
+rocksdb_db_statistics_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_statistics_test
+.PHONY : rocksdb_db_statistics_test
+
+# fast build rule for target.
+rocksdb_db_statistics_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_statistics_test.dir\build.make CMakeFiles/rocksdb_db_statistics_test.dir/build
+.PHONY : rocksdb_db_statistics_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_sim_cache_test
+
+# Build rule for target.
+rocksdb_sim_cache_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_sim_cache_test
+.PHONY : rocksdb_sim_cache_test
+
+# fast build rule for target.
+rocksdb_sim_cache_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_sim_cache_test.dir\build.make CMakeFiles/rocksdb_sim_cache_test.dir/build
+.PHONY : rocksdb_sim_cache_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_test
+
+# Build rule for target.
+rocksdb_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_test
+.PHONY : rocksdb_db_test
+
+# fast build rule for target.
+rocksdb_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_test.dir\build.make CMakeFiles/rocksdb_db_test.dir/build
+.PHONY : rocksdb_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_universal_compaction_test
+
+# Build rule for target.
+rocksdb_db_universal_compaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_universal_compaction_test
+.PHONY : rocksdb_db_universal_compaction_test
+
+# fast build rule for target.
+rocksdb_db_universal_compaction_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_universal_compaction_test.dir\build.make CMakeFiles/rocksdb_db_universal_compaction_test.dir/build
+.PHONY : rocksdb_db_universal_compaction_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_wal_test
+
+# Build rule for target.
+rocksdb_db_wal_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_wal_test
+.PHONY : rocksdb_db_wal_test
+
+# fast build rule for target.
+rocksdb_db_wal_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_wal_test.dir\build.make CMakeFiles/rocksdb_db_wal_test.dir/build
+.PHONY : rocksdb_db_wal_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_db_write_test
+
+# Build rule for target.
+rocksdb_db_write_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_db_write_test
+.PHONY : rocksdb_db_write_test
+
+# fast build rule for target.
+rocksdb_db_write_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_db_write_test.dir\build.make CMakeFiles/rocksdb_db_write_test.dir/build
+.PHONY : rocksdb_db_write_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_file_indexer_test
+
+# Build rule for target.
+rocksdb_file_indexer_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_file_indexer_test
+.PHONY : rocksdb_file_indexer_test
+
+# fast build rule for target.
+rocksdb_file_indexer_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_file_indexer_test.dir\build.make CMakeFiles/rocksdb_file_indexer_test.dir/build
+.PHONY : rocksdb_file_indexer_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_obsolete_files_test
+
+# Build rule for target.
+rocksdb_obsolete_files_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_obsolete_files_test
+.PHONY : rocksdb_obsolete_files_test
+
+# fast build rule for target.
+rocksdb_obsolete_files_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_obsolete_files_test.dir\build.make CMakeFiles/rocksdb_obsolete_files_test.dir/build
+.PHONY : rocksdb_obsolete_files_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_option_change_migration_test
+
+# Build rule for target.
+rocksdb_option_change_migration_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_option_change_migration_test
+.PHONY : rocksdb_option_change_migration_test
+
+# fast build rule for target.
+rocksdb_option_change_migration_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_option_change_migration_test.dir\build.make CMakeFiles/rocksdb_option_change_migration_test.dir/build
+.PHONY : rocksdb_option_change_migration_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_external_sst_file_test
+
+# Build rule for target.
+rocksdb_external_sst_file_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_external_sst_file_test
+.PHONY : rocksdb_external_sst_file_test
+
+# fast build rule for target.
+rocksdb_external_sst_file_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_test.dir/build
+.PHONY : rocksdb_external_sst_file_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_filename_test
+
+# Build rule for target.
+rocksdb_filename_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_filename_test
+.PHONY : rocksdb_filename_test
+
+# fast build rule for target.
+rocksdb_filename_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_filename_test.dir\build.make CMakeFiles/rocksdb_filename_test.dir/build
+.PHONY : rocksdb_filename_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_listener_test
+
+# Build rule for target.
+rocksdb_listener_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_listener_test
+.PHONY : rocksdb_listener_test
+
+# fast build rule for target.
+rocksdb_listener_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_listener_test.dir\build.make CMakeFiles/rocksdb_listener_test.dir/build
+.PHONY : rocksdb_listener_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_memtable_list_test
+
+# Build rule for target.
+rocksdb_memtable_list_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_memtable_list_test
+.PHONY : rocksdb_memtable_list_test
+
+# fast build rule for target.
+rocksdb_memtable_list_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_memtable_list_test.dir\build.make CMakeFiles/rocksdb_memtable_list_test.dir/build
+.PHONY : rocksdb_memtable_list_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_merge_helper_test
+
+# Build rule for target.
+rocksdb_merge_helper_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_merge_helper_test
+.PHONY : rocksdb_merge_helper_test
+
+# fast build rule for target.
+rocksdb_merge_helper_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_merge_helper_test.dir\build.make CMakeFiles/rocksdb_merge_helper_test.dir/build
+.PHONY : rocksdb_merge_helper_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_merge_test
+
+# Build rule for target.
+rocksdb_merge_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_merge_test
+.PHONY : rocksdb_merge_test
+
+# fast build rule for target.
+rocksdb_merge_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_merge_test.dir\build.make CMakeFiles/rocksdb_merge_test.dir/build
+.PHONY : rocksdb_merge_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_options_file_test
+
+# Build rule for target.
+rocksdb_options_file_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_options_file_test
+.PHONY : rocksdb_options_file_test
+
+# fast build rule for target.
+rocksdb_options_file_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_options_file_test.dir\build.make CMakeFiles/rocksdb_options_file_test.dir/build
+.PHONY : rocksdb_options_file_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_perf_context_test
+
+# Build rule for target.
+rocksdb_perf_context_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_perf_context_test
+.PHONY : rocksdb_perf_context_test
+
+# fast build rule for target.
+rocksdb_perf_context_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_perf_context_test.dir\build.make CMakeFiles/rocksdb_perf_context_test.dir/build
+.PHONY : rocksdb_perf_context_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_plain_table_db_test
+
+# Build rule for target.
+rocksdb_plain_table_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_plain_table_db_test
+.PHONY : rocksdb_plain_table_db_test
+
+# fast build rule for target.
+rocksdb_plain_table_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_plain_table_db_test.dir\build.make CMakeFiles/rocksdb_plain_table_db_test.dir/build
+.PHONY : rocksdb_plain_table_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_prefix_test
+
+# Build rule for target.
+rocksdb_prefix_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_prefix_test
+.PHONY : rocksdb_prefix_test
+
+# fast build rule for target.
+rocksdb_prefix_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_prefix_test.dir\build.make CMakeFiles/rocksdb_prefix_test.dir/build
+.PHONY : rocksdb_prefix_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_range_tombstone_fragmenter_test
+
+# Build rule for target.
+rocksdb_range_tombstone_fragmenter_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_range_tombstone_fragmenter_test
+.PHONY : rocksdb_range_tombstone_fragmenter_test
+
+# fast build rule for target.
+rocksdb_range_tombstone_fragmenter_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_range_tombstone_fragmenter_test.dir\build.make CMakeFiles/rocksdb_range_tombstone_fragmenter_test.dir/build
+.PHONY : rocksdb_range_tombstone_fragmenter_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_write_controller_test
+
+# Build rule for target.
+rocksdb_write_controller_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_write_controller_test
+.PHONY : rocksdb_write_controller_test
+
+# fast build rule for target.
+rocksdb_write_controller_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_write_controller_test.dir\build.make CMakeFiles/rocksdb_write_controller_test.dir/build
+.PHONY : rocksdb_write_controller_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_table_properties_collector_test
+
+# Build rule for target.
+rocksdb_table_properties_collector_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_table_properties_collector_test
+.PHONY : rocksdb_table_properties_collector_test
+
+# fast build rule for target.
+rocksdb_table_properties_collector_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_table_properties_collector_test.dir\build.make CMakeFiles/rocksdb_table_properties_collector_test.dir/build
+.PHONY : rocksdb_table_properties_collector_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_version_builder_test
+
+# Build rule for target.
+rocksdb_version_builder_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_version_builder_test
+.PHONY : rocksdb_version_builder_test
+
+# fast build rule for target.
+rocksdb_version_builder_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_version_builder_test.dir\build.make CMakeFiles/rocksdb_version_builder_test.dir/build
+.PHONY : rocksdb_version_builder_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_version_edit_test
+
+# Build rule for target.
+rocksdb_version_edit_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_version_edit_test
+.PHONY : rocksdb_version_edit_test
+
+# fast build rule for target.
+rocksdb_version_edit_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_version_edit_test.dir\build.make CMakeFiles/rocksdb_version_edit_test.dir/build
+.PHONY : rocksdb_version_edit_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_version_set_test
+
+# Build rule for target.
+rocksdb_version_set_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_version_set_test
+.PHONY : rocksdb_version_set_test
+
+# fast build rule for target.
+rocksdb_version_set_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_version_set_test.dir\build.make CMakeFiles/rocksdb_version_set_test.dir/build
+.PHONY : rocksdb_version_set_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_wal_manager_test
+
+# Build rule for target.
+rocksdb_wal_manager_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_wal_manager_test
+.PHONY : rocksdb_wal_manager_test
+
+# fast build rule for target.
+rocksdb_wal_manager_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_wal_manager_test.dir\build.make CMakeFiles/rocksdb_wal_manager_test.dir/build
+.PHONY : rocksdb_wal_manager_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_write_batch_test
+
+# Build rule for target.
+rocksdb_write_batch_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_write_batch_test
+.PHONY : rocksdb_write_batch_test
+
+# fast build rule for target.
+rocksdb_write_batch_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_test.dir\build.make CMakeFiles/rocksdb_write_batch_test.dir/build
+.PHONY : rocksdb_write_batch_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_write_callback_test
+
+# Build rule for target.
+rocksdb_write_callback_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_write_callback_test
+.PHONY : rocksdb_write_callback_test
+
+# fast build rule for target.
+rocksdb_write_callback_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_write_callback_test.dir\build.make CMakeFiles/rocksdb_write_callback_test.dir/build
+.PHONY : rocksdb_write_callback_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_env_basic_test
+
+# Build rule for target.
+rocksdb_env_basic_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_env_basic_test
+.PHONY : rocksdb_env_basic_test
+
+# fast build rule for target.
+rocksdb_env_basic_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_env_basic_test.dir\build.make CMakeFiles/rocksdb_env_basic_test.dir/build
+.PHONY : rocksdb_env_basic_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_env_test
+
+# Build rule for target.
+rocksdb_env_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_env_test
+.PHONY : rocksdb_env_test
+
+# fast build rule for target.
+rocksdb_env_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_env_test.dir\build.make CMakeFiles/rocksdb_env_test.dir/build
+.PHONY : rocksdb_env_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_mock_env_test
+
+# Build rule for target.
+rocksdb_mock_env_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_mock_env_test
+.PHONY : rocksdb_mock_env_test
+
+# fast build rule for target.
+rocksdb_mock_env_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_mock_env_test.dir\build.make CMakeFiles/rocksdb_mock_env_test.dir/build
+.PHONY : rocksdb_mock_env_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_inlineskiplist_test
+
+# Build rule for target.
+rocksdb_inlineskiplist_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_inlineskiplist_test
+.PHONY : rocksdb_inlineskiplist_test
+
+# fast build rule for target.
+rocksdb_inlineskiplist_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_inlineskiplist_test.dir\build.make CMakeFiles/rocksdb_inlineskiplist_test.dir/build
+.PHONY : rocksdb_inlineskiplist_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_skiplist_test
+
+# Build rule for target.
+rocksdb_skiplist_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_skiplist_test
+.PHONY : rocksdb_skiplist_test
+
+# fast build rule for target.
+rocksdb_skiplist_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_skiplist_test.dir\build.make CMakeFiles/rocksdb_skiplist_test.dir/build
+.PHONY : rocksdb_skiplist_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_blob_db_test
+
+# Build rule for target.
+rocksdb_blob_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_blob_db_test
+.PHONY : rocksdb_blob_db_test
+
+# fast build rule for target.
+rocksdb_blob_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_blob_db_test.dir\build.make CMakeFiles/rocksdb_blob_db_test.dir/build
+.PHONY : rocksdb_blob_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_write_buffer_manager_test
+
+# Build rule for target.
+rocksdb_write_buffer_manager_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_write_buffer_manager_test
+.PHONY : rocksdb_write_buffer_manager_test
+
+# fast build rule for target.
+rocksdb_write_buffer_manager_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_write_buffer_manager_test.dir\build.make CMakeFiles/rocksdb_write_buffer_manager_test.dir/build
+.PHONY : rocksdb_write_buffer_manager_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_histogram_test
+
+# Build rule for target.
+rocksdb_histogram_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_histogram_test
+.PHONY : rocksdb_histogram_test
+
+# fast build rule for target.
+rocksdb_histogram_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_histogram_test.dir\build.make CMakeFiles/rocksdb_histogram_test.dir/build
+.PHONY : rocksdb_histogram_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_iostats_context_test
+
+# Build rule for target.
+rocksdb_iostats_context_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_iostats_context_test
+.PHONY : rocksdb_iostats_context_test
+
+# fast build rule for target.
+rocksdb_iostats_context_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_iostats_context_test.dir\build.make CMakeFiles/rocksdb_iostats_context_test.dir/build
+.PHONY : rocksdb_iostats_context_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_statistics_test
+
+# Build rule for target.
+rocksdb_statistics_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_statistics_test
+.PHONY : rocksdb_statistics_test
+
+# fast build rule for target.
+rocksdb_statistics_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_statistics_test.dir\build.make CMakeFiles/rocksdb_statistics_test.dir/build
+.PHONY : rocksdb_statistics_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_options_settable_test
+
+# Build rule for target.
+rocksdb_options_settable_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_options_settable_test
+.PHONY : rocksdb_options_settable_test
+
+# fast build rule for target.
+rocksdb_options_settable_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_options_settable_test.dir\build.make CMakeFiles/rocksdb_options_settable_test.dir/build
+.PHONY : rocksdb_options_settable_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_options_test
+
+# Build rule for target.
+rocksdb_options_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_options_test
+.PHONY : rocksdb_options_test
+
+# fast build rule for target.
+rocksdb_options_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_options_test.dir\build.make CMakeFiles/rocksdb_options_test.dir/build
+.PHONY : rocksdb_options_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_block_based_filter_block_test
+
+# Build rule for target.
+rocksdb_block_based_filter_block_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_block_based_filter_block_test
+.PHONY : rocksdb_block_based_filter_block_test
+
+# fast build rule for target.
+rocksdb_block_based_filter_block_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_block_based_filter_block_test.dir\build.make CMakeFiles/rocksdb_block_based_filter_block_test.dir/build
+.PHONY : rocksdb_block_based_filter_block_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_block_test
+
+# Build rule for target.
+rocksdb_block_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_block_test
+.PHONY : rocksdb_block_test
+
+# fast build rule for target.
+rocksdb_block_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_block_test.dir\build.make CMakeFiles/rocksdb_block_test.dir/build
+.PHONY : rocksdb_block_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cleanable_test
+
+# Build rule for target.
+rocksdb_cleanable_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cleanable_test
+.PHONY : rocksdb_cleanable_test
+
+# fast build rule for target.
+rocksdb_cleanable_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cleanable_test.dir\build.make CMakeFiles/rocksdb_cleanable_test.dir/build
+.PHONY : rocksdb_cleanable_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cuckoo_table_builder_test
+
+# Build rule for target.
+rocksdb_cuckoo_table_builder_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cuckoo_table_builder_test
+.PHONY : rocksdb_cuckoo_table_builder_test
+
+# fast build rule for target.
+rocksdb_cuckoo_table_builder_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_builder_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_builder_test.dir/build
+.PHONY : rocksdb_cuckoo_table_builder_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cuckoo_table_reader_test
+
+# Build rule for target.
+rocksdb_cuckoo_table_reader_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cuckoo_table_reader_test
+.PHONY : rocksdb_cuckoo_table_reader_test
+
+# fast build rule for target.
+rocksdb_cuckoo_table_reader_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_reader_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_reader_test.dir/build
+.PHONY : rocksdb_cuckoo_table_reader_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_data_block_hash_index_test
+
+# Build rule for target.
+rocksdb_data_block_hash_index_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_data_block_hash_index_test
+.PHONY : rocksdb_data_block_hash_index_test
+
+# fast build rule for target.
+rocksdb_data_block_hash_index_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_data_block_hash_index_test.dir\build.make CMakeFiles/rocksdb_data_block_hash_index_test.dir/build
+.PHONY : rocksdb_data_block_hash_index_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_merger_test
+
+# Build rule for target.
+rocksdb_merger_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_merger_test
+.PHONY : rocksdb_merger_test
+
+# fast build rule for target.
+rocksdb_merger_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_merger_test.dir\build.make CMakeFiles/rocksdb_merger_test.dir/build
+.PHONY : rocksdb_merger_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_full_filter_block_test
+
+# Build rule for target.
+rocksdb_full_filter_block_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_full_filter_block_test
+.PHONY : rocksdb_full_filter_block_test
+
+# fast build rule for target.
+rocksdb_full_filter_block_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_full_filter_block_test.dir\build.make CMakeFiles/rocksdb_full_filter_block_test.dir/build
+.PHONY : rocksdb_full_filter_block_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_date_tiered_test
+
+# Build rule for target.
+rocksdb_date_tiered_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_date_tiered_test
+.PHONY : rocksdb_date_tiered_test
+
+# fast build rule for target.
+rocksdb_date_tiered_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_date_tiered_test.dir\build.make CMakeFiles/rocksdb_date_tiered_test.dir/build
+.PHONY : rocksdb_date_tiered_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_table_test
+
+# Build rule for target.
+rocksdb_table_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_table_test
+.PHONY : rocksdb_table_test
+
+# fast build rule for target.
+rocksdb_table_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_table_test.dir\build.make CMakeFiles/rocksdb_table_test.dir/build
+.PHONY : rocksdb_table_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_ldb_cmd_test
+
+# Build rule for target.
+rocksdb_ldb_cmd_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_ldb_cmd_test
+.PHONY : rocksdb_ldb_cmd_test
+
+# fast build rule for target.
+rocksdb_ldb_cmd_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_ldb_cmd_test.dir\build.make CMakeFiles/rocksdb_ldb_cmd_test.dir/build
+.PHONY : rocksdb_ldb_cmd_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_reduce_levels_test
+
+# Build rule for target.
+rocksdb_reduce_levels_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_reduce_levels_test
+.PHONY : rocksdb_reduce_levels_test
+
+# fast build rule for target.
+rocksdb_reduce_levels_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_reduce_levels_test.dir\build.make CMakeFiles/rocksdb_reduce_levels_test.dir/build
+.PHONY : rocksdb_reduce_levels_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_sst_dump_test
+
+# Build rule for target.
+rocksdb_sst_dump_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_sst_dump_test
+.PHONY : rocksdb_sst_dump_test
+
+# fast build rule for target.
+rocksdb_sst_dump_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_sst_dump_test.dir\build.make CMakeFiles/rocksdb_sst_dump_test.dir/build
+.PHONY : rocksdb_sst_dump_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_trace_analyzer_test
+
+# Build rule for target.
+rocksdb_trace_analyzer_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_trace_analyzer_test
+.PHONY : rocksdb_trace_analyzer_test
+
+# fast build rule for target.
+rocksdb_trace_analyzer_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_trace_analyzer_test.dir\build.make CMakeFiles/rocksdb_trace_analyzer_test.dir/build
+.PHONY : rocksdb_trace_analyzer_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_arena_test
+
+# Build rule for target.
+rocksdb_arena_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_arena_test
+.PHONY : rocksdb_arena_test
+
+# fast build rule for target.
+rocksdb_arena_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_arena_test.dir\build.make CMakeFiles/rocksdb_arena_test.dir/build
+.PHONY : rocksdb_arena_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_auto_roll_logger_test
+
+# Build rule for target.
+rocksdb_auto_roll_logger_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_auto_roll_logger_test
+.PHONY : rocksdb_auto_roll_logger_test
+
+# fast build rule for target.
+rocksdb_auto_roll_logger_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_auto_roll_logger_test.dir\build.make CMakeFiles/rocksdb_auto_roll_logger_test.dir/build
+.PHONY : rocksdb_auto_roll_logger_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_ttl_test
+
+# Build rule for target.
+rocksdb_ttl_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_ttl_test
+.PHONY : rocksdb_ttl_test
+
+# fast build rule for target.
+rocksdb_ttl_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_ttl_test.dir\build.make CMakeFiles/rocksdb_ttl_test.dir/build
+.PHONY : rocksdb_ttl_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_autovector_test
+
+# Build rule for target.
+rocksdb_autovector_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_autovector_test
+.PHONY : rocksdb_autovector_test
+
+# fast build rule for target.
+rocksdb_autovector_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_autovector_test.dir\build.make CMakeFiles/rocksdb_autovector_test.dir/build
+.PHONY : rocksdb_autovector_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_delete_scheduler_test
+
+# Build rule for target.
+rocksdb_delete_scheduler_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_delete_scheduler_test
+.PHONY : rocksdb_delete_scheduler_test
+
+# fast build rule for target.
+rocksdb_delete_scheduler_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_delete_scheduler_test.dir\build.make CMakeFiles/rocksdb_delete_scheduler_test.dir/build
+.PHONY : rocksdb_delete_scheduler_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_event_logger_test
+
+# Build rule for target.
+rocksdb_event_logger_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_event_logger_test
+.PHONY : rocksdb_event_logger_test
+
+# fast build rule for target.
+rocksdb_event_logger_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_event_logger_test.dir\build.make CMakeFiles/rocksdb_event_logger_test.dir/build
+.PHONY : rocksdb_event_logger_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_file_reader_writer_test
+
+# Build rule for target.
+rocksdb_file_reader_writer_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_file_reader_writer_test
+.PHONY : rocksdb_file_reader_writer_test
+
+# fast build rule for target.
+rocksdb_file_reader_writer_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_file_reader_writer_test.dir\build.make CMakeFiles/rocksdb_file_reader_writer_test.dir/build
+.PHONY : rocksdb_file_reader_writer_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_filelock_test
+
+# Build rule for target.
+rocksdb_filelock_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_filelock_test
+.PHONY : rocksdb_filelock_test
+
+# fast build rule for target.
+rocksdb_filelock_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_filelock_test.dir\build.make CMakeFiles/rocksdb_filelock_test.dir/build
+.PHONY : rocksdb_filelock_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_hash_test
+
+# Build rule for target.
+rocksdb_hash_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_hash_test
+.PHONY : rocksdb_hash_test
+
+# fast build rule for target.
+rocksdb_hash_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_hash_test.dir\build.make CMakeFiles/rocksdb_hash_test.dir/build
+.PHONY : rocksdb_hash_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_heap_test
+
+# Build rule for target.
+rocksdb_heap_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_heap_test
+.PHONY : rocksdb_heap_test
+
+# fast build rule for target.
+rocksdb_heap_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_heap_test.dir\build.make CMakeFiles/rocksdb_heap_test.dir/build
+.PHONY : rocksdb_heap_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_rate_limiter_test
+
+# Build rule for target.
+rocksdb_rate_limiter_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_rate_limiter_test
+.PHONY : rocksdb_rate_limiter_test
+
+# fast build rule for target.
+rocksdb_rate_limiter_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_rate_limiter_test.dir\build.make CMakeFiles/rocksdb_rate_limiter_test.dir/build
+.PHONY : rocksdb_rate_limiter_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_repeatable_thread_test
+
+# Build rule for target.
+rocksdb_repeatable_thread_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_repeatable_thread_test
+.PHONY : rocksdb_repeatable_thread_test
+
+# fast build rule for target.
+rocksdb_repeatable_thread_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_repeatable_thread_test.dir\build.make CMakeFiles/rocksdb_repeatable_thread_test.dir/build
+.PHONY : rocksdb_repeatable_thread_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_slice_transform_test
+
+# Build rule for target.
+rocksdb_slice_transform_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_slice_transform_test
+.PHONY : rocksdb_slice_transform_test
+
+# fast build rule for target.
+rocksdb_slice_transform_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_slice_transform_test.dir\build.make CMakeFiles/rocksdb_slice_transform_test.dir/build
+.PHONY : rocksdb_slice_transform_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_timer_queue_test
+
+# Build rule for target.
+rocksdb_timer_queue_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_timer_queue_test
+.PHONY : rocksdb_timer_queue_test
+
+# fast build rule for target.
+rocksdb_timer_queue_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_timer_queue_test.dir\build.make CMakeFiles/rocksdb_timer_queue_test.dir/build
+.PHONY : rocksdb_timer_queue_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_thread_list_test
+
+# Build rule for target.
+rocksdb_thread_list_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_thread_list_test
+.PHONY : rocksdb_thread_list_test
+
+# fast build rule for target.
+rocksdb_thread_list_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_thread_list_test.dir\build.make CMakeFiles/rocksdb_thread_list_test.dir/build
+.PHONY : rocksdb_thread_list_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_thread_local_test
+
+# Build rule for target.
+rocksdb_thread_local_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_thread_local_test
+.PHONY : rocksdb_thread_local_test
+
+# fast build rule for target.
+rocksdb_thread_local_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_thread_local_test.dir\build.make CMakeFiles/rocksdb_thread_local_test.dir/build
+.PHONY : rocksdb_thread_local_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_json_document_test
+
+# Build rule for target.
+rocksdb_json_document_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_json_document_test
+.PHONY : rocksdb_json_document_test
+
+# fast build rule for target.
+rocksdb_json_document_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_json_document_test.dir\build.make CMakeFiles/rocksdb_json_document_test.dir/build
+.PHONY : rocksdb_json_document_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cassandra_functional_test
+
+# Build rule for target.
+rocksdb_cassandra_functional_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cassandra_functional_test
+.PHONY : rocksdb_cassandra_functional_test
+
+# fast build rule for target.
+rocksdb_cassandra_functional_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_functional_test.dir\build.make CMakeFiles/rocksdb_cassandra_functional_test.dir/build
+.PHONY : rocksdb_cassandra_functional_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cassandra_format_test
+
+# Build rule for target.
+rocksdb_cassandra_format_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cassandra_format_test
+.PHONY : rocksdb_cassandra_format_test
+
+# fast build rule for target.
+rocksdb_cassandra_format_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_format_test.dir\build.make CMakeFiles/rocksdb_cassandra_format_test.dir/build
+.PHONY : rocksdb_cassandra_format_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_cassandra_row_merge_test
+
+# Build rule for target.
+rocksdb_cassandra_row_merge_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_cassandra_row_merge_test
+.PHONY : rocksdb_cassandra_row_merge_test
+
+# fast build rule for target.
+rocksdb_cassandra_row_merge_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_row_merge_test.dir\build.make CMakeFiles/rocksdb_cassandra_row_merge_test.dir/build
+.PHONY : rocksdb_cassandra_row_merge_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_checkpoint_test
+
+# Build rule for target.
+rocksdb_checkpoint_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_checkpoint_test
+.PHONY : rocksdb_checkpoint_test
+
+# fast build rule for target.
+rocksdb_checkpoint_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_checkpoint_test.dir\build.make CMakeFiles/rocksdb_checkpoint_test.dir/build
+.PHONY : rocksdb_checkpoint_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_document_db_test
+
+# Build rule for target.
+rocksdb_document_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_document_db_test
+.PHONY : rocksdb_document_db_test
+
+# fast build rule for target.
+rocksdb_document_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_document_db_test.dir\build.make CMakeFiles/rocksdb_document_db_test.dir/build
+.PHONY : rocksdb_document_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_geodb_test
+
+# Build rule for target.
+rocksdb_geodb_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_geodb_test
+.PHONY : rocksdb_geodb_test
+
+# fast build rule for target.
+rocksdb_geodb_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_geodb_test.dir\build.make CMakeFiles/rocksdb_geodb_test.dir/build
+.PHONY : rocksdb_geodb_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_rocks_lua_test
+
+# Build rule for target.
+rocksdb_rocks_lua_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_rocks_lua_test
+.PHONY : rocksdb_rocks_lua_test
+
+# fast build rule for target.
+rocksdb_rocks_lua_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_rocks_lua_test.dir\build.make CMakeFiles/rocksdb_rocks_lua_test.dir/build
+.PHONY : rocksdb_rocks_lua_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_memory_test
+
+# Build rule for target.
+rocksdb_memory_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_memory_test
+.PHONY : rocksdb_memory_test
+
+# fast build rule for target.
+rocksdb_memory_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_memory_test.dir\build.make CMakeFiles/rocksdb_memory_test.dir/build
+.PHONY : rocksdb_memory_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_stringappend_test
+
+# Build rule for target.
+rocksdb_stringappend_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_stringappend_test
+.PHONY : rocksdb_stringappend_test
+
+# fast build rule for target.
+rocksdb_stringappend_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_stringappend_test.dir\build.make CMakeFiles/rocksdb_stringappend_test.dir/build
+.PHONY : rocksdb_stringappend_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_object_registry_test
+
+# Build rule for target.
+rocksdb_object_registry_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_object_registry_test
+.PHONY : rocksdb_object_registry_test
+
+# fast build rule for target.
+rocksdb_object_registry_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_object_registry_test.dir\build.make CMakeFiles/rocksdb_object_registry_test.dir/build
+.PHONY : rocksdb_object_registry_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_options_util_test
+
+# Build rule for target.
+rocksdb_options_util_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_options_util_test
+.PHONY : rocksdb_options_util_test
+
+# fast build rule for target.
+rocksdb_options_util_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_options_util_test.dir\build.make CMakeFiles/rocksdb_options_util_test.dir/build
+.PHONY : rocksdb_options_util_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_hash_table_test
+
+# Build rule for target.
+rocksdb_hash_table_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_hash_table_test
+.PHONY : rocksdb_hash_table_test
+
+# fast build rule for target.
+rocksdb_hash_table_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_hash_table_test.dir\build.make CMakeFiles/rocksdb_hash_table_test.dir/build
+.PHONY : rocksdb_hash_table_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_persistent_cache_test
+
+# Build rule for target.
+rocksdb_persistent_cache_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_persistent_cache_test
+.PHONY : rocksdb_persistent_cache_test
+
+# fast build rule for target.
+rocksdb_persistent_cache_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_persistent_cache_test.dir\build.make CMakeFiles/rocksdb_persistent_cache_test.dir/build
+.PHONY : rocksdb_persistent_cache_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_redis_lists_test
+
+# Build rule for target.
+rocksdb_redis_lists_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_redis_lists_test
+.PHONY : rocksdb_redis_lists_test
+
+# fast build rule for target.
+rocksdb_redis_lists_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_redis_lists_test.dir\build.make CMakeFiles/rocksdb_redis_lists_test.dir/build
+.PHONY : rocksdb_redis_lists_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_spatial_db_test
+
+# Build rule for target.
+rocksdb_spatial_db_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_spatial_db_test
+.PHONY : rocksdb_spatial_db_test
+
+# fast build rule for target.
+rocksdb_spatial_db_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_spatial_db_test.dir\build.make CMakeFiles/rocksdb_spatial_db_test.dir/build
+.PHONY : rocksdb_spatial_db_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_compact_on_deletion_collector_test
+
+# Build rule for target.
+rocksdb_compact_on_deletion_collector_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_compact_on_deletion_collector_test
+.PHONY : rocksdb_compact_on_deletion_collector_test
+
+# fast build rule for target.
+rocksdb_compact_on_deletion_collector_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_compact_on_deletion_collector_test.dir\build.make CMakeFiles/rocksdb_compact_on_deletion_collector_test.dir/build
+.PHONY : rocksdb_compact_on_deletion_collector_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_optimistic_transaction_test
+
+# Build rule for target.
+rocksdb_optimistic_transaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_optimistic_transaction_test
+.PHONY : rocksdb_optimistic_transaction_test
+
+# fast build rule for target.
+rocksdb_optimistic_transaction_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_optimistic_transaction_test.dir\build.make CMakeFiles/rocksdb_optimistic_transaction_test.dir/build
+.PHONY : rocksdb_optimistic_transaction_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_transaction_test
+
+# Build rule for target.
+rocksdb_transaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_transaction_test
+.PHONY : rocksdb_transaction_test
+
+# fast build rule for target.
+rocksdb_transaction_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_transaction_test.dir\build.make CMakeFiles/rocksdb_transaction_test.dir/build
+.PHONY : rocksdb_transaction_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_write_prepared_transaction_test
+
+# Build rule for target.
+rocksdb_write_prepared_transaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_write_prepared_transaction_test
+.PHONY : rocksdb_write_prepared_transaction_test
+
+# fast build rule for target.
+rocksdb_write_prepared_transaction_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_write_prepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_prepared_transaction_test.dir/build
+.PHONY : rocksdb_write_prepared_transaction_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_write_unprepared_transaction_test
+
+# Build rule for target.
+rocksdb_write_unprepared_transaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_write_unprepared_transaction_test
+.PHONY : rocksdb_write_unprepared_transaction_test
+
+# fast build rule for target.
+rocksdb_write_unprepared_transaction_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_write_unprepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_unprepared_transaction_test.dir/build
+.PHONY : rocksdb_write_unprepared_transaction_test/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_write_batch_with_index_test
+
+# Build rule for target.
+rocksdb_write_batch_with_index_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_write_batch_with_index_test
+.PHONY : rocksdb_write_batch_with_index_test
+
+# fast build rule for target.
+rocksdb_write_batch_with_index_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_with_index_test.dir\build.make CMakeFiles/rocksdb_write_batch_with_index_test.dir/build
+.PHONY : rocksdb_write_batch_with_index_test/fast
+
+#=============================================================================
+# Target rules for targets named c_test
+
+# Build rule for target.
+c_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 c_test
+.PHONY : c_test
+
+# fast build rule for target.
+c_test/fast:
+	$(MAKE) -f CMakeFiles\c_test.dir\build.make CMakeFiles/c_test.dir/build
+.PHONY : c_test/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) -f third-party\gtest-1.7.0\fused-src\gtest\CMakeFiles\gtest.dir\build.make third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named tools
+
+# Build rule for target.
+tools: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 tools
+.PHONY : tools
+
+# fast build rule for target.
+tools/fast:
+	$(MAKE) -f tools\CMakeFiles\tools.dir\build.make tools/CMakeFiles/tools.dir/build
+.PHONY : tools/fast
+
+#=============================================================================
+# Target rules for targets named sst_dump
+
+# Build rule for target.
+sst_dump: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 sst_dump
+.PHONY : sst_dump
+
+# fast build rule for target.
+sst_dump/fast:
+	$(MAKE) -f tools\CMakeFiles\sst_dump.dir\build.make tools/CMakeFiles/sst_dump.dir/build
+.PHONY : sst_dump/fast
+
+#=============================================================================
+# Target rules for targets named db_sanity_test
+
+# Build rule for target.
+db_sanity_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 db_sanity_test
+.PHONY : db_sanity_test
+
+# fast build rule for target.
+db_sanity_test/fast:
+	$(MAKE) -f tools\CMakeFiles\db_sanity_test.dir\build.make tools/CMakeFiles/db_sanity_test.dir/build
+.PHONY : db_sanity_test/fast
+
+#=============================================================================
+# Target rules for targets named db_stress
+
+# Build rule for target.
+db_stress: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 db_stress
+.PHONY : db_stress
+
+# fast build rule for target.
+db_stress/fast:
+	$(MAKE) -f tools\CMakeFiles\db_stress.dir\build.make tools/CMakeFiles/db_stress.dir/build
+.PHONY : db_stress/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_undump
+
+# Build rule for target.
+rocksdb_undump: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_undump
+.PHONY : rocksdb_undump
+
+# fast build rule for target.
+rocksdb_undump/fast:
+	$(MAKE) -f tools\CMakeFiles\rocksdb_undump.dir\build.make tools/CMakeFiles/rocksdb_undump.dir/build
+.PHONY : rocksdb_undump/fast
+
+#=============================================================================
+# Target rules for targets named write_stress
+
+# Build rule for target.
+write_stress: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 write_stress
+.PHONY : write_stress
+
+# fast build rule for target.
+write_stress/fast:
+	$(MAKE) -f tools\CMakeFiles\write_stress.dir\build.make tools/CMakeFiles/write_stress.dir/build
+.PHONY : write_stress/fast
+
+#=============================================================================
+# Target rules for targets named ldb
+
+# Build rule for target.
+ldb: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 ldb
+.PHONY : ldb
+
+# fast build rule for target.
+ldb/fast:
+	$(MAKE) -f tools\CMakeFiles\ldb.dir\build.make tools/CMakeFiles/ldb.dir/build
+.PHONY : ldb/fast
+
+#=============================================================================
+# Target rules for targets named db_repl_stress
+
+# Build rule for target.
+db_repl_stress: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 db_repl_stress
+.PHONY : db_repl_stress
+
+# fast build rule for target.
+db_repl_stress/fast:
+	$(MAKE) -f tools\CMakeFiles\db_repl_stress.dir\build.make tools/CMakeFiles/db_repl_stress.dir/build
+.PHONY : db_repl_stress/fast
+
+#=============================================================================
+# Target rules for targets named rocksdb_dump
+
+# Build rule for target.
+rocksdb_dump: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_dump
+.PHONY : rocksdb_dump
+
+# fast build rule for target.
+rocksdb_dump/fast:
+	$(MAKE) -f tools\CMakeFiles\rocksdb_dump.dir\build.make tools/CMakeFiles/rocksdb_dump.dir/build
+.PHONY : rocksdb_dump/fast
+
+#=============================================================================
+# Target rules for targets named ldb_tests
+
+# Build rule for target.
+ldb_tests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 ldb_tests
+.PHONY : ldb_tests
+
+# fast build rule for target.
+ldb_tests/fast:
+	$(MAKE) -f tools\CMakeFiles\ldb_tests.dir\build.make tools/CMakeFiles/ldb_tests.dir/build
+.PHONY : ldb_tests/fast
+
+build_version.obj: build_version.cc.obj
+
+.PHONY : build_version.obj
+
+# target to build an object file
+build_version.cc.obj:
+	$(MAKE) -f CMakeFiles\build_version.dir\build.make CMakeFiles/build_version.dir/build_version.cc.obj
+.PHONY : build_version.cc.obj
+
+build_version.i: build_version.cc.i
+
+.PHONY : build_version.i
+
+# target to preprocess a source file
+build_version.cc.i:
+	$(MAKE) -f CMakeFiles\build_version.dir\build.make CMakeFiles/build_version.dir/build_version.cc.i
+.PHONY : build_version.cc.i
+
+build_version.s: build_version.cc.s
+
+.PHONY : build_version.s
+
+# target to generate assembly for a file
+build_version.cc.s:
+	$(MAKE) -f CMakeFiles\build_version.dir\build.make CMakeFiles/build_version.dir/build_version.cc.s
+.PHONY : build_version.cc.s
 
 cache/cache_bench.obj: cache/cache_bench.cc.obj
 
@@ -128,7 +2350,7 @@ cache/cache_bench.obj: cache/cache_bench.cc.obj
 
 # target to build an object file
 cache/cache_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/cache_bench.cc.obj
+	$(MAKE) -f CMakeFiles\cache_bench.dir\build.make CMakeFiles/cache_bench.dir/cache/cache_bench.cc.obj
 .PHONY : cache/cache_bench.cc.obj
 
 cache/cache_bench.i: cache/cache_bench.cc.i
@@ -137,7 +2359,7 @@ cache/cache_bench.i: cache/cache_bench.cc.i
 
 # target to preprocess a source file
 cache/cache_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/cache_bench.cc.i
+	$(MAKE) -f CMakeFiles\cache_bench.dir\build.make CMakeFiles/cache_bench.dir/cache/cache_bench.cc.i
 .PHONY : cache/cache_bench.cc.i
 
 cache/cache_bench.s: cache/cache_bench.cc.s
@@ -146,7 +2368,7 @@ cache/cache_bench.s: cache/cache_bench.cc.s
 
 # target to generate assembly for a file
 cache/cache_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/cache_bench.cc.s
+	$(MAKE) -f CMakeFiles\cache_bench.dir\build.make CMakeFiles/cache_bench.dir/cache/cache_bench.cc.s
 .PHONY : cache/cache_bench.cc.s
 
 cache/cache_test.obj: cache/cache_test.cc.obj
@@ -155,7 +2377,7 @@ cache/cache_test.obj: cache/cache_test.cc.obj
 
 # target to build an object file
 cache/cache_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/cache_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cache_test.dir\build.make CMakeFiles/rocksdb_cache_test.dir/cache/cache_test.cc.obj
 .PHONY : cache/cache_test.cc.obj
 
 cache/cache_test.i: cache/cache_test.cc.i
@@ -164,7 +2386,7 @@ cache/cache_test.i: cache/cache_test.cc.i
 
 # target to preprocess a source file
 cache/cache_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/cache_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cache_test.dir\build.make CMakeFiles/rocksdb_cache_test.dir/cache/cache_test.cc.i
 .PHONY : cache/cache_test.cc.i
 
 cache/cache_test.s: cache/cache_test.cc.s
@@ -173,7 +2395,7 @@ cache/cache_test.s: cache/cache_test.cc.s
 
 # target to generate assembly for a file
 cache/cache_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/cache_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cache_test.dir\build.make CMakeFiles/rocksdb_cache_test.dir/cache/cache_test.cc.s
 .PHONY : cache/cache_test.cc.s
 
 cache/clock_cache.obj: cache/clock_cache.cc.obj
@@ -182,7 +2404,8 @@ cache/clock_cache.obj: cache/clock_cache.cc.obj
 
 # target to build an object file
 cache/clock_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/clock_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/clock_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/clock_cache.cc.obj
 .PHONY : cache/clock_cache.cc.obj
 
 cache/clock_cache.i: cache/clock_cache.cc.i
@@ -191,7 +2414,8 @@ cache/clock_cache.i: cache/clock_cache.cc.i
 
 # target to preprocess a source file
 cache/clock_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/clock_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/clock_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/clock_cache.cc.i
 .PHONY : cache/clock_cache.cc.i
 
 cache/clock_cache.s: cache/clock_cache.cc.s
@@ -200,7 +2424,8 @@ cache/clock_cache.s: cache/clock_cache.cc.s
 
 # target to generate assembly for a file
 cache/clock_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/clock_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/clock_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/clock_cache.cc.s
 .PHONY : cache/clock_cache.cc.s
 
 cache/lru_cache.obj: cache/lru_cache.cc.obj
@@ -209,7 +2434,8 @@ cache/lru_cache.obj: cache/lru_cache.cc.obj
 
 # target to build an object file
 cache/lru_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/lru_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/lru_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/lru_cache.cc.obj
 .PHONY : cache/lru_cache.cc.obj
 
 cache/lru_cache.i: cache/lru_cache.cc.i
@@ -218,7 +2444,8 @@ cache/lru_cache.i: cache/lru_cache.cc.i
 
 # target to preprocess a source file
 cache/lru_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/lru_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/lru_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/lru_cache.cc.i
 .PHONY : cache/lru_cache.cc.i
 
 cache/lru_cache.s: cache/lru_cache.cc.s
@@ -227,7 +2454,8 @@ cache/lru_cache.s: cache/lru_cache.cc.s
 
 # target to generate assembly for a file
 cache/lru_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/lru_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/lru_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/lru_cache.cc.s
 .PHONY : cache/lru_cache.cc.s
 
 cache/lru_cache_test.obj: cache/lru_cache_test.cc.obj
@@ -236,7 +2464,7 @@ cache/lru_cache_test.obj: cache/lru_cache_test.cc.obj
 
 # target to build an object file
 cache/lru_cache_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/lru_cache_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_lru_cache_test.dir\build.make CMakeFiles/rocksdb_lru_cache_test.dir/cache/lru_cache_test.cc.obj
 .PHONY : cache/lru_cache_test.cc.obj
 
 cache/lru_cache_test.i: cache/lru_cache_test.cc.i
@@ -245,7 +2473,7 @@ cache/lru_cache_test.i: cache/lru_cache_test.cc.i
 
 # target to preprocess a source file
 cache/lru_cache_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/lru_cache_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_lru_cache_test.dir\build.make CMakeFiles/rocksdb_lru_cache_test.dir/cache/lru_cache_test.cc.i
 .PHONY : cache/lru_cache_test.cc.i
 
 cache/lru_cache_test.s: cache/lru_cache_test.cc.s
@@ -254,7 +2482,7 @@ cache/lru_cache_test.s: cache/lru_cache_test.cc.s
 
 # target to generate assembly for a file
 cache/lru_cache_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/lru_cache_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_lru_cache_test.dir\build.make CMakeFiles/rocksdb_lru_cache_test.dir/cache/lru_cache_test.cc.s
 .PHONY : cache/lru_cache_test.cc.s
 
 cache/sharded_cache.obj: cache/sharded_cache.cc.obj
@@ -263,7 +2491,8 @@ cache/sharded_cache.obj: cache/sharded_cache.cc.obj
 
 # target to build an object file
 cache/sharded_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/sharded_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/sharded_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/sharded_cache.cc.obj
 .PHONY : cache/sharded_cache.cc.obj
 
 cache/sharded_cache.i: cache/sharded_cache.cc.i
@@ -272,7 +2501,8 @@ cache/sharded_cache.i: cache/sharded_cache.cc.i
 
 # target to preprocess a source file
 cache/sharded_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/sharded_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/sharded_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/sharded_cache.cc.i
 .PHONY : cache/sharded_cache.cc.i
 
 cache/sharded_cache.s: cache/sharded_cache.cc.s
@@ -281,7 +2511,8 @@ cache/sharded_cache.s: cache/sharded_cache.cc.s
 
 # target to generate assembly for a file
 cache/sharded_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/cache/sharded_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/cache/sharded_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/cache/sharded_cache.cc.s
 .PHONY : cache/sharded_cache.cc.s
 
 db/builder.obj: db/builder.cc.obj
@@ -290,7 +2521,8 @@ db/builder.obj: db/builder.cc.obj
 
 # target to build an object file
 db/builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/builder.cc.obj
 .PHONY : db/builder.cc.obj
 
 db/builder.i: db/builder.cc.i
@@ -299,7 +2531,8 @@ db/builder.i: db/builder.cc.i
 
 # target to preprocess a source file
 db/builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/builder.cc.i
 .PHONY : db/builder.cc.i
 
 db/builder.s: db/builder.cc.s
@@ -308,7 +2541,8 @@ db/builder.s: db/builder.cc.s
 
 # target to generate assembly for a file
 db/builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/builder.cc.s
 .PHONY : db/builder.cc.s
 
 db/c.obj: db/c.cc.obj
@@ -317,7 +2551,8 @@ db/c.obj: db/c.cc.obj
 
 # target to build an object file
 db/c.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/c.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/c.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/c.cc.obj
 .PHONY : db/c.cc.obj
 
 db/c.i: db/c.cc.i
@@ -326,7 +2561,8 @@ db/c.i: db/c.cc.i
 
 # target to preprocess a source file
 db/c.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/c.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/c.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/c.cc.i
 .PHONY : db/c.cc.i
 
 db/c.s: db/c.cc.s
@@ -335,7 +2571,8 @@ db/c.s: db/c.cc.s
 
 # target to generate assembly for a file
 db/c.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/c.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/c.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/c.cc.s
 .PHONY : db/c.cc.s
 
 db/c_test.obj: db/c_test.c.obj
@@ -344,7 +2581,7 @@ db/c_test.obj: db/c_test.c.obj
 
 # target to build an object file
 db/c_test.c.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/c_test.c.obj
+	$(MAKE) -f CMakeFiles\c_test.dir\build.make CMakeFiles/c_test.dir/db/c_test.c.obj
 .PHONY : db/c_test.c.obj
 
 db/c_test.i: db/c_test.c.i
@@ -353,7 +2590,7 @@ db/c_test.i: db/c_test.c.i
 
 # target to preprocess a source file
 db/c_test.c.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/c_test.c.i
+	$(MAKE) -f CMakeFiles\c_test.dir\build.make CMakeFiles/c_test.dir/db/c_test.c.i
 .PHONY : db/c_test.c.i
 
 db/c_test.s: db/c_test.c.s
@@ -362,7 +2599,7 @@ db/c_test.s: db/c_test.c.s
 
 # target to generate assembly for a file
 db/c_test.c.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/c_test.c.s
+	$(MAKE) -f CMakeFiles\c_test.dir\build.make CMakeFiles/c_test.dir/db/c_test.c.s
 .PHONY : db/c_test.c.s
 
 db/column_family.obj: db/column_family.cc.obj
@@ -371,7 +2608,8 @@ db/column_family.obj: db/column_family.cc.obj
 
 # target to build an object file
 db/column_family.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/column_family.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/column_family.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/column_family.cc.obj
 .PHONY : db/column_family.cc.obj
 
 db/column_family.i: db/column_family.cc.i
@@ -380,7 +2618,8 @@ db/column_family.i: db/column_family.cc.i
 
 # target to preprocess a source file
 db/column_family.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/column_family.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/column_family.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/column_family.cc.i
 .PHONY : db/column_family.cc.i
 
 db/column_family.s: db/column_family.cc.s
@@ -389,7 +2628,8 @@ db/column_family.s: db/column_family.cc.s
 
 # target to generate assembly for a file
 db/column_family.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/column_family.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/column_family.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/column_family.cc.s
 .PHONY : db/column_family.cc.s
 
 db/column_family_test.obj: db/column_family_test.cc.obj
@@ -398,7 +2638,7 @@ db/column_family_test.obj: db/column_family_test.cc.obj
 
 # target to build an object file
 db/column_family_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/column_family_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_column_family_test.dir\build.make CMakeFiles/rocksdb_column_family_test.dir/db/column_family_test.cc.obj
 .PHONY : db/column_family_test.cc.obj
 
 db/column_family_test.i: db/column_family_test.cc.i
@@ -407,7 +2647,7 @@ db/column_family_test.i: db/column_family_test.cc.i
 
 # target to preprocess a source file
 db/column_family_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/column_family_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_column_family_test.dir\build.make CMakeFiles/rocksdb_column_family_test.dir/db/column_family_test.cc.i
 .PHONY : db/column_family_test.cc.i
 
 db/column_family_test.s: db/column_family_test.cc.s
@@ -416,7 +2656,7 @@ db/column_family_test.s: db/column_family_test.cc.s
 
 # target to generate assembly for a file
 db/column_family_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/column_family_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_column_family_test.dir\build.make CMakeFiles/rocksdb_column_family_test.dir/db/column_family_test.cc.s
 .PHONY : db/column_family_test.cc.s
 
 db/compact_files_test.obj: db/compact_files_test.cc.obj
@@ -425,7 +2665,7 @@ db/compact_files_test.obj: db/compact_files_test.cc.obj
 
 # target to build an object file
 db/compact_files_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compact_files_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_compact_files_test.dir\build.make CMakeFiles/rocksdb_compact_files_test.dir/db/compact_files_test.cc.obj
 .PHONY : db/compact_files_test.cc.obj
 
 db/compact_files_test.i: db/compact_files_test.cc.i
@@ -434,7 +2674,7 @@ db/compact_files_test.i: db/compact_files_test.cc.i
 
 # target to preprocess a source file
 db/compact_files_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compact_files_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_compact_files_test.dir\build.make CMakeFiles/rocksdb_compact_files_test.dir/db/compact_files_test.cc.i
 .PHONY : db/compact_files_test.cc.i
 
 db/compact_files_test.s: db/compact_files_test.cc.s
@@ -443,7 +2683,7 @@ db/compact_files_test.s: db/compact_files_test.cc.s
 
 # target to generate assembly for a file
 db/compact_files_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compact_files_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_compact_files_test.dir\build.make CMakeFiles/rocksdb_compact_files_test.dir/db/compact_files_test.cc.s
 .PHONY : db/compact_files_test.cc.s
 
 db/compacted_db_impl.obj: db/compacted_db_impl.cc.obj
@@ -452,7 +2692,8 @@ db/compacted_db_impl.obj: db/compacted_db_impl.cc.obj
 
 # target to build an object file
 db/compacted_db_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compacted_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compacted_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compacted_db_impl.cc.obj
 .PHONY : db/compacted_db_impl.cc.obj
 
 db/compacted_db_impl.i: db/compacted_db_impl.cc.i
@@ -461,7 +2702,8 @@ db/compacted_db_impl.i: db/compacted_db_impl.cc.i
 
 # target to preprocess a source file
 db/compacted_db_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compacted_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compacted_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compacted_db_impl.cc.i
 .PHONY : db/compacted_db_impl.cc.i
 
 db/compacted_db_impl.s: db/compacted_db_impl.cc.s
@@ -470,7 +2712,8 @@ db/compacted_db_impl.s: db/compacted_db_impl.cc.s
 
 # target to generate assembly for a file
 db/compacted_db_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compacted_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compacted_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compacted_db_impl.cc.s
 .PHONY : db/compacted_db_impl.cc.s
 
 db/compaction.obj: db/compaction.cc.obj
@@ -479,7 +2722,8 @@ db/compaction.obj: db/compaction.cc.obj
 
 # target to build an object file
 db/compaction.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction.cc.obj
 .PHONY : db/compaction.cc.obj
 
 db/compaction.i: db/compaction.cc.i
@@ -488,7 +2732,8 @@ db/compaction.i: db/compaction.cc.i
 
 # target to preprocess a source file
 db/compaction.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction.cc.i
 .PHONY : db/compaction.cc.i
 
 db/compaction.s: db/compaction.cc.s
@@ -497,7 +2742,8 @@ db/compaction.s: db/compaction.cc.s
 
 # target to generate assembly for a file
 db/compaction.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction.cc.s
 .PHONY : db/compaction.cc.s
 
 db/compaction_iterator.obj: db/compaction_iterator.cc.obj
@@ -506,7 +2752,8 @@ db/compaction_iterator.obj: db/compaction_iterator.cc.obj
 
 # target to build an object file
 db/compaction_iterator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_iterator.cc.obj
 .PHONY : db/compaction_iterator.cc.obj
 
 db/compaction_iterator.i: db/compaction_iterator.cc.i
@@ -515,7 +2762,8 @@ db/compaction_iterator.i: db/compaction_iterator.cc.i
 
 # target to preprocess a source file
 db/compaction_iterator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_iterator.cc.i
 .PHONY : db/compaction_iterator.cc.i
 
 db/compaction_iterator.s: db/compaction_iterator.cc.s
@@ -524,7 +2772,8 @@ db/compaction_iterator.s: db/compaction_iterator.cc.s
 
 # target to generate assembly for a file
 db/compaction_iterator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_iterator.cc.s
 .PHONY : db/compaction_iterator.cc.s
 
 db/compaction_iterator_test.obj: db/compaction_iterator_test.cc.obj
@@ -533,7 +2782,7 @@ db/compaction_iterator_test.obj: db/compaction_iterator_test.cc.obj
 
 # target to build an object file
 db/compaction_iterator_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_iterator_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_iterator_test.dir\build.make CMakeFiles/rocksdb_compaction_iterator_test.dir/db/compaction_iterator_test.cc.obj
 .PHONY : db/compaction_iterator_test.cc.obj
 
 db/compaction_iterator_test.i: db/compaction_iterator_test.cc.i
@@ -542,7 +2791,7 @@ db/compaction_iterator_test.i: db/compaction_iterator_test.cc.i
 
 # target to preprocess a source file
 db/compaction_iterator_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_iterator_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_iterator_test.dir\build.make CMakeFiles/rocksdb_compaction_iterator_test.dir/db/compaction_iterator_test.cc.i
 .PHONY : db/compaction_iterator_test.cc.i
 
 db/compaction_iterator_test.s: db/compaction_iterator_test.cc.s
@@ -551,7 +2800,7 @@ db/compaction_iterator_test.s: db/compaction_iterator_test.cc.s
 
 # target to generate assembly for a file
 db/compaction_iterator_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_iterator_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_iterator_test.dir\build.make CMakeFiles/rocksdb_compaction_iterator_test.dir/db/compaction_iterator_test.cc.s
 .PHONY : db/compaction_iterator_test.cc.s
 
 db/compaction_job.obj: db/compaction_job.cc.obj
@@ -560,7 +2809,8 @@ db/compaction_job.obj: db/compaction_job.cc.obj
 
 # target to build an object file
 db/compaction_job.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_job.cc.obj
 .PHONY : db/compaction_job.cc.obj
 
 db/compaction_job.i: db/compaction_job.cc.i
@@ -569,7 +2819,8 @@ db/compaction_job.i: db/compaction_job.cc.i
 
 # target to preprocess a source file
 db/compaction_job.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_job.cc.i
 .PHONY : db/compaction_job.cc.i
 
 db/compaction_job.s: db/compaction_job.cc.s
@@ -578,7 +2829,8 @@ db/compaction_job.s: db/compaction_job.cc.s
 
 # target to generate assembly for a file
 db/compaction_job.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_job.cc.s
 .PHONY : db/compaction_job.cc.s
 
 db/compaction_job_stats_test.obj: db/compaction_job_stats_test.cc.obj
@@ -587,7 +2839,7 @@ db/compaction_job_stats_test.obj: db/compaction_job_stats_test.cc.obj
 
 # target to build an object file
 db/compaction_job_stats_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job_stats_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_stats_test.dir\build.make CMakeFiles/rocksdb_compaction_job_stats_test.dir/db/compaction_job_stats_test.cc.obj
 .PHONY : db/compaction_job_stats_test.cc.obj
 
 db/compaction_job_stats_test.i: db/compaction_job_stats_test.cc.i
@@ -596,7 +2848,7 @@ db/compaction_job_stats_test.i: db/compaction_job_stats_test.cc.i
 
 # target to preprocess a source file
 db/compaction_job_stats_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job_stats_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_stats_test.dir\build.make CMakeFiles/rocksdb_compaction_job_stats_test.dir/db/compaction_job_stats_test.cc.i
 .PHONY : db/compaction_job_stats_test.cc.i
 
 db/compaction_job_stats_test.s: db/compaction_job_stats_test.cc.s
@@ -605,7 +2857,7 @@ db/compaction_job_stats_test.s: db/compaction_job_stats_test.cc.s
 
 # target to generate assembly for a file
 db/compaction_job_stats_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job_stats_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_stats_test.dir\build.make CMakeFiles/rocksdb_compaction_job_stats_test.dir/db/compaction_job_stats_test.cc.s
 .PHONY : db/compaction_job_stats_test.cc.s
 
 db/compaction_job_test.obj: db/compaction_job_test.cc.obj
@@ -614,7 +2866,7 @@ db/compaction_job_test.obj: db/compaction_job_test.cc.obj
 
 # target to build an object file
 db/compaction_job_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_test.dir\build.make CMakeFiles/rocksdb_compaction_job_test.dir/db/compaction_job_test.cc.obj
 .PHONY : db/compaction_job_test.cc.obj
 
 db/compaction_job_test.i: db/compaction_job_test.cc.i
@@ -623,7 +2875,7 @@ db/compaction_job_test.i: db/compaction_job_test.cc.i
 
 # target to preprocess a source file
 db/compaction_job_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_test.dir\build.make CMakeFiles/rocksdb_compaction_job_test.dir/db/compaction_job_test.cc.i
 .PHONY : db/compaction_job_test.cc.i
 
 db/compaction_job_test.s: db/compaction_job_test.cc.s
@@ -632,7 +2884,7 @@ db/compaction_job_test.s: db/compaction_job_test.cc.s
 
 # target to generate assembly for a file
 db/compaction_job_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_job_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_job_test.dir\build.make CMakeFiles/rocksdb_compaction_job_test.dir/db/compaction_job_test.cc.s
 .PHONY : db/compaction_job_test.cc.s
 
 db/compaction_picker.obj: db/compaction_picker.cc.obj
@@ -641,7 +2893,8 @@ db/compaction_picker.obj: db/compaction_picker.cc.obj
 
 # target to build an object file
 db/compaction_picker.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_picker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_picker.cc.obj
 .PHONY : db/compaction_picker.cc.obj
 
 db/compaction_picker.i: db/compaction_picker.cc.i
@@ -650,7 +2903,8 @@ db/compaction_picker.i: db/compaction_picker.cc.i
 
 # target to preprocess a source file
 db/compaction_picker.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_picker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_picker.cc.i
 .PHONY : db/compaction_picker.cc.i
 
 db/compaction_picker.s: db/compaction_picker.cc.s
@@ -659,7 +2913,8 @@ db/compaction_picker.s: db/compaction_picker.cc.s
 
 # target to generate assembly for a file
 db/compaction_picker.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_picker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_picker.cc.s
 .PHONY : db/compaction_picker.cc.s
 
 db/compaction_picker_test.obj: db/compaction_picker_test.cc.obj
@@ -668,7 +2923,7 @@ db/compaction_picker_test.obj: db/compaction_picker_test.cc.obj
 
 # target to build an object file
 db/compaction_picker_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_picker_test.dir\build.make CMakeFiles/rocksdb_compaction_picker_test.dir/db/compaction_picker_test.cc.obj
 .PHONY : db/compaction_picker_test.cc.obj
 
 db/compaction_picker_test.i: db/compaction_picker_test.cc.i
@@ -677,7 +2932,7 @@ db/compaction_picker_test.i: db/compaction_picker_test.cc.i
 
 # target to preprocess a source file
 db/compaction_picker_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_picker_test.dir\build.make CMakeFiles/rocksdb_compaction_picker_test.dir/db/compaction_picker_test.cc.i
 .PHONY : db/compaction_picker_test.cc.i
 
 db/compaction_picker_test.s: db/compaction_picker_test.cc.s
@@ -686,7 +2941,7 @@ db/compaction_picker_test.s: db/compaction_picker_test.cc.s
 
 # target to generate assembly for a file
 db/compaction_picker_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_compaction_picker_test.dir\build.make CMakeFiles/rocksdb_compaction_picker_test.dir/db/compaction_picker_test.cc.s
 .PHONY : db/compaction_picker_test.cc.s
 
 db/compaction_picker_universal.obj: db/compaction_picker_universal.cc.obj
@@ -695,7 +2950,8 @@ db/compaction_picker_universal.obj: db/compaction_picker_universal.cc.obj
 
 # target to build an object file
 db/compaction_picker_universal.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker_universal.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_picker_universal.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_picker_universal.cc.obj
 .PHONY : db/compaction_picker_universal.cc.obj
 
 db/compaction_picker_universal.i: db/compaction_picker_universal.cc.i
@@ -704,7 +2960,8 @@ db/compaction_picker_universal.i: db/compaction_picker_universal.cc.i
 
 # target to preprocess a source file
 db/compaction_picker_universal.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker_universal.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_picker_universal.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_picker_universal.cc.i
 .PHONY : db/compaction_picker_universal.cc.i
 
 db/compaction_picker_universal.s: db/compaction_picker_universal.cc.s
@@ -713,7 +2970,8 @@ db/compaction_picker_universal.s: db/compaction_picker_universal.cc.s
 
 # target to generate assembly for a file
 db/compaction_picker_universal.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/compaction_picker_universal.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/compaction_picker_universal.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/compaction_picker_universal.cc.s
 .PHONY : db/compaction_picker_universal.cc.s
 
 db/comparator_db_test.obj: db/comparator_db_test.cc.obj
@@ -722,7 +2980,7 @@ db/comparator_db_test.obj: db/comparator_db_test.cc.obj
 
 # target to build an object file
 db/comparator_db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/comparator_db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_comparator_db_test.dir\build.make CMakeFiles/rocksdb_comparator_db_test.dir/db/comparator_db_test.cc.obj
 .PHONY : db/comparator_db_test.cc.obj
 
 db/comparator_db_test.i: db/comparator_db_test.cc.i
@@ -731,7 +2989,7 @@ db/comparator_db_test.i: db/comparator_db_test.cc.i
 
 # target to preprocess a source file
 db/comparator_db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/comparator_db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_comparator_db_test.dir\build.make CMakeFiles/rocksdb_comparator_db_test.dir/db/comparator_db_test.cc.i
 .PHONY : db/comparator_db_test.cc.i
 
 db/comparator_db_test.s: db/comparator_db_test.cc.s
@@ -740,7 +2998,7 @@ db/comparator_db_test.s: db/comparator_db_test.cc.s
 
 # target to generate assembly for a file
 db/comparator_db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/comparator_db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_comparator_db_test.dir\build.make CMakeFiles/rocksdb_comparator_db_test.dir/db/comparator_db_test.cc.s
 .PHONY : db/comparator_db_test.cc.s
 
 db/convenience.obj: db/convenience.cc.obj
@@ -749,7 +3007,8 @@ db/convenience.obj: db/convenience.cc.obj
 
 # target to build an object file
 db/convenience.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/convenience.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/convenience.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/convenience.cc.obj
 .PHONY : db/convenience.cc.obj
 
 db/convenience.i: db/convenience.cc.i
@@ -758,7 +3017,8 @@ db/convenience.i: db/convenience.cc.i
 
 # target to preprocess a source file
 db/convenience.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/convenience.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/convenience.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/convenience.cc.i
 .PHONY : db/convenience.cc.i
 
 db/convenience.s: db/convenience.cc.s
@@ -767,7 +3027,8 @@ db/convenience.s: db/convenience.cc.s
 
 # target to generate assembly for a file
 db/convenience.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/convenience.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/convenience.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/convenience.cc.s
 .PHONY : db/convenience.cc.s
 
 db/corruption_test.obj: db/corruption_test.cc.obj
@@ -776,7 +3037,7 @@ db/corruption_test.obj: db/corruption_test.cc.obj
 
 # target to build an object file
 db/corruption_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/corruption_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_corruption_test.dir\build.make CMakeFiles/rocksdb_corruption_test.dir/db/corruption_test.cc.obj
 .PHONY : db/corruption_test.cc.obj
 
 db/corruption_test.i: db/corruption_test.cc.i
@@ -785,7 +3046,7 @@ db/corruption_test.i: db/corruption_test.cc.i
 
 # target to preprocess a source file
 db/corruption_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/corruption_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_corruption_test.dir\build.make CMakeFiles/rocksdb_corruption_test.dir/db/corruption_test.cc.i
 .PHONY : db/corruption_test.cc.i
 
 db/corruption_test.s: db/corruption_test.cc.s
@@ -794,7 +3055,7 @@ db/corruption_test.s: db/corruption_test.cc.s
 
 # target to generate assembly for a file
 db/corruption_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/corruption_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_corruption_test.dir\build.make CMakeFiles/rocksdb_corruption_test.dir/db/corruption_test.cc.s
 .PHONY : db/corruption_test.cc.s
 
 db/cuckoo_table_db_test.obj: db/cuckoo_table_db_test.cc.obj
@@ -803,7 +3064,7 @@ db/cuckoo_table_db_test.obj: db/cuckoo_table_db_test.cc.obj
 
 # target to build an object file
 db/cuckoo_table_db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/cuckoo_table_db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_db_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_db_test.dir/db/cuckoo_table_db_test.cc.obj
 .PHONY : db/cuckoo_table_db_test.cc.obj
 
 db/cuckoo_table_db_test.i: db/cuckoo_table_db_test.cc.i
@@ -812,7 +3073,7 @@ db/cuckoo_table_db_test.i: db/cuckoo_table_db_test.cc.i
 
 # target to preprocess a source file
 db/cuckoo_table_db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/cuckoo_table_db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_db_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_db_test.dir/db/cuckoo_table_db_test.cc.i
 .PHONY : db/cuckoo_table_db_test.cc.i
 
 db/cuckoo_table_db_test.s: db/cuckoo_table_db_test.cc.s
@@ -821,7 +3082,7 @@ db/cuckoo_table_db_test.s: db/cuckoo_table_db_test.cc.s
 
 # target to generate assembly for a file
 db/cuckoo_table_db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/cuckoo_table_db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_db_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_db_test.dir/db/cuckoo_table_db_test.cc.s
 .PHONY : db/cuckoo_table_db_test.cc.s
 
 db/db_basic_test.obj: db/db_basic_test.cc.obj
@@ -830,7 +3091,7 @@ db/db_basic_test.obj: db/db_basic_test.cc.obj
 
 # target to build an object file
 db/db_basic_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_basic_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_basic_test.dir\build.make CMakeFiles/rocksdb_db_basic_test.dir/db/db_basic_test.cc.obj
 .PHONY : db/db_basic_test.cc.obj
 
 db/db_basic_test.i: db/db_basic_test.cc.i
@@ -839,7 +3100,7 @@ db/db_basic_test.i: db/db_basic_test.cc.i
 
 # target to preprocess a source file
 db/db_basic_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_basic_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_basic_test.dir\build.make CMakeFiles/rocksdb_db_basic_test.dir/db/db_basic_test.cc.i
 .PHONY : db/db_basic_test.cc.i
 
 db/db_basic_test.s: db/db_basic_test.cc.s
@@ -848,7 +3109,7 @@ db/db_basic_test.s: db/db_basic_test.cc.s
 
 # target to generate assembly for a file
 db/db_basic_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_basic_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_basic_test.dir\build.make CMakeFiles/rocksdb_db_basic_test.dir/db/db_basic_test.cc.s
 .PHONY : db/db_basic_test.cc.s
 
 db/db_blob_index_test.obj: db/db_blob_index_test.cc.obj
@@ -857,7 +3118,7 @@ db/db_blob_index_test.obj: db/db_blob_index_test.cc.obj
 
 # target to build an object file
 db/db_blob_index_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_blob_index_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_blob_index_test.dir\build.make CMakeFiles/rocksdb_db_blob_index_test.dir/db/db_blob_index_test.cc.obj
 .PHONY : db/db_blob_index_test.cc.obj
 
 db/db_blob_index_test.i: db/db_blob_index_test.cc.i
@@ -866,7 +3127,7 @@ db/db_blob_index_test.i: db/db_blob_index_test.cc.i
 
 # target to preprocess a source file
 db/db_blob_index_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_blob_index_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_blob_index_test.dir\build.make CMakeFiles/rocksdb_db_blob_index_test.dir/db/db_blob_index_test.cc.i
 .PHONY : db/db_blob_index_test.cc.i
 
 db/db_blob_index_test.s: db/db_blob_index_test.cc.s
@@ -875,7 +3136,7 @@ db/db_blob_index_test.s: db/db_blob_index_test.cc.s
 
 # target to generate assembly for a file
 db/db_blob_index_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_blob_index_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_blob_index_test.dir\build.make CMakeFiles/rocksdb_db_blob_index_test.dir/db/db_blob_index_test.cc.s
 .PHONY : db/db_blob_index_test.cc.s
 
 db/db_block_cache_test.obj: db/db_block_cache_test.cc.obj
@@ -884,7 +3145,7 @@ db/db_block_cache_test.obj: db/db_block_cache_test.cc.obj
 
 # target to build an object file
 db/db_block_cache_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_block_cache_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_block_cache_test.dir\build.make CMakeFiles/rocksdb_db_block_cache_test.dir/db/db_block_cache_test.cc.obj
 .PHONY : db/db_block_cache_test.cc.obj
 
 db/db_block_cache_test.i: db/db_block_cache_test.cc.i
@@ -893,7 +3154,7 @@ db/db_block_cache_test.i: db/db_block_cache_test.cc.i
 
 # target to preprocess a source file
 db/db_block_cache_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_block_cache_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_block_cache_test.dir\build.make CMakeFiles/rocksdb_db_block_cache_test.dir/db/db_block_cache_test.cc.i
 .PHONY : db/db_block_cache_test.cc.i
 
 db/db_block_cache_test.s: db/db_block_cache_test.cc.s
@@ -902,7 +3163,7 @@ db/db_block_cache_test.s: db/db_block_cache_test.cc.s
 
 # target to generate assembly for a file
 db/db_block_cache_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_block_cache_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_block_cache_test.dir\build.make CMakeFiles/rocksdb_db_block_cache_test.dir/db/db_block_cache_test.cc.s
 .PHONY : db/db_block_cache_test.cc.s
 
 db/db_bloom_filter_test.obj: db/db_bloom_filter_test.cc.obj
@@ -911,7 +3172,7 @@ db/db_bloom_filter_test.obj: db/db_bloom_filter_test.cc.obj
 
 # target to build an object file
 db/db_bloom_filter_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_bloom_filter_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_bloom_filter_test.dir\build.make CMakeFiles/rocksdb_db_bloom_filter_test.dir/db/db_bloom_filter_test.cc.obj
 .PHONY : db/db_bloom_filter_test.cc.obj
 
 db/db_bloom_filter_test.i: db/db_bloom_filter_test.cc.i
@@ -920,7 +3181,7 @@ db/db_bloom_filter_test.i: db/db_bloom_filter_test.cc.i
 
 # target to preprocess a source file
 db/db_bloom_filter_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_bloom_filter_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_bloom_filter_test.dir\build.make CMakeFiles/rocksdb_db_bloom_filter_test.dir/db/db_bloom_filter_test.cc.i
 .PHONY : db/db_bloom_filter_test.cc.i
 
 db/db_bloom_filter_test.s: db/db_bloom_filter_test.cc.s
@@ -929,7 +3190,7 @@ db/db_bloom_filter_test.s: db/db_bloom_filter_test.cc.s
 
 # target to generate assembly for a file
 db/db_bloom_filter_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_bloom_filter_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_bloom_filter_test.dir\build.make CMakeFiles/rocksdb_db_bloom_filter_test.dir/db/db_bloom_filter_test.cc.s
 .PHONY : db/db_bloom_filter_test.cc.s
 
 db/db_compaction_filter_test.obj: db/db_compaction_filter_test.cc.obj
@@ -938,7 +3199,7 @@ db/db_compaction_filter_test.obj: db/db_compaction_filter_test.cc.obj
 
 # target to build an object file
 db/db_compaction_filter_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_compaction_filter_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_filter_test.dir\build.make CMakeFiles/rocksdb_db_compaction_filter_test.dir/db/db_compaction_filter_test.cc.obj
 .PHONY : db/db_compaction_filter_test.cc.obj
 
 db/db_compaction_filter_test.i: db/db_compaction_filter_test.cc.i
@@ -947,7 +3208,7 @@ db/db_compaction_filter_test.i: db/db_compaction_filter_test.cc.i
 
 # target to preprocess a source file
 db/db_compaction_filter_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_compaction_filter_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_filter_test.dir\build.make CMakeFiles/rocksdb_db_compaction_filter_test.dir/db/db_compaction_filter_test.cc.i
 .PHONY : db/db_compaction_filter_test.cc.i
 
 db/db_compaction_filter_test.s: db/db_compaction_filter_test.cc.s
@@ -956,7 +3217,7 @@ db/db_compaction_filter_test.s: db/db_compaction_filter_test.cc.s
 
 # target to generate assembly for a file
 db/db_compaction_filter_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_compaction_filter_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_filter_test.dir\build.make CMakeFiles/rocksdb_db_compaction_filter_test.dir/db/db_compaction_filter_test.cc.s
 .PHONY : db/db_compaction_filter_test.cc.s
 
 db/db_compaction_test.obj: db/db_compaction_test.cc.obj
@@ -965,7 +3226,7 @@ db/db_compaction_test.obj: db/db_compaction_test.cc.obj
 
 # target to build an object file
 db/db_compaction_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_compaction_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_test.dir\build.make CMakeFiles/rocksdb_db_compaction_test.dir/db/db_compaction_test.cc.obj
 .PHONY : db/db_compaction_test.cc.obj
 
 db/db_compaction_test.i: db/db_compaction_test.cc.i
@@ -974,7 +3235,7 @@ db/db_compaction_test.i: db/db_compaction_test.cc.i
 
 # target to preprocess a source file
 db/db_compaction_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_compaction_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_test.dir\build.make CMakeFiles/rocksdb_db_compaction_test.dir/db/db_compaction_test.cc.i
 .PHONY : db/db_compaction_test.cc.i
 
 db/db_compaction_test.s: db/db_compaction_test.cc.s
@@ -983,7 +3244,7 @@ db/db_compaction_test.s: db/db_compaction_test.cc.s
 
 # target to generate assembly for a file
 db/db_compaction_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_compaction_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_compaction_test.dir\build.make CMakeFiles/rocksdb_db_compaction_test.dir/db/db_compaction_test.cc.s
 .PHONY : db/db_compaction_test.cc.s
 
 db/db_dynamic_level_test.obj: db/db_dynamic_level_test.cc.obj
@@ -992,7 +3253,7 @@ db/db_dynamic_level_test.obj: db/db_dynamic_level_test.cc.obj
 
 # target to build an object file
 db/db_dynamic_level_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_dynamic_level_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_dynamic_level_test.dir\build.make CMakeFiles/rocksdb_db_dynamic_level_test.dir/db/db_dynamic_level_test.cc.obj
 .PHONY : db/db_dynamic_level_test.cc.obj
 
 db/db_dynamic_level_test.i: db/db_dynamic_level_test.cc.i
@@ -1001,7 +3262,7 @@ db/db_dynamic_level_test.i: db/db_dynamic_level_test.cc.i
 
 # target to preprocess a source file
 db/db_dynamic_level_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_dynamic_level_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_dynamic_level_test.dir\build.make CMakeFiles/rocksdb_db_dynamic_level_test.dir/db/db_dynamic_level_test.cc.i
 .PHONY : db/db_dynamic_level_test.cc.i
 
 db/db_dynamic_level_test.s: db/db_dynamic_level_test.cc.s
@@ -1010,35 +3271,8 @@ db/db_dynamic_level_test.s: db/db_dynamic_level_test.cc.s
 
 # target to generate assembly for a file
 db/db_dynamic_level_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_dynamic_level_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_dynamic_level_test.dir\build.make CMakeFiles/rocksdb_db_dynamic_level_test.dir/db/db_dynamic_level_test.cc.s
 .PHONY : db/db_dynamic_level_test.cc.s
-
-db/db_encryption_test.obj: db/db_encryption_test.cc.obj
-
-.PHONY : db/db_encryption_test.obj
-
-# target to build an object file
-db/db_encryption_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_encryption_test.cc.obj
-.PHONY : db/db_encryption_test.cc.obj
-
-db/db_encryption_test.i: db/db_encryption_test.cc.i
-
-.PHONY : db/db_encryption_test.i
-
-# target to preprocess a source file
-db/db_encryption_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_encryption_test.cc.i
-.PHONY : db/db_encryption_test.cc.i
-
-db/db_encryption_test.s: db/db_encryption_test.cc.s
-
-.PHONY : db/db_encryption_test.s
-
-# target to generate assembly for a file
-db/db_encryption_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_encryption_test.cc.s
-.PHONY : db/db_encryption_test.cc.s
 
 db/db_filesnapshot.obj: db/db_filesnapshot.cc.obj
 
@@ -1046,7 +3280,8 @@ db/db_filesnapshot.obj: db/db_filesnapshot.cc.obj
 
 # target to build an object file
 db/db_filesnapshot.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_filesnapshot.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_filesnapshot.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_filesnapshot.cc.obj
 .PHONY : db/db_filesnapshot.cc.obj
 
 db/db_filesnapshot.i: db/db_filesnapshot.cc.i
@@ -1055,7 +3290,8 @@ db/db_filesnapshot.i: db/db_filesnapshot.cc.i
 
 # target to preprocess a source file
 db/db_filesnapshot.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_filesnapshot.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_filesnapshot.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_filesnapshot.cc.i
 .PHONY : db/db_filesnapshot.cc.i
 
 db/db_filesnapshot.s: db/db_filesnapshot.cc.s
@@ -1064,7 +3300,8 @@ db/db_filesnapshot.s: db/db_filesnapshot.cc.s
 
 # target to generate assembly for a file
 db/db_filesnapshot.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_filesnapshot.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_filesnapshot.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_filesnapshot.cc.s
 .PHONY : db/db_filesnapshot.cc.s
 
 db/db_flush_test.obj: db/db_flush_test.cc.obj
@@ -1073,7 +3310,7 @@ db/db_flush_test.obj: db/db_flush_test.cc.obj
 
 # target to build an object file
 db/db_flush_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_flush_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_flush_test.dir\build.make CMakeFiles/rocksdb_db_flush_test.dir/db/db_flush_test.cc.obj
 .PHONY : db/db_flush_test.cc.obj
 
 db/db_flush_test.i: db/db_flush_test.cc.i
@@ -1082,7 +3319,7 @@ db/db_flush_test.i: db/db_flush_test.cc.i
 
 # target to preprocess a source file
 db/db_flush_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_flush_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_flush_test.dir\build.make CMakeFiles/rocksdb_db_flush_test.dir/db/db_flush_test.cc.i
 .PHONY : db/db_flush_test.cc.i
 
 db/db_flush_test.s: db/db_flush_test.cc.s
@@ -1091,7 +3328,7 @@ db/db_flush_test.s: db/db_flush_test.cc.s
 
 # target to generate assembly for a file
 db/db_flush_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_flush_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_flush_test.dir\build.make CMakeFiles/rocksdb_db_flush_test.dir/db/db_flush_test.cc.s
 .PHONY : db/db_flush_test.cc.s
 
 db/db_impl.obj: db/db_impl.cc.obj
@@ -1100,7 +3337,8 @@ db/db_impl.obj: db/db_impl.cc.obj
 
 # target to build an object file
 db/db_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl.cc.obj
 .PHONY : db/db_impl.cc.obj
 
 db/db_impl.i: db/db_impl.cc.i
@@ -1109,7 +3347,8 @@ db/db_impl.i: db/db_impl.cc.i
 
 # target to preprocess a source file
 db/db_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl.cc.i
 .PHONY : db/db_impl.cc.i
 
 db/db_impl.s: db/db_impl.cc.s
@@ -1118,7 +3357,8 @@ db/db_impl.s: db/db_impl.cc.s
 
 # target to generate assembly for a file
 db/db_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl.cc.s
 .PHONY : db/db_impl.cc.s
 
 db/db_impl_compaction_flush.obj: db/db_impl_compaction_flush.cc.obj
@@ -1127,7 +3367,8 @@ db/db_impl_compaction_flush.obj: db/db_impl_compaction_flush.cc.obj
 
 # target to build an object file
 db/db_impl_compaction_flush.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_compaction_flush.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_compaction_flush.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_compaction_flush.cc.obj
 .PHONY : db/db_impl_compaction_flush.cc.obj
 
 db/db_impl_compaction_flush.i: db/db_impl_compaction_flush.cc.i
@@ -1136,7 +3377,8 @@ db/db_impl_compaction_flush.i: db/db_impl_compaction_flush.cc.i
 
 # target to preprocess a source file
 db/db_impl_compaction_flush.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_compaction_flush.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_compaction_flush.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_compaction_flush.cc.i
 .PHONY : db/db_impl_compaction_flush.cc.i
 
 db/db_impl_compaction_flush.s: db/db_impl_compaction_flush.cc.s
@@ -1145,7 +3387,8 @@ db/db_impl_compaction_flush.s: db/db_impl_compaction_flush.cc.s
 
 # target to generate assembly for a file
 db/db_impl_compaction_flush.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_compaction_flush.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_compaction_flush.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_compaction_flush.cc.s
 .PHONY : db/db_impl_compaction_flush.cc.s
 
 db/db_impl_debug.obj: db/db_impl_debug.cc.obj
@@ -1154,7 +3397,8 @@ db/db_impl_debug.obj: db/db_impl_debug.cc.obj
 
 # target to build an object file
 db/db_impl_debug.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_debug.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_debug.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_debug.cc.obj
 .PHONY : db/db_impl_debug.cc.obj
 
 db/db_impl_debug.i: db/db_impl_debug.cc.i
@@ -1163,7 +3407,8 @@ db/db_impl_debug.i: db/db_impl_debug.cc.i
 
 # target to preprocess a source file
 db/db_impl_debug.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_debug.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_debug.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_debug.cc.i
 .PHONY : db/db_impl_debug.cc.i
 
 db/db_impl_debug.s: db/db_impl_debug.cc.s
@@ -1172,7 +3417,8 @@ db/db_impl_debug.s: db/db_impl_debug.cc.s
 
 # target to generate assembly for a file
 db/db_impl_debug.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_debug.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_debug.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_debug.cc.s
 .PHONY : db/db_impl_debug.cc.s
 
 db/db_impl_experimental.obj: db/db_impl_experimental.cc.obj
@@ -1181,7 +3427,8 @@ db/db_impl_experimental.obj: db/db_impl_experimental.cc.obj
 
 # target to build an object file
 db/db_impl_experimental.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_experimental.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_experimental.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_experimental.cc.obj
 .PHONY : db/db_impl_experimental.cc.obj
 
 db/db_impl_experimental.i: db/db_impl_experimental.cc.i
@@ -1190,7 +3437,8 @@ db/db_impl_experimental.i: db/db_impl_experimental.cc.i
 
 # target to preprocess a source file
 db/db_impl_experimental.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_experimental.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_experimental.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_experimental.cc.i
 .PHONY : db/db_impl_experimental.cc.i
 
 db/db_impl_experimental.s: db/db_impl_experimental.cc.s
@@ -1199,7 +3447,8 @@ db/db_impl_experimental.s: db/db_impl_experimental.cc.s
 
 # target to generate assembly for a file
 db/db_impl_experimental.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_experimental.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_experimental.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_experimental.cc.s
 .PHONY : db/db_impl_experimental.cc.s
 
 db/db_impl_files.obj: db/db_impl_files.cc.obj
@@ -1208,7 +3457,8 @@ db/db_impl_files.obj: db/db_impl_files.cc.obj
 
 # target to build an object file
 db/db_impl_files.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_files.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_files.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_files.cc.obj
 .PHONY : db/db_impl_files.cc.obj
 
 db/db_impl_files.i: db/db_impl_files.cc.i
@@ -1217,7 +3467,8 @@ db/db_impl_files.i: db/db_impl_files.cc.i
 
 # target to preprocess a source file
 db/db_impl_files.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_files.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_files.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_files.cc.i
 .PHONY : db/db_impl_files.cc.i
 
 db/db_impl_files.s: db/db_impl_files.cc.s
@@ -1226,7 +3477,8 @@ db/db_impl_files.s: db/db_impl_files.cc.s
 
 # target to generate assembly for a file
 db/db_impl_files.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_files.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_files.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_files.cc.s
 .PHONY : db/db_impl_files.cc.s
 
 db/db_impl_open.obj: db/db_impl_open.cc.obj
@@ -1235,7 +3487,8 @@ db/db_impl_open.obj: db/db_impl_open.cc.obj
 
 # target to build an object file
 db/db_impl_open.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_open.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_open.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_open.cc.obj
 .PHONY : db/db_impl_open.cc.obj
 
 db/db_impl_open.i: db/db_impl_open.cc.i
@@ -1244,7 +3497,8 @@ db/db_impl_open.i: db/db_impl_open.cc.i
 
 # target to preprocess a source file
 db/db_impl_open.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_open.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_open.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_open.cc.i
 .PHONY : db/db_impl_open.cc.i
 
 db/db_impl_open.s: db/db_impl_open.cc.s
@@ -1253,7 +3507,8 @@ db/db_impl_open.s: db/db_impl_open.cc.s
 
 # target to generate assembly for a file
 db/db_impl_open.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_open.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_open.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_open.cc.s
 .PHONY : db/db_impl_open.cc.s
 
 db/db_impl_readonly.obj: db/db_impl_readonly.cc.obj
@@ -1262,7 +3517,8 @@ db/db_impl_readonly.obj: db/db_impl_readonly.cc.obj
 
 # target to build an object file
 db/db_impl_readonly.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_readonly.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_readonly.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_readonly.cc.obj
 .PHONY : db/db_impl_readonly.cc.obj
 
 db/db_impl_readonly.i: db/db_impl_readonly.cc.i
@@ -1271,7 +3527,8 @@ db/db_impl_readonly.i: db/db_impl_readonly.cc.i
 
 # target to preprocess a source file
 db/db_impl_readonly.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_readonly.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_readonly.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_readonly.cc.i
 .PHONY : db/db_impl_readonly.cc.i
 
 db/db_impl_readonly.s: db/db_impl_readonly.cc.s
@@ -1280,7 +3537,8 @@ db/db_impl_readonly.s: db/db_impl_readonly.cc.s
 
 # target to generate assembly for a file
 db/db_impl_readonly.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_readonly.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_readonly.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_readonly.cc.s
 .PHONY : db/db_impl_readonly.cc.s
 
 db/db_impl_write.obj: db/db_impl_write.cc.obj
@@ -1289,7 +3547,8 @@ db/db_impl_write.obj: db/db_impl_write.cc.obj
 
 # target to build an object file
 db/db_impl_write.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_write.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_write.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_write.cc.obj
 .PHONY : db/db_impl_write.cc.obj
 
 db/db_impl_write.i: db/db_impl_write.cc.i
@@ -1298,7 +3557,8 @@ db/db_impl_write.i: db/db_impl_write.cc.i
 
 # target to preprocess a source file
 db/db_impl_write.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_write.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_write.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_write.cc.i
 .PHONY : db/db_impl_write.cc.i
 
 db/db_impl_write.s: db/db_impl_write.cc.s
@@ -1307,7 +3567,8 @@ db/db_impl_write.s: db/db_impl_write.cc.s
 
 # target to generate assembly for a file
 db/db_impl_write.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_impl_write.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_impl_write.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_impl_write.cc.s
 .PHONY : db/db_impl_write.cc.s
 
 db/db_info_dumper.obj: db/db_info_dumper.cc.obj
@@ -1316,7 +3577,8 @@ db/db_info_dumper.obj: db/db_info_dumper.cc.obj
 
 # target to build an object file
 db/db_info_dumper.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_info_dumper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_info_dumper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_info_dumper.cc.obj
 .PHONY : db/db_info_dumper.cc.obj
 
 db/db_info_dumper.i: db/db_info_dumper.cc.i
@@ -1325,7 +3587,8 @@ db/db_info_dumper.i: db/db_info_dumper.cc.i
 
 # target to preprocess a source file
 db/db_info_dumper.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_info_dumper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_info_dumper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_info_dumper.cc.i
 .PHONY : db/db_info_dumper.cc.i
 
 db/db_info_dumper.s: db/db_info_dumper.cc.s
@@ -1334,7 +3597,8 @@ db/db_info_dumper.s: db/db_info_dumper.cc.s
 
 # target to generate assembly for a file
 db/db_info_dumper.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_info_dumper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_info_dumper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_info_dumper.cc.s
 .PHONY : db/db_info_dumper.cc.s
 
 db/db_inplace_update_test.obj: db/db_inplace_update_test.cc.obj
@@ -1343,7 +3607,7 @@ db/db_inplace_update_test.obj: db/db_inplace_update_test.cc.obj
 
 # target to build an object file
 db/db_inplace_update_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_inplace_update_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_inplace_update_test.dir\build.make CMakeFiles/rocksdb_db_inplace_update_test.dir/db/db_inplace_update_test.cc.obj
 .PHONY : db/db_inplace_update_test.cc.obj
 
 db/db_inplace_update_test.i: db/db_inplace_update_test.cc.i
@@ -1352,7 +3616,7 @@ db/db_inplace_update_test.i: db/db_inplace_update_test.cc.i
 
 # target to preprocess a source file
 db/db_inplace_update_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_inplace_update_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_inplace_update_test.dir\build.make CMakeFiles/rocksdb_db_inplace_update_test.dir/db/db_inplace_update_test.cc.i
 .PHONY : db/db_inplace_update_test.cc.i
 
 db/db_inplace_update_test.s: db/db_inplace_update_test.cc.s
@@ -1361,7 +3625,7 @@ db/db_inplace_update_test.s: db/db_inplace_update_test.cc.s
 
 # target to generate assembly for a file
 db/db_inplace_update_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_inplace_update_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_inplace_update_test.dir\build.make CMakeFiles/rocksdb_db_inplace_update_test.dir/db/db_inplace_update_test.cc.s
 .PHONY : db/db_inplace_update_test.cc.s
 
 db/db_io_failure_test.obj: db/db_io_failure_test.cc.obj
@@ -1370,7 +3634,7 @@ db/db_io_failure_test.obj: db/db_io_failure_test.cc.obj
 
 # target to build an object file
 db/db_io_failure_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_io_failure_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_io_failure_test.dir\build.make CMakeFiles/rocksdb_db_io_failure_test.dir/db/db_io_failure_test.cc.obj
 .PHONY : db/db_io_failure_test.cc.obj
 
 db/db_io_failure_test.i: db/db_io_failure_test.cc.i
@@ -1379,7 +3643,7 @@ db/db_io_failure_test.i: db/db_io_failure_test.cc.i
 
 # target to preprocess a source file
 db/db_io_failure_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_io_failure_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_io_failure_test.dir\build.make CMakeFiles/rocksdb_db_io_failure_test.dir/db/db_io_failure_test.cc.i
 .PHONY : db/db_io_failure_test.cc.i
 
 db/db_io_failure_test.s: db/db_io_failure_test.cc.s
@@ -1388,7 +3652,7 @@ db/db_io_failure_test.s: db/db_io_failure_test.cc.s
 
 # target to generate assembly for a file
 db/db_io_failure_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_io_failure_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_io_failure_test.dir\build.make CMakeFiles/rocksdb_db_io_failure_test.dir/db/db_io_failure_test.cc.s
 .PHONY : db/db_io_failure_test.cc.s
 
 db/db_iter.obj: db/db_iter.cc.obj
@@ -1397,7 +3661,8 @@ db/db_iter.obj: db/db_iter.cc.obj
 
 # target to build an object file
 db/db_iter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_iter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_iter.cc.obj
 .PHONY : db/db_iter.cc.obj
 
 db/db_iter.i: db/db_iter.cc.i
@@ -1406,7 +3671,8 @@ db/db_iter.i: db/db_iter.cc.i
 
 # target to preprocess a source file
 db/db_iter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_iter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_iter.cc.i
 .PHONY : db/db_iter.cc.i
 
 db/db_iter.s: db/db_iter.cc.s
@@ -1415,7 +3681,8 @@ db/db_iter.s: db/db_iter.cc.s
 
 # target to generate assembly for a file
 db/db_iter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/db_iter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/db_iter.cc.s
 .PHONY : db/db_iter.cc.s
 
 db/db_iter_stress_test.obj: db/db_iter_stress_test.cc.obj
@@ -1424,7 +3691,7 @@ db/db_iter_stress_test.obj: db/db_iter_stress_test.cc.obj
 
 # target to build an object file
 db/db_iter_stress_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter_stress_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_stress_test.dir\build.make CMakeFiles/rocksdb_db_iter_stress_test.dir/db/db_iter_stress_test.cc.obj
 .PHONY : db/db_iter_stress_test.cc.obj
 
 db/db_iter_stress_test.i: db/db_iter_stress_test.cc.i
@@ -1433,7 +3700,7 @@ db/db_iter_stress_test.i: db/db_iter_stress_test.cc.i
 
 # target to preprocess a source file
 db/db_iter_stress_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter_stress_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_stress_test.dir\build.make CMakeFiles/rocksdb_db_iter_stress_test.dir/db/db_iter_stress_test.cc.i
 .PHONY : db/db_iter_stress_test.cc.i
 
 db/db_iter_stress_test.s: db/db_iter_stress_test.cc.s
@@ -1442,7 +3709,7 @@ db/db_iter_stress_test.s: db/db_iter_stress_test.cc.s
 
 # target to generate assembly for a file
 db/db_iter_stress_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter_stress_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_stress_test.dir\build.make CMakeFiles/rocksdb_db_iter_stress_test.dir/db/db_iter_stress_test.cc.s
 .PHONY : db/db_iter_stress_test.cc.s
 
 db/db_iter_test.obj: db/db_iter_test.cc.obj
@@ -1451,7 +3718,7 @@ db/db_iter_test.obj: db/db_iter_test.cc.obj
 
 # target to build an object file
 db/db_iter_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_test.dir\build.make CMakeFiles/rocksdb_db_iter_test.dir/db/db_iter_test.cc.obj
 .PHONY : db/db_iter_test.cc.obj
 
 db/db_iter_test.i: db/db_iter_test.cc.i
@@ -1460,7 +3727,7 @@ db/db_iter_test.i: db/db_iter_test.cc.i
 
 # target to preprocess a source file
 db/db_iter_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_test.dir\build.make CMakeFiles/rocksdb_db_iter_test.dir/db/db_iter_test.cc.i
 .PHONY : db/db_iter_test.cc.i
 
 db/db_iter_test.s: db/db_iter_test.cc.s
@@ -1469,7 +3736,7 @@ db/db_iter_test.s: db/db_iter_test.cc.s
 
 # target to generate assembly for a file
 db/db_iter_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iter_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_iter_test.dir\build.make CMakeFiles/rocksdb_db_iter_test.dir/db/db_iter_test.cc.s
 .PHONY : db/db_iter_test.cc.s
 
 db/db_iterator_test.obj: db/db_iterator_test.cc.obj
@@ -1478,7 +3745,7 @@ db/db_iterator_test.obj: db/db_iterator_test.cc.obj
 
 # target to build an object file
 db/db_iterator_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iterator_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_iterator_test.dir\build.make CMakeFiles/rocksdb_db_iterator_test.dir/db/db_iterator_test.cc.obj
 .PHONY : db/db_iterator_test.cc.obj
 
 db/db_iterator_test.i: db/db_iterator_test.cc.i
@@ -1487,7 +3754,7 @@ db/db_iterator_test.i: db/db_iterator_test.cc.i
 
 # target to preprocess a source file
 db/db_iterator_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iterator_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_iterator_test.dir\build.make CMakeFiles/rocksdb_db_iterator_test.dir/db/db_iterator_test.cc.i
 .PHONY : db/db_iterator_test.cc.i
 
 db/db_iterator_test.s: db/db_iterator_test.cc.s
@@ -1496,7 +3763,7 @@ db/db_iterator_test.s: db/db_iterator_test.cc.s
 
 # target to generate assembly for a file
 db/db_iterator_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_iterator_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_iterator_test.dir\build.make CMakeFiles/rocksdb_db_iterator_test.dir/db/db_iterator_test.cc.s
 .PHONY : db/db_iterator_test.cc.s
 
 db/db_log_iter_test.obj: db/db_log_iter_test.cc.obj
@@ -1505,7 +3772,7 @@ db/db_log_iter_test.obj: db/db_log_iter_test.cc.obj
 
 # target to build an object file
 db/db_log_iter_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_log_iter_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_log_iter_test.dir\build.make CMakeFiles/rocksdb_db_log_iter_test.dir/db/db_log_iter_test.cc.obj
 .PHONY : db/db_log_iter_test.cc.obj
 
 db/db_log_iter_test.i: db/db_log_iter_test.cc.i
@@ -1514,7 +3781,7 @@ db/db_log_iter_test.i: db/db_log_iter_test.cc.i
 
 # target to preprocess a source file
 db/db_log_iter_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_log_iter_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_log_iter_test.dir\build.make CMakeFiles/rocksdb_db_log_iter_test.dir/db/db_log_iter_test.cc.i
 .PHONY : db/db_log_iter_test.cc.i
 
 db/db_log_iter_test.s: db/db_log_iter_test.cc.s
@@ -1523,7 +3790,7 @@ db/db_log_iter_test.s: db/db_log_iter_test.cc.s
 
 # target to generate assembly for a file
 db/db_log_iter_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_log_iter_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_log_iter_test.dir\build.make CMakeFiles/rocksdb_db_log_iter_test.dir/db/db_log_iter_test.cc.s
 .PHONY : db/db_log_iter_test.cc.s
 
 db/db_memtable_test.obj: db/db_memtable_test.cc.obj
@@ -1532,7 +3799,7 @@ db/db_memtable_test.obj: db/db_memtable_test.cc.obj
 
 # target to build an object file
 db/db_memtable_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_memtable_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_memtable_test.dir\build.make CMakeFiles/rocksdb_db_memtable_test.dir/db/db_memtable_test.cc.obj
 .PHONY : db/db_memtable_test.cc.obj
 
 db/db_memtable_test.i: db/db_memtable_test.cc.i
@@ -1541,7 +3808,7 @@ db/db_memtable_test.i: db/db_memtable_test.cc.i
 
 # target to preprocess a source file
 db/db_memtable_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_memtable_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_memtable_test.dir\build.make CMakeFiles/rocksdb_db_memtable_test.dir/db/db_memtable_test.cc.i
 .PHONY : db/db_memtable_test.cc.i
 
 db/db_memtable_test.s: db/db_memtable_test.cc.s
@@ -1550,7 +3817,7 @@ db/db_memtable_test.s: db/db_memtable_test.cc.s
 
 # target to generate assembly for a file
 db/db_memtable_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_memtable_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_memtable_test.dir\build.make CMakeFiles/rocksdb_db_memtable_test.dir/db/db_memtable_test.cc.s
 .PHONY : db/db_memtable_test.cc.s
 
 db/db_merge_operator_test.obj: db/db_merge_operator_test.cc.obj
@@ -1559,7 +3826,7 @@ db/db_merge_operator_test.obj: db/db_merge_operator_test.cc.obj
 
 # target to build an object file
 db/db_merge_operator_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_merge_operator_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_merge_operator_test.dir\build.make CMakeFiles/rocksdb_db_merge_operator_test.dir/db/db_merge_operator_test.cc.obj
 .PHONY : db/db_merge_operator_test.cc.obj
 
 db/db_merge_operator_test.i: db/db_merge_operator_test.cc.i
@@ -1568,7 +3835,7 @@ db/db_merge_operator_test.i: db/db_merge_operator_test.cc.i
 
 # target to preprocess a source file
 db/db_merge_operator_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_merge_operator_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_merge_operator_test.dir\build.make CMakeFiles/rocksdb_db_merge_operator_test.dir/db/db_merge_operator_test.cc.i
 .PHONY : db/db_merge_operator_test.cc.i
 
 db/db_merge_operator_test.s: db/db_merge_operator_test.cc.s
@@ -1577,7 +3844,7 @@ db/db_merge_operator_test.s: db/db_merge_operator_test.cc.s
 
 # target to generate assembly for a file
 db/db_merge_operator_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_merge_operator_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_merge_operator_test.dir\build.make CMakeFiles/rocksdb_db_merge_operator_test.dir/db/db_merge_operator_test.cc.s
 .PHONY : db/db_merge_operator_test.cc.s
 
 db/db_options_test.obj: db/db_options_test.cc.obj
@@ -1586,7 +3853,7 @@ db/db_options_test.obj: db/db_options_test.cc.obj
 
 # target to build an object file
 db/db_options_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_options_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_options_test.dir\build.make CMakeFiles/rocksdb_db_options_test.dir/db/db_options_test.cc.obj
 .PHONY : db/db_options_test.cc.obj
 
 db/db_options_test.i: db/db_options_test.cc.i
@@ -1595,7 +3862,7 @@ db/db_options_test.i: db/db_options_test.cc.i
 
 # target to preprocess a source file
 db/db_options_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_options_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_options_test.dir\build.make CMakeFiles/rocksdb_db_options_test.dir/db/db_options_test.cc.i
 .PHONY : db/db_options_test.cc.i
 
 db/db_options_test.s: db/db_options_test.cc.s
@@ -1604,7 +3871,7 @@ db/db_options_test.s: db/db_options_test.cc.s
 
 # target to generate assembly for a file
 db/db_options_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_options_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_options_test.dir\build.make CMakeFiles/rocksdb_db_options_test.dir/db/db_options_test.cc.s
 .PHONY : db/db_options_test.cc.s
 
 db/db_properties_test.obj: db/db_properties_test.cc.obj
@@ -1613,7 +3880,7 @@ db/db_properties_test.obj: db/db_properties_test.cc.obj
 
 # target to build an object file
 db/db_properties_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_properties_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_properties_test.dir\build.make CMakeFiles/rocksdb_db_properties_test.dir/db/db_properties_test.cc.obj
 .PHONY : db/db_properties_test.cc.obj
 
 db/db_properties_test.i: db/db_properties_test.cc.i
@@ -1622,7 +3889,7 @@ db/db_properties_test.i: db/db_properties_test.cc.i
 
 # target to preprocess a source file
 db/db_properties_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_properties_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_properties_test.dir\build.make CMakeFiles/rocksdb_db_properties_test.dir/db/db_properties_test.cc.i
 .PHONY : db/db_properties_test.cc.i
 
 db/db_properties_test.s: db/db_properties_test.cc.s
@@ -1631,7 +3898,7 @@ db/db_properties_test.s: db/db_properties_test.cc.s
 
 # target to generate assembly for a file
 db/db_properties_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_properties_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_properties_test.dir\build.make CMakeFiles/rocksdb_db_properties_test.dir/db/db_properties_test.cc.s
 .PHONY : db/db_properties_test.cc.s
 
 db/db_range_del_test.obj: db/db_range_del_test.cc.obj
@@ -1640,7 +3907,7 @@ db/db_range_del_test.obj: db/db_range_del_test.cc.obj
 
 # target to build an object file
 db/db_range_del_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_range_del_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_range_del_test.dir\build.make CMakeFiles/rocksdb_db_range_del_test.dir/db/db_range_del_test.cc.obj
 .PHONY : db/db_range_del_test.cc.obj
 
 db/db_range_del_test.i: db/db_range_del_test.cc.i
@@ -1649,7 +3916,7 @@ db/db_range_del_test.i: db/db_range_del_test.cc.i
 
 # target to preprocess a source file
 db/db_range_del_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_range_del_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_range_del_test.dir\build.make CMakeFiles/rocksdb_db_range_del_test.dir/db/db_range_del_test.cc.i
 .PHONY : db/db_range_del_test.cc.i
 
 db/db_range_del_test.s: db/db_range_del_test.cc.s
@@ -1658,7 +3925,7 @@ db/db_range_del_test.s: db/db_range_del_test.cc.s
 
 # target to generate assembly for a file
 db/db_range_del_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_range_del_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_range_del_test.dir\build.make CMakeFiles/rocksdb_db_range_del_test.dir/db/db_range_del_test.cc.s
 .PHONY : db/db_range_del_test.cc.s
 
 db/db_sst_test.obj: db/db_sst_test.cc.obj
@@ -1667,7 +3934,7 @@ db/db_sst_test.obj: db/db_sst_test.cc.obj
 
 # target to build an object file
 db/db_sst_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_sst_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_sst_test.dir\build.make CMakeFiles/rocksdb_db_sst_test.dir/db/db_sst_test.cc.obj
 .PHONY : db/db_sst_test.cc.obj
 
 db/db_sst_test.i: db/db_sst_test.cc.i
@@ -1676,7 +3943,7 @@ db/db_sst_test.i: db/db_sst_test.cc.i
 
 # target to preprocess a source file
 db/db_sst_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_sst_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_sst_test.dir\build.make CMakeFiles/rocksdb_db_sst_test.dir/db/db_sst_test.cc.i
 .PHONY : db/db_sst_test.cc.i
 
 db/db_sst_test.s: db/db_sst_test.cc.s
@@ -1685,7 +3952,7 @@ db/db_sst_test.s: db/db_sst_test.cc.s
 
 # target to generate assembly for a file
 db/db_sst_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_sst_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_sst_test.dir\build.make CMakeFiles/rocksdb_db_sst_test.dir/db/db_sst_test.cc.s
 .PHONY : db/db_sst_test.cc.s
 
 db/db_statistics_test.obj: db/db_statistics_test.cc.obj
@@ -1694,7 +3961,7 @@ db/db_statistics_test.obj: db/db_statistics_test.cc.obj
 
 # target to build an object file
 db/db_statistics_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_statistics_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_statistics_test.dir\build.make CMakeFiles/rocksdb_db_statistics_test.dir/db/db_statistics_test.cc.obj
 .PHONY : db/db_statistics_test.cc.obj
 
 db/db_statistics_test.i: db/db_statistics_test.cc.i
@@ -1703,7 +3970,7 @@ db/db_statistics_test.i: db/db_statistics_test.cc.i
 
 # target to preprocess a source file
 db/db_statistics_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_statistics_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_statistics_test.dir\build.make CMakeFiles/rocksdb_db_statistics_test.dir/db/db_statistics_test.cc.i
 .PHONY : db/db_statistics_test.cc.i
 
 db/db_statistics_test.s: db/db_statistics_test.cc.s
@@ -1712,7 +3979,7 @@ db/db_statistics_test.s: db/db_statistics_test.cc.s
 
 # target to generate assembly for a file
 db/db_statistics_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_statistics_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_statistics_test.dir\build.make CMakeFiles/rocksdb_db_statistics_test.dir/db/db_statistics_test.cc.s
 .PHONY : db/db_statistics_test.cc.s
 
 db/db_table_properties_test.obj: db/db_table_properties_test.cc.obj
@@ -1721,7 +3988,7 @@ db/db_table_properties_test.obj: db/db_table_properties_test.cc.obj
 
 # target to build an object file
 db/db_table_properties_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_table_properties_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_table_properties_test.dir\build.make CMakeFiles/rocksdb_db_table_properties_test.dir/db/db_table_properties_test.cc.obj
 .PHONY : db/db_table_properties_test.cc.obj
 
 db/db_table_properties_test.i: db/db_table_properties_test.cc.i
@@ -1730,7 +3997,7 @@ db/db_table_properties_test.i: db/db_table_properties_test.cc.i
 
 # target to preprocess a source file
 db/db_table_properties_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_table_properties_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_table_properties_test.dir\build.make CMakeFiles/rocksdb_db_table_properties_test.dir/db/db_table_properties_test.cc.i
 .PHONY : db/db_table_properties_test.cc.i
 
 db/db_table_properties_test.s: db/db_table_properties_test.cc.s
@@ -1739,7 +4006,7 @@ db/db_table_properties_test.s: db/db_table_properties_test.cc.s
 
 # target to generate assembly for a file
 db/db_table_properties_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_table_properties_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_table_properties_test.dir\build.make CMakeFiles/rocksdb_db_table_properties_test.dir/db/db_table_properties_test.cc.s
 .PHONY : db/db_table_properties_test.cc.s
 
 db/db_tailing_iter_test.obj: db/db_tailing_iter_test.cc.obj
@@ -1748,7 +4015,7 @@ db/db_tailing_iter_test.obj: db/db_tailing_iter_test.cc.obj
 
 # target to build an object file
 db/db_tailing_iter_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_tailing_iter_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_tailing_iter_test.dir\build.make CMakeFiles/rocksdb_db_tailing_iter_test.dir/db/db_tailing_iter_test.cc.obj
 .PHONY : db/db_tailing_iter_test.cc.obj
 
 db/db_tailing_iter_test.i: db/db_tailing_iter_test.cc.i
@@ -1757,7 +4024,7 @@ db/db_tailing_iter_test.i: db/db_tailing_iter_test.cc.i
 
 # target to preprocess a source file
 db/db_tailing_iter_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_tailing_iter_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_tailing_iter_test.dir\build.make CMakeFiles/rocksdb_db_tailing_iter_test.dir/db/db_tailing_iter_test.cc.i
 .PHONY : db/db_tailing_iter_test.cc.i
 
 db/db_tailing_iter_test.s: db/db_tailing_iter_test.cc.s
@@ -1766,7 +4033,7 @@ db/db_tailing_iter_test.s: db/db_tailing_iter_test.cc.s
 
 # target to generate assembly for a file
 db/db_tailing_iter_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_tailing_iter_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_tailing_iter_test.dir\build.make CMakeFiles/rocksdb_db_tailing_iter_test.dir/db/db_tailing_iter_test.cc.s
 .PHONY : db/db_tailing_iter_test.cc.s
 
 db/db_test.obj: db/db_test.cc.obj
@@ -1775,7 +4042,7 @@ db/db_test.obj: db/db_test.cc.obj
 
 # target to build an object file
 db/db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_test.dir\build.make CMakeFiles/rocksdb_db_test.dir/db/db_test.cc.obj
 .PHONY : db/db_test.cc.obj
 
 db/db_test.i: db/db_test.cc.i
@@ -1784,7 +4051,7 @@ db/db_test.i: db/db_test.cc.i
 
 # target to preprocess a source file
 db/db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_test.dir\build.make CMakeFiles/rocksdb_db_test.dir/db/db_test.cc.i
 .PHONY : db/db_test.cc.i
 
 db/db_test.s: db/db_test.cc.s
@@ -1793,7 +4060,7 @@ db/db_test.s: db/db_test.cc.s
 
 # target to generate assembly for a file
 db/db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_test.dir\build.make CMakeFiles/rocksdb_db_test.dir/db/db_test.cc.s
 .PHONY : db/db_test.cc.s
 
 db/db_test2.obj: db/db_test2.cc.obj
@@ -1802,7 +4069,7 @@ db/db_test2.obj: db/db_test2.cc.obj
 
 # target to build an object file
 db/db_test2.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test2.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_test2.dir\build.make CMakeFiles/rocksdb_db_test2.dir/db/db_test2.cc.obj
 .PHONY : db/db_test2.cc.obj
 
 db/db_test2.i: db/db_test2.cc.i
@@ -1811,7 +4078,7 @@ db/db_test2.i: db/db_test2.cc.i
 
 # target to preprocess a source file
 db/db_test2.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test2.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_test2.dir\build.make CMakeFiles/rocksdb_db_test2.dir/db/db_test2.cc.i
 .PHONY : db/db_test2.cc.i
 
 db/db_test2.s: db/db_test2.cc.s
@@ -1820,7 +4087,7 @@ db/db_test2.s: db/db_test2.cc.s
 
 # target to generate assembly for a file
 db/db_test2.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test2.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_test2.dir\build.make CMakeFiles/rocksdb_db_test2.dir/db/db_test2.cc.s
 .PHONY : db/db_test2.cc.s
 
 db/db_test_util.obj: db/db_test_util.cc.obj
@@ -1829,7 +4096,7 @@ db/db_test_util.obj: db/db_test_util.cc.obj
 
 # target to build an object file
 db/db_test_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test_util.cc.obj
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/db/db_test_util.cc.obj
 .PHONY : db/db_test_util.cc.obj
 
 db/db_test_util.i: db/db_test_util.cc.i
@@ -1838,7 +4105,7 @@ db/db_test_util.i: db/db_test_util.cc.i
 
 # target to preprocess a source file
 db/db_test_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test_util.cc.i
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/db/db_test_util.cc.i
 .PHONY : db/db_test_util.cc.i
 
 db/db_test_util.s: db/db_test_util.cc.s
@@ -1847,7 +4114,7 @@ db/db_test_util.s: db/db_test_util.cc.s
 
 # target to generate assembly for a file
 db/db_test_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_test_util.cc.s
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/db/db_test_util.cc.s
 .PHONY : db/db_test_util.cc.s
 
 db/db_universal_compaction_test.obj: db/db_universal_compaction_test.cc.obj
@@ -1856,7 +4123,7 @@ db/db_universal_compaction_test.obj: db/db_universal_compaction_test.cc.obj
 
 # target to build an object file
 db/db_universal_compaction_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_universal_compaction_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_universal_compaction_test.dir\build.make CMakeFiles/rocksdb_db_universal_compaction_test.dir/db/db_universal_compaction_test.cc.obj
 .PHONY : db/db_universal_compaction_test.cc.obj
 
 db/db_universal_compaction_test.i: db/db_universal_compaction_test.cc.i
@@ -1865,7 +4132,7 @@ db/db_universal_compaction_test.i: db/db_universal_compaction_test.cc.i
 
 # target to preprocess a source file
 db/db_universal_compaction_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_universal_compaction_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_universal_compaction_test.dir\build.make CMakeFiles/rocksdb_db_universal_compaction_test.dir/db/db_universal_compaction_test.cc.i
 .PHONY : db/db_universal_compaction_test.cc.i
 
 db/db_universal_compaction_test.s: db/db_universal_compaction_test.cc.s
@@ -1874,7 +4141,7 @@ db/db_universal_compaction_test.s: db/db_universal_compaction_test.cc.s
 
 # target to generate assembly for a file
 db/db_universal_compaction_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_universal_compaction_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_universal_compaction_test.dir\build.make CMakeFiles/rocksdb_db_universal_compaction_test.dir/db/db_universal_compaction_test.cc.s
 .PHONY : db/db_universal_compaction_test.cc.s
 
 db/db_wal_test.obj: db/db_wal_test.cc.obj
@@ -1883,7 +4150,7 @@ db/db_wal_test.obj: db/db_wal_test.cc.obj
 
 # target to build an object file
 db/db_wal_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_wal_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_wal_test.dir\build.make CMakeFiles/rocksdb_db_wal_test.dir/db/db_wal_test.cc.obj
 .PHONY : db/db_wal_test.cc.obj
 
 db/db_wal_test.i: db/db_wal_test.cc.i
@@ -1892,7 +4159,7 @@ db/db_wal_test.i: db/db_wal_test.cc.i
 
 # target to preprocess a source file
 db/db_wal_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_wal_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_wal_test.dir\build.make CMakeFiles/rocksdb_db_wal_test.dir/db/db_wal_test.cc.i
 .PHONY : db/db_wal_test.cc.i
 
 db/db_wal_test.s: db/db_wal_test.cc.s
@@ -1901,7 +4168,7 @@ db/db_wal_test.s: db/db_wal_test.cc.s
 
 # target to generate assembly for a file
 db/db_wal_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_wal_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_wal_test.dir\build.make CMakeFiles/rocksdb_db_wal_test.dir/db/db_wal_test.cc.s
 .PHONY : db/db_wal_test.cc.s
 
 db/db_write_test.obj: db/db_write_test.cc.obj
@@ -1910,7 +4177,7 @@ db/db_write_test.obj: db/db_write_test.cc.obj
 
 # target to build an object file
 db/db_write_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_write_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_db_write_test.dir\build.make CMakeFiles/rocksdb_db_write_test.dir/db/db_write_test.cc.obj
 .PHONY : db/db_write_test.cc.obj
 
 db/db_write_test.i: db/db_write_test.cc.i
@@ -1919,7 +4186,7 @@ db/db_write_test.i: db/db_write_test.cc.i
 
 # target to preprocess a source file
 db/db_write_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_write_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_db_write_test.dir\build.make CMakeFiles/rocksdb_db_write_test.dir/db/db_write_test.cc.i
 .PHONY : db/db_write_test.cc.i
 
 db/db_write_test.s: db/db_write_test.cc.s
@@ -1928,7 +4195,7 @@ db/db_write_test.s: db/db_write_test.cc.s
 
 # target to generate assembly for a file
 db/db_write_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/db_write_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_db_write_test.dir\build.make CMakeFiles/rocksdb_db_write_test.dir/db/db_write_test.cc.s
 .PHONY : db/db_write_test.cc.s
 
 db/dbformat.obj: db/dbformat.cc.obj
@@ -1937,7 +4204,8 @@ db/dbformat.obj: db/dbformat.cc.obj
 
 # target to build an object file
 db/dbformat.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/dbformat.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/dbformat.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/dbformat.cc.obj
 .PHONY : db/dbformat.cc.obj
 
 db/dbformat.i: db/dbformat.cc.i
@@ -1946,7 +4214,8 @@ db/dbformat.i: db/dbformat.cc.i
 
 # target to preprocess a source file
 db/dbformat.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/dbformat.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/dbformat.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/dbformat.cc.i
 .PHONY : db/dbformat.cc.i
 
 db/dbformat.s: db/dbformat.cc.s
@@ -1955,7 +4224,8 @@ db/dbformat.s: db/dbformat.cc.s
 
 # target to generate assembly for a file
 db/dbformat.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/dbformat.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/dbformat.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/dbformat.cc.s
 .PHONY : db/dbformat.cc.s
 
 db/dbformat_test.obj: db/dbformat_test.cc.obj
@@ -1964,7 +4234,7 @@ db/dbformat_test.obj: db/dbformat_test.cc.obj
 
 # target to build an object file
 db/dbformat_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/dbformat_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_dbformat_test.dir\build.make CMakeFiles/rocksdb_dbformat_test.dir/db/dbformat_test.cc.obj
 .PHONY : db/dbformat_test.cc.obj
 
 db/dbformat_test.i: db/dbformat_test.cc.i
@@ -1973,7 +4243,7 @@ db/dbformat_test.i: db/dbformat_test.cc.i
 
 # target to preprocess a source file
 db/dbformat_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/dbformat_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_dbformat_test.dir\build.make CMakeFiles/rocksdb_dbformat_test.dir/db/dbformat_test.cc.i
 .PHONY : db/dbformat_test.cc.i
 
 db/dbformat_test.s: db/dbformat_test.cc.s
@@ -1982,7 +4252,7 @@ db/dbformat_test.s: db/dbformat_test.cc.s
 
 # target to generate assembly for a file
 db/dbformat_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/dbformat_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_dbformat_test.dir\build.make CMakeFiles/rocksdb_dbformat_test.dir/db/dbformat_test.cc.s
 .PHONY : db/dbformat_test.cc.s
 
 db/deletefile_test.obj: db/deletefile_test.cc.obj
@@ -1991,7 +4261,7 @@ db/deletefile_test.obj: db/deletefile_test.cc.obj
 
 # target to build an object file
 db/deletefile_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/deletefile_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_deletefile_test.dir\build.make CMakeFiles/rocksdb_deletefile_test.dir/db/deletefile_test.cc.obj
 .PHONY : db/deletefile_test.cc.obj
 
 db/deletefile_test.i: db/deletefile_test.cc.i
@@ -2000,7 +4270,7 @@ db/deletefile_test.i: db/deletefile_test.cc.i
 
 # target to preprocess a source file
 db/deletefile_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/deletefile_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_deletefile_test.dir\build.make CMakeFiles/rocksdb_deletefile_test.dir/db/deletefile_test.cc.i
 .PHONY : db/deletefile_test.cc.i
 
 db/deletefile_test.s: db/deletefile_test.cc.s
@@ -2009,7 +4279,7 @@ db/deletefile_test.s: db/deletefile_test.cc.s
 
 # target to generate assembly for a file
 db/deletefile_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/deletefile_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_deletefile_test.dir\build.make CMakeFiles/rocksdb_deletefile_test.dir/db/deletefile_test.cc.s
 .PHONY : db/deletefile_test.cc.s
 
 db/error_handler.obj: db/error_handler.cc.obj
@@ -2018,7 +4288,8 @@ db/error_handler.obj: db/error_handler.cc.obj
 
 # target to build an object file
 db/error_handler.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/error_handler.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/error_handler.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/error_handler.cc.obj
 .PHONY : db/error_handler.cc.obj
 
 db/error_handler.i: db/error_handler.cc.i
@@ -2027,7 +4298,8 @@ db/error_handler.i: db/error_handler.cc.i
 
 # target to preprocess a source file
 db/error_handler.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/error_handler.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/error_handler.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/error_handler.cc.i
 .PHONY : db/error_handler.cc.i
 
 db/error_handler.s: db/error_handler.cc.s
@@ -2036,7 +4308,8 @@ db/error_handler.s: db/error_handler.cc.s
 
 # target to generate assembly for a file
 db/error_handler.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/error_handler.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/error_handler.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/error_handler.cc.s
 .PHONY : db/error_handler.cc.s
 
 db/error_handler_test.obj: db/error_handler_test.cc.obj
@@ -2045,7 +4318,7 @@ db/error_handler_test.obj: db/error_handler_test.cc.obj
 
 # target to build an object file
 db/error_handler_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/error_handler_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_error_handler_test.dir\build.make CMakeFiles/rocksdb_error_handler_test.dir/db/error_handler_test.cc.obj
 .PHONY : db/error_handler_test.cc.obj
 
 db/error_handler_test.i: db/error_handler_test.cc.i
@@ -2054,7 +4327,7 @@ db/error_handler_test.i: db/error_handler_test.cc.i
 
 # target to preprocess a source file
 db/error_handler_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/error_handler_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_error_handler_test.dir\build.make CMakeFiles/rocksdb_error_handler_test.dir/db/error_handler_test.cc.i
 .PHONY : db/error_handler_test.cc.i
 
 db/error_handler_test.s: db/error_handler_test.cc.s
@@ -2063,7 +4336,7 @@ db/error_handler_test.s: db/error_handler_test.cc.s
 
 # target to generate assembly for a file
 db/error_handler_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/error_handler_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_error_handler_test.dir\build.make CMakeFiles/rocksdb_error_handler_test.dir/db/error_handler_test.cc.s
 .PHONY : db/error_handler_test.cc.s
 
 db/event_helpers.obj: db/event_helpers.cc.obj
@@ -2072,7 +4345,8 @@ db/event_helpers.obj: db/event_helpers.cc.obj
 
 # target to build an object file
 db/event_helpers.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/event_helpers.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/event_helpers.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/event_helpers.cc.obj
 .PHONY : db/event_helpers.cc.obj
 
 db/event_helpers.i: db/event_helpers.cc.i
@@ -2081,7 +4355,8 @@ db/event_helpers.i: db/event_helpers.cc.i
 
 # target to preprocess a source file
 db/event_helpers.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/event_helpers.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/event_helpers.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/event_helpers.cc.i
 .PHONY : db/event_helpers.cc.i
 
 db/event_helpers.s: db/event_helpers.cc.s
@@ -2090,7 +4365,8 @@ db/event_helpers.s: db/event_helpers.cc.s
 
 # target to generate assembly for a file
 db/event_helpers.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/event_helpers.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/event_helpers.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/event_helpers.cc.s
 .PHONY : db/event_helpers.cc.s
 
 db/experimental.obj: db/experimental.cc.obj
@@ -2099,7 +4375,8 @@ db/experimental.obj: db/experimental.cc.obj
 
 # target to build an object file
 db/experimental.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/experimental.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/experimental.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/experimental.cc.obj
 .PHONY : db/experimental.cc.obj
 
 db/experimental.i: db/experimental.cc.i
@@ -2108,7 +4385,8 @@ db/experimental.i: db/experimental.cc.i
 
 # target to preprocess a source file
 db/experimental.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/experimental.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/experimental.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/experimental.cc.i
 .PHONY : db/experimental.cc.i
 
 db/experimental.s: db/experimental.cc.s
@@ -2117,7 +4395,8 @@ db/experimental.s: db/experimental.cc.s
 
 # target to generate assembly for a file
 db/experimental.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/experimental.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/experimental.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/experimental.cc.s
 .PHONY : db/experimental.cc.s
 
 db/external_sst_file_basic_test.obj: db/external_sst_file_basic_test.cc.obj
@@ -2126,7 +4405,7 @@ db/external_sst_file_basic_test.obj: db/external_sst_file_basic_test.cc.obj
 
 # target to build an object file
 db/external_sst_file_basic_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_basic_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_basic_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_basic_test.dir/db/external_sst_file_basic_test.cc.obj
 .PHONY : db/external_sst_file_basic_test.cc.obj
 
 db/external_sst_file_basic_test.i: db/external_sst_file_basic_test.cc.i
@@ -2135,7 +4414,7 @@ db/external_sst_file_basic_test.i: db/external_sst_file_basic_test.cc.i
 
 # target to preprocess a source file
 db/external_sst_file_basic_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_basic_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_basic_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_basic_test.dir/db/external_sst_file_basic_test.cc.i
 .PHONY : db/external_sst_file_basic_test.cc.i
 
 db/external_sst_file_basic_test.s: db/external_sst_file_basic_test.cc.s
@@ -2144,7 +4423,7 @@ db/external_sst_file_basic_test.s: db/external_sst_file_basic_test.cc.s
 
 # target to generate assembly for a file
 db/external_sst_file_basic_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_basic_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_basic_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_basic_test.dir/db/external_sst_file_basic_test.cc.s
 .PHONY : db/external_sst_file_basic_test.cc.s
 
 db/external_sst_file_ingestion_job.obj: db/external_sst_file_ingestion_job.cc.obj
@@ -2153,7 +4432,8 @@ db/external_sst_file_ingestion_job.obj: db/external_sst_file_ingestion_job.cc.ob
 
 # target to build an object file
 db/external_sst_file_ingestion_job.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_ingestion_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/external_sst_file_ingestion_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/external_sst_file_ingestion_job.cc.obj
 .PHONY : db/external_sst_file_ingestion_job.cc.obj
 
 db/external_sst_file_ingestion_job.i: db/external_sst_file_ingestion_job.cc.i
@@ -2162,7 +4442,8 @@ db/external_sst_file_ingestion_job.i: db/external_sst_file_ingestion_job.cc.i
 
 # target to preprocess a source file
 db/external_sst_file_ingestion_job.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_ingestion_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/external_sst_file_ingestion_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/external_sst_file_ingestion_job.cc.i
 .PHONY : db/external_sst_file_ingestion_job.cc.i
 
 db/external_sst_file_ingestion_job.s: db/external_sst_file_ingestion_job.cc.s
@@ -2171,7 +4452,8 @@ db/external_sst_file_ingestion_job.s: db/external_sst_file_ingestion_job.cc.s
 
 # target to generate assembly for a file
 db/external_sst_file_ingestion_job.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_ingestion_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/external_sst_file_ingestion_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/external_sst_file_ingestion_job.cc.s
 .PHONY : db/external_sst_file_ingestion_job.cc.s
 
 db/external_sst_file_test.obj: db/external_sst_file_test.cc.obj
@@ -2180,7 +4462,7 @@ db/external_sst_file_test.obj: db/external_sst_file_test.cc.obj
 
 # target to build an object file
 db/external_sst_file_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_test.dir/db/external_sst_file_test.cc.obj
 .PHONY : db/external_sst_file_test.cc.obj
 
 db/external_sst_file_test.i: db/external_sst_file_test.cc.i
@@ -2189,7 +4471,7 @@ db/external_sst_file_test.i: db/external_sst_file_test.cc.i
 
 # target to preprocess a source file
 db/external_sst_file_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_test.dir/db/external_sst_file_test.cc.i
 .PHONY : db/external_sst_file_test.cc.i
 
 db/external_sst_file_test.s: db/external_sst_file_test.cc.s
@@ -2198,7 +4480,7 @@ db/external_sst_file_test.s: db/external_sst_file_test.cc.s
 
 # target to generate assembly for a file
 db/external_sst_file_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/external_sst_file_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_external_sst_file_test.dir\build.make CMakeFiles/rocksdb_external_sst_file_test.dir/db/external_sst_file_test.cc.s
 .PHONY : db/external_sst_file_test.cc.s
 
 db/fault_injection_test.obj: db/fault_injection_test.cc.obj
@@ -2207,7 +4489,7 @@ db/fault_injection_test.obj: db/fault_injection_test.cc.obj
 
 # target to build an object file
 db/fault_injection_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/fault_injection_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_fault_injection_test.dir\build.make CMakeFiles/rocksdb_fault_injection_test.dir/db/fault_injection_test.cc.obj
 .PHONY : db/fault_injection_test.cc.obj
 
 db/fault_injection_test.i: db/fault_injection_test.cc.i
@@ -2216,7 +4498,7 @@ db/fault_injection_test.i: db/fault_injection_test.cc.i
 
 # target to preprocess a source file
 db/fault_injection_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/fault_injection_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_fault_injection_test.dir\build.make CMakeFiles/rocksdb_fault_injection_test.dir/db/fault_injection_test.cc.i
 .PHONY : db/fault_injection_test.cc.i
 
 db/fault_injection_test.s: db/fault_injection_test.cc.s
@@ -2225,7 +4507,7 @@ db/fault_injection_test.s: db/fault_injection_test.cc.s
 
 # target to generate assembly for a file
 db/fault_injection_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/fault_injection_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_fault_injection_test.dir\build.make CMakeFiles/rocksdb_fault_injection_test.dir/db/fault_injection_test.cc.s
 .PHONY : db/fault_injection_test.cc.s
 
 db/file_indexer.obj: db/file_indexer.cc.obj
@@ -2234,7 +4516,8 @@ db/file_indexer.obj: db/file_indexer.cc.obj
 
 # target to build an object file
 db/file_indexer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/file_indexer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/file_indexer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/file_indexer.cc.obj
 .PHONY : db/file_indexer.cc.obj
 
 db/file_indexer.i: db/file_indexer.cc.i
@@ -2243,7 +4526,8 @@ db/file_indexer.i: db/file_indexer.cc.i
 
 # target to preprocess a source file
 db/file_indexer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/file_indexer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/file_indexer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/file_indexer.cc.i
 .PHONY : db/file_indexer.cc.i
 
 db/file_indexer.s: db/file_indexer.cc.s
@@ -2252,7 +4536,8 @@ db/file_indexer.s: db/file_indexer.cc.s
 
 # target to generate assembly for a file
 db/file_indexer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/file_indexer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/file_indexer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/file_indexer.cc.s
 .PHONY : db/file_indexer.cc.s
 
 db/file_indexer_test.obj: db/file_indexer_test.cc.obj
@@ -2261,7 +4546,7 @@ db/file_indexer_test.obj: db/file_indexer_test.cc.obj
 
 # target to build an object file
 db/file_indexer_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/file_indexer_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_file_indexer_test.dir\build.make CMakeFiles/rocksdb_file_indexer_test.dir/db/file_indexer_test.cc.obj
 .PHONY : db/file_indexer_test.cc.obj
 
 db/file_indexer_test.i: db/file_indexer_test.cc.i
@@ -2270,7 +4555,7 @@ db/file_indexer_test.i: db/file_indexer_test.cc.i
 
 # target to preprocess a source file
 db/file_indexer_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/file_indexer_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_file_indexer_test.dir\build.make CMakeFiles/rocksdb_file_indexer_test.dir/db/file_indexer_test.cc.i
 .PHONY : db/file_indexer_test.cc.i
 
 db/file_indexer_test.s: db/file_indexer_test.cc.s
@@ -2279,7 +4564,7 @@ db/file_indexer_test.s: db/file_indexer_test.cc.s
 
 # target to generate assembly for a file
 db/file_indexer_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/file_indexer_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_file_indexer_test.dir\build.make CMakeFiles/rocksdb_file_indexer_test.dir/db/file_indexer_test.cc.s
 .PHONY : db/file_indexer_test.cc.s
 
 db/filename_test.obj: db/filename_test.cc.obj
@@ -2288,7 +4573,7 @@ db/filename_test.obj: db/filename_test.cc.obj
 
 # target to build an object file
 db/filename_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/filename_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_filename_test.dir\build.make CMakeFiles/rocksdb_filename_test.dir/db/filename_test.cc.obj
 .PHONY : db/filename_test.cc.obj
 
 db/filename_test.i: db/filename_test.cc.i
@@ -2297,7 +4582,7 @@ db/filename_test.i: db/filename_test.cc.i
 
 # target to preprocess a source file
 db/filename_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/filename_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_filename_test.dir\build.make CMakeFiles/rocksdb_filename_test.dir/db/filename_test.cc.i
 .PHONY : db/filename_test.cc.i
 
 db/filename_test.s: db/filename_test.cc.s
@@ -2306,7 +4591,7 @@ db/filename_test.s: db/filename_test.cc.s
 
 # target to generate assembly for a file
 db/filename_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/filename_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_filename_test.dir\build.make CMakeFiles/rocksdb_filename_test.dir/db/filename_test.cc.s
 .PHONY : db/filename_test.cc.s
 
 db/flush_job.obj: db/flush_job.cc.obj
@@ -2315,7 +4600,8 @@ db/flush_job.obj: db/flush_job.cc.obj
 
 # target to build an object file
 db/flush_job.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/flush_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/flush_job.cc.obj
 .PHONY : db/flush_job.cc.obj
 
 db/flush_job.i: db/flush_job.cc.i
@@ -2324,7 +4610,8 @@ db/flush_job.i: db/flush_job.cc.i
 
 # target to preprocess a source file
 db/flush_job.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/flush_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/flush_job.cc.i
 .PHONY : db/flush_job.cc.i
 
 db/flush_job.s: db/flush_job.cc.s
@@ -2333,7 +4620,8 @@ db/flush_job.s: db/flush_job.cc.s
 
 # target to generate assembly for a file
 db/flush_job.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/flush_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/flush_job.cc.s
 .PHONY : db/flush_job.cc.s
 
 db/flush_job_test.obj: db/flush_job_test.cc.obj
@@ -2342,7 +4630,7 @@ db/flush_job_test.obj: db/flush_job_test.cc.obj
 
 # target to build an object file
 db/flush_job_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_job_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_flush_job_test.dir\build.make CMakeFiles/rocksdb_flush_job_test.dir/db/flush_job_test.cc.obj
 .PHONY : db/flush_job_test.cc.obj
 
 db/flush_job_test.i: db/flush_job_test.cc.i
@@ -2351,7 +4639,7 @@ db/flush_job_test.i: db/flush_job_test.cc.i
 
 # target to preprocess a source file
 db/flush_job_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_job_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_flush_job_test.dir\build.make CMakeFiles/rocksdb_flush_job_test.dir/db/flush_job_test.cc.i
 .PHONY : db/flush_job_test.cc.i
 
 db/flush_job_test.s: db/flush_job_test.cc.s
@@ -2360,7 +4648,7 @@ db/flush_job_test.s: db/flush_job_test.cc.s
 
 # target to generate assembly for a file
 db/flush_job_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_job_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_flush_job_test.dir\build.make CMakeFiles/rocksdb_flush_job_test.dir/db/flush_job_test.cc.s
 .PHONY : db/flush_job_test.cc.s
 
 db/flush_scheduler.obj: db/flush_scheduler.cc.obj
@@ -2369,7 +4657,8 @@ db/flush_scheduler.obj: db/flush_scheduler.cc.obj
 
 # target to build an object file
 db/flush_scheduler.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_scheduler.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/flush_scheduler.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/flush_scheduler.cc.obj
 .PHONY : db/flush_scheduler.cc.obj
 
 db/flush_scheduler.i: db/flush_scheduler.cc.i
@@ -2378,7 +4667,8 @@ db/flush_scheduler.i: db/flush_scheduler.cc.i
 
 # target to preprocess a source file
 db/flush_scheduler.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_scheduler.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/flush_scheduler.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/flush_scheduler.cc.i
 .PHONY : db/flush_scheduler.cc.i
 
 db/flush_scheduler.s: db/flush_scheduler.cc.s
@@ -2387,7 +4677,8 @@ db/flush_scheduler.s: db/flush_scheduler.cc.s
 
 # target to generate assembly for a file
 db/flush_scheduler.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/flush_scheduler.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/flush_scheduler.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/flush_scheduler.cc.s
 .PHONY : db/flush_scheduler.cc.s
 
 db/forward_iterator.obj: db/forward_iterator.cc.obj
@@ -2396,7 +4687,8 @@ db/forward_iterator.obj: db/forward_iterator.cc.obj
 
 # target to build an object file
 db/forward_iterator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/forward_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/forward_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/forward_iterator.cc.obj
 .PHONY : db/forward_iterator.cc.obj
 
 db/forward_iterator.i: db/forward_iterator.cc.i
@@ -2405,7 +4697,8 @@ db/forward_iterator.i: db/forward_iterator.cc.i
 
 # target to preprocess a source file
 db/forward_iterator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/forward_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/forward_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/forward_iterator.cc.i
 .PHONY : db/forward_iterator.cc.i
 
 db/forward_iterator.s: db/forward_iterator.cc.s
@@ -2414,35 +4707,9 @@ db/forward_iterator.s: db/forward_iterator.cc.s
 
 # target to generate assembly for a file
 db/forward_iterator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/forward_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/forward_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/forward_iterator.cc.s
 .PHONY : db/forward_iterator.cc.s
-
-db/forward_iterator_bench.obj: db/forward_iterator_bench.cc.obj
-
-.PHONY : db/forward_iterator_bench.obj
-
-# target to build an object file
-db/forward_iterator_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/forward_iterator_bench.cc.obj
-.PHONY : db/forward_iterator_bench.cc.obj
-
-db/forward_iterator_bench.i: db/forward_iterator_bench.cc.i
-
-.PHONY : db/forward_iterator_bench.i
-
-# target to preprocess a source file
-db/forward_iterator_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/forward_iterator_bench.cc.i
-.PHONY : db/forward_iterator_bench.cc.i
-
-db/forward_iterator_bench.s: db/forward_iterator_bench.cc.s
-
-.PHONY : db/forward_iterator_bench.s
-
-# target to generate assembly for a file
-db/forward_iterator_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/forward_iterator_bench.cc.s
-.PHONY : db/forward_iterator_bench.cc.s
 
 db/internal_stats.obj: db/internal_stats.cc.obj
 
@@ -2450,7 +4717,8 @@ db/internal_stats.obj: db/internal_stats.cc.obj
 
 # target to build an object file
 db/internal_stats.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/internal_stats.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/internal_stats.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/internal_stats.cc.obj
 .PHONY : db/internal_stats.cc.obj
 
 db/internal_stats.i: db/internal_stats.cc.i
@@ -2459,7 +4727,8 @@ db/internal_stats.i: db/internal_stats.cc.i
 
 # target to preprocess a source file
 db/internal_stats.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/internal_stats.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/internal_stats.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/internal_stats.cc.i
 .PHONY : db/internal_stats.cc.i
 
 db/internal_stats.s: db/internal_stats.cc.s
@@ -2468,7 +4737,8 @@ db/internal_stats.s: db/internal_stats.cc.s
 
 # target to generate assembly for a file
 db/internal_stats.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/internal_stats.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/internal_stats.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/internal_stats.cc.s
 .PHONY : db/internal_stats.cc.s
 
 db/listener_test.obj: db/listener_test.cc.obj
@@ -2477,7 +4747,7 @@ db/listener_test.obj: db/listener_test.cc.obj
 
 # target to build an object file
 db/listener_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/listener_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_listener_test.dir\build.make CMakeFiles/rocksdb_listener_test.dir/db/listener_test.cc.obj
 .PHONY : db/listener_test.cc.obj
 
 db/listener_test.i: db/listener_test.cc.i
@@ -2486,7 +4756,7 @@ db/listener_test.i: db/listener_test.cc.i
 
 # target to preprocess a source file
 db/listener_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/listener_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_listener_test.dir\build.make CMakeFiles/rocksdb_listener_test.dir/db/listener_test.cc.i
 .PHONY : db/listener_test.cc.i
 
 db/listener_test.s: db/listener_test.cc.s
@@ -2495,7 +4765,7 @@ db/listener_test.s: db/listener_test.cc.s
 
 # target to generate assembly for a file
 db/listener_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/listener_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_listener_test.dir\build.make CMakeFiles/rocksdb_listener_test.dir/db/listener_test.cc.s
 .PHONY : db/listener_test.cc.s
 
 db/log_reader.obj: db/log_reader.cc.obj
@@ -2504,7 +4774,8 @@ db/log_reader.obj: db/log_reader.cc.obj
 
 # target to build an object file
 db/log_reader.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/log_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/log_reader.cc.obj
 .PHONY : db/log_reader.cc.obj
 
 db/log_reader.i: db/log_reader.cc.i
@@ -2513,7 +4784,8 @@ db/log_reader.i: db/log_reader.cc.i
 
 # target to preprocess a source file
 db/log_reader.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/log_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/log_reader.cc.i
 .PHONY : db/log_reader.cc.i
 
 db/log_reader.s: db/log_reader.cc.s
@@ -2522,7 +4794,8 @@ db/log_reader.s: db/log_reader.cc.s
 
 # target to generate assembly for a file
 db/log_reader.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/log_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/log_reader.cc.s
 .PHONY : db/log_reader.cc.s
 
 db/log_test.obj: db/log_test.cc.obj
@@ -2531,7 +4804,7 @@ db/log_test.obj: db/log_test.cc.obj
 
 # target to build an object file
 db/log_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_log_test.dir\build.make CMakeFiles/rocksdb_log_test.dir/db/log_test.cc.obj
 .PHONY : db/log_test.cc.obj
 
 db/log_test.i: db/log_test.cc.i
@@ -2540,7 +4813,7 @@ db/log_test.i: db/log_test.cc.i
 
 # target to preprocess a source file
 db/log_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_log_test.dir\build.make CMakeFiles/rocksdb_log_test.dir/db/log_test.cc.i
 .PHONY : db/log_test.cc.i
 
 db/log_test.s: db/log_test.cc.s
@@ -2549,7 +4822,7 @@ db/log_test.s: db/log_test.cc.s
 
 # target to generate assembly for a file
 db/log_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_log_test.dir\build.make CMakeFiles/rocksdb_log_test.dir/db/log_test.cc.s
 .PHONY : db/log_test.cc.s
 
 db/log_writer.obj: db/log_writer.cc.obj
@@ -2558,7 +4831,8 @@ db/log_writer.obj: db/log_writer.cc.obj
 
 # target to build an object file
 db/log_writer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/log_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/log_writer.cc.obj
 .PHONY : db/log_writer.cc.obj
 
 db/log_writer.i: db/log_writer.cc.i
@@ -2567,7 +4841,8 @@ db/log_writer.i: db/log_writer.cc.i
 
 # target to preprocess a source file
 db/log_writer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/log_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/log_writer.cc.i
 .PHONY : db/log_writer.cc.i
 
 db/log_writer.s: db/log_writer.cc.s
@@ -2576,7 +4851,8 @@ db/log_writer.s: db/log_writer.cc.s
 
 # target to generate assembly for a file
 db/log_writer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/log_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/log_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/log_writer.cc.s
 .PHONY : db/log_writer.cc.s
 
 db/logs_with_prep_tracker.obj: db/logs_with_prep_tracker.cc.obj
@@ -2585,7 +4861,8 @@ db/logs_with_prep_tracker.obj: db/logs_with_prep_tracker.cc.obj
 
 # target to build an object file
 db/logs_with_prep_tracker.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/logs_with_prep_tracker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/logs_with_prep_tracker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/logs_with_prep_tracker.cc.obj
 .PHONY : db/logs_with_prep_tracker.cc.obj
 
 db/logs_with_prep_tracker.i: db/logs_with_prep_tracker.cc.i
@@ -2594,7 +4871,8 @@ db/logs_with_prep_tracker.i: db/logs_with_prep_tracker.cc.i
 
 # target to preprocess a source file
 db/logs_with_prep_tracker.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/logs_with_prep_tracker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/logs_with_prep_tracker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/logs_with_prep_tracker.cc.i
 .PHONY : db/logs_with_prep_tracker.cc.i
 
 db/logs_with_prep_tracker.s: db/logs_with_prep_tracker.cc.s
@@ -2603,7 +4881,8 @@ db/logs_with_prep_tracker.s: db/logs_with_prep_tracker.cc.s
 
 # target to generate assembly for a file
 db/logs_with_prep_tracker.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/logs_with_prep_tracker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/logs_with_prep_tracker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/logs_with_prep_tracker.cc.s
 .PHONY : db/logs_with_prep_tracker.cc.s
 
 db/malloc_stats.obj: db/malloc_stats.cc.obj
@@ -2612,7 +4891,8 @@ db/malloc_stats.obj: db/malloc_stats.cc.obj
 
 # target to build an object file
 db/malloc_stats.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/malloc_stats.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/malloc_stats.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/malloc_stats.cc.obj
 .PHONY : db/malloc_stats.cc.obj
 
 db/malloc_stats.i: db/malloc_stats.cc.i
@@ -2621,7 +4901,8 @@ db/malloc_stats.i: db/malloc_stats.cc.i
 
 # target to preprocess a source file
 db/malloc_stats.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/malloc_stats.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/malloc_stats.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/malloc_stats.cc.i
 .PHONY : db/malloc_stats.cc.i
 
 db/malloc_stats.s: db/malloc_stats.cc.s
@@ -2630,7 +4911,8 @@ db/malloc_stats.s: db/malloc_stats.cc.s
 
 # target to generate assembly for a file
 db/malloc_stats.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/malloc_stats.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/malloc_stats.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/malloc_stats.cc.s
 .PHONY : db/malloc_stats.cc.s
 
 db/manual_compaction_test.obj: db/manual_compaction_test.cc.obj
@@ -2639,7 +4921,7 @@ db/manual_compaction_test.obj: db/manual_compaction_test.cc.obj
 
 # target to build an object file
 db/manual_compaction_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/manual_compaction_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_manual_compaction_test.dir\build.make CMakeFiles/rocksdb_manual_compaction_test.dir/db/manual_compaction_test.cc.obj
 .PHONY : db/manual_compaction_test.cc.obj
 
 db/manual_compaction_test.i: db/manual_compaction_test.cc.i
@@ -2648,7 +4930,7 @@ db/manual_compaction_test.i: db/manual_compaction_test.cc.i
 
 # target to preprocess a source file
 db/manual_compaction_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/manual_compaction_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_manual_compaction_test.dir\build.make CMakeFiles/rocksdb_manual_compaction_test.dir/db/manual_compaction_test.cc.i
 .PHONY : db/manual_compaction_test.cc.i
 
 db/manual_compaction_test.s: db/manual_compaction_test.cc.s
@@ -2657,7 +4939,7 @@ db/manual_compaction_test.s: db/manual_compaction_test.cc.s
 
 # target to generate assembly for a file
 db/manual_compaction_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/manual_compaction_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_manual_compaction_test.dir\build.make CMakeFiles/rocksdb_manual_compaction_test.dir/db/manual_compaction_test.cc.s
 .PHONY : db/manual_compaction_test.cc.s
 
 db/memtable.obj: db/memtable.cc.obj
@@ -2666,7 +4948,8 @@ db/memtable.obj: db/memtable.cc.obj
 
 # target to build an object file
 db/memtable.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/memtable.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/memtable.cc.obj
 .PHONY : db/memtable.cc.obj
 
 db/memtable.i: db/memtable.cc.i
@@ -2675,7 +4958,8 @@ db/memtable.i: db/memtable.cc.i
 
 # target to preprocess a source file
 db/memtable.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/memtable.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/memtable.cc.i
 .PHONY : db/memtable.cc.i
 
 db/memtable.s: db/memtable.cc.s
@@ -2684,7 +4968,8 @@ db/memtable.s: db/memtable.cc.s
 
 # target to generate assembly for a file
 db/memtable.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/memtable.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/memtable.cc.s
 .PHONY : db/memtable.cc.s
 
 db/memtable_list.obj: db/memtable_list.cc.obj
@@ -2693,7 +4978,8 @@ db/memtable_list.obj: db/memtable_list.cc.obj
 
 # target to build an object file
 db/memtable_list.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable_list.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/memtable_list.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/memtable_list.cc.obj
 .PHONY : db/memtable_list.cc.obj
 
 db/memtable_list.i: db/memtable_list.cc.i
@@ -2702,7 +4988,8 @@ db/memtable_list.i: db/memtable_list.cc.i
 
 # target to preprocess a source file
 db/memtable_list.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable_list.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/memtable_list.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/memtable_list.cc.i
 .PHONY : db/memtable_list.cc.i
 
 db/memtable_list.s: db/memtable_list.cc.s
@@ -2711,7 +4998,8 @@ db/memtable_list.s: db/memtable_list.cc.s
 
 # target to generate assembly for a file
 db/memtable_list.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable_list.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/memtable_list.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/memtable_list.cc.s
 .PHONY : db/memtable_list.cc.s
 
 db/memtable_list_test.obj: db/memtable_list_test.cc.obj
@@ -2720,7 +5008,7 @@ db/memtable_list_test.obj: db/memtable_list_test.cc.obj
 
 # target to build an object file
 db/memtable_list_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable_list_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_memtable_list_test.dir\build.make CMakeFiles/rocksdb_memtable_list_test.dir/db/memtable_list_test.cc.obj
 .PHONY : db/memtable_list_test.cc.obj
 
 db/memtable_list_test.i: db/memtable_list_test.cc.i
@@ -2729,7 +5017,7 @@ db/memtable_list_test.i: db/memtable_list_test.cc.i
 
 # target to preprocess a source file
 db/memtable_list_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable_list_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_memtable_list_test.dir\build.make CMakeFiles/rocksdb_memtable_list_test.dir/db/memtable_list_test.cc.i
 .PHONY : db/memtable_list_test.cc.i
 
 db/memtable_list_test.s: db/memtable_list_test.cc.s
@@ -2738,7 +5026,7 @@ db/memtable_list_test.s: db/memtable_list_test.cc.s
 
 # target to generate assembly for a file
 db/memtable_list_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/memtable_list_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_memtable_list_test.dir\build.make CMakeFiles/rocksdb_memtable_list_test.dir/db/memtable_list_test.cc.s
 .PHONY : db/memtable_list_test.cc.s
 
 db/merge_helper.obj: db/merge_helper.cc.obj
@@ -2747,7 +5035,8 @@ db/merge_helper.obj: db/merge_helper.cc.obj
 
 # target to build an object file
 db/merge_helper.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_helper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/merge_helper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/merge_helper.cc.obj
 .PHONY : db/merge_helper.cc.obj
 
 db/merge_helper.i: db/merge_helper.cc.i
@@ -2756,7 +5045,8 @@ db/merge_helper.i: db/merge_helper.cc.i
 
 # target to preprocess a source file
 db/merge_helper.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_helper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/merge_helper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/merge_helper.cc.i
 .PHONY : db/merge_helper.cc.i
 
 db/merge_helper.s: db/merge_helper.cc.s
@@ -2765,7 +5055,8 @@ db/merge_helper.s: db/merge_helper.cc.s
 
 # target to generate assembly for a file
 db/merge_helper.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_helper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/merge_helper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/merge_helper.cc.s
 .PHONY : db/merge_helper.cc.s
 
 db/merge_helper_test.obj: db/merge_helper_test.cc.obj
@@ -2774,7 +5065,7 @@ db/merge_helper_test.obj: db/merge_helper_test.cc.obj
 
 # target to build an object file
 db/merge_helper_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_helper_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_merge_helper_test.dir\build.make CMakeFiles/rocksdb_merge_helper_test.dir/db/merge_helper_test.cc.obj
 .PHONY : db/merge_helper_test.cc.obj
 
 db/merge_helper_test.i: db/merge_helper_test.cc.i
@@ -2783,7 +5074,7 @@ db/merge_helper_test.i: db/merge_helper_test.cc.i
 
 # target to preprocess a source file
 db/merge_helper_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_helper_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_merge_helper_test.dir\build.make CMakeFiles/rocksdb_merge_helper_test.dir/db/merge_helper_test.cc.i
 .PHONY : db/merge_helper_test.cc.i
 
 db/merge_helper_test.s: db/merge_helper_test.cc.s
@@ -2792,7 +5083,7 @@ db/merge_helper_test.s: db/merge_helper_test.cc.s
 
 # target to generate assembly for a file
 db/merge_helper_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_helper_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_merge_helper_test.dir\build.make CMakeFiles/rocksdb_merge_helper_test.dir/db/merge_helper_test.cc.s
 .PHONY : db/merge_helper_test.cc.s
 
 db/merge_operator.obj: db/merge_operator.cc.obj
@@ -2801,7 +5092,8 @@ db/merge_operator.obj: db/merge_operator.cc.obj
 
 # target to build an object file
 db/merge_operator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_operator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/merge_operator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/merge_operator.cc.obj
 .PHONY : db/merge_operator.cc.obj
 
 db/merge_operator.i: db/merge_operator.cc.i
@@ -2810,7 +5102,8 @@ db/merge_operator.i: db/merge_operator.cc.i
 
 # target to preprocess a source file
 db/merge_operator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_operator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/merge_operator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/merge_operator.cc.i
 .PHONY : db/merge_operator.cc.i
 
 db/merge_operator.s: db/merge_operator.cc.s
@@ -2819,7 +5112,8 @@ db/merge_operator.s: db/merge_operator.cc.s
 
 # target to generate assembly for a file
 db/merge_operator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_operator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/merge_operator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/merge_operator.cc.s
 .PHONY : db/merge_operator.cc.s
 
 db/merge_test.obj: db/merge_test.cc.obj
@@ -2828,7 +5122,7 @@ db/merge_test.obj: db/merge_test.cc.obj
 
 # target to build an object file
 db/merge_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_merge_test.dir\build.make CMakeFiles/rocksdb_merge_test.dir/db/merge_test.cc.obj
 .PHONY : db/merge_test.cc.obj
 
 db/merge_test.i: db/merge_test.cc.i
@@ -2837,7 +5131,7 @@ db/merge_test.i: db/merge_test.cc.i
 
 # target to preprocess a source file
 db/merge_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_merge_test.dir\build.make CMakeFiles/rocksdb_merge_test.dir/db/merge_test.cc.i
 .PHONY : db/merge_test.cc.i
 
 db/merge_test.s: db/merge_test.cc.s
@@ -2846,7 +5140,7 @@ db/merge_test.s: db/merge_test.cc.s
 
 # target to generate assembly for a file
 db/merge_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/merge_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_merge_test.dir\build.make CMakeFiles/rocksdb_merge_test.dir/db/merge_test.cc.s
 .PHONY : db/merge_test.cc.s
 
 db/obsolete_files_test.obj: db/obsolete_files_test.cc.obj
@@ -2855,7 +5149,7 @@ db/obsolete_files_test.obj: db/obsolete_files_test.cc.obj
 
 # target to build an object file
 db/obsolete_files_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/obsolete_files_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_obsolete_files_test.dir\build.make CMakeFiles/rocksdb_obsolete_files_test.dir/db/obsolete_files_test.cc.obj
 .PHONY : db/obsolete_files_test.cc.obj
 
 db/obsolete_files_test.i: db/obsolete_files_test.cc.i
@@ -2864,7 +5158,7 @@ db/obsolete_files_test.i: db/obsolete_files_test.cc.i
 
 # target to preprocess a source file
 db/obsolete_files_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/obsolete_files_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_obsolete_files_test.dir\build.make CMakeFiles/rocksdb_obsolete_files_test.dir/db/obsolete_files_test.cc.i
 .PHONY : db/obsolete_files_test.cc.i
 
 db/obsolete_files_test.s: db/obsolete_files_test.cc.s
@@ -2873,7 +5167,7 @@ db/obsolete_files_test.s: db/obsolete_files_test.cc.s
 
 # target to generate assembly for a file
 db/obsolete_files_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/obsolete_files_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_obsolete_files_test.dir\build.make CMakeFiles/rocksdb_obsolete_files_test.dir/db/obsolete_files_test.cc.s
 .PHONY : db/obsolete_files_test.cc.s
 
 db/options_file_test.obj: db/options_file_test.cc.obj
@@ -2882,7 +5176,7 @@ db/options_file_test.obj: db/options_file_test.cc.obj
 
 # target to build an object file
 db/options_file_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/options_file_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_options_file_test.dir\build.make CMakeFiles/rocksdb_options_file_test.dir/db/options_file_test.cc.obj
 .PHONY : db/options_file_test.cc.obj
 
 db/options_file_test.i: db/options_file_test.cc.i
@@ -2891,7 +5185,7 @@ db/options_file_test.i: db/options_file_test.cc.i
 
 # target to preprocess a source file
 db/options_file_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/options_file_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_options_file_test.dir\build.make CMakeFiles/rocksdb_options_file_test.dir/db/options_file_test.cc.i
 .PHONY : db/options_file_test.cc.i
 
 db/options_file_test.s: db/options_file_test.cc.s
@@ -2900,7 +5194,7 @@ db/options_file_test.s: db/options_file_test.cc.s
 
 # target to generate assembly for a file
 db/options_file_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/options_file_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_options_file_test.dir\build.make CMakeFiles/rocksdb_options_file_test.dir/db/options_file_test.cc.s
 .PHONY : db/options_file_test.cc.s
 
 db/perf_context_test.obj: db/perf_context_test.cc.obj
@@ -2909,7 +5203,7 @@ db/perf_context_test.obj: db/perf_context_test.cc.obj
 
 # target to build an object file
 db/perf_context_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/perf_context_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_perf_context_test.dir\build.make CMakeFiles/rocksdb_perf_context_test.dir/db/perf_context_test.cc.obj
 .PHONY : db/perf_context_test.cc.obj
 
 db/perf_context_test.i: db/perf_context_test.cc.i
@@ -2918,7 +5212,7 @@ db/perf_context_test.i: db/perf_context_test.cc.i
 
 # target to preprocess a source file
 db/perf_context_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/perf_context_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_perf_context_test.dir\build.make CMakeFiles/rocksdb_perf_context_test.dir/db/perf_context_test.cc.i
 .PHONY : db/perf_context_test.cc.i
 
 db/perf_context_test.s: db/perf_context_test.cc.s
@@ -2927,7 +5221,7 @@ db/perf_context_test.s: db/perf_context_test.cc.s
 
 # target to generate assembly for a file
 db/perf_context_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/perf_context_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_perf_context_test.dir\build.make CMakeFiles/rocksdb_perf_context_test.dir/db/perf_context_test.cc.s
 .PHONY : db/perf_context_test.cc.s
 
 db/plain_table_db_test.obj: db/plain_table_db_test.cc.obj
@@ -2936,7 +5230,7 @@ db/plain_table_db_test.obj: db/plain_table_db_test.cc.obj
 
 # target to build an object file
 db/plain_table_db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/plain_table_db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_plain_table_db_test.dir\build.make CMakeFiles/rocksdb_plain_table_db_test.dir/db/plain_table_db_test.cc.obj
 .PHONY : db/plain_table_db_test.cc.obj
 
 db/plain_table_db_test.i: db/plain_table_db_test.cc.i
@@ -2945,7 +5239,7 @@ db/plain_table_db_test.i: db/plain_table_db_test.cc.i
 
 # target to preprocess a source file
 db/plain_table_db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/plain_table_db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_plain_table_db_test.dir\build.make CMakeFiles/rocksdb_plain_table_db_test.dir/db/plain_table_db_test.cc.i
 .PHONY : db/plain_table_db_test.cc.i
 
 db/plain_table_db_test.s: db/plain_table_db_test.cc.s
@@ -2954,7 +5248,7 @@ db/plain_table_db_test.s: db/plain_table_db_test.cc.s
 
 # target to generate assembly for a file
 db/plain_table_db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/plain_table_db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_plain_table_db_test.dir\build.make CMakeFiles/rocksdb_plain_table_db_test.dir/db/plain_table_db_test.cc.s
 .PHONY : db/plain_table_db_test.cc.s
 
 db/prefix_test.obj: db/prefix_test.cc.obj
@@ -2963,7 +5257,7 @@ db/prefix_test.obj: db/prefix_test.cc.obj
 
 # target to build an object file
 db/prefix_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/prefix_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_prefix_test.dir\build.make CMakeFiles/rocksdb_prefix_test.dir/db/prefix_test.cc.obj
 .PHONY : db/prefix_test.cc.obj
 
 db/prefix_test.i: db/prefix_test.cc.i
@@ -2972,7 +5266,7 @@ db/prefix_test.i: db/prefix_test.cc.i
 
 # target to preprocess a source file
 db/prefix_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/prefix_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_prefix_test.dir\build.make CMakeFiles/rocksdb_prefix_test.dir/db/prefix_test.cc.i
 .PHONY : db/prefix_test.cc.i
 
 db/prefix_test.s: db/prefix_test.cc.s
@@ -2981,7 +5275,7 @@ db/prefix_test.s: db/prefix_test.cc.s
 
 # target to generate assembly for a file
 db/prefix_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/prefix_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_prefix_test.dir\build.make CMakeFiles/rocksdb_prefix_test.dir/db/prefix_test.cc.s
 .PHONY : db/prefix_test.cc.s
 
 db/range_del_aggregator.obj: db/range_del_aggregator.cc.obj
@@ -2990,7 +5284,8 @@ db/range_del_aggregator.obj: db/range_del_aggregator.cc.obj
 
 # target to build an object file
 db/range_del_aggregator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/range_del_aggregator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/range_del_aggregator.cc.obj
 .PHONY : db/range_del_aggregator.cc.obj
 
 db/range_del_aggregator.i: db/range_del_aggregator.cc.i
@@ -2999,7 +5294,8 @@ db/range_del_aggregator.i: db/range_del_aggregator.cc.i
 
 # target to preprocess a source file
 db/range_del_aggregator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/range_del_aggregator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/range_del_aggregator.cc.i
 .PHONY : db/range_del_aggregator.cc.i
 
 db/range_del_aggregator.s: db/range_del_aggregator.cc.s
@@ -3008,7 +5304,8 @@ db/range_del_aggregator.s: db/range_del_aggregator.cc.s
 
 # target to generate assembly for a file
 db/range_del_aggregator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/range_del_aggregator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/range_del_aggregator.cc.s
 .PHONY : db/range_del_aggregator.cc.s
 
 db/range_del_aggregator_bench.obj: db/range_del_aggregator_bench.cc.obj
@@ -3017,7 +5314,7 @@ db/range_del_aggregator_bench.obj: db/range_del_aggregator_bench.cc.obj
 
 # target to build an object file
 db/range_del_aggregator_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator_bench.cc.obj
+	$(MAKE) -f CMakeFiles\range_del_aggregator_bench.dir\build.make CMakeFiles/range_del_aggregator_bench.dir/db/range_del_aggregator_bench.cc.obj
 .PHONY : db/range_del_aggregator_bench.cc.obj
 
 db/range_del_aggregator_bench.i: db/range_del_aggregator_bench.cc.i
@@ -3026,7 +5323,7 @@ db/range_del_aggregator_bench.i: db/range_del_aggregator_bench.cc.i
 
 # target to preprocess a source file
 db/range_del_aggregator_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator_bench.cc.i
+	$(MAKE) -f CMakeFiles\range_del_aggregator_bench.dir\build.make CMakeFiles/range_del_aggregator_bench.dir/db/range_del_aggregator_bench.cc.i
 .PHONY : db/range_del_aggregator_bench.cc.i
 
 db/range_del_aggregator_bench.s: db/range_del_aggregator_bench.cc.s
@@ -3035,7 +5332,7 @@ db/range_del_aggregator_bench.s: db/range_del_aggregator_bench.cc.s
 
 # target to generate assembly for a file
 db/range_del_aggregator_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator_bench.cc.s
+	$(MAKE) -f CMakeFiles\range_del_aggregator_bench.dir\build.make CMakeFiles/range_del_aggregator_bench.dir/db/range_del_aggregator_bench.cc.s
 .PHONY : db/range_del_aggregator_bench.cc.s
 
 db/range_del_aggregator_test.obj: db/range_del_aggregator_test.cc.obj
@@ -3044,7 +5341,7 @@ db/range_del_aggregator_test.obj: db/range_del_aggregator_test.cc.obj
 
 # target to build an object file
 db/range_del_aggregator_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_range_del_aggregator_test.dir\build.make CMakeFiles/rocksdb_range_del_aggregator_test.dir/db/range_del_aggregator_test.cc.obj
 .PHONY : db/range_del_aggregator_test.cc.obj
 
 db/range_del_aggregator_test.i: db/range_del_aggregator_test.cc.i
@@ -3053,7 +5350,7 @@ db/range_del_aggregator_test.i: db/range_del_aggregator_test.cc.i
 
 # target to preprocess a source file
 db/range_del_aggregator_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_range_del_aggregator_test.dir\build.make CMakeFiles/rocksdb_range_del_aggregator_test.dir/db/range_del_aggregator_test.cc.i
 .PHONY : db/range_del_aggregator_test.cc.i
 
 db/range_del_aggregator_test.s: db/range_del_aggregator_test.cc.s
@@ -3062,7 +5359,7 @@ db/range_del_aggregator_test.s: db/range_del_aggregator_test.cc.s
 
 # target to generate assembly for a file
 db/range_del_aggregator_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_del_aggregator_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_range_del_aggregator_test.dir\build.make CMakeFiles/rocksdb_range_del_aggregator_test.dir/db/range_del_aggregator_test.cc.s
 .PHONY : db/range_del_aggregator_test.cc.s
 
 db/range_tombstone_fragmenter.obj: db/range_tombstone_fragmenter.cc.obj
@@ -3071,7 +5368,8 @@ db/range_tombstone_fragmenter.obj: db/range_tombstone_fragmenter.cc.obj
 
 # target to build an object file
 db/range_tombstone_fragmenter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_tombstone_fragmenter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/range_tombstone_fragmenter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/range_tombstone_fragmenter.cc.obj
 .PHONY : db/range_tombstone_fragmenter.cc.obj
 
 db/range_tombstone_fragmenter.i: db/range_tombstone_fragmenter.cc.i
@@ -3080,7 +5378,8 @@ db/range_tombstone_fragmenter.i: db/range_tombstone_fragmenter.cc.i
 
 # target to preprocess a source file
 db/range_tombstone_fragmenter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_tombstone_fragmenter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/range_tombstone_fragmenter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/range_tombstone_fragmenter.cc.i
 .PHONY : db/range_tombstone_fragmenter.cc.i
 
 db/range_tombstone_fragmenter.s: db/range_tombstone_fragmenter.cc.s
@@ -3089,7 +5388,8 @@ db/range_tombstone_fragmenter.s: db/range_tombstone_fragmenter.cc.s
 
 # target to generate assembly for a file
 db/range_tombstone_fragmenter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_tombstone_fragmenter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/range_tombstone_fragmenter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/range_tombstone_fragmenter.cc.s
 .PHONY : db/range_tombstone_fragmenter.cc.s
 
 db/range_tombstone_fragmenter_test.obj: db/range_tombstone_fragmenter_test.cc.obj
@@ -3098,7 +5398,7 @@ db/range_tombstone_fragmenter_test.obj: db/range_tombstone_fragmenter_test.cc.ob
 
 # target to build an object file
 db/range_tombstone_fragmenter_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_tombstone_fragmenter_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_range_tombstone_fragmenter_test.dir\build.make CMakeFiles/rocksdb_range_tombstone_fragmenter_test.dir/db/range_tombstone_fragmenter_test.cc.obj
 .PHONY : db/range_tombstone_fragmenter_test.cc.obj
 
 db/range_tombstone_fragmenter_test.i: db/range_tombstone_fragmenter_test.cc.i
@@ -3107,7 +5407,7 @@ db/range_tombstone_fragmenter_test.i: db/range_tombstone_fragmenter_test.cc.i
 
 # target to preprocess a source file
 db/range_tombstone_fragmenter_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_tombstone_fragmenter_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_range_tombstone_fragmenter_test.dir\build.make CMakeFiles/rocksdb_range_tombstone_fragmenter_test.dir/db/range_tombstone_fragmenter_test.cc.i
 .PHONY : db/range_tombstone_fragmenter_test.cc.i
 
 db/range_tombstone_fragmenter_test.s: db/range_tombstone_fragmenter_test.cc.s
@@ -3116,7 +5416,7 @@ db/range_tombstone_fragmenter_test.s: db/range_tombstone_fragmenter_test.cc.s
 
 # target to generate assembly for a file
 db/range_tombstone_fragmenter_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/range_tombstone_fragmenter_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_range_tombstone_fragmenter_test.dir\build.make CMakeFiles/rocksdb_range_tombstone_fragmenter_test.dir/db/range_tombstone_fragmenter_test.cc.s
 .PHONY : db/range_tombstone_fragmenter_test.cc.s
 
 db/repair.obj: db/repair.cc.obj
@@ -3125,7 +5425,8 @@ db/repair.obj: db/repair.cc.obj
 
 # target to build an object file
 db/repair.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/repair.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/repair.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/repair.cc.obj
 .PHONY : db/repair.cc.obj
 
 db/repair.i: db/repair.cc.i
@@ -3134,7 +5435,8 @@ db/repair.i: db/repair.cc.i
 
 # target to preprocess a source file
 db/repair.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/repair.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/repair.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/repair.cc.i
 .PHONY : db/repair.cc.i
 
 db/repair.s: db/repair.cc.s
@@ -3143,7 +5445,8 @@ db/repair.s: db/repair.cc.s
 
 # target to generate assembly for a file
 db/repair.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/repair.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/repair.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/repair.cc.s
 .PHONY : db/repair.cc.s
 
 db/repair_test.obj: db/repair_test.cc.obj
@@ -3152,7 +5455,7 @@ db/repair_test.obj: db/repair_test.cc.obj
 
 # target to build an object file
 db/repair_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/repair_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_repair_test.dir\build.make CMakeFiles/rocksdb_repair_test.dir/db/repair_test.cc.obj
 .PHONY : db/repair_test.cc.obj
 
 db/repair_test.i: db/repair_test.cc.i
@@ -3161,7 +5464,7 @@ db/repair_test.i: db/repair_test.cc.i
 
 # target to preprocess a source file
 db/repair_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/repair_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_repair_test.dir\build.make CMakeFiles/rocksdb_repair_test.dir/db/repair_test.cc.i
 .PHONY : db/repair_test.cc.i
 
 db/repair_test.s: db/repair_test.cc.s
@@ -3170,7 +5473,7 @@ db/repair_test.s: db/repair_test.cc.s
 
 # target to generate assembly for a file
 db/repair_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/repair_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_repair_test.dir\build.make CMakeFiles/rocksdb_repair_test.dir/db/repair_test.cc.s
 .PHONY : db/repair_test.cc.s
 
 db/snapshot_impl.obj: db/snapshot_impl.cc.obj
@@ -3179,7 +5482,8 @@ db/snapshot_impl.obj: db/snapshot_impl.cc.obj
 
 # target to build an object file
 db/snapshot_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/snapshot_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/snapshot_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/snapshot_impl.cc.obj
 .PHONY : db/snapshot_impl.cc.obj
 
 db/snapshot_impl.i: db/snapshot_impl.cc.i
@@ -3188,7 +5492,8 @@ db/snapshot_impl.i: db/snapshot_impl.cc.i
 
 # target to preprocess a source file
 db/snapshot_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/snapshot_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/snapshot_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/snapshot_impl.cc.i
 .PHONY : db/snapshot_impl.cc.i
 
 db/snapshot_impl.s: db/snapshot_impl.cc.s
@@ -3197,7 +5502,8 @@ db/snapshot_impl.s: db/snapshot_impl.cc.s
 
 # target to generate assembly for a file
 db/snapshot_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/snapshot_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/snapshot_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/snapshot_impl.cc.s
 .PHONY : db/snapshot_impl.cc.s
 
 db/table_cache.obj: db/table_cache.cc.obj
@@ -3206,7 +5512,8 @@ db/table_cache.obj: db/table_cache.cc.obj
 
 # target to build an object file
 db/table_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/table_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/table_cache.cc.obj
 .PHONY : db/table_cache.cc.obj
 
 db/table_cache.i: db/table_cache.cc.i
@@ -3215,7 +5522,8 @@ db/table_cache.i: db/table_cache.cc.i
 
 # target to preprocess a source file
 db/table_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/table_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/table_cache.cc.i
 .PHONY : db/table_cache.cc.i
 
 db/table_cache.s: db/table_cache.cc.s
@@ -3224,7 +5532,8 @@ db/table_cache.s: db/table_cache.cc.s
 
 # target to generate assembly for a file
 db/table_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/table_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/table_cache.cc.s
 .PHONY : db/table_cache.cc.s
 
 db/table_properties_collector.obj: db/table_properties_collector.cc.obj
@@ -3233,7 +5542,8 @@ db/table_properties_collector.obj: db/table_properties_collector.cc.obj
 
 # target to build an object file
 db/table_properties_collector.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_properties_collector.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/table_properties_collector.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/table_properties_collector.cc.obj
 .PHONY : db/table_properties_collector.cc.obj
 
 db/table_properties_collector.i: db/table_properties_collector.cc.i
@@ -3242,7 +5552,8 @@ db/table_properties_collector.i: db/table_properties_collector.cc.i
 
 # target to preprocess a source file
 db/table_properties_collector.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_properties_collector.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/table_properties_collector.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/table_properties_collector.cc.i
 .PHONY : db/table_properties_collector.cc.i
 
 db/table_properties_collector.s: db/table_properties_collector.cc.s
@@ -3251,7 +5562,8 @@ db/table_properties_collector.s: db/table_properties_collector.cc.s
 
 # target to generate assembly for a file
 db/table_properties_collector.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_properties_collector.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/table_properties_collector.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/table_properties_collector.cc.s
 .PHONY : db/table_properties_collector.cc.s
 
 db/table_properties_collector_test.obj: db/table_properties_collector_test.cc.obj
@@ -3260,7 +5572,7 @@ db/table_properties_collector_test.obj: db/table_properties_collector_test.cc.ob
 
 # target to build an object file
 db/table_properties_collector_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_properties_collector_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_table_properties_collector_test.dir\build.make CMakeFiles/rocksdb_table_properties_collector_test.dir/db/table_properties_collector_test.cc.obj
 .PHONY : db/table_properties_collector_test.cc.obj
 
 db/table_properties_collector_test.i: db/table_properties_collector_test.cc.i
@@ -3269,7 +5581,7 @@ db/table_properties_collector_test.i: db/table_properties_collector_test.cc.i
 
 # target to preprocess a source file
 db/table_properties_collector_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_properties_collector_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_table_properties_collector_test.dir\build.make CMakeFiles/rocksdb_table_properties_collector_test.dir/db/table_properties_collector_test.cc.i
 .PHONY : db/table_properties_collector_test.cc.i
 
 db/table_properties_collector_test.s: db/table_properties_collector_test.cc.s
@@ -3278,7 +5590,7 @@ db/table_properties_collector_test.s: db/table_properties_collector_test.cc.s
 
 # target to generate assembly for a file
 db/table_properties_collector_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/table_properties_collector_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_table_properties_collector_test.dir\build.make CMakeFiles/rocksdb_table_properties_collector_test.dir/db/table_properties_collector_test.cc.s
 .PHONY : db/table_properties_collector_test.cc.s
 
 db/transaction_log_impl.obj: db/transaction_log_impl.cc.obj
@@ -3287,7 +5599,8 @@ db/transaction_log_impl.obj: db/transaction_log_impl.cc.obj
 
 # target to build an object file
 db/transaction_log_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/transaction_log_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/transaction_log_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/transaction_log_impl.cc.obj
 .PHONY : db/transaction_log_impl.cc.obj
 
 db/transaction_log_impl.i: db/transaction_log_impl.cc.i
@@ -3296,7 +5609,8 @@ db/transaction_log_impl.i: db/transaction_log_impl.cc.i
 
 # target to preprocess a source file
 db/transaction_log_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/transaction_log_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/transaction_log_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/transaction_log_impl.cc.i
 .PHONY : db/transaction_log_impl.cc.i
 
 db/transaction_log_impl.s: db/transaction_log_impl.cc.s
@@ -3305,7 +5619,8 @@ db/transaction_log_impl.s: db/transaction_log_impl.cc.s
 
 # target to generate assembly for a file
 db/transaction_log_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/transaction_log_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/transaction_log_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/transaction_log_impl.cc.s
 .PHONY : db/transaction_log_impl.cc.s
 
 db/version_builder.obj: db/version_builder.cc.obj
@@ -3314,7 +5629,8 @@ db/version_builder.obj: db/version_builder.cc.obj
 
 # target to build an object file
 db/version_builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_builder.cc.obj
 .PHONY : db/version_builder.cc.obj
 
 db/version_builder.i: db/version_builder.cc.i
@@ -3323,7 +5639,8 @@ db/version_builder.i: db/version_builder.cc.i
 
 # target to preprocess a source file
 db/version_builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_builder.cc.i
 .PHONY : db/version_builder.cc.i
 
 db/version_builder.s: db/version_builder.cc.s
@@ -3332,7 +5649,8 @@ db/version_builder.s: db/version_builder.cc.s
 
 # target to generate assembly for a file
 db/version_builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_builder.cc.s
 .PHONY : db/version_builder.cc.s
 
 db/version_builder_test.obj: db/version_builder_test.cc.obj
@@ -3341,7 +5659,7 @@ db/version_builder_test.obj: db/version_builder_test.cc.obj
 
 # target to build an object file
 db/version_builder_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_builder_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_version_builder_test.dir\build.make CMakeFiles/rocksdb_version_builder_test.dir/db/version_builder_test.cc.obj
 .PHONY : db/version_builder_test.cc.obj
 
 db/version_builder_test.i: db/version_builder_test.cc.i
@@ -3350,7 +5668,7 @@ db/version_builder_test.i: db/version_builder_test.cc.i
 
 # target to preprocess a source file
 db/version_builder_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_builder_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_version_builder_test.dir\build.make CMakeFiles/rocksdb_version_builder_test.dir/db/version_builder_test.cc.i
 .PHONY : db/version_builder_test.cc.i
 
 db/version_builder_test.s: db/version_builder_test.cc.s
@@ -3359,7 +5677,7 @@ db/version_builder_test.s: db/version_builder_test.cc.s
 
 # target to generate assembly for a file
 db/version_builder_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_builder_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_version_builder_test.dir\build.make CMakeFiles/rocksdb_version_builder_test.dir/db/version_builder_test.cc.s
 .PHONY : db/version_builder_test.cc.s
 
 db/version_edit.obj: db/version_edit.cc.obj
@@ -3368,7 +5686,8 @@ db/version_edit.obj: db/version_edit.cc.obj
 
 # target to build an object file
 db/version_edit.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_edit.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_edit.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_edit.cc.obj
 .PHONY : db/version_edit.cc.obj
 
 db/version_edit.i: db/version_edit.cc.i
@@ -3377,7 +5696,8 @@ db/version_edit.i: db/version_edit.cc.i
 
 # target to preprocess a source file
 db/version_edit.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_edit.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_edit.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_edit.cc.i
 .PHONY : db/version_edit.cc.i
 
 db/version_edit.s: db/version_edit.cc.s
@@ -3386,7 +5706,8 @@ db/version_edit.s: db/version_edit.cc.s
 
 # target to generate assembly for a file
 db/version_edit.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_edit.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_edit.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_edit.cc.s
 .PHONY : db/version_edit.cc.s
 
 db/version_edit_test.obj: db/version_edit_test.cc.obj
@@ -3395,7 +5716,7 @@ db/version_edit_test.obj: db/version_edit_test.cc.obj
 
 # target to build an object file
 db/version_edit_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_edit_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_version_edit_test.dir\build.make CMakeFiles/rocksdb_version_edit_test.dir/db/version_edit_test.cc.obj
 .PHONY : db/version_edit_test.cc.obj
 
 db/version_edit_test.i: db/version_edit_test.cc.i
@@ -3404,7 +5725,7 @@ db/version_edit_test.i: db/version_edit_test.cc.i
 
 # target to preprocess a source file
 db/version_edit_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_edit_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_version_edit_test.dir\build.make CMakeFiles/rocksdb_version_edit_test.dir/db/version_edit_test.cc.i
 .PHONY : db/version_edit_test.cc.i
 
 db/version_edit_test.s: db/version_edit_test.cc.s
@@ -3413,7 +5734,7 @@ db/version_edit_test.s: db/version_edit_test.cc.s
 
 # target to generate assembly for a file
 db/version_edit_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_edit_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_version_edit_test.dir\build.make CMakeFiles/rocksdb_version_edit_test.dir/db/version_edit_test.cc.s
 .PHONY : db/version_edit_test.cc.s
 
 db/version_set.obj: db/version_set.cc.obj
@@ -3422,7 +5743,8 @@ db/version_set.obj: db/version_set.cc.obj
 
 # target to build an object file
 db/version_set.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_set.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_set.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_set.cc.obj
 .PHONY : db/version_set.cc.obj
 
 db/version_set.i: db/version_set.cc.i
@@ -3431,7 +5753,8 @@ db/version_set.i: db/version_set.cc.i
 
 # target to preprocess a source file
 db/version_set.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_set.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_set.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_set.cc.i
 .PHONY : db/version_set.cc.i
 
 db/version_set.s: db/version_set.cc.s
@@ -3440,7 +5763,8 @@ db/version_set.s: db/version_set.cc.s
 
 # target to generate assembly for a file
 db/version_set.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_set.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/version_set.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/version_set.cc.s
 .PHONY : db/version_set.cc.s
 
 db/version_set_test.obj: db/version_set_test.cc.obj
@@ -3449,7 +5773,7 @@ db/version_set_test.obj: db/version_set_test.cc.obj
 
 # target to build an object file
 db/version_set_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_set_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_version_set_test.dir\build.make CMakeFiles/rocksdb_version_set_test.dir/db/version_set_test.cc.obj
 .PHONY : db/version_set_test.cc.obj
 
 db/version_set_test.i: db/version_set_test.cc.i
@@ -3458,7 +5782,7 @@ db/version_set_test.i: db/version_set_test.cc.i
 
 # target to preprocess a source file
 db/version_set_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_set_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_version_set_test.dir\build.make CMakeFiles/rocksdb_version_set_test.dir/db/version_set_test.cc.i
 .PHONY : db/version_set_test.cc.i
 
 db/version_set_test.s: db/version_set_test.cc.s
@@ -3467,7 +5791,7 @@ db/version_set_test.s: db/version_set_test.cc.s
 
 # target to generate assembly for a file
 db/version_set_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/version_set_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_version_set_test.dir\build.make CMakeFiles/rocksdb_version_set_test.dir/db/version_set_test.cc.s
 .PHONY : db/version_set_test.cc.s
 
 db/wal_manager.obj: db/wal_manager.cc.obj
@@ -3476,7 +5800,8 @@ db/wal_manager.obj: db/wal_manager.cc.obj
 
 # target to build an object file
 db/wal_manager.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/wal_manager.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/wal_manager.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/wal_manager.cc.obj
 .PHONY : db/wal_manager.cc.obj
 
 db/wal_manager.i: db/wal_manager.cc.i
@@ -3485,7 +5810,8 @@ db/wal_manager.i: db/wal_manager.cc.i
 
 # target to preprocess a source file
 db/wal_manager.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/wal_manager.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/wal_manager.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/wal_manager.cc.i
 .PHONY : db/wal_manager.cc.i
 
 db/wal_manager.s: db/wal_manager.cc.s
@@ -3494,7 +5820,8 @@ db/wal_manager.s: db/wal_manager.cc.s
 
 # target to generate assembly for a file
 db/wal_manager.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/wal_manager.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/wal_manager.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/wal_manager.cc.s
 .PHONY : db/wal_manager.cc.s
 
 db/wal_manager_test.obj: db/wal_manager_test.cc.obj
@@ -3503,7 +5830,7 @@ db/wal_manager_test.obj: db/wal_manager_test.cc.obj
 
 # target to build an object file
 db/wal_manager_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/wal_manager_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_wal_manager_test.dir\build.make CMakeFiles/rocksdb_wal_manager_test.dir/db/wal_manager_test.cc.obj
 .PHONY : db/wal_manager_test.cc.obj
 
 db/wal_manager_test.i: db/wal_manager_test.cc.i
@@ -3512,7 +5839,7 @@ db/wal_manager_test.i: db/wal_manager_test.cc.i
 
 # target to preprocess a source file
 db/wal_manager_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/wal_manager_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_wal_manager_test.dir\build.make CMakeFiles/rocksdb_wal_manager_test.dir/db/wal_manager_test.cc.i
 .PHONY : db/wal_manager_test.cc.i
 
 db/wal_manager_test.s: db/wal_manager_test.cc.s
@@ -3521,7 +5848,7 @@ db/wal_manager_test.s: db/wal_manager_test.cc.s
 
 # target to generate assembly for a file
 db/wal_manager_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/wal_manager_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_wal_manager_test.dir\build.make CMakeFiles/rocksdb_wal_manager_test.dir/db/wal_manager_test.cc.s
 .PHONY : db/wal_manager_test.cc.s
 
 db/write_batch.obj: db/write_batch.cc.obj
@@ -3530,7 +5857,8 @@ db/write_batch.obj: db/write_batch.cc.obj
 
 # target to build an object file
 db/write_batch.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_batch.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_batch.cc.obj
 .PHONY : db/write_batch.cc.obj
 
 db/write_batch.i: db/write_batch.cc.i
@@ -3539,7 +5867,8 @@ db/write_batch.i: db/write_batch.cc.i
 
 # target to preprocess a source file
 db/write_batch.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_batch.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_batch.cc.i
 .PHONY : db/write_batch.cc.i
 
 db/write_batch.s: db/write_batch.cc.s
@@ -3548,7 +5877,8 @@ db/write_batch.s: db/write_batch.cc.s
 
 # target to generate assembly for a file
 db/write_batch.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_batch.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_batch.cc.s
 .PHONY : db/write_batch.cc.s
 
 db/write_batch_base.obj: db/write_batch_base.cc.obj
@@ -3557,7 +5887,8 @@ db/write_batch_base.obj: db/write_batch_base.cc.obj
 
 # target to build an object file
 db/write_batch_base.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch_base.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_batch_base.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_batch_base.cc.obj
 .PHONY : db/write_batch_base.cc.obj
 
 db/write_batch_base.i: db/write_batch_base.cc.i
@@ -3566,7 +5897,8 @@ db/write_batch_base.i: db/write_batch_base.cc.i
 
 # target to preprocess a source file
 db/write_batch_base.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch_base.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_batch_base.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_batch_base.cc.i
 .PHONY : db/write_batch_base.cc.i
 
 db/write_batch_base.s: db/write_batch_base.cc.s
@@ -3575,7 +5907,8 @@ db/write_batch_base.s: db/write_batch_base.cc.s
 
 # target to generate assembly for a file
 db/write_batch_base.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch_base.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_batch_base.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_batch_base.cc.s
 .PHONY : db/write_batch_base.cc.s
 
 db/write_batch_test.obj: db/write_batch_test.cc.obj
@@ -3584,7 +5917,7 @@ db/write_batch_test.obj: db/write_batch_test.cc.obj
 
 # target to build an object file
 db/write_batch_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_test.dir\build.make CMakeFiles/rocksdb_write_batch_test.dir/db/write_batch_test.cc.obj
 .PHONY : db/write_batch_test.cc.obj
 
 db/write_batch_test.i: db/write_batch_test.cc.i
@@ -3593,7 +5926,7 @@ db/write_batch_test.i: db/write_batch_test.cc.i
 
 # target to preprocess a source file
 db/write_batch_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_test.dir\build.make CMakeFiles/rocksdb_write_batch_test.dir/db/write_batch_test.cc.i
 .PHONY : db/write_batch_test.cc.i
 
 db/write_batch_test.s: db/write_batch_test.cc.s
@@ -3602,7 +5935,7 @@ db/write_batch_test.s: db/write_batch_test.cc.s
 
 # target to generate assembly for a file
 db/write_batch_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_batch_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_test.dir\build.make CMakeFiles/rocksdb_write_batch_test.dir/db/write_batch_test.cc.s
 .PHONY : db/write_batch_test.cc.s
 
 db/write_callback_test.obj: db/write_callback_test.cc.obj
@@ -3611,7 +5944,7 @@ db/write_callback_test.obj: db/write_callback_test.cc.obj
 
 # target to build an object file
 db/write_callback_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_callback_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_write_callback_test.dir\build.make CMakeFiles/rocksdb_write_callback_test.dir/db/write_callback_test.cc.obj
 .PHONY : db/write_callback_test.cc.obj
 
 db/write_callback_test.i: db/write_callback_test.cc.i
@@ -3620,7 +5953,7 @@ db/write_callback_test.i: db/write_callback_test.cc.i
 
 # target to preprocess a source file
 db/write_callback_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_callback_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_write_callback_test.dir\build.make CMakeFiles/rocksdb_write_callback_test.dir/db/write_callback_test.cc.i
 .PHONY : db/write_callback_test.cc.i
 
 db/write_callback_test.s: db/write_callback_test.cc.s
@@ -3629,7 +5962,7 @@ db/write_callback_test.s: db/write_callback_test.cc.s
 
 # target to generate assembly for a file
 db/write_callback_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_callback_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_write_callback_test.dir\build.make CMakeFiles/rocksdb_write_callback_test.dir/db/write_callback_test.cc.s
 .PHONY : db/write_callback_test.cc.s
 
 db/write_controller.obj: db/write_controller.cc.obj
@@ -3638,7 +5971,8 @@ db/write_controller.obj: db/write_controller.cc.obj
 
 # target to build an object file
 db/write_controller.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_controller.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_controller.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_controller.cc.obj
 .PHONY : db/write_controller.cc.obj
 
 db/write_controller.i: db/write_controller.cc.i
@@ -3647,7 +5981,8 @@ db/write_controller.i: db/write_controller.cc.i
 
 # target to preprocess a source file
 db/write_controller.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_controller.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_controller.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_controller.cc.i
 .PHONY : db/write_controller.cc.i
 
 db/write_controller.s: db/write_controller.cc.s
@@ -3656,7 +5991,8 @@ db/write_controller.s: db/write_controller.cc.s
 
 # target to generate assembly for a file
 db/write_controller.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_controller.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_controller.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_controller.cc.s
 .PHONY : db/write_controller.cc.s
 
 db/write_controller_test.obj: db/write_controller_test.cc.obj
@@ -3665,7 +6001,7 @@ db/write_controller_test.obj: db/write_controller_test.cc.obj
 
 # target to build an object file
 db/write_controller_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_controller_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_write_controller_test.dir\build.make CMakeFiles/rocksdb_write_controller_test.dir/db/write_controller_test.cc.obj
 .PHONY : db/write_controller_test.cc.obj
 
 db/write_controller_test.i: db/write_controller_test.cc.i
@@ -3674,7 +6010,7 @@ db/write_controller_test.i: db/write_controller_test.cc.i
 
 # target to preprocess a source file
 db/write_controller_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_controller_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_write_controller_test.dir\build.make CMakeFiles/rocksdb_write_controller_test.dir/db/write_controller_test.cc.i
 .PHONY : db/write_controller_test.cc.i
 
 db/write_controller_test.s: db/write_controller_test.cc.s
@@ -3683,7 +6019,7 @@ db/write_controller_test.s: db/write_controller_test.cc.s
 
 # target to generate assembly for a file
 db/write_controller_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_controller_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_write_controller_test.dir\build.make CMakeFiles/rocksdb_write_controller_test.dir/db/write_controller_test.cc.s
 .PHONY : db/write_controller_test.cc.s
 
 db/write_thread.obj: db/write_thread.cc.obj
@@ -3692,7 +6028,8 @@ db/write_thread.obj: db/write_thread.cc.obj
 
 # target to build an object file
 db/write_thread.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_thread.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_thread.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_thread.cc.obj
 .PHONY : db/write_thread.cc.obj
 
 db/write_thread.i: db/write_thread.cc.i
@@ -3701,7 +6038,8 @@ db/write_thread.i: db/write_thread.cc.i
 
 # target to preprocess a source file
 db/write_thread.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_thread.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_thread.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_thread.cc.i
 .PHONY : db/write_thread.cc.i
 
 db/write_thread.s: db/write_thread.cc.s
@@ -3710,7 +6048,8 @@ db/write_thread.s: db/write_thread.cc.s
 
 # target to generate assembly for a file
 db/write_thread.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/db/write_thread.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/db/write_thread.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/db/write_thread.cc.s
 .PHONY : db/write_thread.cc.s
 
 env/env.obj: env/env.cc.obj
@@ -3719,7 +6058,8 @@ env/env.obj: env/env.cc.obj
 
 # target to build an object file
 env/env.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env.cc.obj
 .PHONY : env/env.cc.obj
 
 env/env.i: env/env.cc.i
@@ -3728,7 +6068,8 @@ env/env.i: env/env.cc.i
 
 # target to preprocess a source file
 env/env.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env.cc.i
 .PHONY : env/env.cc.i
 
 env/env.s: env/env.cc.s
@@ -3737,7 +6078,8 @@ env/env.s: env/env.cc.s
 
 # target to generate assembly for a file
 env/env.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env.cc.s
 .PHONY : env/env.cc.s
 
 env/env_basic_test.obj: env/env_basic_test.cc.obj
@@ -3746,7 +6088,7 @@ env/env_basic_test.obj: env/env_basic_test.cc.obj
 
 # target to build an object file
 env/env_basic_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_basic_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_env_basic_test.dir\build.make CMakeFiles/rocksdb_env_basic_test.dir/env/env_basic_test.cc.obj
 .PHONY : env/env_basic_test.cc.obj
 
 env/env_basic_test.i: env/env_basic_test.cc.i
@@ -3755,7 +6097,7 @@ env/env_basic_test.i: env/env_basic_test.cc.i
 
 # target to preprocess a source file
 env/env_basic_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_basic_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_env_basic_test.dir\build.make CMakeFiles/rocksdb_env_basic_test.dir/env/env_basic_test.cc.i
 .PHONY : env/env_basic_test.cc.i
 
 env/env_basic_test.s: env/env_basic_test.cc.s
@@ -3764,7 +6106,7 @@ env/env_basic_test.s: env/env_basic_test.cc.s
 
 # target to generate assembly for a file
 env/env_basic_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_basic_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_env_basic_test.dir\build.make CMakeFiles/rocksdb_env_basic_test.dir/env/env_basic_test.cc.s
 .PHONY : env/env_basic_test.cc.s
 
 env/env_chroot.obj: env/env_chroot.cc.obj
@@ -3773,7 +6115,8 @@ env/env_chroot.obj: env/env_chroot.cc.obj
 
 # target to build an object file
 env/env_chroot.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_chroot.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_chroot.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_chroot.cc.obj
 .PHONY : env/env_chroot.cc.obj
 
 env/env_chroot.i: env/env_chroot.cc.i
@@ -3782,7 +6125,8 @@ env/env_chroot.i: env/env_chroot.cc.i
 
 # target to preprocess a source file
 env/env_chroot.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_chroot.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_chroot.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_chroot.cc.i
 .PHONY : env/env_chroot.cc.i
 
 env/env_chroot.s: env/env_chroot.cc.s
@@ -3791,7 +6135,8 @@ env/env_chroot.s: env/env_chroot.cc.s
 
 # target to generate assembly for a file
 env/env_chroot.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_chroot.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_chroot.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_chroot.cc.s
 .PHONY : env/env_chroot.cc.s
 
 env/env_encryption.obj: env/env_encryption.cc.obj
@@ -3800,7 +6145,8 @@ env/env_encryption.obj: env/env_encryption.cc.obj
 
 # target to build an object file
 env/env_encryption.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_encryption.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_encryption.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_encryption.cc.obj
 .PHONY : env/env_encryption.cc.obj
 
 env/env_encryption.i: env/env_encryption.cc.i
@@ -3809,7 +6155,8 @@ env/env_encryption.i: env/env_encryption.cc.i
 
 # target to preprocess a source file
 env/env_encryption.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_encryption.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_encryption.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_encryption.cc.i
 .PHONY : env/env_encryption.cc.i
 
 env/env_encryption.s: env/env_encryption.cc.s
@@ -3818,7 +6165,8 @@ env/env_encryption.s: env/env_encryption.cc.s
 
 # target to generate assembly for a file
 env/env_encryption.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_encryption.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_encryption.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_encryption.cc.s
 .PHONY : env/env_encryption.cc.s
 
 env/env_hdfs.obj: env/env_hdfs.cc.obj
@@ -3827,7 +6175,8 @@ env/env_hdfs.obj: env/env_hdfs.cc.obj
 
 # target to build an object file
 env/env_hdfs.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_hdfs.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_hdfs.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_hdfs.cc.obj
 .PHONY : env/env_hdfs.cc.obj
 
 env/env_hdfs.i: env/env_hdfs.cc.i
@@ -3836,7 +6185,8 @@ env/env_hdfs.i: env/env_hdfs.cc.i
 
 # target to preprocess a source file
 env/env_hdfs.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_hdfs.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_hdfs.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_hdfs.cc.i
 .PHONY : env/env_hdfs.cc.i
 
 env/env_hdfs.s: env/env_hdfs.cc.s
@@ -3845,35 +6195,9 @@ env/env_hdfs.s: env/env_hdfs.cc.s
 
 # target to generate assembly for a file
 env/env_hdfs.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_hdfs.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/env_hdfs.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/env_hdfs.cc.s
 .PHONY : env/env_hdfs.cc.s
-
-env/env_posix.obj: env/env_posix.cc.obj
-
-.PHONY : env/env_posix.obj
-
-# target to build an object file
-env/env_posix.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_posix.cc.obj
-.PHONY : env/env_posix.cc.obj
-
-env/env_posix.i: env/env_posix.cc.i
-
-.PHONY : env/env_posix.i
-
-# target to preprocess a source file
-env/env_posix.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_posix.cc.i
-.PHONY : env/env_posix.cc.i
-
-env/env_posix.s: env/env_posix.cc.s
-
-.PHONY : env/env_posix.s
-
-# target to generate assembly for a file
-env/env_posix.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_posix.cc.s
-.PHONY : env/env_posix.cc.s
 
 env/env_test.obj: env/env_test.cc.obj
 
@@ -3881,7 +6205,7 @@ env/env_test.obj: env/env_test.cc.obj
 
 # target to build an object file
 env/env_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_env_test.dir\build.make CMakeFiles/rocksdb_env_test.dir/env/env_test.cc.obj
 .PHONY : env/env_test.cc.obj
 
 env/env_test.i: env/env_test.cc.i
@@ -3890,7 +6214,7 @@ env/env_test.i: env/env_test.cc.i
 
 # target to preprocess a source file
 env/env_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_env_test.dir\build.make CMakeFiles/rocksdb_env_test.dir/env/env_test.cc.i
 .PHONY : env/env_test.cc.i
 
 env/env_test.s: env/env_test.cc.s
@@ -3899,35 +6223,8 @@ env/env_test.s: env/env_test.cc.s
 
 # target to generate assembly for a file
 env/env_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/env_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_env_test.dir\build.make CMakeFiles/rocksdb_env_test.dir/env/env_test.cc.s
 .PHONY : env/env_test.cc.s
-
-env/io_posix.obj: env/io_posix.cc.obj
-
-.PHONY : env/io_posix.obj
-
-# target to build an object file
-env/io_posix.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/io_posix.cc.obj
-.PHONY : env/io_posix.cc.obj
-
-env/io_posix.i: env/io_posix.cc.i
-
-.PHONY : env/io_posix.i
-
-# target to preprocess a source file
-env/io_posix.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/io_posix.cc.i
-.PHONY : env/io_posix.cc.i
-
-env/io_posix.s: env/io_posix.cc.s
-
-.PHONY : env/io_posix.s
-
-# target to generate assembly for a file
-env/io_posix.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/io_posix.cc.s
-.PHONY : env/io_posix.cc.s
 
 env/mock_env.obj: env/mock_env.cc.obj
 
@@ -3935,7 +6232,8 @@ env/mock_env.obj: env/mock_env.cc.obj
 
 # target to build an object file
 env/mock_env.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/mock_env.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/mock_env.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/mock_env.cc.obj
 .PHONY : env/mock_env.cc.obj
 
 env/mock_env.i: env/mock_env.cc.i
@@ -3944,7 +6242,8 @@ env/mock_env.i: env/mock_env.cc.i
 
 # target to preprocess a source file
 env/mock_env.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/mock_env.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/mock_env.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/mock_env.cc.i
 .PHONY : env/mock_env.cc.i
 
 env/mock_env.s: env/mock_env.cc.s
@@ -3953,7 +6252,8 @@ env/mock_env.s: env/mock_env.cc.s
 
 # target to generate assembly for a file
 env/mock_env.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/mock_env.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/env/mock_env.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/env/mock_env.cc.s
 .PHONY : env/mock_env.cc.s
 
 env/mock_env_test.obj: env/mock_env_test.cc.obj
@@ -3962,7 +6262,7 @@ env/mock_env_test.obj: env/mock_env_test.cc.obj
 
 # target to build an object file
 env/mock_env_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/mock_env_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_mock_env_test.dir\build.make CMakeFiles/rocksdb_mock_env_test.dir/env/mock_env_test.cc.obj
 .PHONY : env/mock_env_test.cc.obj
 
 env/mock_env_test.i: env/mock_env_test.cc.i
@@ -3971,7 +6271,7 @@ env/mock_env_test.i: env/mock_env_test.cc.i
 
 # target to preprocess a source file
 env/mock_env_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/mock_env_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_mock_env_test.dir\build.make CMakeFiles/rocksdb_mock_env_test.dir/env/mock_env_test.cc.i
 .PHONY : env/mock_env_test.cc.i
 
 env/mock_env_test.s: env/mock_env_test.cc.s
@@ -3980,1790 +6280,8 @@ env/mock_env_test.s: env/mock_env_test.cc.s
 
 # target to generate assembly for a file
 env/mock_env_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/env/mock_env_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_mock_env_test.dir\build.make CMakeFiles/rocksdb_mock_env_test.dir/env/mock_env_test.cc.s
 .PHONY : env/mock_env_test.cc.s
-
-examples/c_simple_example.obj: examples/c_simple_example.c.obj
-
-.PHONY : examples/c_simple_example.obj
-
-# target to build an object file
-examples/c_simple_example.c.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/c_simple_example.c.obj
-.PHONY : examples/c_simple_example.c.obj
-
-examples/c_simple_example.i: examples/c_simple_example.c.i
-
-.PHONY : examples/c_simple_example.i
-
-# target to preprocess a source file
-examples/c_simple_example.c.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/c_simple_example.c.i
-.PHONY : examples/c_simple_example.c.i
-
-examples/c_simple_example.s: examples/c_simple_example.c.s
-
-.PHONY : examples/c_simple_example.s
-
-# target to generate assembly for a file
-examples/c_simple_example.c.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/c_simple_example.c.s
-.PHONY : examples/c_simple_example.c.s
-
-examples/column_families_example.obj: examples/column_families_example.cc.obj
-
-.PHONY : examples/column_families_example.obj
-
-# target to build an object file
-examples/column_families_example.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/column_families_example.cc.obj
-.PHONY : examples/column_families_example.cc.obj
-
-examples/column_families_example.i: examples/column_families_example.cc.i
-
-.PHONY : examples/column_families_example.i
-
-# target to preprocess a source file
-examples/column_families_example.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/column_families_example.cc.i
-.PHONY : examples/column_families_example.cc.i
-
-examples/column_families_example.s: examples/column_families_example.cc.s
-
-.PHONY : examples/column_families_example.s
-
-# target to generate assembly for a file
-examples/column_families_example.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/column_families_example.cc.s
-.PHONY : examples/column_families_example.cc.s
-
-examples/compact_files_example.obj: examples/compact_files_example.cc.obj
-
-.PHONY : examples/compact_files_example.obj
-
-# target to build an object file
-examples/compact_files_example.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/compact_files_example.cc.obj
-.PHONY : examples/compact_files_example.cc.obj
-
-examples/compact_files_example.i: examples/compact_files_example.cc.i
-
-.PHONY : examples/compact_files_example.i
-
-# target to preprocess a source file
-examples/compact_files_example.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/compact_files_example.cc.i
-.PHONY : examples/compact_files_example.cc.i
-
-examples/compact_files_example.s: examples/compact_files_example.cc.s
-
-.PHONY : examples/compact_files_example.s
-
-# target to generate assembly for a file
-examples/compact_files_example.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/compact_files_example.cc.s
-.PHONY : examples/compact_files_example.cc.s
-
-examples/compaction_filter_example.obj: examples/compaction_filter_example.cc.obj
-
-.PHONY : examples/compaction_filter_example.obj
-
-# target to build an object file
-examples/compaction_filter_example.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/compaction_filter_example.cc.obj
-.PHONY : examples/compaction_filter_example.cc.obj
-
-examples/compaction_filter_example.i: examples/compaction_filter_example.cc.i
-
-.PHONY : examples/compaction_filter_example.i
-
-# target to preprocess a source file
-examples/compaction_filter_example.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/compaction_filter_example.cc.i
-.PHONY : examples/compaction_filter_example.cc.i
-
-examples/compaction_filter_example.s: examples/compaction_filter_example.cc.s
-
-.PHONY : examples/compaction_filter_example.s
-
-# target to generate assembly for a file
-examples/compaction_filter_example.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/compaction_filter_example.cc.s
-.PHONY : examples/compaction_filter_example.cc.s
-
-examples/optimistic_transaction_example.obj: examples/optimistic_transaction_example.cc.obj
-
-.PHONY : examples/optimistic_transaction_example.obj
-
-# target to build an object file
-examples/optimistic_transaction_example.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/optimistic_transaction_example.cc.obj
-.PHONY : examples/optimistic_transaction_example.cc.obj
-
-examples/optimistic_transaction_example.i: examples/optimistic_transaction_example.cc.i
-
-.PHONY : examples/optimistic_transaction_example.i
-
-# target to preprocess a source file
-examples/optimistic_transaction_example.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/optimistic_transaction_example.cc.i
-.PHONY : examples/optimistic_transaction_example.cc.i
-
-examples/optimistic_transaction_example.s: examples/optimistic_transaction_example.cc.s
-
-.PHONY : examples/optimistic_transaction_example.s
-
-# target to generate assembly for a file
-examples/optimistic_transaction_example.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/optimistic_transaction_example.cc.s
-.PHONY : examples/optimistic_transaction_example.cc.s
-
-examples/options_file_example.obj: examples/options_file_example.cc.obj
-
-.PHONY : examples/options_file_example.obj
-
-# target to build an object file
-examples/options_file_example.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/options_file_example.cc.obj
-.PHONY : examples/options_file_example.cc.obj
-
-examples/options_file_example.i: examples/options_file_example.cc.i
-
-.PHONY : examples/options_file_example.i
-
-# target to preprocess a source file
-examples/options_file_example.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/options_file_example.cc.i
-.PHONY : examples/options_file_example.cc.i
-
-examples/options_file_example.s: examples/options_file_example.cc.s
-
-.PHONY : examples/options_file_example.s
-
-# target to generate assembly for a file
-examples/options_file_example.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/options_file_example.cc.s
-.PHONY : examples/options_file_example.cc.s
-
-examples/simple_example.obj: examples/simple_example.cc.obj
-
-.PHONY : examples/simple_example.obj
-
-# target to build an object file
-examples/simple_example.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/simple_example.cc.obj
-.PHONY : examples/simple_example.cc.obj
-
-examples/simple_example.i: examples/simple_example.cc.i
-
-.PHONY : examples/simple_example.i
-
-# target to preprocess a source file
-examples/simple_example.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/simple_example.cc.i
-.PHONY : examples/simple_example.cc.i
-
-examples/simple_example.s: examples/simple_example.cc.s
-
-.PHONY : examples/simple_example.s
-
-# target to generate assembly for a file
-examples/simple_example.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/simple_example.cc.s
-.PHONY : examples/simple_example.cc.s
-
-examples/transaction_example.obj: examples/transaction_example.cc.obj
-
-.PHONY : examples/transaction_example.obj
-
-# target to build an object file
-examples/transaction_example.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/transaction_example.cc.obj
-.PHONY : examples/transaction_example.cc.obj
-
-examples/transaction_example.i: examples/transaction_example.cc.i
-
-.PHONY : examples/transaction_example.i
-
-# target to preprocess a source file
-examples/transaction_example.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/transaction_example.cc.i
-.PHONY : examples/transaction_example.cc.i
-
-examples/transaction_example.s: examples/transaction_example.cc.s
-
-.PHONY : examples/transaction_example.s
-
-# target to generate assembly for a file
-examples/transaction_example.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/examples/transaction_example.cc.s
-.PHONY : examples/transaction_example.cc.s
-
-java/rocksjni/backupablejni.obj: java/rocksjni/backupablejni.cc.obj
-
-.PHONY : java/rocksjni/backupablejni.obj
-
-# target to build an object file
-java/rocksjni/backupablejni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/backupablejni.cc.obj
-.PHONY : java/rocksjni/backupablejni.cc.obj
-
-java/rocksjni/backupablejni.i: java/rocksjni/backupablejni.cc.i
-
-.PHONY : java/rocksjni/backupablejni.i
-
-# target to preprocess a source file
-java/rocksjni/backupablejni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/backupablejni.cc.i
-.PHONY : java/rocksjni/backupablejni.cc.i
-
-java/rocksjni/backupablejni.s: java/rocksjni/backupablejni.cc.s
-
-.PHONY : java/rocksjni/backupablejni.s
-
-# target to generate assembly for a file
-java/rocksjni/backupablejni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/backupablejni.cc.s
-.PHONY : java/rocksjni/backupablejni.cc.s
-
-java/rocksjni/backupenginejni.obj: java/rocksjni/backupenginejni.cc.obj
-
-.PHONY : java/rocksjni/backupenginejni.obj
-
-# target to build an object file
-java/rocksjni/backupenginejni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/backupenginejni.cc.obj
-.PHONY : java/rocksjni/backupenginejni.cc.obj
-
-java/rocksjni/backupenginejni.i: java/rocksjni/backupenginejni.cc.i
-
-.PHONY : java/rocksjni/backupenginejni.i
-
-# target to preprocess a source file
-java/rocksjni/backupenginejni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/backupenginejni.cc.i
-.PHONY : java/rocksjni/backupenginejni.cc.i
-
-java/rocksjni/backupenginejni.s: java/rocksjni/backupenginejni.cc.s
-
-.PHONY : java/rocksjni/backupenginejni.s
-
-# target to generate assembly for a file
-java/rocksjni/backupenginejni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/backupenginejni.cc.s
-.PHONY : java/rocksjni/backupenginejni.cc.s
-
-java/rocksjni/cassandra_compactionfilterjni.obj: java/rocksjni/cassandra_compactionfilterjni.cc.obj
-
-.PHONY : java/rocksjni/cassandra_compactionfilterjni.obj
-
-# target to build an object file
-java/rocksjni/cassandra_compactionfilterjni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/cassandra_compactionfilterjni.cc.obj
-.PHONY : java/rocksjni/cassandra_compactionfilterjni.cc.obj
-
-java/rocksjni/cassandra_compactionfilterjni.i: java/rocksjni/cassandra_compactionfilterjni.cc.i
-
-.PHONY : java/rocksjni/cassandra_compactionfilterjni.i
-
-# target to preprocess a source file
-java/rocksjni/cassandra_compactionfilterjni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/cassandra_compactionfilterjni.cc.i
-.PHONY : java/rocksjni/cassandra_compactionfilterjni.cc.i
-
-java/rocksjni/cassandra_compactionfilterjni.s: java/rocksjni/cassandra_compactionfilterjni.cc.s
-
-.PHONY : java/rocksjni/cassandra_compactionfilterjni.s
-
-# target to generate assembly for a file
-java/rocksjni/cassandra_compactionfilterjni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/cassandra_compactionfilterjni.cc.s
-.PHONY : java/rocksjni/cassandra_compactionfilterjni.cc.s
-
-java/rocksjni/cassandra_value_operator.obj: java/rocksjni/cassandra_value_operator.cc.obj
-
-.PHONY : java/rocksjni/cassandra_value_operator.obj
-
-# target to build an object file
-java/rocksjni/cassandra_value_operator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/cassandra_value_operator.cc.obj
-.PHONY : java/rocksjni/cassandra_value_operator.cc.obj
-
-java/rocksjni/cassandra_value_operator.i: java/rocksjni/cassandra_value_operator.cc.i
-
-.PHONY : java/rocksjni/cassandra_value_operator.i
-
-# target to preprocess a source file
-java/rocksjni/cassandra_value_operator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/cassandra_value_operator.cc.i
-.PHONY : java/rocksjni/cassandra_value_operator.cc.i
-
-java/rocksjni/cassandra_value_operator.s: java/rocksjni/cassandra_value_operator.cc.s
-
-.PHONY : java/rocksjni/cassandra_value_operator.s
-
-# target to generate assembly for a file
-java/rocksjni/cassandra_value_operator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/cassandra_value_operator.cc.s
-.PHONY : java/rocksjni/cassandra_value_operator.cc.s
-
-java/rocksjni/checkpoint.obj: java/rocksjni/checkpoint.cc.obj
-
-.PHONY : java/rocksjni/checkpoint.obj
-
-# target to build an object file
-java/rocksjni/checkpoint.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/checkpoint.cc.obj
-.PHONY : java/rocksjni/checkpoint.cc.obj
-
-java/rocksjni/checkpoint.i: java/rocksjni/checkpoint.cc.i
-
-.PHONY : java/rocksjni/checkpoint.i
-
-# target to preprocess a source file
-java/rocksjni/checkpoint.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/checkpoint.cc.i
-.PHONY : java/rocksjni/checkpoint.cc.i
-
-java/rocksjni/checkpoint.s: java/rocksjni/checkpoint.cc.s
-
-.PHONY : java/rocksjni/checkpoint.s
-
-# target to generate assembly for a file
-java/rocksjni/checkpoint.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/checkpoint.cc.s
-.PHONY : java/rocksjni/checkpoint.cc.s
-
-java/rocksjni/clock_cache.obj: java/rocksjni/clock_cache.cc.obj
-
-.PHONY : java/rocksjni/clock_cache.obj
-
-# target to build an object file
-java/rocksjni/clock_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/clock_cache.cc.obj
-.PHONY : java/rocksjni/clock_cache.cc.obj
-
-java/rocksjni/clock_cache.i: java/rocksjni/clock_cache.cc.i
-
-.PHONY : java/rocksjni/clock_cache.i
-
-# target to preprocess a source file
-java/rocksjni/clock_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/clock_cache.cc.i
-.PHONY : java/rocksjni/clock_cache.cc.i
-
-java/rocksjni/clock_cache.s: java/rocksjni/clock_cache.cc.s
-
-.PHONY : java/rocksjni/clock_cache.s
-
-# target to generate assembly for a file
-java/rocksjni/clock_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/clock_cache.cc.s
-.PHONY : java/rocksjni/clock_cache.cc.s
-
-java/rocksjni/columnfamilyhandle.obj: java/rocksjni/columnfamilyhandle.cc.obj
-
-.PHONY : java/rocksjni/columnfamilyhandle.obj
-
-# target to build an object file
-java/rocksjni/columnfamilyhandle.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/columnfamilyhandle.cc.obj
-.PHONY : java/rocksjni/columnfamilyhandle.cc.obj
-
-java/rocksjni/columnfamilyhandle.i: java/rocksjni/columnfamilyhandle.cc.i
-
-.PHONY : java/rocksjni/columnfamilyhandle.i
-
-# target to preprocess a source file
-java/rocksjni/columnfamilyhandle.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/columnfamilyhandle.cc.i
-.PHONY : java/rocksjni/columnfamilyhandle.cc.i
-
-java/rocksjni/columnfamilyhandle.s: java/rocksjni/columnfamilyhandle.cc.s
-
-.PHONY : java/rocksjni/columnfamilyhandle.s
-
-# target to generate assembly for a file
-java/rocksjni/columnfamilyhandle.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/columnfamilyhandle.cc.s
-.PHONY : java/rocksjni/columnfamilyhandle.cc.s
-
-java/rocksjni/compact_range_options.obj: java/rocksjni/compact_range_options.cc.obj
-
-.PHONY : java/rocksjni/compact_range_options.obj
-
-# target to build an object file
-java/rocksjni/compact_range_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compact_range_options.cc.obj
-.PHONY : java/rocksjni/compact_range_options.cc.obj
-
-java/rocksjni/compact_range_options.i: java/rocksjni/compact_range_options.cc.i
-
-.PHONY : java/rocksjni/compact_range_options.i
-
-# target to preprocess a source file
-java/rocksjni/compact_range_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compact_range_options.cc.i
-.PHONY : java/rocksjni/compact_range_options.cc.i
-
-java/rocksjni/compact_range_options.s: java/rocksjni/compact_range_options.cc.s
-
-.PHONY : java/rocksjni/compact_range_options.s
-
-# target to generate assembly for a file
-java/rocksjni/compact_range_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compact_range_options.cc.s
-.PHONY : java/rocksjni/compact_range_options.cc.s
-
-java/rocksjni/compaction_filter.obj: java/rocksjni/compaction_filter.cc.obj
-
-.PHONY : java/rocksjni/compaction_filter.obj
-
-# target to build an object file
-java/rocksjni/compaction_filter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter.cc.obj
-.PHONY : java/rocksjni/compaction_filter.cc.obj
-
-java/rocksjni/compaction_filter.i: java/rocksjni/compaction_filter.cc.i
-
-.PHONY : java/rocksjni/compaction_filter.i
-
-# target to preprocess a source file
-java/rocksjni/compaction_filter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter.cc.i
-.PHONY : java/rocksjni/compaction_filter.cc.i
-
-java/rocksjni/compaction_filter.s: java/rocksjni/compaction_filter.cc.s
-
-.PHONY : java/rocksjni/compaction_filter.s
-
-# target to generate assembly for a file
-java/rocksjni/compaction_filter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter.cc.s
-.PHONY : java/rocksjni/compaction_filter.cc.s
-
-java/rocksjni/compaction_filter_factory.obj: java/rocksjni/compaction_filter_factory.cc.obj
-
-.PHONY : java/rocksjni/compaction_filter_factory.obj
-
-# target to build an object file
-java/rocksjni/compaction_filter_factory.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter_factory.cc.obj
-.PHONY : java/rocksjni/compaction_filter_factory.cc.obj
-
-java/rocksjni/compaction_filter_factory.i: java/rocksjni/compaction_filter_factory.cc.i
-
-.PHONY : java/rocksjni/compaction_filter_factory.i
-
-# target to preprocess a source file
-java/rocksjni/compaction_filter_factory.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter_factory.cc.i
-.PHONY : java/rocksjni/compaction_filter_factory.cc.i
-
-java/rocksjni/compaction_filter_factory.s: java/rocksjni/compaction_filter_factory.cc.s
-
-.PHONY : java/rocksjni/compaction_filter_factory.s
-
-# target to generate assembly for a file
-java/rocksjni/compaction_filter_factory.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter_factory.cc.s
-.PHONY : java/rocksjni/compaction_filter_factory.cc.s
-
-java/rocksjni/compaction_filter_factory_jnicallback.obj: java/rocksjni/compaction_filter_factory_jnicallback.cc.obj
-
-.PHONY : java/rocksjni/compaction_filter_factory_jnicallback.obj
-
-# target to build an object file
-java/rocksjni/compaction_filter_factory_jnicallback.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter_factory_jnicallback.cc.obj
-.PHONY : java/rocksjni/compaction_filter_factory_jnicallback.cc.obj
-
-java/rocksjni/compaction_filter_factory_jnicallback.i: java/rocksjni/compaction_filter_factory_jnicallback.cc.i
-
-.PHONY : java/rocksjni/compaction_filter_factory_jnicallback.i
-
-# target to preprocess a source file
-java/rocksjni/compaction_filter_factory_jnicallback.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter_factory_jnicallback.cc.i
-.PHONY : java/rocksjni/compaction_filter_factory_jnicallback.cc.i
-
-java/rocksjni/compaction_filter_factory_jnicallback.s: java/rocksjni/compaction_filter_factory_jnicallback.cc.s
-
-.PHONY : java/rocksjni/compaction_filter_factory_jnicallback.s
-
-# target to generate assembly for a file
-java/rocksjni/compaction_filter_factory_jnicallback.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_filter_factory_jnicallback.cc.s
-.PHONY : java/rocksjni/compaction_filter_factory_jnicallback.cc.s
-
-java/rocksjni/compaction_options_fifo.obj: java/rocksjni/compaction_options_fifo.cc.obj
-
-.PHONY : java/rocksjni/compaction_options_fifo.obj
-
-# target to build an object file
-java/rocksjni/compaction_options_fifo.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_options_fifo.cc.obj
-.PHONY : java/rocksjni/compaction_options_fifo.cc.obj
-
-java/rocksjni/compaction_options_fifo.i: java/rocksjni/compaction_options_fifo.cc.i
-
-.PHONY : java/rocksjni/compaction_options_fifo.i
-
-# target to preprocess a source file
-java/rocksjni/compaction_options_fifo.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_options_fifo.cc.i
-.PHONY : java/rocksjni/compaction_options_fifo.cc.i
-
-java/rocksjni/compaction_options_fifo.s: java/rocksjni/compaction_options_fifo.cc.s
-
-.PHONY : java/rocksjni/compaction_options_fifo.s
-
-# target to generate assembly for a file
-java/rocksjni/compaction_options_fifo.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_options_fifo.cc.s
-.PHONY : java/rocksjni/compaction_options_fifo.cc.s
-
-java/rocksjni/compaction_options_universal.obj: java/rocksjni/compaction_options_universal.cc.obj
-
-.PHONY : java/rocksjni/compaction_options_universal.obj
-
-# target to build an object file
-java/rocksjni/compaction_options_universal.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_options_universal.cc.obj
-.PHONY : java/rocksjni/compaction_options_universal.cc.obj
-
-java/rocksjni/compaction_options_universal.i: java/rocksjni/compaction_options_universal.cc.i
-
-.PHONY : java/rocksjni/compaction_options_universal.i
-
-# target to preprocess a source file
-java/rocksjni/compaction_options_universal.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_options_universal.cc.i
-.PHONY : java/rocksjni/compaction_options_universal.cc.i
-
-java/rocksjni/compaction_options_universal.s: java/rocksjni/compaction_options_universal.cc.s
-
-.PHONY : java/rocksjni/compaction_options_universal.s
-
-# target to generate assembly for a file
-java/rocksjni/compaction_options_universal.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compaction_options_universal.cc.s
-.PHONY : java/rocksjni/compaction_options_universal.cc.s
-
-java/rocksjni/comparator.obj: java/rocksjni/comparator.cc.obj
-
-.PHONY : java/rocksjni/comparator.obj
-
-# target to build an object file
-java/rocksjni/comparator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/comparator.cc.obj
-.PHONY : java/rocksjni/comparator.cc.obj
-
-java/rocksjni/comparator.i: java/rocksjni/comparator.cc.i
-
-.PHONY : java/rocksjni/comparator.i
-
-# target to preprocess a source file
-java/rocksjni/comparator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/comparator.cc.i
-.PHONY : java/rocksjni/comparator.cc.i
-
-java/rocksjni/comparator.s: java/rocksjni/comparator.cc.s
-
-.PHONY : java/rocksjni/comparator.s
-
-# target to generate assembly for a file
-java/rocksjni/comparator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/comparator.cc.s
-.PHONY : java/rocksjni/comparator.cc.s
-
-java/rocksjni/comparatorjnicallback.obj: java/rocksjni/comparatorjnicallback.cc.obj
-
-.PHONY : java/rocksjni/comparatorjnicallback.obj
-
-# target to build an object file
-java/rocksjni/comparatorjnicallback.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/comparatorjnicallback.cc.obj
-.PHONY : java/rocksjni/comparatorjnicallback.cc.obj
-
-java/rocksjni/comparatorjnicallback.i: java/rocksjni/comparatorjnicallback.cc.i
-
-.PHONY : java/rocksjni/comparatorjnicallback.i
-
-# target to preprocess a source file
-java/rocksjni/comparatorjnicallback.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/comparatorjnicallback.cc.i
-.PHONY : java/rocksjni/comparatorjnicallback.cc.i
-
-java/rocksjni/comparatorjnicallback.s: java/rocksjni/comparatorjnicallback.cc.s
-
-.PHONY : java/rocksjni/comparatorjnicallback.s
-
-# target to generate assembly for a file
-java/rocksjni/comparatorjnicallback.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/comparatorjnicallback.cc.s
-.PHONY : java/rocksjni/comparatorjnicallback.cc.s
-
-java/rocksjni/compression_options.obj: java/rocksjni/compression_options.cc.obj
-
-.PHONY : java/rocksjni/compression_options.obj
-
-# target to build an object file
-java/rocksjni/compression_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compression_options.cc.obj
-.PHONY : java/rocksjni/compression_options.cc.obj
-
-java/rocksjni/compression_options.i: java/rocksjni/compression_options.cc.i
-
-.PHONY : java/rocksjni/compression_options.i
-
-# target to preprocess a source file
-java/rocksjni/compression_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compression_options.cc.i
-.PHONY : java/rocksjni/compression_options.cc.i
-
-java/rocksjni/compression_options.s: java/rocksjni/compression_options.cc.s
-
-.PHONY : java/rocksjni/compression_options.s
-
-# target to generate assembly for a file
-java/rocksjni/compression_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/compression_options.cc.s
-.PHONY : java/rocksjni/compression_options.cc.s
-
-java/rocksjni/env.obj: java/rocksjni/env.cc.obj
-
-.PHONY : java/rocksjni/env.obj
-
-# target to build an object file
-java/rocksjni/env.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/env.cc.obj
-.PHONY : java/rocksjni/env.cc.obj
-
-java/rocksjni/env.i: java/rocksjni/env.cc.i
-
-.PHONY : java/rocksjni/env.i
-
-# target to preprocess a source file
-java/rocksjni/env.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/env.cc.i
-.PHONY : java/rocksjni/env.cc.i
-
-java/rocksjni/env.s: java/rocksjni/env.cc.s
-
-.PHONY : java/rocksjni/env.s
-
-# target to generate assembly for a file
-java/rocksjni/env.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/env.cc.s
-.PHONY : java/rocksjni/env.cc.s
-
-java/rocksjni/env_options.obj: java/rocksjni/env_options.cc.obj
-
-.PHONY : java/rocksjni/env_options.obj
-
-# target to build an object file
-java/rocksjni/env_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/env_options.cc.obj
-.PHONY : java/rocksjni/env_options.cc.obj
-
-java/rocksjni/env_options.i: java/rocksjni/env_options.cc.i
-
-.PHONY : java/rocksjni/env_options.i
-
-# target to preprocess a source file
-java/rocksjni/env_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/env_options.cc.i
-.PHONY : java/rocksjni/env_options.cc.i
-
-java/rocksjni/env_options.s: java/rocksjni/env_options.cc.s
-
-.PHONY : java/rocksjni/env_options.s
-
-# target to generate assembly for a file
-java/rocksjni/env_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/env_options.cc.s
-.PHONY : java/rocksjni/env_options.cc.s
-
-java/rocksjni/filter.obj: java/rocksjni/filter.cc.obj
-
-.PHONY : java/rocksjni/filter.obj
-
-# target to build an object file
-java/rocksjni/filter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/filter.cc.obj
-.PHONY : java/rocksjni/filter.cc.obj
-
-java/rocksjni/filter.i: java/rocksjni/filter.cc.i
-
-.PHONY : java/rocksjni/filter.i
-
-# target to preprocess a source file
-java/rocksjni/filter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/filter.cc.i
-.PHONY : java/rocksjni/filter.cc.i
-
-java/rocksjni/filter.s: java/rocksjni/filter.cc.s
-
-.PHONY : java/rocksjni/filter.s
-
-# target to generate assembly for a file
-java/rocksjni/filter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/filter.cc.s
-.PHONY : java/rocksjni/filter.cc.s
-
-java/rocksjni/ingest_external_file_options.obj: java/rocksjni/ingest_external_file_options.cc.obj
-
-.PHONY : java/rocksjni/ingest_external_file_options.obj
-
-# target to build an object file
-java/rocksjni/ingest_external_file_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ingest_external_file_options.cc.obj
-.PHONY : java/rocksjni/ingest_external_file_options.cc.obj
-
-java/rocksjni/ingest_external_file_options.i: java/rocksjni/ingest_external_file_options.cc.i
-
-.PHONY : java/rocksjni/ingest_external_file_options.i
-
-# target to preprocess a source file
-java/rocksjni/ingest_external_file_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ingest_external_file_options.cc.i
-.PHONY : java/rocksjni/ingest_external_file_options.cc.i
-
-java/rocksjni/ingest_external_file_options.s: java/rocksjni/ingest_external_file_options.cc.s
-
-.PHONY : java/rocksjni/ingest_external_file_options.s
-
-# target to generate assembly for a file
-java/rocksjni/ingest_external_file_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ingest_external_file_options.cc.s
-.PHONY : java/rocksjni/ingest_external_file_options.cc.s
-
-java/rocksjni/iterator.obj: java/rocksjni/iterator.cc.obj
-
-.PHONY : java/rocksjni/iterator.obj
-
-# target to build an object file
-java/rocksjni/iterator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/iterator.cc.obj
-.PHONY : java/rocksjni/iterator.cc.obj
-
-java/rocksjni/iterator.i: java/rocksjni/iterator.cc.i
-
-.PHONY : java/rocksjni/iterator.i
-
-# target to preprocess a source file
-java/rocksjni/iterator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/iterator.cc.i
-.PHONY : java/rocksjni/iterator.cc.i
-
-java/rocksjni/iterator.s: java/rocksjni/iterator.cc.s
-
-.PHONY : java/rocksjni/iterator.s
-
-# target to generate assembly for a file
-java/rocksjni/iterator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/iterator.cc.s
-.PHONY : java/rocksjni/iterator.cc.s
-
-java/rocksjni/jnicallback.obj: java/rocksjni/jnicallback.cc.obj
-
-.PHONY : java/rocksjni/jnicallback.obj
-
-# target to build an object file
-java/rocksjni/jnicallback.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/jnicallback.cc.obj
-.PHONY : java/rocksjni/jnicallback.cc.obj
-
-java/rocksjni/jnicallback.i: java/rocksjni/jnicallback.cc.i
-
-.PHONY : java/rocksjni/jnicallback.i
-
-# target to preprocess a source file
-java/rocksjni/jnicallback.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/jnicallback.cc.i
-.PHONY : java/rocksjni/jnicallback.cc.i
-
-java/rocksjni/jnicallback.s: java/rocksjni/jnicallback.cc.s
-
-.PHONY : java/rocksjni/jnicallback.s
-
-# target to generate assembly for a file
-java/rocksjni/jnicallback.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/jnicallback.cc.s
-.PHONY : java/rocksjni/jnicallback.cc.s
-
-java/rocksjni/loggerjnicallback.obj: java/rocksjni/loggerjnicallback.cc.obj
-
-.PHONY : java/rocksjni/loggerjnicallback.obj
-
-# target to build an object file
-java/rocksjni/loggerjnicallback.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/loggerjnicallback.cc.obj
-.PHONY : java/rocksjni/loggerjnicallback.cc.obj
-
-java/rocksjni/loggerjnicallback.i: java/rocksjni/loggerjnicallback.cc.i
-
-.PHONY : java/rocksjni/loggerjnicallback.i
-
-# target to preprocess a source file
-java/rocksjni/loggerjnicallback.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/loggerjnicallback.cc.i
-.PHONY : java/rocksjni/loggerjnicallback.cc.i
-
-java/rocksjni/loggerjnicallback.s: java/rocksjni/loggerjnicallback.cc.s
-
-.PHONY : java/rocksjni/loggerjnicallback.s
-
-# target to generate assembly for a file
-java/rocksjni/loggerjnicallback.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/loggerjnicallback.cc.s
-.PHONY : java/rocksjni/loggerjnicallback.cc.s
-
-java/rocksjni/lru_cache.obj: java/rocksjni/lru_cache.cc.obj
-
-.PHONY : java/rocksjni/lru_cache.obj
-
-# target to build an object file
-java/rocksjni/lru_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/lru_cache.cc.obj
-.PHONY : java/rocksjni/lru_cache.cc.obj
-
-java/rocksjni/lru_cache.i: java/rocksjni/lru_cache.cc.i
-
-.PHONY : java/rocksjni/lru_cache.i
-
-# target to preprocess a source file
-java/rocksjni/lru_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/lru_cache.cc.i
-.PHONY : java/rocksjni/lru_cache.cc.i
-
-java/rocksjni/lru_cache.s: java/rocksjni/lru_cache.cc.s
-
-.PHONY : java/rocksjni/lru_cache.s
-
-# target to generate assembly for a file
-java/rocksjni/lru_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/lru_cache.cc.s
-.PHONY : java/rocksjni/lru_cache.cc.s
-
-java/rocksjni/memory_util.obj: java/rocksjni/memory_util.cc.obj
-
-.PHONY : java/rocksjni/memory_util.obj
-
-# target to build an object file
-java/rocksjni/memory_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/memory_util.cc.obj
-.PHONY : java/rocksjni/memory_util.cc.obj
-
-java/rocksjni/memory_util.i: java/rocksjni/memory_util.cc.i
-
-.PHONY : java/rocksjni/memory_util.i
-
-# target to preprocess a source file
-java/rocksjni/memory_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/memory_util.cc.i
-.PHONY : java/rocksjni/memory_util.cc.i
-
-java/rocksjni/memory_util.s: java/rocksjni/memory_util.cc.s
-
-.PHONY : java/rocksjni/memory_util.s
-
-# target to generate assembly for a file
-java/rocksjni/memory_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/memory_util.cc.s
-.PHONY : java/rocksjni/memory_util.cc.s
-
-java/rocksjni/memtablejni.obj: java/rocksjni/memtablejni.cc.obj
-
-.PHONY : java/rocksjni/memtablejni.obj
-
-# target to build an object file
-java/rocksjni/memtablejni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/memtablejni.cc.obj
-.PHONY : java/rocksjni/memtablejni.cc.obj
-
-java/rocksjni/memtablejni.i: java/rocksjni/memtablejni.cc.i
-
-.PHONY : java/rocksjni/memtablejni.i
-
-# target to preprocess a source file
-java/rocksjni/memtablejni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/memtablejni.cc.i
-.PHONY : java/rocksjni/memtablejni.cc.i
-
-java/rocksjni/memtablejni.s: java/rocksjni/memtablejni.cc.s
-
-.PHONY : java/rocksjni/memtablejni.s
-
-# target to generate assembly for a file
-java/rocksjni/memtablejni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/memtablejni.cc.s
-.PHONY : java/rocksjni/memtablejni.cc.s
-
-java/rocksjni/merge_operator.obj: java/rocksjni/merge_operator.cc.obj
-
-.PHONY : java/rocksjni/merge_operator.obj
-
-# target to build an object file
-java/rocksjni/merge_operator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/merge_operator.cc.obj
-.PHONY : java/rocksjni/merge_operator.cc.obj
-
-java/rocksjni/merge_operator.i: java/rocksjni/merge_operator.cc.i
-
-.PHONY : java/rocksjni/merge_operator.i
-
-# target to preprocess a source file
-java/rocksjni/merge_operator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/merge_operator.cc.i
-.PHONY : java/rocksjni/merge_operator.cc.i
-
-java/rocksjni/merge_operator.s: java/rocksjni/merge_operator.cc.s
-
-.PHONY : java/rocksjni/merge_operator.s
-
-# target to generate assembly for a file
-java/rocksjni/merge_operator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/merge_operator.cc.s
-.PHONY : java/rocksjni/merge_operator.cc.s
-
-java/rocksjni/native_comparator_wrapper_test.obj: java/rocksjni/native_comparator_wrapper_test.cc.obj
-
-.PHONY : java/rocksjni/native_comparator_wrapper_test.obj
-
-# target to build an object file
-java/rocksjni/native_comparator_wrapper_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/native_comparator_wrapper_test.cc.obj
-.PHONY : java/rocksjni/native_comparator_wrapper_test.cc.obj
-
-java/rocksjni/native_comparator_wrapper_test.i: java/rocksjni/native_comparator_wrapper_test.cc.i
-
-.PHONY : java/rocksjni/native_comparator_wrapper_test.i
-
-# target to preprocess a source file
-java/rocksjni/native_comparator_wrapper_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/native_comparator_wrapper_test.cc.i
-.PHONY : java/rocksjni/native_comparator_wrapper_test.cc.i
-
-java/rocksjni/native_comparator_wrapper_test.s: java/rocksjni/native_comparator_wrapper_test.cc.s
-
-.PHONY : java/rocksjni/native_comparator_wrapper_test.s
-
-# target to generate assembly for a file
-java/rocksjni/native_comparator_wrapper_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/native_comparator_wrapper_test.cc.s
-.PHONY : java/rocksjni/native_comparator_wrapper_test.cc.s
-
-java/rocksjni/optimistic_transaction_db.obj: java/rocksjni/optimistic_transaction_db.cc.obj
-
-.PHONY : java/rocksjni/optimistic_transaction_db.obj
-
-# target to build an object file
-java/rocksjni/optimistic_transaction_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/optimistic_transaction_db.cc.obj
-.PHONY : java/rocksjni/optimistic_transaction_db.cc.obj
-
-java/rocksjni/optimistic_transaction_db.i: java/rocksjni/optimistic_transaction_db.cc.i
-
-.PHONY : java/rocksjni/optimistic_transaction_db.i
-
-# target to preprocess a source file
-java/rocksjni/optimistic_transaction_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/optimistic_transaction_db.cc.i
-.PHONY : java/rocksjni/optimistic_transaction_db.cc.i
-
-java/rocksjni/optimistic_transaction_db.s: java/rocksjni/optimistic_transaction_db.cc.s
-
-.PHONY : java/rocksjni/optimistic_transaction_db.s
-
-# target to generate assembly for a file
-java/rocksjni/optimistic_transaction_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/optimistic_transaction_db.cc.s
-.PHONY : java/rocksjni/optimistic_transaction_db.cc.s
-
-java/rocksjni/optimistic_transaction_options.obj: java/rocksjni/optimistic_transaction_options.cc.obj
-
-.PHONY : java/rocksjni/optimistic_transaction_options.obj
-
-# target to build an object file
-java/rocksjni/optimistic_transaction_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/optimistic_transaction_options.cc.obj
-.PHONY : java/rocksjni/optimistic_transaction_options.cc.obj
-
-java/rocksjni/optimistic_transaction_options.i: java/rocksjni/optimistic_transaction_options.cc.i
-
-.PHONY : java/rocksjni/optimistic_transaction_options.i
-
-# target to preprocess a source file
-java/rocksjni/optimistic_transaction_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/optimistic_transaction_options.cc.i
-.PHONY : java/rocksjni/optimistic_transaction_options.cc.i
-
-java/rocksjni/optimistic_transaction_options.s: java/rocksjni/optimistic_transaction_options.cc.s
-
-.PHONY : java/rocksjni/optimistic_transaction_options.s
-
-# target to generate assembly for a file
-java/rocksjni/optimistic_transaction_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/optimistic_transaction_options.cc.s
-.PHONY : java/rocksjni/optimistic_transaction_options.cc.s
-
-java/rocksjni/options.obj: java/rocksjni/options.cc.obj
-
-.PHONY : java/rocksjni/options.obj
-
-# target to build an object file
-java/rocksjni/options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/options.cc.obj
-.PHONY : java/rocksjni/options.cc.obj
-
-java/rocksjni/options.i: java/rocksjni/options.cc.i
-
-.PHONY : java/rocksjni/options.i
-
-# target to preprocess a source file
-java/rocksjni/options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/options.cc.i
-.PHONY : java/rocksjni/options.cc.i
-
-java/rocksjni/options.s: java/rocksjni/options.cc.s
-
-.PHONY : java/rocksjni/options.s
-
-# target to generate assembly for a file
-java/rocksjni/options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/options.cc.s
-.PHONY : java/rocksjni/options.cc.s
-
-java/rocksjni/options_util.obj: java/rocksjni/options_util.cc.obj
-
-.PHONY : java/rocksjni/options_util.obj
-
-# target to build an object file
-java/rocksjni/options_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/options_util.cc.obj
-.PHONY : java/rocksjni/options_util.cc.obj
-
-java/rocksjni/options_util.i: java/rocksjni/options_util.cc.i
-
-.PHONY : java/rocksjni/options_util.i
-
-# target to preprocess a source file
-java/rocksjni/options_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/options_util.cc.i
-.PHONY : java/rocksjni/options_util.cc.i
-
-java/rocksjni/options_util.s: java/rocksjni/options_util.cc.s
-
-.PHONY : java/rocksjni/options_util.s
-
-# target to generate assembly for a file
-java/rocksjni/options_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/options_util.cc.s
-.PHONY : java/rocksjni/options_util.cc.s
-
-java/rocksjni/ratelimiterjni.obj: java/rocksjni/ratelimiterjni.cc.obj
-
-.PHONY : java/rocksjni/ratelimiterjni.obj
-
-# target to build an object file
-java/rocksjni/ratelimiterjni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ratelimiterjni.cc.obj
-.PHONY : java/rocksjni/ratelimiterjni.cc.obj
-
-java/rocksjni/ratelimiterjni.i: java/rocksjni/ratelimiterjni.cc.i
-
-.PHONY : java/rocksjni/ratelimiterjni.i
-
-# target to preprocess a source file
-java/rocksjni/ratelimiterjni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ratelimiterjni.cc.i
-.PHONY : java/rocksjni/ratelimiterjni.cc.i
-
-java/rocksjni/ratelimiterjni.s: java/rocksjni/ratelimiterjni.cc.s
-
-.PHONY : java/rocksjni/ratelimiterjni.s
-
-# target to generate assembly for a file
-java/rocksjni/ratelimiterjni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ratelimiterjni.cc.s
-.PHONY : java/rocksjni/ratelimiterjni.cc.s
-
-java/rocksjni/remove_emptyvalue_compactionfilterjni.obj: java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.obj
-
-.PHONY : java/rocksjni/remove_emptyvalue_compactionfilterjni.obj
-
-# target to build an object file
-java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.obj
-.PHONY : java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.obj
-
-java/rocksjni/remove_emptyvalue_compactionfilterjni.i: java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.i
-
-.PHONY : java/rocksjni/remove_emptyvalue_compactionfilterjni.i
-
-# target to preprocess a source file
-java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.i
-.PHONY : java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.i
-
-java/rocksjni/remove_emptyvalue_compactionfilterjni.s: java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.s
-
-.PHONY : java/rocksjni/remove_emptyvalue_compactionfilterjni.s
-
-# target to generate assembly for a file
-java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.s
-.PHONY : java/rocksjni/remove_emptyvalue_compactionfilterjni.cc.s
-
-java/rocksjni/restorejni.obj: java/rocksjni/restorejni.cc.obj
-
-.PHONY : java/rocksjni/restorejni.obj
-
-# target to build an object file
-java/rocksjni/restorejni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/restorejni.cc.obj
-.PHONY : java/rocksjni/restorejni.cc.obj
-
-java/rocksjni/restorejni.i: java/rocksjni/restorejni.cc.i
-
-.PHONY : java/rocksjni/restorejni.i
-
-# target to preprocess a source file
-java/rocksjni/restorejni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/restorejni.cc.i
-.PHONY : java/rocksjni/restorejni.cc.i
-
-java/rocksjni/restorejni.s: java/rocksjni/restorejni.cc.s
-
-.PHONY : java/rocksjni/restorejni.s
-
-# target to generate assembly for a file
-java/rocksjni/restorejni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/restorejni.cc.s
-.PHONY : java/rocksjni/restorejni.cc.s
-
-java/rocksjni/rocks_callback_object.obj: java/rocksjni/rocks_callback_object.cc.obj
-
-.PHONY : java/rocksjni/rocks_callback_object.obj
-
-# target to build an object file
-java/rocksjni/rocks_callback_object.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocks_callback_object.cc.obj
-.PHONY : java/rocksjni/rocks_callback_object.cc.obj
-
-java/rocksjni/rocks_callback_object.i: java/rocksjni/rocks_callback_object.cc.i
-
-.PHONY : java/rocksjni/rocks_callback_object.i
-
-# target to preprocess a source file
-java/rocksjni/rocks_callback_object.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocks_callback_object.cc.i
-.PHONY : java/rocksjni/rocks_callback_object.cc.i
-
-java/rocksjni/rocks_callback_object.s: java/rocksjni/rocks_callback_object.cc.s
-
-.PHONY : java/rocksjni/rocks_callback_object.s
-
-# target to generate assembly for a file
-java/rocksjni/rocks_callback_object.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocks_callback_object.cc.s
-.PHONY : java/rocksjni/rocks_callback_object.cc.s
-
-java/rocksjni/rocksdb_exception_test.obj: java/rocksjni/rocksdb_exception_test.cc.obj
-
-.PHONY : java/rocksjni/rocksdb_exception_test.obj
-
-# target to build an object file
-java/rocksjni/rocksdb_exception_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocksdb_exception_test.cc.obj
-.PHONY : java/rocksjni/rocksdb_exception_test.cc.obj
-
-java/rocksjni/rocksdb_exception_test.i: java/rocksjni/rocksdb_exception_test.cc.i
-
-.PHONY : java/rocksjni/rocksdb_exception_test.i
-
-# target to preprocess a source file
-java/rocksjni/rocksdb_exception_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocksdb_exception_test.cc.i
-.PHONY : java/rocksjni/rocksdb_exception_test.cc.i
-
-java/rocksjni/rocksdb_exception_test.s: java/rocksjni/rocksdb_exception_test.cc.s
-
-.PHONY : java/rocksjni/rocksdb_exception_test.s
-
-# target to generate assembly for a file
-java/rocksjni/rocksdb_exception_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocksdb_exception_test.cc.s
-.PHONY : java/rocksjni/rocksdb_exception_test.cc.s
-
-java/rocksjni/rocksjni.obj: java/rocksjni/rocksjni.cc.obj
-
-.PHONY : java/rocksjni/rocksjni.obj
-
-# target to build an object file
-java/rocksjni/rocksjni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocksjni.cc.obj
-.PHONY : java/rocksjni/rocksjni.cc.obj
-
-java/rocksjni/rocksjni.i: java/rocksjni/rocksjni.cc.i
-
-.PHONY : java/rocksjni/rocksjni.i
-
-# target to preprocess a source file
-java/rocksjni/rocksjni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocksjni.cc.i
-.PHONY : java/rocksjni/rocksjni.cc.i
-
-java/rocksjni/rocksjni.s: java/rocksjni/rocksjni.cc.s
-
-.PHONY : java/rocksjni/rocksjni.s
-
-# target to generate assembly for a file
-java/rocksjni/rocksjni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/rocksjni.cc.s
-.PHONY : java/rocksjni/rocksjni.cc.s
-
-java/rocksjni/slice.obj: java/rocksjni/slice.cc.obj
-
-.PHONY : java/rocksjni/slice.obj
-
-# target to build an object file
-java/rocksjni/slice.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/slice.cc.obj
-.PHONY : java/rocksjni/slice.cc.obj
-
-java/rocksjni/slice.i: java/rocksjni/slice.cc.i
-
-.PHONY : java/rocksjni/slice.i
-
-# target to preprocess a source file
-java/rocksjni/slice.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/slice.cc.i
-.PHONY : java/rocksjni/slice.cc.i
-
-java/rocksjni/slice.s: java/rocksjni/slice.cc.s
-
-.PHONY : java/rocksjni/slice.s
-
-# target to generate assembly for a file
-java/rocksjni/slice.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/slice.cc.s
-.PHONY : java/rocksjni/slice.cc.s
-
-java/rocksjni/snapshot.obj: java/rocksjni/snapshot.cc.obj
-
-.PHONY : java/rocksjni/snapshot.obj
-
-# target to build an object file
-java/rocksjni/snapshot.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/snapshot.cc.obj
-.PHONY : java/rocksjni/snapshot.cc.obj
-
-java/rocksjni/snapshot.i: java/rocksjni/snapshot.cc.i
-
-.PHONY : java/rocksjni/snapshot.i
-
-# target to preprocess a source file
-java/rocksjni/snapshot.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/snapshot.cc.i
-.PHONY : java/rocksjni/snapshot.cc.i
-
-java/rocksjni/snapshot.s: java/rocksjni/snapshot.cc.s
-
-.PHONY : java/rocksjni/snapshot.s
-
-# target to generate assembly for a file
-java/rocksjni/snapshot.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/snapshot.cc.s
-.PHONY : java/rocksjni/snapshot.cc.s
-
-java/rocksjni/sst_file_manager.obj: java/rocksjni/sst_file_manager.cc.obj
-
-.PHONY : java/rocksjni/sst_file_manager.obj
-
-# target to build an object file
-java/rocksjni/sst_file_manager.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/sst_file_manager.cc.obj
-.PHONY : java/rocksjni/sst_file_manager.cc.obj
-
-java/rocksjni/sst_file_manager.i: java/rocksjni/sst_file_manager.cc.i
-
-.PHONY : java/rocksjni/sst_file_manager.i
-
-# target to preprocess a source file
-java/rocksjni/sst_file_manager.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/sst_file_manager.cc.i
-.PHONY : java/rocksjni/sst_file_manager.cc.i
-
-java/rocksjni/sst_file_manager.s: java/rocksjni/sst_file_manager.cc.s
-
-.PHONY : java/rocksjni/sst_file_manager.s
-
-# target to generate assembly for a file
-java/rocksjni/sst_file_manager.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/sst_file_manager.cc.s
-.PHONY : java/rocksjni/sst_file_manager.cc.s
-
-java/rocksjni/sst_file_writerjni.obj: java/rocksjni/sst_file_writerjni.cc.obj
-
-.PHONY : java/rocksjni/sst_file_writerjni.obj
-
-# target to build an object file
-java/rocksjni/sst_file_writerjni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/sst_file_writerjni.cc.obj
-.PHONY : java/rocksjni/sst_file_writerjni.cc.obj
-
-java/rocksjni/sst_file_writerjni.i: java/rocksjni/sst_file_writerjni.cc.i
-
-.PHONY : java/rocksjni/sst_file_writerjni.i
-
-# target to preprocess a source file
-java/rocksjni/sst_file_writerjni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/sst_file_writerjni.cc.i
-.PHONY : java/rocksjni/sst_file_writerjni.cc.i
-
-java/rocksjni/sst_file_writerjni.s: java/rocksjni/sst_file_writerjni.cc.s
-
-.PHONY : java/rocksjni/sst_file_writerjni.s
-
-# target to generate assembly for a file
-java/rocksjni/sst_file_writerjni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/sst_file_writerjni.cc.s
-.PHONY : java/rocksjni/sst_file_writerjni.cc.s
-
-java/rocksjni/statistics.obj: java/rocksjni/statistics.cc.obj
-
-.PHONY : java/rocksjni/statistics.obj
-
-# target to build an object file
-java/rocksjni/statistics.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/statistics.cc.obj
-.PHONY : java/rocksjni/statistics.cc.obj
-
-java/rocksjni/statistics.i: java/rocksjni/statistics.cc.i
-
-.PHONY : java/rocksjni/statistics.i
-
-# target to preprocess a source file
-java/rocksjni/statistics.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/statistics.cc.i
-.PHONY : java/rocksjni/statistics.cc.i
-
-java/rocksjni/statistics.s: java/rocksjni/statistics.cc.s
-
-.PHONY : java/rocksjni/statistics.s
-
-# target to generate assembly for a file
-java/rocksjni/statistics.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/statistics.cc.s
-.PHONY : java/rocksjni/statistics.cc.s
-
-java/rocksjni/statisticsjni.obj: java/rocksjni/statisticsjni.cc.obj
-
-.PHONY : java/rocksjni/statisticsjni.obj
-
-# target to build an object file
-java/rocksjni/statisticsjni.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/statisticsjni.cc.obj
-.PHONY : java/rocksjni/statisticsjni.cc.obj
-
-java/rocksjni/statisticsjni.i: java/rocksjni/statisticsjni.cc.i
-
-.PHONY : java/rocksjni/statisticsjni.i
-
-# target to preprocess a source file
-java/rocksjni/statisticsjni.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/statisticsjni.cc.i
-.PHONY : java/rocksjni/statisticsjni.cc.i
-
-java/rocksjni/statisticsjni.s: java/rocksjni/statisticsjni.cc.s
-
-.PHONY : java/rocksjni/statisticsjni.s
-
-# target to generate assembly for a file
-java/rocksjni/statisticsjni.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/statisticsjni.cc.s
-.PHONY : java/rocksjni/statisticsjni.cc.s
-
-java/rocksjni/table.obj: java/rocksjni/table.cc.obj
-
-.PHONY : java/rocksjni/table.obj
-
-# target to build an object file
-java/rocksjni/table.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/table.cc.obj
-.PHONY : java/rocksjni/table.cc.obj
-
-java/rocksjni/table.i: java/rocksjni/table.cc.i
-
-.PHONY : java/rocksjni/table.i
-
-# target to preprocess a source file
-java/rocksjni/table.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/table.cc.i
-.PHONY : java/rocksjni/table.cc.i
-
-java/rocksjni/table.s: java/rocksjni/table.cc.s
-
-.PHONY : java/rocksjni/table.s
-
-# target to generate assembly for a file
-java/rocksjni/table.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/table.cc.s
-.PHONY : java/rocksjni/table.cc.s
-
-java/rocksjni/transaction.obj: java/rocksjni/transaction.cc.obj
-
-.PHONY : java/rocksjni/transaction.obj
-
-# target to build an object file
-java/rocksjni/transaction.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction.cc.obj
-.PHONY : java/rocksjni/transaction.cc.obj
-
-java/rocksjni/transaction.i: java/rocksjni/transaction.cc.i
-
-.PHONY : java/rocksjni/transaction.i
-
-# target to preprocess a source file
-java/rocksjni/transaction.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction.cc.i
-.PHONY : java/rocksjni/transaction.cc.i
-
-java/rocksjni/transaction.s: java/rocksjni/transaction.cc.s
-
-.PHONY : java/rocksjni/transaction.s
-
-# target to generate assembly for a file
-java/rocksjni/transaction.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction.cc.s
-.PHONY : java/rocksjni/transaction.cc.s
-
-java/rocksjni/transaction_db.obj: java/rocksjni/transaction_db.cc.obj
-
-.PHONY : java/rocksjni/transaction_db.obj
-
-# target to build an object file
-java/rocksjni/transaction_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_db.cc.obj
-.PHONY : java/rocksjni/transaction_db.cc.obj
-
-java/rocksjni/transaction_db.i: java/rocksjni/transaction_db.cc.i
-
-.PHONY : java/rocksjni/transaction_db.i
-
-# target to preprocess a source file
-java/rocksjni/transaction_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_db.cc.i
-.PHONY : java/rocksjni/transaction_db.cc.i
-
-java/rocksjni/transaction_db.s: java/rocksjni/transaction_db.cc.s
-
-.PHONY : java/rocksjni/transaction_db.s
-
-# target to generate assembly for a file
-java/rocksjni/transaction_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_db.cc.s
-.PHONY : java/rocksjni/transaction_db.cc.s
-
-java/rocksjni/transaction_db_options.obj: java/rocksjni/transaction_db_options.cc.obj
-
-.PHONY : java/rocksjni/transaction_db_options.obj
-
-# target to build an object file
-java/rocksjni/transaction_db_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_db_options.cc.obj
-.PHONY : java/rocksjni/transaction_db_options.cc.obj
-
-java/rocksjni/transaction_db_options.i: java/rocksjni/transaction_db_options.cc.i
-
-.PHONY : java/rocksjni/transaction_db_options.i
-
-# target to preprocess a source file
-java/rocksjni/transaction_db_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_db_options.cc.i
-.PHONY : java/rocksjni/transaction_db_options.cc.i
-
-java/rocksjni/transaction_db_options.s: java/rocksjni/transaction_db_options.cc.s
-
-.PHONY : java/rocksjni/transaction_db_options.s
-
-# target to generate assembly for a file
-java/rocksjni/transaction_db_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_db_options.cc.s
-.PHONY : java/rocksjni/transaction_db_options.cc.s
-
-java/rocksjni/transaction_log.obj: java/rocksjni/transaction_log.cc.obj
-
-.PHONY : java/rocksjni/transaction_log.obj
-
-# target to build an object file
-java/rocksjni/transaction_log.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_log.cc.obj
-.PHONY : java/rocksjni/transaction_log.cc.obj
-
-java/rocksjni/transaction_log.i: java/rocksjni/transaction_log.cc.i
-
-.PHONY : java/rocksjni/transaction_log.i
-
-# target to preprocess a source file
-java/rocksjni/transaction_log.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_log.cc.i
-.PHONY : java/rocksjni/transaction_log.cc.i
-
-java/rocksjni/transaction_log.s: java/rocksjni/transaction_log.cc.s
-
-.PHONY : java/rocksjni/transaction_log.s
-
-# target to generate assembly for a file
-java/rocksjni/transaction_log.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_log.cc.s
-.PHONY : java/rocksjni/transaction_log.cc.s
-
-java/rocksjni/transaction_notifier.obj: java/rocksjni/transaction_notifier.cc.obj
-
-.PHONY : java/rocksjni/transaction_notifier.obj
-
-# target to build an object file
-java/rocksjni/transaction_notifier.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_notifier.cc.obj
-.PHONY : java/rocksjni/transaction_notifier.cc.obj
-
-java/rocksjni/transaction_notifier.i: java/rocksjni/transaction_notifier.cc.i
-
-.PHONY : java/rocksjni/transaction_notifier.i
-
-# target to preprocess a source file
-java/rocksjni/transaction_notifier.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_notifier.cc.i
-.PHONY : java/rocksjni/transaction_notifier.cc.i
-
-java/rocksjni/transaction_notifier.s: java/rocksjni/transaction_notifier.cc.s
-
-.PHONY : java/rocksjni/transaction_notifier.s
-
-# target to generate assembly for a file
-java/rocksjni/transaction_notifier.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_notifier.cc.s
-.PHONY : java/rocksjni/transaction_notifier.cc.s
-
-java/rocksjni/transaction_notifier_jnicallback.obj: java/rocksjni/transaction_notifier_jnicallback.cc.obj
-
-.PHONY : java/rocksjni/transaction_notifier_jnicallback.obj
-
-# target to build an object file
-java/rocksjni/transaction_notifier_jnicallback.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_notifier_jnicallback.cc.obj
-.PHONY : java/rocksjni/transaction_notifier_jnicallback.cc.obj
-
-java/rocksjni/transaction_notifier_jnicallback.i: java/rocksjni/transaction_notifier_jnicallback.cc.i
-
-.PHONY : java/rocksjni/transaction_notifier_jnicallback.i
-
-# target to preprocess a source file
-java/rocksjni/transaction_notifier_jnicallback.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_notifier_jnicallback.cc.i
-.PHONY : java/rocksjni/transaction_notifier_jnicallback.cc.i
-
-java/rocksjni/transaction_notifier_jnicallback.s: java/rocksjni/transaction_notifier_jnicallback.cc.s
-
-.PHONY : java/rocksjni/transaction_notifier_jnicallback.s
-
-# target to generate assembly for a file
-java/rocksjni/transaction_notifier_jnicallback.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_notifier_jnicallback.cc.s
-.PHONY : java/rocksjni/transaction_notifier_jnicallback.cc.s
-
-java/rocksjni/transaction_options.obj: java/rocksjni/transaction_options.cc.obj
-
-.PHONY : java/rocksjni/transaction_options.obj
-
-# target to build an object file
-java/rocksjni/transaction_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_options.cc.obj
-.PHONY : java/rocksjni/transaction_options.cc.obj
-
-java/rocksjni/transaction_options.i: java/rocksjni/transaction_options.cc.i
-
-.PHONY : java/rocksjni/transaction_options.i
-
-# target to preprocess a source file
-java/rocksjni/transaction_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_options.cc.i
-.PHONY : java/rocksjni/transaction_options.cc.i
-
-java/rocksjni/transaction_options.s: java/rocksjni/transaction_options.cc.s
-
-.PHONY : java/rocksjni/transaction_options.s
-
-# target to generate assembly for a file
-java/rocksjni/transaction_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/transaction_options.cc.s
-.PHONY : java/rocksjni/transaction_options.cc.s
-
-java/rocksjni/ttl.obj: java/rocksjni/ttl.cc.obj
-
-.PHONY : java/rocksjni/ttl.obj
-
-# target to build an object file
-java/rocksjni/ttl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ttl.cc.obj
-.PHONY : java/rocksjni/ttl.cc.obj
-
-java/rocksjni/ttl.i: java/rocksjni/ttl.cc.i
-
-.PHONY : java/rocksjni/ttl.i
-
-# target to preprocess a source file
-java/rocksjni/ttl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ttl.cc.i
-.PHONY : java/rocksjni/ttl.cc.i
-
-java/rocksjni/ttl.s: java/rocksjni/ttl.cc.s
-
-.PHONY : java/rocksjni/ttl.s
-
-# target to generate assembly for a file
-java/rocksjni/ttl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/ttl.cc.s
-.PHONY : java/rocksjni/ttl.cc.s
-
-java/rocksjni/write_batch.obj: java/rocksjni/write_batch.cc.obj
-
-.PHONY : java/rocksjni/write_batch.obj
-
-# target to build an object file
-java/rocksjni/write_batch.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch.cc.obj
-.PHONY : java/rocksjni/write_batch.cc.obj
-
-java/rocksjni/write_batch.i: java/rocksjni/write_batch.cc.i
-
-.PHONY : java/rocksjni/write_batch.i
-
-# target to preprocess a source file
-java/rocksjni/write_batch.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch.cc.i
-.PHONY : java/rocksjni/write_batch.cc.i
-
-java/rocksjni/write_batch.s: java/rocksjni/write_batch.cc.s
-
-.PHONY : java/rocksjni/write_batch.s
-
-# target to generate assembly for a file
-java/rocksjni/write_batch.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch.cc.s
-.PHONY : java/rocksjni/write_batch.cc.s
-
-java/rocksjni/write_batch_test.obj: java/rocksjni/write_batch_test.cc.obj
-
-.PHONY : java/rocksjni/write_batch_test.obj
-
-# target to build an object file
-java/rocksjni/write_batch_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch_test.cc.obj
-.PHONY : java/rocksjni/write_batch_test.cc.obj
-
-java/rocksjni/write_batch_test.i: java/rocksjni/write_batch_test.cc.i
-
-.PHONY : java/rocksjni/write_batch_test.i
-
-# target to preprocess a source file
-java/rocksjni/write_batch_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch_test.cc.i
-.PHONY : java/rocksjni/write_batch_test.cc.i
-
-java/rocksjni/write_batch_test.s: java/rocksjni/write_batch_test.cc.s
-
-.PHONY : java/rocksjni/write_batch_test.s
-
-# target to generate assembly for a file
-java/rocksjni/write_batch_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch_test.cc.s
-.PHONY : java/rocksjni/write_batch_test.cc.s
-
-java/rocksjni/write_batch_with_index.obj: java/rocksjni/write_batch_with_index.cc.obj
-
-.PHONY : java/rocksjni/write_batch_with_index.obj
-
-# target to build an object file
-java/rocksjni/write_batch_with_index.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch_with_index.cc.obj
-.PHONY : java/rocksjni/write_batch_with_index.cc.obj
-
-java/rocksjni/write_batch_with_index.i: java/rocksjni/write_batch_with_index.cc.i
-
-.PHONY : java/rocksjni/write_batch_with_index.i
-
-# target to preprocess a source file
-java/rocksjni/write_batch_with_index.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch_with_index.cc.i
-.PHONY : java/rocksjni/write_batch_with_index.cc.i
-
-java/rocksjni/write_batch_with_index.s: java/rocksjni/write_batch_with_index.cc.s
-
-.PHONY : java/rocksjni/write_batch_with_index.s
-
-# target to generate assembly for a file
-java/rocksjni/write_batch_with_index.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_batch_with_index.cc.s
-.PHONY : java/rocksjni/write_batch_with_index.cc.s
-
-java/rocksjni/write_buffer_manager.obj: java/rocksjni/write_buffer_manager.cc.obj
-
-.PHONY : java/rocksjni/write_buffer_manager.obj
-
-# target to build an object file
-java/rocksjni/write_buffer_manager.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_buffer_manager.cc.obj
-.PHONY : java/rocksjni/write_buffer_manager.cc.obj
-
-java/rocksjni/write_buffer_manager.i: java/rocksjni/write_buffer_manager.cc.i
-
-.PHONY : java/rocksjni/write_buffer_manager.i
-
-# target to preprocess a source file
-java/rocksjni/write_buffer_manager.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_buffer_manager.cc.i
-.PHONY : java/rocksjni/write_buffer_manager.cc.i
-
-java/rocksjni/write_buffer_manager.s: java/rocksjni/write_buffer_manager.cc.s
-
-.PHONY : java/rocksjni/write_buffer_manager.s
-
-# target to generate assembly for a file
-java/rocksjni/write_buffer_manager.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/write_buffer_manager.cc.s
-.PHONY : java/rocksjni/write_buffer_manager.cc.s
-
-java/rocksjni/writebatchhandlerjnicallback.obj: java/rocksjni/writebatchhandlerjnicallback.cc.obj
-
-.PHONY : java/rocksjni/writebatchhandlerjnicallback.obj
-
-# target to build an object file
-java/rocksjni/writebatchhandlerjnicallback.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/writebatchhandlerjnicallback.cc.obj
-.PHONY : java/rocksjni/writebatchhandlerjnicallback.cc.obj
-
-java/rocksjni/writebatchhandlerjnicallback.i: java/rocksjni/writebatchhandlerjnicallback.cc.i
-
-.PHONY : java/rocksjni/writebatchhandlerjnicallback.i
-
-# target to preprocess a source file
-java/rocksjni/writebatchhandlerjnicallback.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/writebatchhandlerjnicallback.cc.i
-.PHONY : java/rocksjni/writebatchhandlerjnicallback.cc.i
-
-java/rocksjni/writebatchhandlerjnicallback.s: java/rocksjni/writebatchhandlerjnicallback.cc.s
-
-.PHONY : java/rocksjni/writebatchhandlerjnicallback.s
-
-# target to generate assembly for a file
-java/rocksjni/writebatchhandlerjnicallback.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/java/rocksjni/writebatchhandlerjnicallback.cc.s
-.PHONY : java/rocksjni/writebatchhandlerjnicallback.cc.s
 
 memtable/alloc_tracker.obj: memtable/alloc_tracker.cc.obj
 
@@ -5771,7 +6289,8 @@ memtable/alloc_tracker.obj: memtable/alloc_tracker.cc.obj
 
 # target to build an object file
 memtable/alloc_tracker.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/alloc_tracker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/alloc_tracker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/alloc_tracker.cc.obj
 .PHONY : memtable/alloc_tracker.cc.obj
 
 memtable/alloc_tracker.i: memtable/alloc_tracker.cc.i
@@ -5780,7 +6299,8 @@ memtable/alloc_tracker.i: memtable/alloc_tracker.cc.i
 
 # target to preprocess a source file
 memtable/alloc_tracker.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/alloc_tracker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/alloc_tracker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/alloc_tracker.cc.i
 .PHONY : memtable/alloc_tracker.cc.i
 
 memtable/alloc_tracker.s: memtable/alloc_tracker.cc.s
@@ -5789,7 +6309,8 @@ memtable/alloc_tracker.s: memtable/alloc_tracker.cc.s
 
 # target to generate assembly for a file
 memtable/alloc_tracker.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/alloc_tracker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/alloc_tracker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/alloc_tracker.cc.s
 .PHONY : memtable/alloc_tracker.cc.s
 
 memtable/hash_cuckoo_rep.obj: memtable/hash_cuckoo_rep.cc.obj
@@ -5798,7 +6319,8 @@ memtable/hash_cuckoo_rep.obj: memtable/hash_cuckoo_rep.cc.obj
 
 # target to build an object file
 memtable/hash_cuckoo_rep.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_cuckoo_rep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_cuckoo_rep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_cuckoo_rep.cc.obj
 .PHONY : memtable/hash_cuckoo_rep.cc.obj
 
 memtable/hash_cuckoo_rep.i: memtable/hash_cuckoo_rep.cc.i
@@ -5807,7 +6329,8 @@ memtable/hash_cuckoo_rep.i: memtable/hash_cuckoo_rep.cc.i
 
 # target to preprocess a source file
 memtable/hash_cuckoo_rep.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_cuckoo_rep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_cuckoo_rep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_cuckoo_rep.cc.i
 .PHONY : memtable/hash_cuckoo_rep.cc.i
 
 memtable/hash_cuckoo_rep.s: memtable/hash_cuckoo_rep.cc.s
@@ -5816,7 +6339,8 @@ memtable/hash_cuckoo_rep.s: memtable/hash_cuckoo_rep.cc.s
 
 # target to generate assembly for a file
 memtable/hash_cuckoo_rep.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_cuckoo_rep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_cuckoo_rep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_cuckoo_rep.cc.s
 .PHONY : memtable/hash_cuckoo_rep.cc.s
 
 memtable/hash_linklist_rep.obj: memtable/hash_linklist_rep.cc.obj
@@ -5825,7 +6349,8 @@ memtable/hash_linklist_rep.obj: memtable/hash_linklist_rep.cc.obj
 
 # target to build an object file
 memtable/hash_linklist_rep.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_linklist_rep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_linklist_rep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_linklist_rep.cc.obj
 .PHONY : memtable/hash_linklist_rep.cc.obj
 
 memtable/hash_linklist_rep.i: memtable/hash_linklist_rep.cc.i
@@ -5834,7 +6359,8 @@ memtable/hash_linklist_rep.i: memtable/hash_linklist_rep.cc.i
 
 # target to preprocess a source file
 memtable/hash_linklist_rep.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_linklist_rep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_linklist_rep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_linklist_rep.cc.i
 .PHONY : memtable/hash_linklist_rep.cc.i
 
 memtable/hash_linklist_rep.s: memtable/hash_linklist_rep.cc.s
@@ -5843,7 +6369,8 @@ memtable/hash_linklist_rep.s: memtable/hash_linklist_rep.cc.s
 
 # target to generate assembly for a file
 memtable/hash_linklist_rep.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_linklist_rep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_linklist_rep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_linklist_rep.cc.s
 .PHONY : memtable/hash_linklist_rep.cc.s
 
 memtable/hash_skiplist_rep.obj: memtable/hash_skiplist_rep.cc.obj
@@ -5852,7 +6379,8 @@ memtable/hash_skiplist_rep.obj: memtable/hash_skiplist_rep.cc.obj
 
 # target to build an object file
 memtable/hash_skiplist_rep.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_skiplist_rep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_skiplist_rep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_skiplist_rep.cc.obj
 .PHONY : memtable/hash_skiplist_rep.cc.obj
 
 memtable/hash_skiplist_rep.i: memtable/hash_skiplist_rep.cc.i
@@ -5861,7 +6389,8 @@ memtable/hash_skiplist_rep.i: memtable/hash_skiplist_rep.cc.i
 
 # target to preprocess a source file
 memtable/hash_skiplist_rep.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_skiplist_rep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_skiplist_rep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_skiplist_rep.cc.i
 .PHONY : memtable/hash_skiplist_rep.cc.i
 
 memtable/hash_skiplist_rep.s: memtable/hash_skiplist_rep.cc.s
@@ -5870,7 +6399,8 @@ memtable/hash_skiplist_rep.s: memtable/hash_skiplist_rep.cc.s
 
 # target to generate assembly for a file
 memtable/hash_skiplist_rep.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/hash_skiplist_rep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/hash_skiplist_rep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/hash_skiplist_rep.cc.s
 .PHONY : memtable/hash_skiplist_rep.cc.s
 
 memtable/inlineskiplist_test.obj: memtable/inlineskiplist_test.cc.obj
@@ -5879,7 +6409,7 @@ memtable/inlineskiplist_test.obj: memtable/inlineskiplist_test.cc.obj
 
 # target to build an object file
 memtable/inlineskiplist_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/inlineskiplist_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_inlineskiplist_test.dir\build.make CMakeFiles/rocksdb_inlineskiplist_test.dir/memtable/inlineskiplist_test.cc.obj
 .PHONY : memtable/inlineskiplist_test.cc.obj
 
 memtable/inlineskiplist_test.i: memtable/inlineskiplist_test.cc.i
@@ -5888,7 +6418,7 @@ memtable/inlineskiplist_test.i: memtable/inlineskiplist_test.cc.i
 
 # target to preprocess a source file
 memtable/inlineskiplist_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/inlineskiplist_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_inlineskiplist_test.dir\build.make CMakeFiles/rocksdb_inlineskiplist_test.dir/memtable/inlineskiplist_test.cc.i
 .PHONY : memtable/inlineskiplist_test.cc.i
 
 memtable/inlineskiplist_test.s: memtable/inlineskiplist_test.cc.s
@@ -5897,7 +6427,7 @@ memtable/inlineskiplist_test.s: memtable/inlineskiplist_test.cc.s
 
 # target to generate assembly for a file
 memtable/inlineskiplist_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/inlineskiplist_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_inlineskiplist_test.dir\build.make CMakeFiles/rocksdb_inlineskiplist_test.dir/memtable/inlineskiplist_test.cc.s
 .PHONY : memtable/inlineskiplist_test.cc.s
 
 memtable/memtablerep_bench.obj: memtable/memtablerep_bench.cc.obj
@@ -5906,7 +6436,7 @@ memtable/memtablerep_bench.obj: memtable/memtablerep_bench.cc.obj
 
 # target to build an object file
 memtable/memtablerep_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/memtablerep_bench.cc.obj
+	$(MAKE) -f CMakeFiles\memtablerep_bench.dir\build.make CMakeFiles/memtablerep_bench.dir/memtable/memtablerep_bench.cc.obj
 .PHONY : memtable/memtablerep_bench.cc.obj
 
 memtable/memtablerep_bench.i: memtable/memtablerep_bench.cc.i
@@ -5915,7 +6445,7 @@ memtable/memtablerep_bench.i: memtable/memtablerep_bench.cc.i
 
 # target to preprocess a source file
 memtable/memtablerep_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/memtablerep_bench.cc.i
+	$(MAKE) -f CMakeFiles\memtablerep_bench.dir\build.make CMakeFiles/memtablerep_bench.dir/memtable/memtablerep_bench.cc.i
 .PHONY : memtable/memtablerep_bench.cc.i
 
 memtable/memtablerep_bench.s: memtable/memtablerep_bench.cc.s
@@ -5924,7 +6454,7 @@ memtable/memtablerep_bench.s: memtable/memtablerep_bench.cc.s
 
 # target to generate assembly for a file
 memtable/memtablerep_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/memtablerep_bench.cc.s
+	$(MAKE) -f CMakeFiles\memtablerep_bench.dir\build.make CMakeFiles/memtablerep_bench.dir/memtable/memtablerep_bench.cc.s
 .PHONY : memtable/memtablerep_bench.cc.s
 
 memtable/skiplist_test.obj: memtable/skiplist_test.cc.obj
@@ -5933,7 +6463,7 @@ memtable/skiplist_test.obj: memtable/skiplist_test.cc.obj
 
 # target to build an object file
 memtable/skiplist_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/skiplist_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_skiplist_test.dir\build.make CMakeFiles/rocksdb_skiplist_test.dir/memtable/skiplist_test.cc.obj
 .PHONY : memtable/skiplist_test.cc.obj
 
 memtable/skiplist_test.i: memtable/skiplist_test.cc.i
@@ -5942,7 +6472,7 @@ memtable/skiplist_test.i: memtable/skiplist_test.cc.i
 
 # target to preprocess a source file
 memtable/skiplist_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/skiplist_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_skiplist_test.dir\build.make CMakeFiles/rocksdb_skiplist_test.dir/memtable/skiplist_test.cc.i
 .PHONY : memtable/skiplist_test.cc.i
 
 memtable/skiplist_test.s: memtable/skiplist_test.cc.s
@@ -5951,7 +6481,7 @@ memtable/skiplist_test.s: memtable/skiplist_test.cc.s
 
 # target to generate assembly for a file
 memtable/skiplist_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/skiplist_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_skiplist_test.dir\build.make CMakeFiles/rocksdb_skiplist_test.dir/memtable/skiplist_test.cc.s
 .PHONY : memtable/skiplist_test.cc.s
 
 memtable/skiplistrep.obj: memtable/skiplistrep.cc.obj
@@ -5960,7 +6490,8 @@ memtable/skiplistrep.obj: memtable/skiplistrep.cc.obj
 
 # target to build an object file
 memtable/skiplistrep.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/skiplistrep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/skiplistrep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/skiplistrep.cc.obj
 .PHONY : memtable/skiplistrep.cc.obj
 
 memtable/skiplistrep.i: memtable/skiplistrep.cc.i
@@ -5969,7 +6500,8 @@ memtable/skiplistrep.i: memtable/skiplistrep.cc.i
 
 # target to preprocess a source file
 memtable/skiplistrep.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/skiplistrep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/skiplistrep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/skiplistrep.cc.i
 .PHONY : memtable/skiplistrep.cc.i
 
 memtable/skiplistrep.s: memtable/skiplistrep.cc.s
@@ -5978,7 +6510,8 @@ memtable/skiplistrep.s: memtable/skiplistrep.cc.s
 
 # target to generate assembly for a file
 memtable/skiplistrep.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/skiplistrep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/skiplistrep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/skiplistrep.cc.s
 .PHONY : memtable/skiplistrep.cc.s
 
 memtable/vectorrep.obj: memtable/vectorrep.cc.obj
@@ -5987,7 +6520,8 @@ memtable/vectorrep.obj: memtable/vectorrep.cc.obj
 
 # target to build an object file
 memtable/vectorrep.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/vectorrep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/vectorrep.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/vectorrep.cc.obj
 .PHONY : memtable/vectorrep.cc.obj
 
 memtable/vectorrep.i: memtable/vectorrep.cc.i
@@ -5996,7 +6530,8 @@ memtable/vectorrep.i: memtable/vectorrep.cc.i
 
 # target to preprocess a source file
 memtable/vectorrep.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/vectorrep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/vectorrep.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/vectorrep.cc.i
 .PHONY : memtable/vectorrep.cc.i
 
 memtable/vectorrep.s: memtable/vectorrep.cc.s
@@ -6005,7 +6540,8 @@ memtable/vectorrep.s: memtable/vectorrep.cc.s
 
 # target to generate assembly for a file
 memtable/vectorrep.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/vectorrep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/vectorrep.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/vectorrep.cc.s
 .PHONY : memtable/vectorrep.cc.s
 
 memtable/write_buffer_manager.obj: memtable/write_buffer_manager.cc.obj
@@ -6014,7 +6550,8 @@ memtable/write_buffer_manager.obj: memtable/write_buffer_manager.cc.obj
 
 # target to build an object file
 memtable/write_buffer_manager.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/write_buffer_manager.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/write_buffer_manager.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/write_buffer_manager.cc.obj
 .PHONY : memtable/write_buffer_manager.cc.obj
 
 memtable/write_buffer_manager.i: memtable/write_buffer_manager.cc.i
@@ -6023,7 +6560,8 @@ memtable/write_buffer_manager.i: memtable/write_buffer_manager.cc.i
 
 # target to preprocess a source file
 memtable/write_buffer_manager.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/write_buffer_manager.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/write_buffer_manager.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/write_buffer_manager.cc.i
 .PHONY : memtable/write_buffer_manager.cc.i
 
 memtable/write_buffer_manager.s: memtable/write_buffer_manager.cc.s
@@ -6032,7 +6570,8 @@ memtable/write_buffer_manager.s: memtable/write_buffer_manager.cc.s
 
 # target to generate assembly for a file
 memtable/write_buffer_manager.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/write_buffer_manager.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/memtable/write_buffer_manager.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/memtable/write_buffer_manager.cc.s
 .PHONY : memtable/write_buffer_manager.cc.s
 
 memtable/write_buffer_manager_test.obj: memtable/write_buffer_manager_test.cc.obj
@@ -6041,7 +6580,7 @@ memtable/write_buffer_manager_test.obj: memtable/write_buffer_manager_test.cc.ob
 
 # target to build an object file
 memtable/write_buffer_manager_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/write_buffer_manager_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_write_buffer_manager_test.dir\build.make CMakeFiles/rocksdb_write_buffer_manager_test.dir/memtable/write_buffer_manager_test.cc.obj
 .PHONY : memtable/write_buffer_manager_test.cc.obj
 
 memtable/write_buffer_manager_test.i: memtable/write_buffer_manager_test.cc.i
@@ -6050,7 +6589,7 @@ memtable/write_buffer_manager_test.i: memtable/write_buffer_manager_test.cc.i
 
 # target to preprocess a source file
 memtable/write_buffer_manager_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/write_buffer_manager_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_write_buffer_manager_test.dir\build.make CMakeFiles/rocksdb_write_buffer_manager_test.dir/memtable/write_buffer_manager_test.cc.i
 .PHONY : memtable/write_buffer_manager_test.cc.i
 
 memtable/write_buffer_manager_test.s: memtable/write_buffer_manager_test.cc.s
@@ -6059,7 +6598,7 @@ memtable/write_buffer_manager_test.s: memtable/write_buffer_manager_test.cc.s
 
 # target to generate assembly for a file
 memtable/write_buffer_manager_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/memtable/write_buffer_manager_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_write_buffer_manager_test.dir\build.make CMakeFiles/rocksdb_write_buffer_manager_test.dir/memtable/write_buffer_manager_test.cc.s
 .PHONY : memtable/write_buffer_manager_test.cc.s
 
 monitoring/histogram.obj: monitoring/histogram.cc.obj
@@ -6068,7 +6607,8 @@ monitoring/histogram.obj: monitoring/histogram.cc.obj
 
 # target to build an object file
 monitoring/histogram.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/histogram.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/histogram.cc.obj
 .PHONY : monitoring/histogram.cc.obj
 
 monitoring/histogram.i: monitoring/histogram.cc.i
@@ -6077,7 +6617,8 @@ monitoring/histogram.i: monitoring/histogram.cc.i
 
 # target to preprocess a source file
 monitoring/histogram.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/histogram.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/histogram.cc.i
 .PHONY : monitoring/histogram.cc.i
 
 monitoring/histogram.s: monitoring/histogram.cc.s
@@ -6086,7 +6627,8 @@ monitoring/histogram.s: monitoring/histogram.cc.s
 
 # target to generate assembly for a file
 monitoring/histogram.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/histogram.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/histogram.cc.s
 .PHONY : monitoring/histogram.cc.s
 
 monitoring/histogram_test.obj: monitoring/histogram_test.cc.obj
@@ -6095,7 +6637,7 @@ monitoring/histogram_test.obj: monitoring/histogram_test.cc.obj
 
 # target to build an object file
 monitoring/histogram_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_histogram_test.dir\build.make CMakeFiles/rocksdb_histogram_test.dir/monitoring/histogram_test.cc.obj
 .PHONY : monitoring/histogram_test.cc.obj
 
 monitoring/histogram_test.i: monitoring/histogram_test.cc.i
@@ -6104,7 +6646,7 @@ monitoring/histogram_test.i: monitoring/histogram_test.cc.i
 
 # target to preprocess a source file
 monitoring/histogram_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_histogram_test.dir\build.make CMakeFiles/rocksdb_histogram_test.dir/monitoring/histogram_test.cc.i
 .PHONY : monitoring/histogram_test.cc.i
 
 monitoring/histogram_test.s: monitoring/histogram_test.cc.s
@@ -6113,7 +6655,7 @@ monitoring/histogram_test.s: monitoring/histogram_test.cc.s
 
 # target to generate assembly for a file
 monitoring/histogram_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_histogram_test.dir\build.make CMakeFiles/rocksdb_histogram_test.dir/monitoring/histogram_test.cc.s
 .PHONY : monitoring/histogram_test.cc.s
 
 monitoring/histogram_windowing.obj: monitoring/histogram_windowing.cc.obj
@@ -6122,7 +6664,8 @@ monitoring/histogram_windowing.obj: monitoring/histogram_windowing.cc.obj
 
 # target to build an object file
 monitoring/histogram_windowing.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram_windowing.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/histogram_windowing.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/histogram_windowing.cc.obj
 .PHONY : monitoring/histogram_windowing.cc.obj
 
 monitoring/histogram_windowing.i: monitoring/histogram_windowing.cc.i
@@ -6131,7 +6674,8 @@ monitoring/histogram_windowing.i: monitoring/histogram_windowing.cc.i
 
 # target to preprocess a source file
 monitoring/histogram_windowing.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram_windowing.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/histogram_windowing.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/histogram_windowing.cc.i
 .PHONY : monitoring/histogram_windowing.cc.i
 
 monitoring/histogram_windowing.s: monitoring/histogram_windowing.cc.s
@@ -6140,7 +6684,8 @@ monitoring/histogram_windowing.s: monitoring/histogram_windowing.cc.s
 
 # target to generate assembly for a file
 monitoring/histogram_windowing.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/histogram_windowing.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/histogram_windowing.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/histogram_windowing.cc.s
 .PHONY : monitoring/histogram_windowing.cc.s
 
 monitoring/instrumented_mutex.obj: monitoring/instrumented_mutex.cc.obj
@@ -6149,7 +6694,8 @@ monitoring/instrumented_mutex.obj: monitoring/instrumented_mutex.cc.obj
 
 # target to build an object file
 monitoring/instrumented_mutex.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/instrumented_mutex.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/instrumented_mutex.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/instrumented_mutex.cc.obj
 .PHONY : monitoring/instrumented_mutex.cc.obj
 
 monitoring/instrumented_mutex.i: monitoring/instrumented_mutex.cc.i
@@ -6158,7 +6704,8 @@ monitoring/instrumented_mutex.i: monitoring/instrumented_mutex.cc.i
 
 # target to preprocess a source file
 monitoring/instrumented_mutex.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/instrumented_mutex.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/instrumented_mutex.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/instrumented_mutex.cc.i
 .PHONY : monitoring/instrumented_mutex.cc.i
 
 monitoring/instrumented_mutex.s: monitoring/instrumented_mutex.cc.s
@@ -6167,7 +6714,8 @@ monitoring/instrumented_mutex.s: monitoring/instrumented_mutex.cc.s
 
 # target to generate assembly for a file
 monitoring/instrumented_mutex.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/instrumented_mutex.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/instrumented_mutex.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/instrumented_mutex.cc.s
 .PHONY : monitoring/instrumented_mutex.cc.s
 
 monitoring/iostats_context.obj: monitoring/iostats_context.cc.obj
@@ -6176,7 +6724,8 @@ monitoring/iostats_context.obj: monitoring/iostats_context.cc.obj
 
 # target to build an object file
 monitoring/iostats_context.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/iostats_context.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/iostats_context.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/iostats_context.cc.obj
 .PHONY : monitoring/iostats_context.cc.obj
 
 monitoring/iostats_context.i: monitoring/iostats_context.cc.i
@@ -6185,7 +6734,8 @@ monitoring/iostats_context.i: monitoring/iostats_context.cc.i
 
 # target to preprocess a source file
 monitoring/iostats_context.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/iostats_context.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/iostats_context.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/iostats_context.cc.i
 .PHONY : monitoring/iostats_context.cc.i
 
 monitoring/iostats_context.s: monitoring/iostats_context.cc.s
@@ -6194,7 +6744,8 @@ monitoring/iostats_context.s: monitoring/iostats_context.cc.s
 
 # target to generate assembly for a file
 monitoring/iostats_context.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/iostats_context.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/iostats_context.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/iostats_context.cc.s
 .PHONY : monitoring/iostats_context.cc.s
 
 monitoring/iostats_context_test.obj: monitoring/iostats_context_test.cc.obj
@@ -6203,7 +6754,7 @@ monitoring/iostats_context_test.obj: monitoring/iostats_context_test.cc.obj
 
 # target to build an object file
 monitoring/iostats_context_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/iostats_context_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_iostats_context_test.dir\build.make CMakeFiles/rocksdb_iostats_context_test.dir/monitoring/iostats_context_test.cc.obj
 .PHONY : monitoring/iostats_context_test.cc.obj
 
 monitoring/iostats_context_test.i: monitoring/iostats_context_test.cc.i
@@ -6212,7 +6763,7 @@ monitoring/iostats_context_test.i: monitoring/iostats_context_test.cc.i
 
 # target to preprocess a source file
 monitoring/iostats_context_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/iostats_context_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_iostats_context_test.dir\build.make CMakeFiles/rocksdb_iostats_context_test.dir/monitoring/iostats_context_test.cc.i
 .PHONY : monitoring/iostats_context_test.cc.i
 
 monitoring/iostats_context_test.s: monitoring/iostats_context_test.cc.s
@@ -6221,7 +6772,7 @@ monitoring/iostats_context_test.s: monitoring/iostats_context_test.cc.s
 
 # target to generate assembly for a file
 monitoring/iostats_context_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/iostats_context_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_iostats_context_test.dir\build.make CMakeFiles/rocksdb_iostats_context_test.dir/monitoring/iostats_context_test.cc.s
 .PHONY : monitoring/iostats_context_test.cc.s
 
 monitoring/perf_context.obj: monitoring/perf_context.cc.obj
@@ -6230,7 +6781,8 @@ monitoring/perf_context.obj: monitoring/perf_context.cc.obj
 
 # target to build an object file
 monitoring/perf_context.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/perf_context.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/perf_context.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/perf_context.cc.obj
 .PHONY : monitoring/perf_context.cc.obj
 
 monitoring/perf_context.i: monitoring/perf_context.cc.i
@@ -6239,7 +6791,8 @@ monitoring/perf_context.i: monitoring/perf_context.cc.i
 
 # target to preprocess a source file
 monitoring/perf_context.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/perf_context.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/perf_context.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/perf_context.cc.i
 .PHONY : monitoring/perf_context.cc.i
 
 monitoring/perf_context.s: monitoring/perf_context.cc.s
@@ -6248,7 +6801,8 @@ monitoring/perf_context.s: monitoring/perf_context.cc.s
 
 # target to generate assembly for a file
 monitoring/perf_context.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/perf_context.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/perf_context.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/perf_context.cc.s
 .PHONY : monitoring/perf_context.cc.s
 
 monitoring/perf_level.obj: monitoring/perf_level.cc.obj
@@ -6257,7 +6811,8 @@ monitoring/perf_level.obj: monitoring/perf_level.cc.obj
 
 # target to build an object file
 monitoring/perf_level.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/perf_level.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/perf_level.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/perf_level.cc.obj
 .PHONY : monitoring/perf_level.cc.obj
 
 monitoring/perf_level.i: monitoring/perf_level.cc.i
@@ -6266,7 +6821,8 @@ monitoring/perf_level.i: monitoring/perf_level.cc.i
 
 # target to preprocess a source file
 monitoring/perf_level.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/perf_level.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/perf_level.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/perf_level.cc.i
 .PHONY : monitoring/perf_level.cc.i
 
 monitoring/perf_level.s: monitoring/perf_level.cc.s
@@ -6275,7 +6831,8 @@ monitoring/perf_level.s: monitoring/perf_level.cc.s
 
 # target to generate assembly for a file
 monitoring/perf_level.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/perf_level.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/perf_level.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/perf_level.cc.s
 .PHONY : monitoring/perf_level.cc.s
 
 monitoring/statistics.obj: monitoring/statistics.cc.obj
@@ -6284,7 +6841,8 @@ monitoring/statistics.obj: monitoring/statistics.cc.obj
 
 # target to build an object file
 monitoring/statistics.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/statistics.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/statistics.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/statistics.cc.obj
 .PHONY : monitoring/statistics.cc.obj
 
 monitoring/statistics.i: monitoring/statistics.cc.i
@@ -6293,7 +6851,8 @@ monitoring/statistics.i: monitoring/statistics.cc.i
 
 # target to preprocess a source file
 monitoring/statistics.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/statistics.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/statistics.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/statistics.cc.i
 .PHONY : monitoring/statistics.cc.i
 
 monitoring/statistics.s: monitoring/statistics.cc.s
@@ -6302,7 +6861,8 @@ monitoring/statistics.s: monitoring/statistics.cc.s
 
 # target to generate assembly for a file
 monitoring/statistics.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/statistics.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/statistics.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/statistics.cc.s
 .PHONY : monitoring/statistics.cc.s
 
 monitoring/statistics_test.obj: monitoring/statistics_test.cc.obj
@@ -6311,7 +6871,7 @@ monitoring/statistics_test.obj: monitoring/statistics_test.cc.obj
 
 # target to build an object file
 monitoring/statistics_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/statistics_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_statistics_test.dir\build.make CMakeFiles/rocksdb_statistics_test.dir/monitoring/statistics_test.cc.obj
 .PHONY : monitoring/statistics_test.cc.obj
 
 monitoring/statistics_test.i: monitoring/statistics_test.cc.i
@@ -6320,7 +6880,7 @@ monitoring/statistics_test.i: monitoring/statistics_test.cc.i
 
 # target to preprocess a source file
 monitoring/statistics_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/statistics_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_statistics_test.dir\build.make CMakeFiles/rocksdb_statistics_test.dir/monitoring/statistics_test.cc.i
 .PHONY : monitoring/statistics_test.cc.i
 
 monitoring/statistics_test.s: monitoring/statistics_test.cc.s
@@ -6329,7 +6889,7 @@ monitoring/statistics_test.s: monitoring/statistics_test.cc.s
 
 # target to generate assembly for a file
 monitoring/statistics_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/statistics_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_statistics_test.dir\build.make CMakeFiles/rocksdb_statistics_test.dir/monitoring/statistics_test.cc.s
 .PHONY : monitoring/statistics_test.cc.s
 
 monitoring/thread_status_impl.obj: monitoring/thread_status_impl.cc.obj
@@ -6338,7 +6898,8 @@ monitoring/thread_status_impl.obj: monitoring/thread_status_impl.cc.obj
 
 # target to build an object file
 monitoring/thread_status_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_impl.cc.obj
 .PHONY : monitoring/thread_status_impl.cc.obj
 
 monitoring/thread_status_impl.i: monitoring/thread_status_impl.cc.i
@@ -6347,7 +6908,8 @@ monitoring/thread_status_impl.i: monitoring/thread_status_impl.cc.i
 
 # target to preprocess a source file
 monitoring/thread_status_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_impl.cc.i
 .PHONY : monitoring/thread_status_impl.cc.i
 
 monitoring/thread_status_impl.s: monitoring/thread_status_impl.cc.s
@@ -6356,7 +6918,8 @@ monitoring/thread_status_impl.s: monitoring/thread_status_impl.cc.s
 
 # target to generate assembly for a file
 monitoring/thread_status_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_impl.cc.s
 .PHONY : monitoring/thread_status_impl.cc.s
 
 monitoring/thread_status_updater.obj: monitoring/thread_status_updater.cc.obj
@@ -6365,7 +6928,8 @@ monitoring/thread_status_updater.obj: monitoring/thread_status_updater.cc.obj
 
 # target to build an object file
 monitoring/thread_status_updater.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_updater.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_updater.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_updater.cc.obj
 .PHONY : monitoring/thread_status_updater.cc.obj
 
 monitoring/thread_status_updater.i: monitoring/thread_status_updater.cc.i
@@ -6374,7 +6938,8 @@ monitoring/thread_status_updater.i: monitoring/thread_status_updater.cc.i
 
 # target to preprocess a source file
 monitoring/thread_status_updater.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_updater.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_updater.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_updater.cc.i
 .PHONY : monitoring/thread_status_updater.cc.i
 
 monitoring/thread_status_updater.s: monitoring/thread_status_updater.cc.s
@@ -6383,7 +6948,8 @@ monitoring/thread_status_updater.s: monitoring/thread_status_updater.cc.s
 
 # target to generate assembly for a file
 monitoring/thread_status_updater.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_updater.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_updater.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_updater.cc.s
 .PHONY : monitoring/thread_status_updater.cc.s
 
 monitoring/thread_status_updater_debug.obj: monitoring/thread_status_updater_debug.cc.obj
@@ -6392,7 +6958,7 @@ monitoring/thread_status_updater_debug.obj: monitoring/thread_status_updater_deb
 
 # target to build an object file
 monitoring/thread_status_updater_debug.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_updater_debug.cc.obj
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/monitoring/thread_status_updater_debug.cc.obj
 .PHONY : monitoring/thread_status_updater_debug.cc.obj
 
 monitoring/thread_status_updater_debug.i: monitoring/thread_status_updater_debug.cc.i
@@ -6401,7 +6967,7 @@ monitoring/thread_status_updater_debug.i: monitoring/thread_status_updater_debug
 
 # target to preprocess a source file
 monitoring/thread_status_updater_debug.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_updater_debug.cc.i
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/monitoring/thread_status_updater_debug.cc.i
 .PHONY : monitoring/thread_status_updater_debug.cc.i
 
 monitoring/thread_status_updater_debug.s: monitoring/thread_status_updater_debug.cc.s
@@ -6410,7 +6976,7 @@ monitoring/thread_status_updater_debug.s: monitoring/thread_status_updater_debug
 
 # target to generate assembly for a file
 monitoring/thread_status_updater_debug.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_updater_debug.cc.s
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/monitoring/thread_status_updater_debug.cc.s
 .PHONY : monitoring/thread_status_updater_debug.cc.s
 
 monitoring/thread_status_util.obj: monitoring/thread_status_util.cc.obj
@@ -6419,7 +6985,8 @@ monitoring/thread_status_util.obj: monitoring/thread_status_util.cc.obj
 
 # target to build an object file
 monitoring/thread_status_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_util.cc.obj
 .PHONY : monitoring/thread_status_util.cc.obj
 
 monitoring/thread_status_util.i: monitoring/thread_status_util.cc.i
@@ -6428,7 +6995,8 @@ monitoring/thread_status_util.i: monitoring/thread_status_util.cc.i
 
 # target to preprocess a source file
 monitoring/thread_status_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_util.cc.i
 .PHONY : monitoring/thread_status_util.cc.i
 
 monitoring/thread_status_util.s: monitoring/thread_status_util.cc.s
@@ -6437,7 +7005,8 @@ monitoring/thread_status_util.s: monitoring/thread_status_util.cc.s
 
 # target to generate assembly for a file
 monitoring/thread_status_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_util.cc.s
 .PHONY : monitoring/thread_status_util.cc.s
 
 monitoring/thread_status_util_debug.obj: monitoring/thread_status_util_debug.cc.obj
@@ -6446,7 +7015,8 @@ monitoring/thread_status_util_debug.obj: monitoring/thread_status_util_debug.cc.
 
 # target to build an object file
 monitoring/thread_status_util_debug.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_util_debug.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_util_debug.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_util_debug.cc.obj
 .PHONY : monitoring/thread_status_util_debug.cc.obj
 
 monitoring/thread_status_util_debug.i: monitoring/thread_status_util_debug.cc.i
@@ -6455,7 +7025,8 @@ monitoring/thread_status_util_debug.i: monitoring/thread_status_util_debug.cc.i
 
 # target to preprocess a source file
 monitoring/thread_status_util_debug.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_util_debug.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_util_debug.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_util_debug.cc.i
 .PHONY : monitoring/thread_status_util_debug.cc.i
 
 monitoring/thread_status_util_debug.s: monitoring/thread_status_util_debug.cc.s
@@ -6464,7 +7035,8 @@ monitoring/thread_status_util_debug.s: monitoring/thread_status_util_debug.cc.s
 
 # target to generate assembly for a file
 monitoring/thread_status_util_debug.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/monitoring/thread_status_util_debug.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/monitoring/thread_status_util_debug.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/monitoring/thread_status_util_debug.cc.s
 .PHONY : monitoring/thread_status_util_debug.cc.s
 
 options/cf_options.obj: options/cf_options.cc.obj
@@ -6473,7 +7045,8 @@ options/cf_options.obj: options/cf_options.cc.obj
 
 # target to build an object file
 options/cf_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/cf_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/cf_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/cf_options.cc.obj
 .PHONY : options/cf_options.cc.obj
 
 options/cf_options.i: options/cf_options.cc.i
@@ -6482,7 +7055,8 @@ options/cf_options.i: options/cf_options.cc.i
 
 # target to preprocess a source file
 options/cf_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/cf_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/cf_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/cf_options.cc.i
 .PHONY : options/cf_options.cc.i
 
 options/cf_options.s: options/cf_options.cc.s
@@ -6491,7 +7065,8 @@ options/cf_options.s: options/cf_options.cc.s
 
 # target to generate assembly for a file
 options/cf_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/cf_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/cf_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/cf_options.cc.s
 .PHONY : options/cf_options.cc.s
 
 options/db_options.obj: options/db_options.cc.obj
@@ -6500,7 +7075,8 @@ options/db_options.obj: options/db_options.cc.obj
 
 # target to build an object file
 options/db_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/db_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/db_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/db_options.cc.obj
 .PHONY : options/db_options.cc.obj
 
 options/db_options.i: options/db_options.cc.i
@@ -6509,7 +7085,8 @@ options/db_options.i: options/db_options.cc.i
 
 # target to preprocess a source file
 options/db_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/db_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/db_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/db_options.cc.i
 .PHONY : options/db_options.cc.i
 
 options/db_options.s: options/db_options.cc.s
@@ -6518,7 +7095,8 @@ options/db_options.s: options/db_options.cc.s
 
 # target to generate assembly for a file
 options/db_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/db_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/db_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/db_options.cc.s
 .PHONY : options/db_options.cc.s
 
 options/options.obj: options/options.cc.obj
@@ -6527,7 +7105,8 @@ options/options.obj: options/options.cc.obj
 
 # target to build an object file
 options/options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options.cc.obj
 .PHONY : options/options.cc.obj
 
 options/options.i: options/options.cc.i
@@ -6536,7 +7115,8 @@ options/options.i: options/options.cc.i
 
 # target to preprocess a source file
 options/options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options.cc.i
 .PHONY : options/options.cc.i
 
 options/options.s: options/options.cc.s
@@ -6545,7 +7125,8 @@ options/options.s: options/options.cc.s
 
 # target to generate assembly for a file
 options/options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options.cc.s
 .PHONY : options/options.cc.s
 
 options/options_helper.obj: options/options_helper.cc.obj
@@ -6554,7 +7135,8 @@ options/options_helper.obj: options/options_helper.cc.obj
 
 # target to build an object file
 options/options_helper.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_helper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_helper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_helper.cc.obj
 .PHONY : options/options_helper.cc.obj
 
 options/options_helper.i: options/options_helper.cc.i
@@ -6563,7 +7145,8 @@ options/options_helper.i: options/options_helper.cc.i
 
 # target to preprocess a source file
 options/options_helper.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_helper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_helper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_helper.cc.i
 .PHONY : options/options_helper.cc.i
 
 options/options_helper.s: options/options_helper.cc.s
@@ -6572,7 +7155,8 @@ options/options_helper.s: options/options_helper.cc.s
 
 # target to generate assembly for a file
 options/options_helper.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_helper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_helper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_helper.cc.s
 .PHONY : options/options_helper.cc.s
 
 options/options_parser.obj: options/options_parser.cc.obj
@@ -6581,7 +7165,8 @@ options/options_parser.obj: options/options_parser.cc.obj
 
 # target to build an object file
 options/options_parser.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_parser.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_parser.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_parser.cc.obj
 .PHONY : options/options_parser.cc.obj
 
 options/options_parser.i: options/options_parser.cc.i
@@ -6590,7 +7175,8 @@ options/options_parser.i: options/options_parser.cc.i
 
 # target to preprocess a source file
 options/options_parser.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_parser.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_parser.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_parser.cc.i
 .PHONY : options/options_parser.cc.i
 
 options/options_parser.s: options/options_parser.cc.s
@@ -6599,7 +7185,8 @@ options/options_parser.s: options/options_parser.cc.s
 
 # target to generate assembly for a file
 options/options_parser.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_parser.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_parser.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_parser.cc.s
 .PHONY : options/options_parser.cc.s
 
 options/options_sanity_check.obj: options/options_sanity_check.cc.obj
@@ -6608,7 +7195,8 @@ options/options_sanity_check.obj: options/options_sanity_check.cc.obj
 
 # target to build an object file
 options/options_sanity_check.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_sanity_check.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_sanity_check.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_sanity_check.cc.obj
 .PHONY : options/options_sanity_check.cc.obj
 
 options/options_sanity_check.i: options/options_sanity_check.cc.i
@@ -6617,7 +7205,8 @@ options/options_sanity_check.i: options/options_sanity_check.cc.i
 
 # target to preprocess a source file
 options/options_sanity_check.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_sanity_check.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_sanity_check.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_sanity_check.cc.i
 .PHONY : options/options_sanity_check.cc.i
 
 options/options_sanity_check.s: options/options_sanity_check.cc.s
@@ -6626,7 +7215,8 @@ options/options_sanity_check.s: options/options_sanity_check.cc.s
 
 # target to generate assembly for a file
 options/options_sanity_check.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_sanity_check.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/options/options_sanity_check.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/options/options_sanity_check.cc.s
 .PHONY : options/options_sanity_check.cc.s
 
 options/options_settable_test.obj: options/options_settable_test.cc.obj
@@ -6635,7 +7225,7 @@ options/options_settable_test.obj: options/options_settable_test.cc.obj
 
 # target to build an object file
 options/options_settable_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_settable_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_options_settable_test.dir\build.make CMakeFiles/rocksdb_options_settable_test.dir/options/options_settable_test.cc.obj
 .PHONY : options/options_settable_test.cc.obj
 
 options/options_settable_test.i: options/options_settable_test.cc.i
@@ -6644,7 +7234,7 @@ options/options_settable_test.i: options/options_settable_test.cc.i
 
 # target to preprocess a source file
 options/options_settable_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_settable_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_options_settable_test.dir\build.make CMakeFiles/rocksdb_options_settable_test.dir/options/options_settable_test.cc.i
 .PHONY : options/options_settable_test.cc.i
 
 options/options_settable_test.s: options/options_settable_test.cc.s
@@ -6653,7 +7243,7 @@ options/options_settable_test.s: options/options_settable_test.cc.s
 
 # target to generate assembly for a file
 options/options_settable_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_settable_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_options_settable_test.dir\build.make CMakeFiles/rocksdb_options_settable_test.dir/options/options_settable_test.cc.s
 .PHONY : options/options_settable_test.cc.s
 
 options/options_test.obj: options/options_test.cc.obj
@@ -6662,7 +7252,7 @@ options/options_test.obj: options/options_test.cc.obj
 
 # target to build an object file
 options/options_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_options_test.dir\build.make CMakeFiles/rocksdb_options_test.dir/options/options_test.cc.obj
 .PHONY : options/options_test.cc.obj
 
 options/options_test.i: options/options_test.cc.i
@@ -6671,7 +7261,7 @@ options/options_test.i: options/options_test.cc.i
 
 # target to preprocess a source file
 options/options_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_options_test.dir\build.make CMakeFiles/rocksdb_options_test.dir/options/options_test.cc.i
 .PHONY : options/options_test.cc.i
 
 options/options_test.s: options/options_test.cc.s
@@ -6680,35 +7270,8 @@ options/options_test.s: options/options_test.cc.s
 
 # target to generate assembly for a file
 options/options_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/options/options_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_options_test.dir\build.make CMakeFiles/rocksdb_options_test.dir/options/options_test.cc.s
 .PHONY : options/options_test.cc.s
-
-port/port_posix.obj: port/port_posix.cc.obj
-
-.PHONY : port/port_posix.obj
-
-# target to build an object file
-port/port_posix.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/port_posix.cc.obj
-.PHONY : port/port_posix.cc.obj
-
-port/port_posix.i: port/port_posix.cc.i
-
-.PHONY : port/port_posix.i
-
-# target to preprocess a source file
-port/port_posix.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/port_posix.cc.i
-.PHONY : port/port_posix.cc.i
-
-port/port_posix.s: port/port_posix.cc.s
-
-.PHONY : port/port_posix.s
-
-# target to generate assembly for a file
-port/port_posix.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/port_posix.cc.s
-.PHONY : port/port_posix.cc.s
 
 port/stack_trace.obj: port/stack_trace.cc.obj
 
@@ -6716,7 +7279,8 @@ port/stack_trace.obj: port/stack_trace.cc.obj
 
 # target to build an object file
 port/stack_trace.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/stack_trace.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/stack_trace.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/stack_trace.cc.obj
 .PHONY : port/stack_trace.cc.obj
 
 port/stack_trace.i: port/stack_trace.cc.i
@@ -6725,7 +7289,8 @@ port/stack_trace.i: port/stack_trace.cc.i
 
 # target to preprocess a source file
 port/stack_trace.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/stack_trace.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/stack_trace.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/stack_trace.cc.i
 .PHONY : port/stack_trace.cc.i
 
 port/stack_trace.s: port/stack_trace.cc.s
@@ -6734,7 +7299,8 @@ port/stack_trace.s: port/stack_trace.cc.s
 
 # target to generate assembly for a file
 port/stack_trace.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/stack_trace.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/stack_trace.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/stack_trace.cc.s
 .PHONY : port/stack_trace.cc.s
 
 port/win/env_default.obj: port/win/env_default.cc.obj
@@ -6743,7 +7309,8 @@ port/win/env_default.obj: port/win/env_default.cc.obj
 
 # target to build an object file
 port/win/env_default.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/env_default.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/env_default.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/env_default.cc.obj
 .PHONY : port/win/env_default.cc.obj
 
 port/win/env_default.i: port/win/env_default.cc.i
@@ -6752,7 +7319,8 @@ port/win/env_default.i: port/win/env_default.cc.i
 
 # target to preprocess a source file
 port/win/env_default.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/env_default.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/env_default.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/env_default.cc.i
 .PHONY : port/win/env_default.cc.i
 
 port/win/env_default.s: port/win/env_default.cc.s
@@ -6761,7 +7329,8 @@ port/win/env_default.s: port/win/env_default.cc.s
 
 # target to generate assembly for a file
 port/win/env_default.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/env_default.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/env_default.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/env_default.cc.s
 .PHONY : port/win/env_default.cc.s
 
 port/win/env_win.obj: port/win/env_win.cc.obj
@@ -6770,7 +7339,8 @@ port/win/env_win.obj: port/win/env_win.cc.obj
 
 # target to build an object file
 port/win/env_win.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/env_win.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/env_win.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/env_win.cc.obj
 .PHONY : port/win/env_win.cc.obj
 
 port/win/env_win.i: port/win/env_win.cc.i
@@ -6779,7 +7349,8 @@ port/win/env_win.i: port/win/env_win.cc.i
 
 # target to preprocess a source file
 port/win/env_win.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/env_win.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/env_win.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/env_win.cc.i
 .PHONY : port/win/env_win.cc.i
 
 port/win/env_win.s: port/win/env_win.cc.s
@@ -6788,7 +7359,8 @@ port/win/env_win.s: port/win/env_win.cc.s
 
 # target to generate assembly for a file
 port/win/env_win.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/env_win.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/env_win.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/env_win.cc.s
 .PHONY : port/win/env_win.cc.s
 
 port/win/io_win.obj: port/win/io_win.cc.obj
@@ -6797,7 +7369,8 @@ port/win/io_win.obj: port/win/io_win.cc.obj
 
 # target to build an object file
 port/win/io_win.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/io_win.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/io_win.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/io_win.cc.obj
 .PHONY : port/win/io_win.cc.obj
 
 port/win/io_win.i: port/win/io_win.cc.i
@@ -6806,7 +7379,8 @@ port/win/io_win.i: port/win/io_win.cc.i
 
 # target to preprocess a source file
 port/win/io_win.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/io_win.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/io_win.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/io_win.cc.i
 .PHONY : port/win/io_win.cc.i
 
 port/win/io_win.s: port/win/io_win.cc.s
@@ -6815,7 +7389,8 @@ port/win/io_win.s: port/win/io_win.cc.s
 
 # target to generate assembly for a file
 port/win/io_win.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/io_win.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/io_win.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/io_win.cc.s
 .PHONY : port/win/io_win.cc.s
 
 port/win/port_win.obj: port/win/port_win.cc.obj
@@ -6824,7 +7399,8 @@ port/win/port_win.obj: port/win/port_win.cc.obj
 
 # target to build an object file
 port/win/port_win.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/port_win.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/port_win.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/port_win.cc.obj
 .PHONY : port/win/port_win.cc.obj
 
 port/win/port_win.i: port/win/port_win.cc.i
@@ -6833,7 +7409,8 @@ port/win/port_win.i: port/win/port_win.cc.i
 
 # target to preprocess a source file
 port/win/port_win.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/port_win.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/port_win.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/port_win.cc.i
 .PHONY : port/win/port_win.cc.i
 
 port/win/port_win.s: port/win/port_win.cc.s
@@ -6842,35 +7419,9 @@ port/win/port_win.s: port/win/port_win.cc.s
 
 # target to generate assembly for a file
 port/win/port_win.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/port_win.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/port_win.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/port_win.cc.s
 .PHONY : port/win/port_win.cc.s
-
-port/win/win_jemalloc.obj: port/win/win_jemalloc.cc.obj
-
-.PHONY : port/win/win_jemalloc.obj
-
-# target to build an object file
-port/win/win_jemalloc.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_jemalloc.cc.obj
-.PHONY : port/win/win_jemalloc.cc.obj
-
-port/win/win_jemalloc.i: port/win/win_jemalloc.cc.i
-
-.PHONY : port/win/win_jemalloc.i
-
-# target to preprocess a source file
-port/win/win_jemalloc.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_jemalloc.cc.i
-.PHONY : port/win/win_jemalloc.cc.i
-
-port/win/win_jemalloc.s: port/win/win_jemalloc.cc.s
-
-.PHONY : port/win/win_jemalloc.s
-
-# target to generate assembly for a file
-port/win/win_jemalloc.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_jemalloc.cc.s
-.PHONY : port/win/win_jemalloc.cc.s
 
 port/win/win_logger.obj: port/win/win_logger.cc.obj
 
@@ -6878,7 +7429,8 @@ port/win/win_logger.obj: port/win/win_logger.cc.obj
 
 # target to build an object file
 port/win/win_logger.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_logger.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/win_logger.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/win_logger.cc.obj
 .PHONY : port/win/win_logger.cc.obj
 
 port/win/win_logger.i: port/win/win_logger.cc.i
@@ -6887,7 +7439,8 @@ port/win/win_logger.i: port/win/win_logger.cc.i
 
 # target to preprocess a source file
 port/win/win_logger.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_logger.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/win_logger.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/win_logger.cc.i
 .PHONY : port/win/win_logger.cc.i
 
 port/win/win_logger.s: port/win/win_logger.cc.s
@@ -6896,7 +7449,8 @@ port/win/win_logger.s: port/win/win_logger.cc.s
 
 # target to generate assembly for a file
 port/win/win_logger.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_logger.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/win_logger.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/win_logger.cc.s
 .PHONY : port/win/win_logger.cc.s
 
 port/win/win_thread.obj: port/win/win_thread.cc.obj
@@ -6905,7 +7459,8 @@ port/win/win_thread.obj: port/win/win_thread.cc.obj
 
 # target to build an object file
 port/win/win_thread.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_thread.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/win_thread.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/win_thread.cc.obj
 .PHONY : port/win/win_thread.cc.obj
 
 port/win/win_thread.i: port/win/win_thread.cc.i
@@ -6914,7 +7469,8 @@ port/win/win_thread.i: port/win/win_thread.cc.i
 
 # target to preprocess a source file
 port/win/win_thread.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_thread.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/win_thread.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/win_thread.cc.i
 .PHONY : port/win/win_thread.cc.i
 
 port/win/win_thread.s: port/win/win_thread.cc.s
@@ -6923,35 +7479,9 @@ port/win/win_thread.s: port/win/win_thread.cc.s
 
 # target to generate assembly for a file
 port/win/win_thread.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/win_thread.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/port/win/win_thread.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/port/win/win_thread.cc.s
 .PHONY : port/win/win_thread.cc.s
-
-port/win/xpress_win.obj: port/win/xpress_win.cc.obj
-
-.PHONY : port/win/xpress_win.obj
-
-# target to build an object file
-port/win/xpress_win.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/xpress_win.cc.obj
-.PHONY : port/win/xpress_win.cc.obj
-
-port/win/xpress_win.i: port/win/xpress_win.cc.i
-
-.PHONY : port/win/xpress_win.i
-
-# target to preprocess a source file
-port/win/xpress_win.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/xpress_win.cc.i
-.PHONY : port/win/xpress_win.cc.i
-
-port/win/xpress_win.s: port/win/xpress_win.cc.s
-
-.PHONY : port/win/xpress_win.s
-
-# target to generate assembly for a file
-port/win/xpress_win.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/port/win/xpress_win.cc.s
-.PHONY : port/win/xpress_win.cc.s
 
 table/adaptive_table_factory.obj: table/adaptive_table_factory.cc.obj
 
@@ -6959,7 +7489,8 @@ table/adaptive_table_factory.obj: table/adaptive_table_factory.cc.obj
 
 # target to build an object file
 table/adaptive_table_factory.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/adaptive_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/adaptive_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/adaptive_table_factory.cc.obj
 .PHONY : table/adaptive_table_factory.cc.obj
 
 table/adaptive_table_factory.i: table/adaptive_table_factory.cc.i
@@ -6968,7 +7499,8 @@ table/adaptive_table_factory.i: table/adaptive_table_factory.cc.i
 
 # target to preprocess a source file
 table/adaptive_table_factory.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/adaptive_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/adaptive_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/adaptive_table_factory.cc.i
 .PHONY : table/adaptive_table_factory.cc.i
 
 table/adaptive_table_factory.s: table/adaptive_table_factory.cc.s
@@ -6977,7 +7509,8 @@ table/adaptive_table_factory.s: table/adaptive_table_factory.cc.s
 
 # target to generate assembly for a file
 table/adaptive_table_factory.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/adaptive_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/adaptive_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/adaptive_table_factory.cc.s
 .PHONY : table/adaptive_table_factory.cc.s
 
 table/block.obj: table/block.cc.obj
@@ -6986,7 +7519,8 @@ table/block.obj: table/block.cc.obj
 
 # target to build an object file
 table/block.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block.cc.obj
 .PHONY : table/block.cc.obj
 
 table/block.i: table/block.cc.i
@@ -6995,7 +7529,8 @@ table/block.i: table/block.cc.i
 
 # target to preprocess a source file
 table/block.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block.cc.i
 .PHONY : table/block.cc.i
 
 table/block.s: table/block.cc.s
@@ -7004,7 +7539,8 @@ table/block.s: table/block.cc.s
 
 # target to generate assembly for a file
 table/block.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block.cc.s
 .PHONY : table/block.cc.s
 
 table/block_based_filter_block.obj: table/block_based_filter_block.cc.obj
@@ -7013,7 +7549,8 @@ table/block_based_filter_block.obj: table/block_based_filter_block.cc.obj
 
 # target to build an object file
 table/block_based_filter_block.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_filter_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_filter_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_filter_block.cc.obj
 .PHONY : table/block_based_filter_block.cc.obj
 
 table/block_based_filter_block.i: table/block_based_filter_block.cc.i
@@ -7022,7 +7559,8 @@ table/block_based_filter_block.i: table/block_based_filter_block.cc.i
 
 # target to preprocess a source file
 table/block_based_filter_block.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_filter_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_filter_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_filter_block.cc.i
 .PHONY : table/block_based_filter_block.cc.i
 
 table/block_based_filter_block.s: table/block_based_filter_block.cc.s
@@ -7031,7 +7569,8 @@ table/block_based_filter_block.s: table/block_based_filter_block.cc.s
 
 # target to generate assembly for a file
 table/block_based_filter_block.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_filter_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_filter_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_filter_block.cc.s
 .PHONY : table/block_based_filter_block.cc.s
 
 table/block_based_filter_block_test.obj: table/block_based_filter_block_test.cc.obj
@@ -7040,7 +7579,7 @@ table/block_based_filter_block_test.obj: table/block_based_filter_block_test.cc.
 
 # target to build an object file
 table/block_based_filter_block_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_filter_block_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_block_based_filter_block_test.dir\build.make CMakeFiles/rocksdb_block_based_filter_block_test.dir/table/block_based_filter_block_test.cc.obj
 .PHONY : table/block_based_filter_block_test.cc.obj
 
 table/block_based_filter_block_test.i: table/block_based_filter_block_test.cc.i
@@ -7049,7 +7588,7 @@ table/block_based_filter_block_test.i: table/block_based_filter_block_test.cc.i
 
 # target to preprocess a source file
 table/block_based_filter_block_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_filter_block_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_block_based_filter_block_test.dir\build.make CMakeFiles/rocksdb_block_based_filter_block_test.dir/table/block_based_filter_block_test.cc.i
 .PHONY : table/block_based_filter_block_test.cc.i
 
 table/block_based_filter_block_test.s: table/block_based_filter_block_test.cc.s
@@ -7058,7 +7597,7 @@ table/block_based_filter_block_test.s: table/block_based_filter_block_test.cc.s
 
 # target to generate assembly for a file
 table/block_based_filter_block_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_filter_block_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_block_based_filter_block_test.dir\build.make CMakeFiles/rocksdb_block_based_filter_block_test.dir/table/block_based_filter_block_test.cc.s
 .PHONY : table/block_based_filter_block_test.cc.s
 
 table/block_based_table_builder.obj: table/block_based_table_builder.cc.obj
@@ -7067,7 +7606,8 @@ table/block_based_table_builder.obj: table/block_based_table_builder.cc.obj
 
 # target to build an object file
 table/block_based_table_builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_builder.cc.obj
 .PHONY : table/block_based_table_builder.cc.obj
 
 table/block_based_table_builder.i: table/block_based_table_builder.cc.i
@@ -7076,7 +7616,8 @@ table/block_based_table_builder.i: table/block_based_table_builder.cc.i
 
 # target to preprocess a source file
 table/block_based_table_builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_builder.cc.i
 .PHONY : table/block_based_table_builder.cc.i
 
 table/block_based_table_builder.s: table/block_based_table_builder.cc.s
@@ -7085,7 +7626,8 @@ table/block_based_table_builder.s: table/block_based_table_builder.cc.s
 
 # target to generate assembly for a file
 table/block_based_table_builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_builder.cc.s
 .PHONY : table/block_based_table_builder.cc.s
 
 table/block_based_table_factory.obj: table/block_based_table_factory.cc.obj
@@ -7094,7 +7636,8 @@ table/block_based_table_factory.obj: table/block_based_table_factory.cc.obj
 
 # target to build an object file
 table/block_based_table_factory.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_factory.cc.obj
 .PHONY : table/block_based_table_factory.cc.obj
 
 table/block_based_table_factory.i: table/block_based_table_factory.cc.i
@@ -7103,7 +7646,8 @@ table/block_based_table_factory.i: table/block_based_table_factory.cc.i
 
 # target to preprocess a source file
 table/block_based_table_factory.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_factory.cc.i
 .PHONY : table/block_based_table_factory.cc.i
 
 table/block_based_table_factory.s: table/block_based_table_factory.cc.s
@@ -7112,7 +7656,8 @@ table/block_based_table_factory.s: table/block_based_table_factory.cc.s
 
 # target to generate assembly for a file
 table/block_based_table_factory.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_factory.cc.s
 .PHONY : table/block_based_table_factory.cc.s
 
 table/block_based_table_reader.obj: table/block_based_table_reader.cc.obj
@@ -7121,7 +7666,8 @@ table/block_based_table_reader.obj: table/block_based_table_reader.cc.obj
 
 # target to build an object file
 table/block_based_table_reader.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_reader.cc.obj
 .PHONY : table/block_based_table_reader.cc.obj
 
 table/block_based_table_reader.i: table/block_based_table_reader.cc.i
@@ -7130,7 +7676,8 @@ table/block_based_table_reader.i: table/block_based_table_reader.cc.i
 
 # target to preprocess a source file
 table/block_based_table_reader.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_reader.cc.i
 .PHONY : table/block_based_table_reader.cc.i
 
 table/block_based_table_reader.s: table/block_based_table_reader.cc.s
@@ -7139,7 +7686,8 @@ table/block_based_table_reader.s: table/block_based_table_reader.cc.s
 
 # target to generate assembly for a file
 table/block_based_table_reader.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_based_table_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_based_table_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_based_table_reader.cc.s
 .PHONY : table/block_based_table_reader.cc.s
 
 table/block_builder.obj: table/block_builder.cc.obj
@@ -7148,7 +7696,8 @@ table/block_builder.obj: table/block_builder.cc.obj
 
 # target to build an object file
 table/block_builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_builder.cc.obj
 .PHONY : table/block_builder.cc.obj
 
 table/block_builder.i: table/block_builder.cc.i
@@ -7157,7 +7706,8 @@ table/block_builder.i: table/block_builder.cc.i
 
 # target to preprocess a source file
 table/block_builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_builder.cc.i
 .PHONY : table/block_builder.cc.i
 
 table/block_builder.s: table/block_builder.cc.s
@@ -7166,7 +7716,8 @@ table/block_builder.s: table/block_builder.cc.s
 
 # target to generate assembly for a file
 table/block_builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_builder.cc.s
 .PHONY : table/block_builder.cc.s
 
 table/block_fetcher.obj: table/block_fetcher.cc.obj
@@ -7175,7 +7726,8 @@ table/block_fetcher.obj: table/block_fetcher.cc.obj
 
 # target to build an object file
 table/block_fetcher.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_fetcher.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_fetcher.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_fetcher.cc.obj
 .PHONY : table/block_fetcher.cc.obj
 
 table/block_fetcher.i: table/block_fetcher.cc.i
@@ -7184,7 +7736,8 @@ table/block_fetcher.i: table/block_fetcher.cc.i
 
 # target to preprocess a source file
 table/block_fetcher.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_fetcher.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_fetcher.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_fetcher.cc.i
 .PHONY : table/block_fetcher.cc.i
 
 table/block_fetcher.s: table/block_fetcher.cc.s
@@ -7193,7 +7746,8 @@ table/block_fetcher.s: table/block_fetcher.cc.s
 
 # target to generate assembly for a file
 table/block_fetcher.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_fetcher.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_fetcher.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_fetcher.cc.s
 .PHONY : table/block_fetcher.cc.s
 
 table/block_prefix_index.obj: table/block_prefix_index.cc.obj
@@ -7202,7 +7756,8 @@ table/block_prefix_index.obj: table/block_prefix_index.cc.obj
 
 # target to build an object file
 table/block_prefix_index.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_prefix_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_prefix_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_prefix_index.cc.obj
 .PHONY : table/block_prefix_index.cc.obj
 
 table/block_prefix_index.i: table/block_prefix_index.cc.i
@@ -7211,7 +7766,8 @@ table/block_prefix_index.i: table/block_prefix_index.cc.i
 
 # target to preprocess a source file
 table/block_prefix_index.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_prefix_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_prefix_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_prefix_index.cc.i
 .PHONY : table/block_prefix_index.cc.i
 
 table/block_prefix_index.s: table/block_prefix_index.cc.s
@@ -7220,7 +7776,8 @@ table/block_prefix_index.s: table/block_prefix_index.cc.s
 
 # target to generate assembly for a file
 table/block_prefix_index.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_prefix_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/block_prefix_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/block_prefix_index.cc.s
 .PHONY : table/block_prefix_index.cc.s
 
 table/block_test.obj: table/block_test.cc.obj
@@ -7229,7 +7786,7 @@ table/block_test.obj: table/block_test.cc.obj
 
 # target to build an object file
 table/block_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_block_test.dir\build.make CMakeFiles/rocksdb_block_test.dir/table/block_test.cc.obj
 .PHONY : table/block_test.cc.obj
 
 table/block_test.i: table/block_test.cc.i
@@ -7238,7 +7795,7 @@ table/block_test.i: table/block_test.cc.i
 
 # target to preprocess a source file
 table/block_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_block_test.dir\build.make CMakeFiles/rocksdb_block_test.dir/table/block_test.cc.i
 .PHONY : table/block_test.cc.i
 
 table/block_test.s: table/block_test.cc.s
@@ -7247,7 +7804,7 @@ table/block_test.s: table/block_test.cc.s
 
 # target to generate assembly for a file
 table/block_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/block_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_block_test.dir\build.make CMakeFiles/rocksdb_block_test.dir/table/block_test.cc.s
 .PHONY : table/block_test.cc.s
 
 table/bloom_block.obj: table/bloom_block.cc.obj
@@ -7256,7 +7813,8 @@ table/bloom_block.obj: table/bloom_block.cc.obj
 
 # target to build an object file
 table/bloom_block.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/bloom_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/bloom_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/bloom_block.cc.obj
 .PHONY : table/bloom_block.cc.obj
 
 table/bloom_block.i: table/bloom_block.cc.i
@@ -7265,7 +7823,8 @@ table/bloom_block.i: table/bloom_block.cc.i
 
 # target to preprocess a source file
 table/bloom_block.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/bloom_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/bloom_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/bloom_block.cc.i
 .PHONY : table/bloom_block.cc.i
 
 table/bloom_block.s: table/bloom_block.cc.s
@@ -7274,7 +7833,8 @@ table/bloom_block.s: table/bloom_block.cc.s
 
 # target to generate assembly for a file
 table/bloom_block.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/bloom_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/bloom_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/bloom_block.cc.s
 .PHONY : table/bloom_block.cc.s
 
 table/cleanable_test.obj: table/cleanable_test.cc.obj
@@ -7283,7 +7843,7 @@ table/cleanable_test.obj: table/cleanable_test.cc.obj
 
 # target to build an object file
 table/cleanable_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cleanable_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cleanable_test.dir\build.make CMakeFiles/rocksdb_cleanable_test.dir/table/cleanable_test.cc.obj
 .PHONY : table/cleanable_test.cc.obj
 
 table/cleanable_test.i: table/cleanable_test.cc.i
@@ -7292,7 +7852,7 @@ table/cleanable_test.i: table/cleanable_test.cc.i
 
 # target to preprocess a source file
 table/cleanable_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cleanable_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cleanable_test.dir\build.make CMakeFiles/rocksdb_cleanable_test.dir/table/cleanable_test.cc.i
 .PHONY : table/cleanable_test.cc.i
 
 table/cleanable_test.s: table/cleanable_test.cc.s
@@ -7301,7 +7861,7 @@ table/cleanable_test.s: table/cleanable_test.cc.s
 
 # target to generate assembly for a file
 table/cleanable_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cleanable_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cleanable_test.dir\build.make CMakeFiles/rocksdb_cleanable_test.dir/table/cleanable_test.cc.s
 .PHONY : table/cleanable_test.cc.s
 
 table/cuckoo_table_builder.obj: table/cuckoo_table_builder.cc.obj
@@ -7310,7 +7870,8 @@ table/cuckoo_table_builder.obj: table/cuckoo_table_builder.cc.obj
 
 # target to build an object file
 table/cuckoo_table_builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_builder.cc.obj
 .PHONY : table/cuckoo_table_builder.cc.obj
 
 table/cuckoo_table_builder.i: table/cuckoo_table_builder.cc.i
@@ -7319,7 +7880,8 @@ table/cuckoo_table_builder.i: table/cuckoo_table_builder.cc.i
 
 # target to preprocess a source file
 table/cuckoo_table_builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_builder.cc.i
 .PHONY : table/cuckoo_table_builder.cc.i
 
 table/cuckoo_table_builder.s: table/cuckoo_table_builder.cc.s
@@ -7328,7 +7890,8 @@ table/cuckoo_table_builder.s: table/cuckoo_table_builder.cc.s
 
 # target to generate assembly for a file
 table/cuckoo_table_builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_builder.cc.s
 .PHONY : table/cuckoo_table_builder.cc.s
 
 table/cuckoo_table_builder_test.obj: table/cuckoo_table_builder_test.cc.obj
@@ -7337,7 +7900,7 @@ table/cuckoo_table_builder_test.obj: table/cuckoo_table_builder_test.cc.obj
 
 # target to build an object file
 table/cuckoo_table_builder_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_builder_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_builder_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_builder_test.dir/table/cuckoo_table_builder_test.cc.obj
 .PHONY : table/cuckoo_table_builder_test.cc.obj
 
 table/cuckoo_table_builder_test.i: table/cuckoo_table_builder_test.cc.i
@@ -7346,7 +7909,7 @@ table/cuckoo_table_builder_test.i: table/cuckoo_table_builder_test.cc.i
 
 # target to preprocess a source file
 table/cuckoo_table_builder_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_builder_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_builder_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_builder_test.dir/table/cuckoo_table_builder_test.cc.i
 .PHONY : table/cuckoo_table_builder_test.cc.i
 
 table/cuckoo_table_builder_test.s: table/cuckoo_table_builder_test.cc.s
@@ -7355,7 +7918,7 @@ table/cuckoo_table_builder_test.s: table/cuckoo_table_builder_test.cc.s
 
 # target to generate assembly for a file
 table/cuckoo_table_builder_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_builder_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_builder_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_builder_test.dir/table/cuckoo_table_builder_test.cc.s
 .PHONY : table/cuckoo_table_builder_test.cc.s
 
 table/cuckoo_table_factory.obj: table/cuckoo_table_factory.cc.obj
@@ -7364,7 +7927,8 @@ table/cuckoo_table_factory.obj: table/cuckoo_table_factory.cc.obj
 
 # target to build an object file
 table/cuckoo_table_factory.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_factory.cc.obj
 .PHONY : table/cuckoo_table_factory.cc.obj
 
 table/cuckoo_table_factory.i: table/cuckoo_table_factory.cc.i
@@ -7373,7 +7937,8 @@ table/cuckoo_table_factory.i: table/cuckoo_table_factory.cc.i
 
 # target to preprocess a source file
 table/cuckoo_table_factory.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_factory.cc.i
 .PHONY : table/cuckoo_table_factory.cc.i
 
 table/cuckoo_table_factory.s: table/cuckoo_table_factory.cc.s
@@ -7382,7 +7947,8 @@ table/cuckoo_table_factory.s: table/cuckoo_table_factory.cc.s
 
 # target to generate assembly for a file
 table/cuckoo_table_factory.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_factory.cc.s
 .PHONY : table/cuckoo_table_factory.cc.s
 
 table/cuckoo_table_reader.obj: table/cuckoo_table_reader.cc.obj
@@ -7391,7 +7957,8 @@ table/cuckoo_table_reader.obj: table/cuckoo_table_reader.cc.obj
 
 # target to build an object file
 table/cuckoo_table_reader.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_reader.cc.obj
 .PHONY : table/cuckoo_table_reader.cc.obj
 
 table/cuckoo_table_reader.i: table/cuckoo_table_reader.cc.i
@@ -7400,7 +7967,8 @@ table/cuckoo_table_reader.i: table/cuckoo_table_reader.cc.i
 
 # target to preprocess a source file
 table/cuckoo_table_reader.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_reader.cc.i
 .PHONY : table/cuckoo_table_reader.cc.i
 
 table/cuckoo_table_reader.s: table/cuckoo_table_reader.cc.s
@@ -7409,7 +7977,8 @@ table/cuckoo_table_reader.s: table/cuckoo_table_reader.cc.s
 
 # target to generate assembly for a file
 table/cuckoo_table_reader.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/cuckoo_table_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/cuckoo_table_reader.cc.s
 .PHONY : table/cuckoo_table_reader.cc.s
 
 table/cuckoo_table_reader_test.obj: table/cuckoo_table_reader_test.cc.obj
@@ -7418,7 +7987,7 @@ table/cuckoo_table_reader_test.obj: table/cuckoo_table_reader_test.cc.obj
 
 # target to build an object file
 table/cuckoo_table_reader_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_reader_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_reader_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_reader_test.dir/table/cuckoo_table_reader_test.cc.obj
 .PHONY : table/cuckoo_table_reader_test.cc.obj
 
 table/cuckoo_table_reader_test.i: table/cuckoo_table_reader_test.cc.i
@@ -7427,7 +7996,7 @@ table/cuckoo_table_reader_test.i: table/cuckoo_table_reader_test.cc.i
 
 # target to preprocess a source file
 table/cuckoo_table_reader_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_reader_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_reader_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_reader_test.dir/table/cuckoo_table_reader_test.cc.i
 .PHONY : table/cuckoo_table_reader_test.cc.i
 
 table/cuckoo_table_reader_test.s: table/cuckoo_table_reader_test.cc.s
@@ -7436,7 +8005,7 @@ table/cuckoo_table_reader_test.s: table/cuckoo_table_reader_test.cc.s
 
 # target to generate assembly for a file
 table/cuckoo_table_reader_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/cuckoo_table_reader_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cuckoo_table_reader_test.dir\build.make CMakeFiles/rocksdb_cuckoo_table_reader_test.dir/table/cuckoo_table_reader_test.cc.s
 .PHONY : table/cuckoo_table_reader_test.cc.s
 
 table/data_block_footer.obj: table/data_block_footer.cc.obj
@@ -7445,7 +8014,8 @@ table/data_block_footer.obj: table/data_block_footer.cc.obj
 
 # target to build an object file
 table/data_block_footer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_footer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/data_block_footer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/data_block_footer.cc.obj
 .PHONY : table/data_block_footer.cc.obj
 
 table/data_block_footer.i: table/data_block_footer.cc.i
@@ -7454,7 +8024,8 @@ table/data_block_footer.i: table/data_block_footer.cc.i
 
 # target to preprocess a source file
 table/data_block_footer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_footer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/data_block_footer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/data_block_footer.cc.i
 .PHONY : table/data_block_footer.cc.i
 
 table/data_block_footer.s: table/data_block_footer.cc.s
@@ -7463,7 +8034,8 @@ table/data_block_footer.s: table/data_block_footer.cc.s
 
 # target to generate assembly for a file
 table/data_block_footer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_footer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/data_block_footer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/data_block_footer.cc.s
 .PHONY : table/data_block_footer.cc.s
 
 table/data_block_hash_index.obj: table/data_block_hash_index.cc.obj
@@ -7472,7 +8044,8 @@ table/data_block_hash_index.obj: table/data_block_hash_index.cc.obj
 
 # target to build an object file
 table/data_block_hash_index.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_hash_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/data_block_hash_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/data_block_hash_index.cc.obj
 .PHONY : table/data_block_hash_index.cc.obj
 
 table/data_block_hash_index.i: table/data_block_hash_index.cc.i
@@ -7481,7 +8054,8 @@ table/data_block_hash_index.i: table/data_block_hash_index.cc.i
 
 # target to preprocess a source file
 table/data_block_hash_index.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_hash_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/data_block_hash_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/data_block_hash_index.cc.i
 .PHONY : table/data_block_hash_index.cc.i
 
 table/data_block_hash_index.s: table/data_block_hash_index.cc.s
@@ -7490,7 +8064,8 @@ table/data_block_hash_index.s: table/data_block_hash_index.cc.s
 
 # target to generate assembly for a file
 table/data_block_hash_index.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_hash_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/data_block_hash_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/data_block_hash_index.cc.s
 .PHONY : table/data_block_hash_index.cc.s
 
 table/data_block_hash_index_test.obj: table/data_block_hash_index_test.cc.obj
@@ -7499,7 +8074,7 @@ table/data_block_hash_index_test.obj: table/data_block_hash_index_test.cc.obj
 
 # target to build an object file
 table/data_block_hash_index_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_hash_index_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_data_block_hash_index_test.dir\build.make CMakeFiles/rocksdb_data_block_hash_index_test.dir/table/data_block_hash_index_test.cc.obj
 .PHONY : table/data_block_hash_index_test.cc.obj
 
 table/data_block_hash_index_test.i: table/data_block_hash_index_test.cc.i
@@ -7508,7 +8083,7 @@ table/data_block_hash_index_test.i: table/data_block_hash_index_test.cc.i
 
 # target to preprocess a source file
 table/data_block_hash_index_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_hash_index_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_data_block_hash_index_test.dir\build.make CMakeFiles/rocksdb_data_block_hash_index_test.dir/table/data_block_hash_index_test.cc.i
 .PHONY : table/data_block_hash_index_test.cc.i
 
 table/data_block_hash_index_test.s: table/data_block_hash_index_test.cc.s
@@ -7517,7 +8092,7 @@ table/data_block_hash_index_test.s: table/data_block_hash_index_test.cc.s
 
 # target to generate assembly for a file
 table/data_block_hash_index_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/data_block_hash_index_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_data_block_hash_index_test.dir\build.make CMakeFiles/rocksdb_data_block_hash_index_test.dir/table/data_block_hash_index_test.cc.s
 .PHONY : table/data_block_hash_index_test.cc.s
 
 table/flush_block_policy.obj: table/flush_block_policy.cc.obj
@@ -7526,7 +8101,8 @@ table/flush_block_policy.obj: table/flush_block_policy.cc.obj
 
 # target to build an object file
 table/flush_block_policy.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/flush_block_policy.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/flush_block_policy.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/flush_block_policy.cc.obj
 .PHONY : table/flush_block_policy.cc.obj
 
 table/flush_block_policy.i: table/flush_block_policy.cc.i
@@ -7535,7 +8111,8 @@ table/flush_block_policy.i: table/flush_block_policy.cc.i
 
 # target to preprocess a source file
 table/flush_block_policy.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/flush_block_policy.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/flush_block_policy.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/flush_block_policy.cc.i
 .PHONY : table/flush_block_policy.cc.i
 
 table/flush_block_policy.s: table/flush_block_policy.cc.s
@@ -7544,7 +8121,8 @@ table/flush_block_policy.s: table/flush_block_policy.cc.s
 
 # target to generate assembly for a file
 table/flush_block_policy.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/flush_block_policy.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/flush_block_policy.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/flush_block_policy.cc.s
 .PHONY : table/flush_block_policy.cc.s
 
 table/format.obj: table/format.cc.obj
@@ -7553,7 +8131,8 @@ table/format.obj: table/format.cc.obj
 
 # target to build an object file
 table/format.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/format.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/format.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/format.cc.obj
 .PHONY : table/format.cc.obj
 
 table/format.i: table/format.cc.i
@@ -7562,7 +8141,8 @@ table/format.i: table/format.cc.i
 
 # target to preprocess a source file
 table/format.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/format.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/format.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/format.cc.i
 .PHONY : table/format.cc.i
 
 table/format.s: table/format.cc.s
@@ -7571,7 +8151,8 @@ table/format.s: table/format.cc.s
 
 # target to generate assembly for a file
 table/format.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/format.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/format.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/format.cc.s
 .PHONY : table/format.cc.s
 
 table/full_filter_block.obj: table/full_filter_block.cc.obj
@@ -7580,7 +8161,8 @@ table/full_filter_block.obj: table/full_filter_block.cc.obj
 
 # target to build an object file
 table/full_filter_block.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/full_filter_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/full_filter_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/full_filter_block.cc.obj
 .PHONY : table/full_filter_block.cc.obj
 
 table/full_filter_block.i: table/full_filter_block.cc.i
@@ -7589,7 +8171,8 @@ table/full_filter_block.i: table/full_filter_block.cc.i
 
 # target to preprocess a source file
 table/full_filter_block.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/full_filter_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/full_filter_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/full_filter_block.cc.i
 .PHONY : table/full_filter_block.cc.i
 
 table/full_filter_block.s: table/full_filter_block.cc.s
@@ -7598,7 +8181,8 @@ table/full_filter_block.s: table/full_filter_block.cc.s
 
 # target to generate assembly for a file
 table/full_filter_block.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/full_filter_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/full_filter_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/full_filter_block.cc.s
 .PHONY : table/full_filter_block.cc.s
 
 table/full_filter_block_test.obj: table/full_filter_block_test.cc.obj
@@ -7607,7 +8191,7 @@ table/full_filter_block_test.obj: table/full_filter_block_test.cc.obj
 
 # target to build an object file
 table/full_filter_block_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/full_filter_block_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_full_filter_block_test.dir\build.make CMakeFiles/rocksdb_full_filter_block_test.dir/table/full_filter_block_test.cc.obj
 .PHONY : table/full_filter_block_test.cc.obj
 
 table/full_filter_block_test.i: table/full_filter_block_test.cc.i
@@ -7616,7 +8200,7 @@ table/full_filter_block_test.i: table/full_filter_block_test.cc.i
 
 # target to preprocess a source file
 table/full_filter_block_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/full_filter_block_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_full_filter_block_test.dir\build.make CMakeFiles/rocksdb_full_filter_block_test.dir/table/full_filter_block_test.cc.i
 .PHONY : table/full_filter_block_test.cc.i
 
 table/full_filter_block_test.s: table/full_filter_block_test.cc.s
@@ -7625,7 +8209,7 @@ table/full_filter_block_test.s: table/full_filter_block_test.cc.s
 
 # target to generate assembly for a file
 table/full_filter_block_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/full_filter_block_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_full_filter_block_test.dir\build.make CMakeFiles/rocksdb_full_filter_block_test.dir/table/full_filter_block_test.cc.s
 .PHONY : table/full_filter_block_test.cc.s
 
 table/get_context.obj: table/get_context.cc.obj
@@ -7634,7 +8218,8 @@ table/get_context.obj: table/get_context.cc.obj
 
 # target to build an object file
 table/get_context.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/get_context.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/get_context.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/get_context.cc.obj
 .PHONY : table/get_context.cc.obj
 
 table/get_context.i: table/get_context.cc.i
@@ -7643,7 +8228,8 @@ table/get_context.i: table/get_context.cc.i
 
 # target to preprocess a source file
 table/get_context.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/get_context.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/get_context.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/get_context.cc.i
 .PHONY : table/get_context.cc.i
 
 table/get_context.s: table/get_context.cc.s
@@ -7652,7 +8238,8 @@ table/get_context.s: table/get_context.cc.s
 
 # target to generate assembly for a file
 table/get_context.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/get_context.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/get_context.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/get_context.cc.s
 .PHONY : table/get_context.cc.s
 
 table/index_builder.obj: table/index_builder.cc.obj
@@ -7661,7 +8248,8 @@ table/index_builder.obj: table/index_builder.cc.obj
 
 # target to build an object file
 table/index_builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/index_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/index_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/index_builder.cc.obj
 .PHONY : table/index_builder.cc.obj
 
 table/index_builder.i: table/index_builder.cc.i
@@ -7670,7 +8258,8 @@ table/index_builder.i: table/index_builder.cc.i
 
 # target to preprocess a source file
 table/index_builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/index_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/index_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/index_builder.cc.i
 .PHONY : table/index_builder.cc.i
 
 table/index_builder.s: table/index_builder.cc.s
@@ -7679,7 +8268,8 @@ table/index_builder.s: table/index_builder.cc.s
 
 # target to generate assembly for a file
 table/index_builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/index_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/index_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/index_builder.cc.s
 .PHONY : table/index_builder.cc.s
 
 table/iterator.obj: table/iterator.cc.obj
@@ -7688,7 +8278,8 @@ table/iterator.obj: table/iterator.cc.obj
 
 # target to build an object file
 table/iterator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/iterator.cc.obj
 .PHONY : table/iterator.cc.obj
 
 table/iterator.i: table/iterator.cc.i
@@ -7697,7 +8288,8 @@ table/iterator.i: table/iterator.cc.i
 
 # target to preprocess a source file
 table/iterator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/iterator.cc.i
 .PHONY : table/iterator.cc.i
 
 table/iterator.s: table/iterator.cc.s
@@ -7706,7 +8298,8 @@ table/iterator.s: table/iterator.cc.s
 
 # target to generate assembly for a file
 table/iterator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/iterator.cc.s
 .PHONY : table/iterator.cc.s
 
 table/merger_test.obj: table/merger_test.cc.obj
@@ -7715,7 +8308,7 @@ table/merger_test.obj: table/merger_test.cc.obj
 
 # target to build an object file
 table/merger_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/merger_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_merger_test.dir\build.make CMakeFiles/rocksdb_merger_test.dir/table/merger_test.cc.obj
 .PHONY : table/merger_test.cc.obj
 
 table/merger_test.i: table/merger_test.cc.i
@@ -7724,7 +8317,7 @@ table/merger_test.i: table/merger_test.cc.i
 
 # target to preprocess a source file
 table/merger_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/merger_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_merger_test.dir\build.make CMakeFiles/rocksdb_merger_test.dir/table/merger_test.cc.i
 .PHONY : table/merger_test.cc.i
 
 table/merger_test.s: table/merger_test.cc.s
@@ -7733,7 +8326,7 @@ table/merger_test.s: table/merger_test.cc.s
 
 # target to generate assembly for a file
 table/merger_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/merger_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_merger_test.dir\build.make CMakeFiles/rocksdb_merger_test.dir/table/merger_test.cc.s
 .PHONY : table/merger_test.cc.s
 
 table/merging_iterator.obj: table/merging_iterator.cc.obj
@@ -7742,7 +8335,8 @@ table/merging_iterator.obj: table/merging_iterator.cc.obj
 
 # target to build an object file
 table/merging_iterator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/merging_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/merging_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/merging_iterator.cc.obj
 .PHONY : table/merging_iterator.cc.obj
 
 table/merging_iterator.i: table/merging_iterator.cc.i
@@ -7751,7 +8345,8 @@ table/merging_iterator.i: table/merging_iterator.cc.i
 
 # target to preprocess a source file
 table/merging_iterator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/merging_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/merging_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/merging_iterator.cc.i
 .PHONY : table/merging_iterator.cc.i
 
 table/merging_iterator.s: table/merging_iterator.cc.s
@@ -7760,7 +8355,8 @@ table/merging_iterator.s: table/merging_iterator.cc.s
 
 # target to generate assembly for a file
 table/merging_iterator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/merging_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/merging_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/merging_iterator.cc.s
 .PHONY : table/merging_iterator.cc.s
 
 table/meta_blocks.obj: table/meta_blocks.cc.obj
@@ -7769,7 +8365,8 @@ table/meta_blocks.obj: table/meta_blocks.cc.obj
 
 # target to build an object file
 table/meta_blocks.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/meta_blocks.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/meta_blocks.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/meta_blocks.cc.obj
 .PHONY : table/meta_blocks.cc.obj
 
 table/meta_blocks.i: table/meta_blocks.cc.i
@@ -7778,7 +8375,8 @@ table/meta_blocks.i: table/meta_blocks.cc.i
 
 # target to preprocess a source file
 table/meta_blocks.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/meta_blocks.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/meta_blocks.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/meta_blocks.cc.i
 .PHONY : table/meta_blocks.cc.i
 
 table/meta_blocks.s: table/meta_blocks.cc.s
@@ -7787,7 +8385,8 @@ table/meta_blocks.s: table/meta_blocks.cc.s
 
 # target to generate assembly for a file
 table/meta_blocks.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/meta_blocks.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/meta_blocks.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/meta_blocks.cc.s
 .PHONY : table/meta_blocks.cc.s
 
 table/mock_table.obj: table/mock_table.cc.obj
@@ -7796,7 +8395,7 @@ table/mock_table.obj: table/mock_table.cc.obj
 
 # target to build an object file
 table/mock_table.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/mock_table.cc.obj
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/table/mock_table.cc.obj
 .PHONY : table/mock_table.cc.obj
 
 table/mock_table.i: table/mock_table.cc.i
@@ -7805,7 +8404,7 @@ table/mock_table.i: table/mock_table.cc.i
 
 # target to preprocess a source file
 table/mock_table.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/mock_table.cc.i
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/table/mock_table.cc.i
 .PHONY : table/mock_table.cc.i
 
 table/mock_table.s: table/mock_table.cc.s
@@ -7814,7 +8413,7 @@ table/mock_table.s: table/mock_table.cc.s
 
 # target to generate assembly for a file
 table/mock_table.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/mock_table.cc.s
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/table/mock_table.cc.s
 .PHONY : table/mock_table.cc.s
 
 table/partitioned_filter_block.obj: table/partitioned_filter_block.cc.obj
@@ -7823,7 +8422,8 @@ table/partitioned_filter_block.obj: table/partitioned_filter_block.cc.obj
 
 # target to build an object file
 table/partitioned_filter_block.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/partitioned_filter_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/partitioned_filter_block.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/partitioned_filter_block.cc.obj
 .PHONY : table/partitioned_filter_block.cc.obj
 
 table/partitioned_filter_block.i: table/partitioned_filter_block.cc.i
@@ -7832,7 +8432,8 @@ table/partitioned_filter_block.i: table/partitioned_filter_block.cc.i
 
 # target to preprocess a source file
 table/partitioned_filter_block.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/partitioned_filter_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/partitioned_filter_block.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/partitioned_filter_block.cc.i
 .PHONY : table/partitioned_filter_block.cc.i
 
 table/partitioned_filter_block.s: table/partitioned_filter_block.cc.s
@@ -7841,35 +8442,9 @@ table/partitioned_filter_block.s: table/partitioned_filter_block.cc.s
 
 # target to generate assembly for a file
 table/partitioned_filter_block.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/partitioned_filter_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/partitioned_filter_block.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/partitioned_filter_block.cc.s
 .PHONY : table/partitioned_filter_block.cc.s
-
-table/partitioned_filter_block_test.obj: table/partitioned_filter_block_test.cc.obj
-
-.PHONY : table/partitioned_filter_block_test.obj
-
-# target to build an object file
-table/partitioned_filter_block_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/partitioned_filter_block_test.cc.obj
-.PHONY : table/partitioned_filter_block_test.cc.obj
-
-table/partitioned_filter_block_test.i: table/partitioned_filter_block_test.cc.i
-
-.PHONY : table/partitioned_filter_block_test.i
-
-# target to preprocess a source file
-table/partitioned_filter_block_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/partitioned_filter_block_test.cc.i
-.PHONY : table/partitioned_filter_block_test.cc.i
-
-table/partitioned_filter_block_test.s: table/partitioned_filter_block_test.cc.s
-
-.PHONY : table/partitioned_filter_block_test.s
-
-# target to generate assembly for a file
-table/partitioned_filter_block_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/partitioned_filter_block_test.cc.s
-.PHONY : table/partitioned_filter_block_test.cc.s
 
 table/persistent_cache_helper.obj: table/persistent_cache_helper.cc.obj
 
@@ -7877,7 +8452,8 @@ table/persistent_cache_helper.obj: table/persistent_cache_helper.cc.obj
 
 # target to build an object file
 table/persistent_cache_helper.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/persistent_cache_helper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/persistent_cache_helper.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/persistent_cache_helper.cc.obj
 .PHONY : table/persistent_cache_helper.cc.obj
 
 table/persistent_cache_helper.i: table/persistent_cache_helper.cc.i
@@ -7886,7 +8462,8 @@ table/persistent_cache_helper.i: table/persistent_cache_helper.cc.i
 
 # target to preprocess a source file
 table/persistent_cache_helper.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/persistent_cache_helper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/persistent_cache_helper.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/persistent_cache_helper.cc.i
 .PHONY : table/persistent_cache_helper.cc.i
 
 table/persistent_cache_helper.s: table/persistent_cache_helper.cc.s
@@ -7895,7 +8472,8 @@ table/persistent_cache_helper.s: table/persistent_cache_helper.cc.s
 
 # target to generate assembly for a file
 table/persistent_cache_helper.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/persistent_cache_helper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/persistent_cache_helper.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/persistent_cache_helper.cc.s
 .PHONY : table/persistent_cache_helper.cc.s
 
 table/plain_table_builder.obj: table/plain_table_builder.cc.obj
@@ -7904,7 +8482,8 @@ table/plain_table_builder.obj: table/plain_table_builder.cc.obj
 
 # target to build an object file
 table/plain_table_builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_builder.cc.obj
 .PHONY : table/plain_table_builder.cc.obj
 
 table/plain_table_builder.i: table/plain_table_builder.cc.i
@@ -7913,7 +8492,8 @@ table/plain_table_builder.i: table/plain_table_builder.cc.i
 
 # target to preprocess a source file
 table/plain_table_builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_builder.cc.i
 .PHONY : table/plain_table_builder.cc.i
 
 table/plain_table_builder.s: table/plain_table_builder.cc.s
@@ -7922,7 +8502,8 @@ table/plain_table_builder.s: table/plain_table_builder.cc.s
 
 # target to generate assembly for a file
 table/plain_table_builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_builder.cc.s
 .PHONY : table/plain_table_builder.cc.s
 
 table/plain_table_factory.obj: table/plain_table_factory.cc.obj
@@ -7931,7 +8512,8 @@ table/plain_table_factory.obj: table/plain_table_factory.cc.obj
 
 # target to build an object file
 table/plain_table_factory.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_factory.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_factory.cc.obj
 .PHONY : table/plain_table_factory.cc.obj
 
 table/plain_table_factory.i: table/plain_table_factory.cc.i
@@ -7940,7 +8522,8 @@ table/plain_table_factory.i: table/plain_table_factory.cc.i
 
 # target to preprocess a source file
 table/plain_table_factory.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_factory.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_factory.cc.i
 .PHONY : table/plain_table_factory.cc.i
 
 table/plain_table_factory.s: table/plain_table_factory.cc.s
@@ -7949,7 +8532,8 @@ table/plain_table_factory.s: table/plain_table_factory.cc.s
 
 # target to generate assembly for a file
 table/plain_table_factory.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_factory.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_factory.cc.s
 .PHONY : table/plain_table_factory.cc.s
 
 table/plain_table_index.obj: table/plain_table_index.cc.obj
@@ -7958,7 +8542,8 @@ table/plain_table_index.obj: table/plain_table_index.cc.obj
 
 # target to build an object file
 table/plain_table_index.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_index.cc.obj
 .PHONY : table/plain_table_index.cc.obj
 
 table/plain_table_index.i: table/plain_table_index.cc.i
@@ -7967,7 +8552,8 @@ table/plain_table_index.i: table/plain_table_index.cc.i
 
 # target to preprocess a source file
 table/plain_table_index.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_index.cc.i
 .PHONY : table/plain_table_index.cc.i
 
 table/plain_table_index.s: table/plain_table_index.cc.s
@@ -7976,7 +8562,8 @@ table/plain_table_index.s: table/plain_table_index.cc.s
 
 # target to generate assembly for a file
 table/plain_table_index.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_index.cc.s
 .PHONY : table/plain_table_index.cc.s
 
 table/plain_table_key_coding.obj: table/plain_table_key_coding.cc.obj
@@ -7985,7 +8572,8 @@ table/plain_table_key_coding.obj: table/plain_table_key_coding.cc.obj
 
 # target to build an object file
 table/plain_table_key_coding.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_key_coding.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_key_coding.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_key_coding.cc.obj
 .PHONY : table/plain_table_key_coding.cc.obj
 
 table/plain_table_key_coding.i: table/plain_table_key_coding.cc.i
@@ -7994,7 +8582,8 @@ table/plain_table_key_coding.i: table/plain_table_key_coding.cc.i
 
 # target to preprocess a source file
 table/plain_table_key_coding.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_key_coding.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_key_coding.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_key_coding.cc.i
 .PHONY : table/plain_table_key_coding.cc.i
 
 table/plain_table_key_coding.s: table/plain_table_key_coding.cc.s
@@ -8003,7 +8592,8 @@ table/plain_table_key_coding.s: table/plain_table_key_coding.cc.s
 
 # target to generate assembly for a file
 table/plain_table_key_coding.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_key_coding.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_key_coding.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_key_coding.cc.s
 .PHONY : table/plain_table_key_coding.cc.s
 
 table/plain_table_reader.obj: table/plain_table_reader.cc.obj
@@ -8012,7 +8602,8 @@ table/plain_table_reader.obj: table/plain_table_reader.cc.obj
 
 # target to build an object file
 table/plain_table_reader.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_reader.cc.obj
 .PHONY : table/plain_table_reader.cc.obj
 
 table/plain_table_reader.i: table/plain_table_reader.cc.i
@@ -8021,7 +8612,8 @@ table/plain_table_reader.i: table/plain_table_reader.cc.i
 
 # target to preprocess a source file
 table/plain_table_reader.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_reader.cc.i
 .PHONY : table/plain_table_reader.cc.i
 
 table/plain_table_reader.s: table/plain_table_reader.cc.s
@@ -8030,7 +8622,8 @@ table/plain_table_reader.s: table/plain_table_reader.cc.s
 
 # target to generate assembly for a file
 table/plain_table_reader.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/plain_table_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/plain_table_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/plain_table_reader.cc.s
 .PHONY : table/plain_table_reader.cc.s
 
 table/sst_file_writer.obj: table/sst_file_writer.cc.obj
@@ -8039,7 +8632,8 @@ table/sst_file_writer.obj: table/sst_file_writer.cc.obj
 
 # target to build an object file
 table/sst_file_writer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/sst_file_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/sst_file_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/sst_file_writer.cc.obj
 .PHONY : table/sst_file_writer.cc.obj
 
 table/sst_file_writer.i: table/sst_file_writer.cc.i
@@ -8048,7 +8642,8 @@ table/sst_file_writer.i: table/sst_file_writer.cc.i
 
 # target to preprocess a source file
 table/sst_file_writer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/sst_file_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/sst_file_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/sst_file_writer.cc.i
 .PHONY : table/sst_file_writer.cc.i
 
 table/sst_file_writer.s: table/sst_file_writer.cc.s
@@ -8057,7 +8652,8 @@ table/sst_file_writer.s: table/sst_file_writer.cc.s
 
 # target to generate assembly for a file
 table/sst_file_writer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/sst_file_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/sst_file_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/sst_file_writer.cc.s
 .PHONY : table/sst_file_writer.cc.s
 
 table/table_properties.obj: table/table_properties.cc.obj
@@ -8066,7 +8662,8 @@ table/table_properties.obj: table/table_properties.cc.obj
 
 # target to build an object file
 table/table_properties.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_properties.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/table_properties.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/table_properties.cc.obj
 .PHONY : table/table_properties.cc.obj
 
 table/table_properties.i: table/table_properties.cc.i
@@ -8075,7 +8672,8 @@ table/table_properties.i: table/table_properties.cc.i
 
 # target to preprocess a source file
 table/table_properties.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_properties.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/table_properties.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/table_properties.cc.i
 .PHONY : table/table_properties.cc.i
 
 table/table_properties.s: table/table_properties.cc.s
@@ -8084,7 +8682,8 @@ table/table_properties.s: table/table_properties.cc.s
 
 # target to generate assembly for a file
 table/table_properties.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_properties.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/table_properties.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/table_properties.cc.s
 .PHONY : table/table_properties.cc.s
 
 table/table_reader_bench.obj: table/table_reader_bench.cc.obj
@@ -8093,7 +8692,7 @@ table/table_reader_bench.obj: table/table_reader_bench.cc.obj
 
 # target to build an object file
 table/table_reader_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_reader_bench.cc.obj
+	$(MAKE) -f CMakeFiles\table_reader_bench.dir\build.make CMakeFiles/table_reader_bench.dir/table/table_reader_bench.cc.obj
 .PHONY : table/table_reader_bench.cc.obj
 
 table/table_reader_bench.i: table/table_reader_bench.cc.i
@@ -8102,7 +8701,7 @@ table/table_reader_bench.i: table/table_reader_bench.cc.i
 
 # target to preprocess a source file
 table/table_reader_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_reader_bench.cc.i
+	$(MAKE) -f CMakeFiles\table_reader_bench.dir\build.make CMakeFiles/table_reader_bench.dir/table/table_reader_bench.cc.i
 .PHONY : table/table_reader_bench.cc.i
 
 table/table_reader_bench.s: table/table_reader_bench.cc.s
@@ -8111,7 +8710,7 @@ table/table_reader_bench.s: table/table_reader_bench.cc.s
 
 # target to generate assembly for a file
 table/table_reader_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_reader_bench.cc.s
+	$(MAKE) -f CMakeFiles\table_reader_bench.dir\build.make CMakeFiles/table_reader_bench.dir/table/table_reader_bench.cc.s
 .PHONY : table/table_reader_bench.cc.s
 
 table/table_test.obj: table/table_test.cc.obj
@@ -8120,7 +8719,7 @@ table/table_test.obj: table/table_test.cc.obj
 
 # target to build an object file
 table/table_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_table_test.dir\build.make CMakeFiles/rocksdb_table_test.dir/table/table_test.cc.obj
 .PHONY : table/table_test.cc.obj
 
 table/table_test.i: table/table_test.cc.i
@@ -8129,7 +8728,7 @@ table/table_test.i: table/table_test.cc.i
 
 # target to preprocess a source file
 table/table_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_table_test.dir\build.make CMakeFiles/rocksdb_table_test.dir/table/table_test.cc.i
 .PHONY : table/table_test.cc.i
 
 table/table_test.s: table/table_test.cc.s
@@ -8138,7 +8737,7 @@ table/table_test.s: table/table_test.cc.s
 
 # target to generate assembly for a file
 table/table_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/table_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_table_test.dir\build.make CMakeFiles/rocksdb_table_test.dir/table/table_test.cc.s
 .PHONY : table/table_test.cc.s
 
 table/two_level_iterator.obj: table/two_level_iterator.cc.obj
@@ -8147,7 +8746,8 @@ table/two_level_iterator.obj: table/two_level_iterator.cc.obj
 
 # target to build an object file
 table/two_level_iterator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/two_level_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/two_level_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/two_level_iterator.cc.obj
 .PHONY : table/two_level_iterator.cc.obj
 
 table/two_level_iterator.i: table/two_level_iterator.cc.i
@@ -8156,7 +8756,8 @@ table/two_level_iterator.i: table/two_level_iterator.cc.i
 
 # target to preprocess a source file
 table/two_level_iterator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/two_level_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/two_level_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/two_level_iterator.cc.i
 .PHONY : table/two_level_iterator.cc.i
 
 table/two_level_iterator.s: table/two_level_iterator.cc.s
@@ -8165,62 +8766,9 @@ table/two_level_iterator.s: table/two_level_iterator.cc.s
 
 # target to generate assembly for a file
 table/two_level_iterator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/table/two_level_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/table/two_level_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/table/two_level_iterator.cc.s
 .PHONY : table/two_level_iterator.cc.s
-
-third-party/gtest-1.7.0/fused-src/gtest/gtest-all.obj: third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.obj
-
-.PHONY : third-party/gtest-1.7.0/fused-src/gtest/gtest-all.obj
-
-# target to build an object file
-third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.obj
-.PHONY : third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.obj
-
-third-party/gtest-1.7.0/fused-src/gtest/gtest-all.i: third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.i
-
-.PHONY : third-party/gtest-1.7.0/fused-src/gtest/gtest-all.i
-
-# target to preprocess a source file
-third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.i
-.PHONY : third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.i
-
-third-party/gtest-1.7.0/fused-src/gtest/gtest-all.s: third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.s
-
-.PHONY : third-party/gtest-1.7.0/fused-src/gtest/gtest-all.s
-
-# target to generate assembly for a file
-third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.s
-.PHONY : third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc.s
-
-tools/blob_dump.obj: tools/blob_dump.cc.obj
-
-.PHONY : tools/blob_dump.obj
-
-# target to build an object file
-tools/blob_dump.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/blob_dump.cc.obj
-.PHONY : tools/blob_dump.cc.obj
-
-tools/blob_dump.i: tools/blob_dump.cc.i
-
-.PHONY : tools/blob_dump.i
-
-# target to preprocess a source file
-tools/blob_dump.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/blob_dump.cc.i
-.PHONY : tools/blob_dump.cc.i
-
-tools/blob_dump.s: tools/blob_dump.cc.s
-
-.PHONY : tools/blob_dump.s
-
-# target to generate assembly for a file
-tools/blob_dump.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/blob_dump.cc.s
-.PHONY : tools/blob_dump.cc.s
 
 tools/db_bench.obj: tools/db_bench.cc.obj
 
@@ -8228,7 +8776,7 @@ tools/db_bench.obj: tools/db_bench.cc.obj
 
 # target to build an object file
 tools/db_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench.cc.obj
+	$(MAKE) -f CMakeFiles\db_bench.dir\build.make CMakeFiles/db_bench.dir/tools/db_bench.cc.obj
 .PHONY : tools/db_bench.cc.obj
 
 tools/db_bench.i: tools/db_bench.cc.i
@@ -8237,7 +8785,7 @@ tools/db_bench.i: tools/db_bench.cc.i
 
 # target to preprocess a source file
 tools/db_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench.cc.i
+	$(MAKE) -f CMakeFiles\db_bench.dir\build.make CMakeFiles/db_bench.dir/tools/db_bench.cc.i
 .PHONY : tools/db_bench.cc.i
 
 tools/db_bench.s: tools/db_bench.cc.s
@@ -8246,7 +8794,7 @@ tools/db_bench.s: tools/db_bench.cc.s
 
 # target to generate assembly for a file
 tools/db_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench.cc.s
+	$(MAKE) -f CMakeFiles\db_bench.dir\build.make CMakeFiles/db_bench.dir/tools/db_bench.cc.s
 .PHONY : tools/db_bench.cc.s
 
 tools/db_bench_tool.obj: tools/db_bench_tool.cc.obj
@@ -8255,7 +8803,8 @@ tools/db_bench_tool.obj: tools/db_bench_tool.cc.obj
 
 # target to build an object file
 tools/db_bench_tool.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/db_bench_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/db_bench_tool.cc.obj
 .PHONY : tools/db_bench_tool.cc.obj
 
 tools/db_bench_tool.i: tools/db_bench_tool.cc.i
@@ -8264,7 +8813,8 @@ tools/db_bench_tool.i: tools/db_bench_tool.cc.i
 
 # target to preprocess a source file
 tools/db_bench_tool.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/db_bench_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/db_bench_tool.cc.i
 .PHONY : tools/db_bench_tool.cc.i
 
 tools/db_bench_tool.s: tools/db_bench_tool.cc.s
@@ -8273,116 +8823,9 @@ tools/db_bench_tool.s: tools/db_bench_tool.cc.s
 
 # target to generate assembly for a file
 tools/db_bench_tool.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/db_bench_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/db_bench_tool.cc.s
 .PHONY : tools/db_bench_tool.cc.s
-
-tools/db_bench_tool_test.obj: tools/db_bench_tool_test.cc.obj
-
-.PHONY : tools/db_bench_tool_test.obj
-
-# target to build an object file
-tools/db_bench_tool_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench_tool_test.cc.obj
-.PHONY : tools/db_bench_tool_test.cc.obj
-
-tools/db_bench_tool_test.i: tools/db_bench_tool_test.cc.i
-
-.PHONY : tools/db_bench_tool_test.i
-
-# target to preprocess a source file
-tools/db_bench_tool_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench_tool_test.cc.i
-.PHONY : tools/db_bench_tool_test.cc.i
-
-tools/db_bench_tool_test.s: tools/db_bench_tool_test.cc.s
-
-.PHONY : tools/db_bench_tool_test.s
-
-# target to generate assembly for a file
-tools/db_bench_tool_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_bench_tool_test.cc.s
-.PHONY : tools/db_bench_tool_test.cc.s
-
-tools/db_repl_stress.obj: tools/db_repl_stress.cc.obj
-
-.PHONY : tools/db_repl_stress.obj
-
-# target to build an object file
-tools/db_repl_stress.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_repl_stress.cc.obj
-.PHONY : tools/db_repl_stress.cc.obj
-
-tools/db_repl_stress.i: tools/db_repl_stress.cc.i
-
-.PHONY : tools/db_repl_stress.i
-
-# target to preprocess a source file
-tools/db_repl_stress.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_repl_stress.cc.i
-.PHONY : tools/db_repl_stress.cc.i
-
-tools/db_repl_stress.s: tools/db_repl_stress.cc.s
-
-.PHONY : tools/db_repl_stress.s
-
-# target to generate assembly for a file
-tools/db_repl_stress.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_repl_stress.cc.s
-.PHONY : tools/db_repl_stress.cc.s
-
-tools/db_sanity_test.obj: tools/db_sanity_test.cc.obj
-
-.PHONY : tools/db_sanity_test.obj
-
-# target to build an object file
-tools/db_sanity_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_sanity_test.cc.obj
-.PHONY : tools/db_sanity_test.cc.obj
-
-tools/db_sanity_test.i: tools/db_sanity_test.cc.i
-
-.PHONY : tools/db_sanity_test.i
-
-# target to preprocess a source file
-tools/db_sanity_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_sanity_test.cc.i
-.PHONY : tools/db_sanity_test.cc.i
-
-tools/db_sanity_test.s: tools/db_sanity_test.cc.s
-
-.PHONY : tools/db_sanity_test.s
-
-# target to generate assembly for a file
-tools/db_sanity_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_sanity_test.cc.s
-.PHONY : tools/db_sanity_test.cc.s
-
-tools/db_stress.obj: tools/db_stress.cc.obj
-
-.PHONY : tools/db_stress.obj
-
-# target to build an object file
-tools/db_stress.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_stress.cc.obj
-.PHONY : tools/db_stress.cc.obj
-
-tools/db_stress.i: tools/db_stress.cc.i
-
-.PHONY : tools/db_stress.i
-
-# target to preprocess a source file
-tools/db_stress.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_stress.cc.i
-.PHONY : tools/db_stress.cc.i
-
-tools/db_stress.s: tools/db_stress.cc.s
-
-.PHONY : tools/db_stress.s
-
-# target to generate assembly for a file
-tools/db_stress.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/db_stress.cc.s
-.PHONY : tools/db_stress.cc.s
 
 tools/dump/db_dump_tool.obj: tools/dump/db_dump_tool.cc.obj
 
@@ -8390,7 +8833,8 @@ tools/dump/db_dump_tool.obj: tools/dump/db_dump_tool.cc.obj
 
 # target to build an object file
 tools/dump/db_dump_tool.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/db_dump_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/dump/db_dump_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/dump/db_dump_tool.cc.obj
 .PHONY : tools/dump/db_dump_tool.cc.obj
 
 tools/dump/db_dump_tool.i: tools/dump/db_dump_tool.cc.i
@@ -8399,7 +8843,8 @@ tools/dump/db_dump_tool.i: tools/dump/db_dump_tool.cc.i
 
 # target to preprocess a source file
 tools/dump/db_dump_tool.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/db_dump_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/dump/db_dump_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/dump/db_dump_tool.cc.i
 .PHONY : tools/dump/db_dump_tool.cc.i
 
 tools/dump/db_dump_tool.s: tools/dump/db_dump_tool.cc.s
@@ -8408,89 +8853,9 @@ tools/dump/db_dump_tool.s: tools/dump/db_dump_tool.cc.s
 
 # target to generate assembly for a file
 tools/dump/db_dump_tool.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/db_dump_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/dump/db_dump_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/dump/db_dump_tool.cc.s
 .PHONY : tools/dump/db_dump_tool.cc.s
-
-tools/dump/rocksdb_dump.obj: tools/dump/rocksdb_dump.cc.obj
-
-.PHONY : tools/dump/rocksdb_dump.obj
-
-# target to build an object file
-tools/dump/rocksdb_dump.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/rocksdb_dump.cc.obj
-.PHONY : tools/dump/rocksdb_dump.cc.obj
-
-tools/dump/rocksdb_dump.i: tools/dump/rocksdb_dump.cc.i
-
-.PHONY : tools/dump/rocksdb_dump.i
-
-# target to preprocess a source file
-tools/dump/rocksdb_dump.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/rocksdb_dump.cc.i
-.PHONY : tools/dump/rocksdb_dump.cc.i
-
-tools/dump/rocksdb_dump.s: tools/dump/rocksdb_dump.cc.s
-
-.PHONY : tools/dump/rocksdb_dump.s
-
-# target to generate assembly for a file
-tools/dump/rocksdb_dump.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/rocksdb_dump.cc.s
-.PHONY : tools/dump/rocksdb_dump.cc.s
-
-tools/dump/rocksdb_undump.obj: tools/dump/rocksdb_undump.cc.obj
-
-.PHONY : tools/dump/rocksdb_undump.obj
-
-# target to build an object file
-tools/dump/rocksdb_undump.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/rocksdb_undump.cc.obj
-.PHONY : tools/dump/rocksdb_undump.cc.obj
-
-tools/dump/rocksdb_undump.i: tools/dump/rocksdb_undump.cc.i
-
-.PHONY : tools/dump/rocksdb_undump.i
-
-# target to preprocess a source file
-tools/dump/rocksdb_undump.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/rocksdb_undump.cc.i
-.PHONY : tools/dump/rocksdb_undump.cc.i
-
-tools/dump/rocksdb_undump.s: tools/dump/rocksdb_undump.cc.s
-
-.PHONY : tools/dump/rocksdb_undump.s
-
-# target to generate assembly for a file
-tools/dump/rocksdb_undump.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/dump/rocksdb_undump.cc.s
-.PHONY : tools/dump/rocksdb_undump.cc.s
-
-tools/ldb.obj: tools/ldb.cc.obj
-
-.PHONY : tools/ldb.obj
-
-# target to build an object file
-tools/ldb.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb.cc.obj
-.PHONY : tools/ldb.cc.obj
-
-tools/ldb.i: tools/ldb.cc.i
-
-.PHONY : tools/ldb.i
-
-# target to preprocess a source file
-tools/ldb.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb.cc.i
-.PHONY : tools/ldb.cc.i
-
-tools/ldb.s: tools/ldb.cc.s
-
-.PHONY : tools/ldb.s
-
-# target to generate assembly for a file
-tools/ldb.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb.cc.s
-.PHONY : tools/ldb.cc.s
 
 tools/ldb_cmd.obj: tools/ldb_cmd.cc.obj
 
@@ -8498,7 +8863,8 @@ tools/ldb_cmd.obj: tools/ldb_cmd.cc.obj
 
 # target to build an object file
 tools/ldb_cmd.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_cmd.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/ldb_cmd.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/ldb_cmd.cc.obj
 .PHONY : tools/ldb_cmd.cc.obj
 
 tools/ldb_cmd.i: tools/ldb_cmd.cc.i
@@ -8507,7 +8873,8 @@ tools/ldb_cmd.i: tools/ldb_cmd.cc.i
 
 # target to preprocess a source file
 tools/ldb_cmd.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_cmd.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/ldb_cmd.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/ldb_cmd.cc.i
 .PHONY : tools/ldb_cmd.cc.i
 
 tools/ldb_cmd.s: tools/ldb_cmd.cc.s
@@ -8516,7 +8883,8 @@ tools/ldb_cmd.s: tools/ldb_cmd.cc.s
 
 # target to generate assembly for a file
 tools/ldb_cmd.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_cmd.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/ldb_cmd.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/ldb_cmd.cc.s
 .PHONY : tools/ldb_cmd.cc.s
 
 tools/ldb_cmd_test.obj: tools/ldb_cmd_test.cc.obj
@@ -8525,7 +8893,7 @@ tools/ldb_cmd_test.obj: tools/ldb_cmd_test.cc.obj
 
 # target to build an object file
 tools/ldb_cmd_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_cmd_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_ldb_cmd_test.dir\build.make CMakeFiles/rocksdb_ldb_cmd_test.dir/tools/ldb_cmd_test.cc.obj
 .PHONY : tools/ldb_cmd_test.cc.obj
 
 tools/ldb_cmd_test.i: tools/ldb_cmd_test.cc.i
@@ -8534,7 +8902,7 @@ tools/ldb_cmd_test.i: tools/ldb_cmd_test.cc.i
 
 # target to preprocess a source file
 tools/ldb_cmd_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_cmd_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_ldb_cmd_test.dir\build.make CMakeFiles/rocksdb_ldb_cmd_test.dir/tools/ldb_cmd_test.cc.i
 .PHONY : tools/ldb_cmd_test.cc.i
 
 tools/ldb_cmd_test.s: tools/ldb_cmd_test.cc.s
@@ -8543,7 +8911,7 @@ tools/ldb_cmd_test.s: tools/ldb_cmd_test.cc.s
 
 # target to generate assembly for a file
 tools/ldb_cmd_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_cmd_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_ldb_cmd_test.dir\build.make CMakeFiles/rocksdb_ldb_cmd_test.dir/tools/ldb_cmd_test.cc.s
 .PHONY : tools/ldb_cmd_test.cc.s
 
 tools/ldb_tool.obj: tools/ldb_tool.cc.obj
@@ -8552,7 +8920,8 @@ tools/ldb_tool.obj: tools/ldb_tool.cc.obj
 
 # target to build an object file
 tools/ldb_tool.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/ldb_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/ldb_tool.cc.obj
 .PHONY : tools/ldb_tool.cc.obj
 
 tools/ldb_tool.i: tools/ldb_tool.cc.i
@@ -8561,7 +8930,8 @@ tools/ldb_tool.i: tools/ldb_tool.cc.i
 
 # target to preprocess a source file
 tools/ldb_tool.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/ldb_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/ldb_tool.cc.i
 .PHONY : tools/ldb_tool.cc.i
 
 tools/ldb_tool.s: tools/ldb_tool.cc.s
@@ -8570,62 +8940,9 @@ tools/ldb_tool.s: tools/ldb_tool.cc.s
 
 # target to generate assembly for a file
 tools/ldb_tool.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/ldb_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/ldb_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/ldb_tool.cc.s
 .PHONY : tools/ldb_tool.cc.s
-
-tools/rdb/db_wrapper.obj: tools/rdb/db_wrapper.cc.obj
-
-.PHONY : tools/rdb/db_wrapper.obj
-
-# target to build an object file
-tools/rdb/db_wrapper.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/rdb/db_wrapper.cc.obj
-.PHONY : tools/rdb/db_wrapper.cc.obj
-
-tools/rdb/db_wrapper.i: tools/rdb/db_wrapper.cc.i
-
-.PHONY : tools/rdb/db_wrapper.i
-
-# target to preprocess a source file
-tools/rdb/db_wrapper.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/rdb/db_wrapper.cc.i
-.PHONY : tools/rdb/db_wrapper.cc.i
-
-tools/rdb/db_wrapper.s: tools/rdb/db_wrapper.cc.s
-
-.PHONY : tools/rdb/db_wrapper.s
-
-# target to generate assembly for a file
-tools/rdb/db_wrapper.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/rdb/db_wrapper.cc.s
-.PHONY : tools/rdb/db_wrapper.cc.s
-
-tools/rdb/rdb.obj: tools/rdb/rdb.cc.obj
-
-.PHONY : tools/rdb/rdb.obj
-
-# target to build an object file
-tools/rdb/rdb.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/rdb/rdb.cc.obj
-.PHONY : tools/rdb/rdb.cc.obj
-
-tools/rdb/rdb.i: tools/rdb/rdb.cc.i
-
-.PHONY : tools/rdb/rdb.i
-
-# target to preprocess a source file
-tools/rdb/rdb.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/rdb/rdb.cc.i
-.PHONY : tools/rdb/rdb.cc.i
-
-tools/rdb/rdb.s: tools/rdb/rdb.cc.s
-
-.PHONY : tools/rdb/rdb.s
-
-# target to generate assembly for a file
-tools/rdb/rdb.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/rdb/rdb.cc.s
-.PHONY : tools/rdb/rdb.cc.s
 
 tools/reduce_levels_test.obj: tools/reduce_levels_test.cc.obj
 
@@ -8633,7 +8950,7 @@ tools/reduce_levels_test.obj: tools/reduce_levels_test.cc.obj
 
 # target to build an object file
 tools/reduce_levels_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/reduce_levels_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_reduce_levels_test.dir\build.make CMakeFiles/rocksdb_reduce_levels_test.dir/tools/reduce_levels_test.cc.obj
 .PHONY : tools/reduce_levels_test.cc.obj
 
 tools/reduce_levels_test.i: tools/reduce_levels_test.cc.i
@@ -8642,7 +8959,7 @@ tools/reduce_levels_test.i: tools/reduce_levels_test.cc.i
 
 # target to preprocess a source file
 tools/reduce_levels_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/reduce_levels_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_reduce_levels_test.dir\build.make CMakeFiles/rocksdb_reduce_levels_test.dir/tools/reduce_levels_test.cc.i
 .PHONY : tools/reduce_levels_test.cc.i
 
 tools/reduce_levels_test.s: tools/reduce_levels_test.cc.s
@@ -8651,35 +8968,8 @@ tools/reduce_levels_test.s: tools/reduce_levels_test.cc.s
 
 # target to generate assembly for a file
 tools/reduce_levels_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/reduce_levels_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_reduce_levels_test.dir\build.make CMakeFiles/rocksdb_reduce_levels_test.dir/tools/reduce_levels_test.cc.s
 .PHONY : tools/reduce_levels_test.cc.s
-
-tools/sst_dump.obj: tools/sst_dump.cc.obj
-
-.PHONY : tools/sst_dump.obj
-
-# target to build an object file
-tools/sst_dump.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump.cc.obj
-.PHONY : tools/sst_dump.cc.obj
-
-tools/sst_dump.i: tools/sst_dump.cc.i
-
-.PHONY : tools/sst_dump.i
-
-# target to preprocess a source file
-tools/sst_dump.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump.cc.i
-.PHONY : tools/sst_dump.cc.i
-
-tools/sst_dump.s: tools/sst_dump.cc.s
-
-.PHONY : tools/sst_dump.s
-
-# target to generate assembly for a file
-tools/sst_dump.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump.cc.s
-.PHONY : tools/sst_dump.cc.s
 
 tools/sst_dump_test.obj: tools/sst_dump_test.cc.obj
 
@@ -8687,7 +8977,7 @@ tools/sst_dump_test.obj: tools/sst_dump_test.cc.obj
 
 # target to build an object file
 tools/sst_dump_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_sst_dump_test.dir\build.make CMakeFiles/rocksdb_sst_dump_test.dir/tools/sst_dump_test.cc.obj
 .PHONY : tools/sst_dump_test.cc.obj
 
 tools/sst_dump_test.i: tools/sst_dump_test.cc.i
@@ -8696,7 +8986,7 @@ tools/sst_dump_test.i: tools/sst_dump_test.cc.i
 
 # target to preprocess a source file
 tools/sst_dump_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_sst_dump_test.dir\build.make CMakeFiles/rocksdb_sst_dump_test.dir/tools/sst_dump_test.cc.i
 .PHONY : tools/sst_dump_test.cc.i
 
 tools/sst_dump_test.s: tools/sst_dump_test.cc.s
@@ -8705,7 +8995,7 @@ tools/sst_dump_test.s: tools/sst_dump_test.cc.s
 
 # target to generate assembly for a file
 tools/sst_dump_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_sst_dump_test.dir\build.make CMakeFiles/rocksdb_sst_dump_test.dir/tools/sst_dump_test.cc.s
 .PHONY : tools/sst_dump_test.cc.s
 
 tools/sst_dump_tool.obj: tools/sst_dump_tool.cc.obj
@@ -8714,7 +9004,8 @@ tools/sst_dump_tool.obj: tools/sst_dump_tool.cc.obj
 
 # target to build an object file
 tools/sst_dump_tool.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/sst_dump_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/sst_dump_tool.cc.obj
 .PHONY : tools/sst_dump_tool.cc.obj
 
 tools/sst_dump_tool.i: tools/sst_dump_tool.cc.i
@@ -8723,7 +9014,8 @@ tools/sst_dump_tool.i: tools/sst_dump_tool.cc.i
 
 # target to preprocess a source file
 tools/sst_dump_tool.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/sst_dump_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/sst_dump_tool.cc.i
 .PHONY : tools/sst_dump_tool.cc.i
 
 tools/sst_dump_tool.s: tools/sst_dump_tool.cc.s
@@ -8732,35 +9024,9 @@ tools/sst_dump_tool.s: tools/sst_dump_tool.cc.s
 
 # target to generate assembly for a file
 tools/sst_dump_tool.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/sst_dump_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/sst_dump_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/sst_dump_tool.cc.s
 .PHONY : tools/sst_dump_tool.cc.s
-
-tools/trace_analyzer.obj: tools/trace_analyzer.cc.obj
-
-.PHONY : tools/trace_analyzer.obj
-
-# target to build an object file
-tools/trace_analyzer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer.cc.obj
-.PHONY : tools/trace_analyzer.cc.obj
-
-tools/trace_analyzer.i: tools/trace_analyzer.cc.i
-
-.PHONY : tools/trace_analyzer.i
-
-# target to preprocess a source file
-tools/trace_analyzer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer.cc.i
-.PHONY : tools/trace_analyzer.cc.i
-
-tools/trace_analyzer.s: tools/trace_analyzer.cc.s
-
-.PHONY : tools/trace_analyzer.s
-
-# target to generate assembly for a file
-tools/trace_analyzer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer.cc.s
-.PHONY : tools/trace_analyzer.cc.s
 
 tools/trace_analyzer_test.obj: tools/trace_analyzer_test.cc.obj
 
@@ -8768,7 +9034,7 @@ tools/trace_analyzer_test.obj: tools/trace_analyzer_test.cc.obj
 
 # target to build an object file
 tools/trace_analyzer_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_trace_analyzer_test.dir\build.make CMakeFiles/rocksdb_trace_analyzer_test.dir/tools/trace_analyzer_test.cc.obj
 .PHONY : tools/trace_analyzer_test.cc.obj
 
 tools/trace_analyzer_test.i: tools/trace_analyzer_test.cc.i
@@ -8777,7 +9043,7 @@ tools/trace_analyzer_test.i: tools/trace_analyzer_test.cc.i
 
 # target to preprocess a source file
 tools/trace_analyzer_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_trace_analyzer_test.dir\build.make CMakeFiles/rocksdb_trace_analyzer_test.dir/tools/trace_analyzer_test.cc.i
 .PHONY : tools/trace_analyzer_test.cc.i
 
 tools/trace_analyzer_test.s: tools/trace_analyzer_test.cc.s
@@ -8786,7 +9052,7 @@ tools/trace_analyzer_test.s: tools/trace_analyzer_test.cc.s
 
 # target to generate assembly for a file
 tools/trace_analyzer_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_trace_analyzer_test.dir\build.make CMakeFiles/rocksdb_trace_analyzer_test.dir/tools/trace_analyzer_test.cc.s
 .PHONY : tools/trace_analyzer_test.cc.s
 
 tools/trace_analyzer_tool.obj: tools/trace_analyzer_tool.cc.obj
@@ -8795,7 +9061,8 @@ tools/trace_analyzer_tool.obj: tools/trace_analyzer_tool.cc.obj
 
 # target to build an object file
 tools/trace_analyzer_tool.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/trace_analyzer_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/trace_analyzer_tool.cc.obj
 .PHONY : tools/trace_analyzer_tool.cc.obj
 
 tools/trace_analyzer_tool.i: tools/trace_analyzer_tool.cc.i
@@ -8804,7 +9071,8 @@ tools/trace_analyzer_tool.i: tools/trace_analyzer_tool.cc.i
 
 # target to preprocess a source file
 tools/trace_analyzer_tool.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/trace_analyzer_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/trace_analyzer_tool.cc.i
 .PHONY : tools/trace_analyzer_tool.cc.i
 
 tools/trace_analyzer_tool.s: tools/trace_analyzer_tool.cc.s
@@ -8813,35 +9081,9 @@ tools/trace_analyzer_tool.s: tools/trace_analyzer_tool.cc.s
 
 # target to generate assembly for a file
 tools/trace_analyzer_tool.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/trace_analyzer_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/tools/trace_analyzer_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/tools/trace_analyzer_tool.cc.s
 .PHONY : tools/trace_analyzer_tool.cc.s
-
-tools/write_stress.obj: tools/write_stress.cc.obj
-
-.PHONY : tools/write_stress.obj
-
-# target to build an object file
-tools/write_stress.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/write_stress.cc.obj
-.PHONY : tools/write_stress.cc.obj
-
-tools/write_stress.i: tools/write_stress.cc.i
-
-.PHONY : tools/write_stress.i
-
-# target to preprocess a source file
-tools/write_stress.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/write_stress.cc.i
-.PHONY : tools/write_stress.cc.i
-
-tools/write_stress.s: tools/write_stress.cc.s
-
-.PHONY : tools/write_stress.s
-
-# target to generate assembly for a file
-tools/write_stress.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/tools/write_stress.cc.s
-.PHONY : tools/write_stress.cc.s
 
 util/arena.obj: util/arena.cc.obj
 
@@ -8849,7 +9091,8 @@ util/arena.obj: util/arena.cc.obj
 
 # target to build an object file
 util/arena.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/arena.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/arena.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/arena.cc.obj
 .PHONY : util/arena.cc.obj
 
 util/arena.i: util/arena.cc.i
@@ -8858,7 +9101,8 @@ util/arena.i: util/arena.cc.i
 
 # target to preprocess a source file
 util/arena.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/arena.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/arena.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/arena.cc.i
 .PHONY : util/arena.cc.i
 
 util/arena.s: util/arena.cc.s
@@ -8867,7 +9111,8 @@ util/arena.s: util/arena.cc.s
 
 # target to generate assembly for a file
 util/arena.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/arena.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/arena.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/arena.cc.s
 .PHONY : util/arena.cc.s
 
 util/arena_test.obj: util/arena_test.cc.obj
@@ -8876,7 +9121,7 @@ util/arena_test.obj: util/arena_test.cc.obj
 
 # target to build an object file
 util/arena_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/arena_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_arena_test.dir\build.make CMakeFiles/rocksdb_arena_test.dir/util/arena_test.cc.obj
 .PHONY : util/arena_test.cc.obj
 
 util/arena_test.i: util/arena_test.cc.i
@@ -8885,7 +9130,7 @@ util/arena_test.i: util/arena_test.cc.i
 
 # target to preprocess a source file
 util/arena_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/arena_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_arena_test.dir\build.make CMakeFiles/rocksdb_arena_test.dir/util/arena_test.cc.i
 .PHONY : util/arena_test.cc.i
 
 util/arena_test.s: util/arena_test.cc.s
@@ -8894,7 +9139,7 @@ util/arena_test.s: util/arena_test.cc.s
 
 # target to generate assembly for a file
 util/arena_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/arena_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_arena_test.dir\build.make CMakeFiles/rocksdb_arena_test.dir/util/arena_test.cc.s
 .PHONY : util/arena_test.cc.s
 
 util/auto_roll_logger.obj: util/auto_roll_logger.cc.obj
@@ -8903,7 +9148,8 @@ util/auto_roll_logger.obj: util/auto_roll_logger.cc.obj
 
 # target to build an object file
 util/auto_roll_logger.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/auto_roll_logger.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/auto_roll_logger.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/auto_roll_logger.cc.obj
 .PHONY : util/auto_roll_logger.cc.obj
 
 util/auto_roll_logger.i: util/auto_roll_logger.cc.i
@@ -8912,7 +9158,8 @@ util/auto_roll_logger.i: util/auto_roll_logger.cc.i
 
 # target to preprocess a source file
 util/auto_roll_logger.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/auto_roll_logger.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/auto_roll_logger.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/auto_roll_logger.cc.i
 .PHONY : util/auto_roll_logger.cc.i
 
 util/auto_roll_logger.s: util/auto_roll_logger.cc.s
@@ -8921,7 +9168,8 @@ util/auto_roll_logger.s: util/auto_roll_logger.cc.s
 
 # target to generate assembly for a file
 util/auto_roll_logger.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/auto_roll_logger.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/auto_roll_logger.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/auto_roll_logger.cc.s
 .PHONY : util/auto_roll_logger.cc.s
 
 util/auto_roll_logger_test.obj: util/auto_roll_logger_test.cc.obj
@@ -8930,7 +9178,7 @@ util/auto_roll_logger_test.obj: util/auto_roll_logger_test.cc.obj
 
 # target to build an object file
 util/auto_roll_logger_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/auto_roll_logger_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_auto_roll_logger_test.dir\build.make CMakeFiles/rocksdb_auto_roll_logger_test.dir/util/auto_roll_logger_test.cc.obj
 .PHONY : util/auto_roll_logger_test.cc.obj
 
 util/auto_roll_logger_test.i: util/auto_roll_logger_test.cc.i
@@ -8939,7 +9187,7 @@ util/auto_roll_logger_test.i: util/auto_roll_logger_test.cc.i
 
 # target to preprocess a source file
 util/auto_roll_logger_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/auto_roll_logger_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_auto_roll_logger_test.dir\build.make CMakeFiles/rocksdb_auto_roll_logger_test.dir/util/auto_roll_logger_test.cc.i
 .PHONY : util/auto_roll_logger_test.cc.i
 
 util/auto_roll_logger_test.s: util/auto_roll_logger_test.cc.s
@@ -8948,7 +9196,7 @@ util/auto_roll_logger_test.s: util/auto_roll_logger_test.cc.s
 
 # target to generate assembly for a file
 util/auto_roll_logger_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/auto_roll_logger_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_auto_roll_logger_test.dir\build.make CMakeFiles/rocksdb_auto_roll_logger_test.dir/util/auto_roll_logger_test.cc.s
 .PHONY : util/auto_roll_logger_test.cc.s
 
 util/autovector_test.obj: util/autovector_test.cc.obj
@@ -8957,7 +9205,7 @@ util/autovector_test.obj: util/autovector_test.cc.obj
 
 # target to build an object file
 util/autovector_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/autovector_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_autovector_test.dir\build.make CMakeFiles/rocksdb_autovector_test.dir/util/autovector_test.cc.obj
 .PHONY : util/autovector_test.cc.obj
 
 util/autovector_test.i: util/autovector_test.cc.i
@@ -8966,7 +9214,7 @@ util/autovector_test.i: util/autovector_test.cc.i
 
 # target to preprocess a source file
 util/autovector_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/autovector_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_autovector_test.dir\build.make CMakeFiles/rocksdb_autovector_test.dir/util/autovector_test.cc.i
 .PHONY : util/autovector_test.cc.i
 
 util/autovector_test.s: util/autovector_test.cc.s
@@ -8975,7 +9223,7 @@ util/autovector_test.s: util/autovector_test.cc.s
 
 # target to generate assembly for a file
 util/autovector_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/autovector_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_autovector_test.dir\build.make CMakeFiles/rocksdb_autovector_test.dir/util/autovector_test.cc.s
 .PHONY : util/autovector_test.cc.s
 
 util/bloom.obj: util/bloom.cc.obj
@@ -8984,7 +9232,8 @@ util/bloom.obj: util/bloom.cc.obj
 
 # target to build an object file
 util/bloom.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/bloom.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/bloom.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/bloom.cc.obj
 .PHONY : util/bloom.cc.obj
 
 util/bloom.i: util/bloom.cc.i
@@ -8993,7 +9242,8 @@ util/bloom.i: util/bloom.cc.i
 
 # target to preprocess a source file
 util/bloom.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/bloom.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/bloom.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/bloom.cc.i
 .PHONY : util/bloom.cc.i
 
 util/bloom.s: util/bloom.cc.s
@@ -9002,7 +9252,8 @@ util/bloom.s: util/bloom.cc.s
 
 # target to generate assembly for a file
 util/bloom.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/bloom.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/bloom.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/bloom.cc.s
 .PHONY : util/bloom.cc.s
 
 util/bloom_test.obj: util/bloom_test.cc.obj
@@ -9011,7 +9262,7 @@ util/bloom_test.obj: util/bloom_test.cc.obj
 
 # target to build an object file
 util/bloom_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/bloom_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_bloom_test.dir\build.make CMakeFiles/rocksdb_bloom_test.dir/util/bloom_test.cc.obj
 .PHONY : util/bloom_test.cc.obj
 
 util/bloom_test.i: util/bloom_test.cc.i
@@ -9020,7 +9271,7 @@ util/bloom_test.i: util/bloom_test.cc.i
 
 # target to preprocess a source file
 util/bloom_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/bloom_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_bloom_test.dir\build.make CMakeFiles/rocksdb_bloom_test.dir/util/bloom_test.cc.i
 .PHONY : util/bloom_test.cc.i
 
 util/bloom_test.s: util/bloom_test.cc.s
@@ -9029,7 +9280,7 @@ util/bloom_test.s: util/bloom_test.cc.s
 
 # target to generate assembly for a file
 util/bloom_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/bloom_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_bloom_test.dir\build.make CMakeFiles/rocksdb_bloom_test.dir/util/bloom_test.cc.s
 .PHONY : util/bloom_test.cc.s
 
 util/coding.obj: util/coding.cc.obj
@@ -9038,7 +9289,8 @@ util/coding.obj: util/coding.cc.obj
 
 # target to build an object file
 util/coding.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/coding.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/coding.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/coding.cc.obj
 .PHONY : util/coding.cc.obj
 
 util/coding.i: util/coding.cc.i
@@ -9047,7 +9299,8 @@ util/coding.i: util/coding.cc.i
 
 # target to preprocess a source file
 util/coding.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/coding.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/coding.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/coding.cc.i
 .PHONY : util/coding.cc.i
 
 util/coding.s: util/coding.cc.s
@@ -9056,7 +9309,8 @@ util/coding.s: util/coding.cc.s
 
 # target to generate assembly for a file
 util/coding.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/coding.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/coding.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/coding.cc.s
 .PHONY : util/coding.cc.s
 
 util/coding_test.obj: util/coding_test.cc.obj
@@ -9065,7 +9319,7 @@ util/coding_test.obj: util/coding_test.cc.obj
 
 # target to build an object file
 util/coding_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/coding_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_coding_test.dir\build.make CMakeFiles/rocksdb_coding_test.dir/util/coding_test.cc.obj
 .PHONY : util/coding_test.cc.obj
 
 util/coding_test.i: util/coding_test.cc.i
@@ -9074,7 +9328,7 @@ util/coding_test.i: util/coding_test.cc.i
 
 # target to preprocess a source file
 util/coding_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/coding_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_coding_test.dir\build.make CMakeFiles/rocksdb_coding_test.dir/util/coding_test.cc.i
 .PHONY : util/coding_test.cc.i
 
 util/coding_test.s: util/coding_test.cc.s
@@ -9083,7 +9337,7 @@ util/coding_test.s: util/coding_test.cc.s
 
 # target to generate assembly for a file
 util/coding_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/coding_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_coding_test.dir\build.make CMakeFiles/rocksdb_coding_test.dir/util/coding_test.cc.s
 .PHONY : util/coding_test.cc.s
 
 util/compaction_job_stats_impl.obj: util/compaction_job_stats_impl.cc.obj
@@ -9092,7 +9346,8 @@ util/compaction_job_stats_impl.obj: util/compaction_job_stats_impl.cc.obj
 
 # target to build an object file
 util/compaction_job_stats_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/compaction_job_stats_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/compaction_job_stats_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/compaction_job_stats_impl.cc.obj
 .PHONY : util/compaction_job_stats_impl.cc.obj
 
 util/compaction_job_stats_impl.i: util/compaction_job_stats_impl.cc.i
@@ -9101,7 +9356,8 @@ util/compaction_job_stats_impl.i: util/compaction_job_stats_impl.cc.i
 
 # target to preprocess a source file
 util/compaction_job_stats_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/compaction_job_stats_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/compaction_job_stats_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/compaction_job_stats_impl.cc.i
 .PHONY : util/compaction_job_stats_impl.cc.i
 
 util/compaction_job_stats_impl.s: util/compaction_job_stats_impl.cc.s
@@ -9110,7 +9366,8 @@ util/compaction_job_stats_impl.s: util/compaction_job_stats_impl.cc.s
 
 # target to generate assembly for a file
 util/compaction_job_stats_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/compaction_job_stats_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/compaction_job_stats_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/compaction_job_stats_impl.cc.s
 .PHONY : util/compaction_job_stats_impl.cc.s
 
 util/comparator.obj: util/comparator.cc.obj
@@ -9119,7 +9376,8 @@ util/comparator.obj: util/comparator.cc.obj
 
 # target to build an object file
 util/comparator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/comparator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/comparator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/comparator.cc.obj
 .PHONY : util/comparator.cc.obj
 
 util/comparator.i: util/comparator.cc.i
@@ -9128,7 +9386,8 @@ util/comparator.i: util/comparator.cc.i
 
 # target to preprocess a source file
 util/comparator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/comparator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/comparator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/comparator.cc.i
 .PHONY : util/comparator.cc.i
 
 util/comparator.s: util/comparator.cc.s
@@ -9137,7 +9396,8 @@ util/comparator.s: util/comparator.cc.s
 
 # target to generate assembly for a file
 util/comparator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/comparator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/comparator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/comparator.cc.s
 .PHONY : util/comparator.cc.s
 
 util/compression_context_cache.obj: util/compression_context_cache.cc.obj
@@ -9146,7 +9406,8 @@ util/compression_context_cache.obj: util/compression_context_cache.cc.obj
 
 # target to build an object file
 util/compression_context_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/compression_context_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/compression_context_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/compression_context_cache.cc.obj
 .PHONY : util/compression_context_cache.cc.obj
 
 util/compression_context_cache.i: util/compression_context_cache.cc.i
@@ -9155,7 +9416,8 @@ util/compression_context_cache.i: util/compression_context_cache.cc.i
 
 # target to preprocess a source file
 util/compression_context_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/compression_context_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/compression_context_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/compression_context_cache.cc.i
 .PHONY : util/compression_context_cache.cc.i
 
 util/compression_context_cache.s: util/compression_context_cache.cc.s
@@ -9164,7 +9426,8 @@ util/compression_context_cache.s: util/compression_context_cache.cc.s
 
 # target to generate assembly for a file
 util/compression_context_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/compression_context_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/compression_context_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/compression_context_cache.cc.s
 .PHONY : util/compression_context_cache.cc.s
 
 util/concurrent_arena.obj: util/concurrent_arena.cc.obj
@@ -9173,7 +9436,8 @@ util/concurrent_arena.obj: util/concurrent_arena.cc.obj
 
 # target to build an object file
 util/concurrent_arena.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/concurrent_arena.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/concurrent_arena.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/concurrent_arena.cc.obj
 .PHONY : util/concurrent_arena.cc.obj
 
 util/concurrent_arena.i: util/concurrent_arena.cc.i
@@ -9182,7 +9446,8 @@ util/concurrent_arena.i: util/concurrent_arena.cc.i
 
 # target to preprocess a source file
 util/concurrent_arena.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/concurrent_arena.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/concurrent_arena.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/concurrent_arena.cc.i
 .PHONY : util/concurrent_arena.cc.i
 
 util/concurrent_arena.s: util/concurrent_arena.cc.s
@@ -9191,7 +9456,8 @@ util/concurrent_arena.s: util/concurrent_arena.cc.s
 
 # target to generate assembly for a file
 util/concurrent_arena.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/concurrent_arena.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/concurrent_arena.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/concurrent_arena.cc.s
 .PHONY : util/concurrent_arena.cc.s
 
 util/crc32c.obj: util/crc32c.cc.obj
@@ -9200,7 +9466,8 @@ util/crc32c.obj: util/crc32c.cc.obj
 
 # target to build an object file
 util/crc32c.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/crc32c.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/crc32c.cc.obj
 .PHONY : util/crc32c.cc.obj
 
 util/crc32c.i: util/crc32c.cc.i
@@ -9209,7 +9476,8 @@ util/crc32c.i: util/crc32c.cc.i
 
 # target to preprocess a source file
 util/crc32c.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/crc32c.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/crc32c.cc.i
 .PHONY : util/crc32c.cc.i
 
 util/crc32c.s: util/crc32c.cc.s
@@ -9218,35 +9486,9 @@ util/crc32c.s: util/crc32c.cc.s
 
 # target to generate assembly for a file
 util/crc32c.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/crc32c.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/crc32c.cc.s
 .PHONY : util/crc32c.cc.s
-
-util/crc32c_ppc.obj: util/crc32c_ppc.c.obj
-
-.PHONY : util/crc32c_ppc.obj
-
-# target to build an object file
-util/crc32c_ppc.c.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c_ppc.c.obj
-.PHONY : util/crc32c_ppc.c.obj
-
-util/crc32c_ppc.i: util/crc32c_ppc.c.i
-
-.PHONY : util/crc32c_ppc.i
-
-# target to preprocess a source file
-util/crc32c_ppc.c.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c_ppc.c.i
-.PHONY : util/crc32c_ppc.c.i
-
-util/crc32c_ppc.s: util/crc32c_ppc.c.s
-
-.PHONY : util/crc32c_ppc.s
-
-# target to generate assembly for a file
-util/crc32c_ppc.c.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c_ppc.c.s
-.PHONY : util/crc32c_ppc.c.s
 
 util/crc32c_test.obj: util/crc32c_test.cc.obj
 
@@ -9254,7 +9496,7 @@ util/crc32c_test.obj: util/crc32c_test.cc.obj
 
 # target to build an object file
 util/crc32c_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_crc32c_test.dir\build.make CMakeFiles/rocksdb_crc32c_test.dir/util/crc32c_test.cc.obj
 .PHONY : util/crc32c_test.cc.obj
 
 util/crc32c_test.i: util/crc32c_test.cc.i
@@ -9263,7 +9505,7 @@ util/crc32c_test.i: util/crc32c_test.cc.i
 
 # target to preprocess a source file
 util/crc32c_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_crc32c_test.dir\build.make CMakeFiles/rocksdb_crc32c_test.dir/util/crc32c_test.cc.i
 .PHONY : util/crc32c_test.cc.i
 
 util/crc32c_test.s: util/crc32c_test.cc.s
@@ -9272,7 +9514,7 @@ util/crc32c_test.s: util/crc32c_test.cc.s
 
 # target to generate assembly for a file
 util/crc32c_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/crc32c_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_crc32c_test.dir\build.make CMakeFiles/rocksdb_crc32c_test.dir/util/crc32c_test.cc.s
 .PHONY : util/crc32c_test.cc.s
 
 util/delete_scheduler.obj: util/delete_scheduler.cc.obj
@@ -9281,7 +9523,8 @@ util/delete_scheduler.obj: util/delete_scheduler.cc.obj
 
 # target to build an object file
 util/delete_scheduler.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/delete_scheduler.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/delete_scheduler.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/delete_scheduler.cc.obj
 .PHONY : util/delete_scheduler.cc.obj
 
 util/delete_scheduler.i: util/delete_scheduler.cc.i
@@ -9290,7 +9533,8 @@ util/delete_scheduler.i: util/delete_scheduler.cc.i
 
 # target to preprocess a source file
 util/delete_scheduler.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/delete_scheduler.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/delete_scheduler.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/delete_scheduler.cc.i
 .PHONY : util/delete_scheduler.cc.i
 
 util/delete_scheduler.s: util/delete_scheduler.cc.s
@@ -9299,7 +9543,8 @@ util/delete_scheduler.s: util/delete_scheduler.cc.s
 
 # target to generate assembly for a file
 util/delete_scheduler.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/delete_scheduler.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/delete_scheduler.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/delete_scheduler.cc.s
 .PHONY : util/delete_scheduler.cc.s
 
 util/delete_scheduler_test.obj: util/delete_scheduler_test.cc.obj
@@ -9308,7 +9553,7 @@ util/delete_scheduler_test.obj: util/delete_scheduler_test.cc.obj
 
 # target to build an object file
 util/delete_scheduler_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/delete_scheduler_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_delete_scheduler_test.dir\build.make CMakeFiles/rocksdb_delete_scheduler_test.dir/util/delete_scheduler_test.cc.obj
 .PHONY : util/delete_scheduler_test.cc.obj
 
 util/delete_scheduler_test.i: util/delete_scheduler_test.cc.i
@@ -9317,7 +9562,7 @@ util/delete_scheduler_test.i: util/delete_scheduler_test.cc.i
 
 # target to preprocess a source file
 util/delete_scheduler_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/delete_scheduler_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_delete_scheduler_test.dir\build.make CMakeFiles/rocksdb_delete_scheduler_test.dir/util/delete_scheduler_test.cc.i
 .PHONY : util/delete_scheduler_test.cc.i
 
 util/delete_scheduler_test.s: util/delete_scheduler_test.cc.s
@@ -9326,7 +9571,7 @@ util/delete_scheduler_test.s: util/delete_scheduler_test.cc.s
 
 # target to generate assembly for a file
 util/delete_scheduler_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/delete_scheduler_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_delete_scheduler_test.dir\build.make CMakeFiles/rocksdb_delete_scheduler_test.dir/util/delete_scheduler_test.cc.s
 .PHONY : util/delete_scheduler_test.cc.s
 
 util/dynamic_bloom.obj: util/dynamic_bloom.cc.obj
@@ -9335,7 +9580,8 @@ util/dynamic_bloom.obj: util/dynamic_bloom.cc.obj
 
 # target to build an object file
 util/dynamic_bloom.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/dynamic_bloom.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/dynamic_bloom.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/dynamic_bloom.cc.obj
 .PHONY : util/dynamic_bloom.cc.obj
 
 util/dynamic_bloom.i: util/dynamic_bloom.cc.i
@@ -9344,7 +9590,8 @@ util/dynamic_bloom.i: util/dynamic_bloom.cc.i
 
 # target to preprocess a source file
 util/dynamic_bloom.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/dynamic_bloom.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/dynamic_bloom.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/dynamic_bloom.cc.i
 .PHONY : util/dynamic_bloom.cc.i
 
 util/dynamic_bloom.s: util/dynamic_bloom.cc.s
@@ -9353,7 +9600,8 @@ util/dynamic_bloom.s: util/dynamic_bloom.cc.s
 
 # target to generate assembly for a file
 util/dynamic_bloom.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/dynamic_bloom.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/dynamic_bloom.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/dynamic_bloom.cc.s
 .PHONY : util/dynamic_bloom.cc.s
 
 util/dynamic_bloom_test.obj: util/dynamic_bloom_test.cc.obj
@@ -9362,7 +9610,7 @@ util/dynamic_bloom_test.obj: util/dynamic_bloom_test.cc.obj
 
 # target to build an object file
 util/dynamic_bloom_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/dynamic_bloom_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_dynamic_bloom_test.dir\build.make CMakeFiles/rocksdb_dynamic_bloom_test.dir/util/dynamic_bloom_test.cc.obj
 .PHONY : util/dynamic_bloom_test.cc.obj
 
 util/dynamic_bloom_test.i: util/dynamic_bloom_test.cc.i
@@ -9371,7 +9619,7 @@ util/dynamic_bloom_test.i: util/dynamic_bloom_test.cc.i
 
 # target to preprocess a source file
 util/dynamic_bloom_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/dynamic_bloom_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_dynamic_bloom_test.dir\build.make CMakeFiles/rocksdb_dynamic_bloom_test.dir/util/dynamic_bloom_test.cc.i
 .PHONY : util/dynamic_bloom_test.cc.i
 
 util/dynamic_bloom_test.s: util/dynamic_bloom_test.cc.s
@@ -9380,7 +9628,7 @@ util/dynamic_bloom_test.s: util/dynamic_bloom_test.cc.s
 
 # target to generate assembly for a file
 util/dynamic_bloom_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/dynamic_bloom_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_dynamic_bloom_test.dir\build.make CMakeFiles/rocksdb_dynamic_bloom_test.dir/util/dynamic_bloom_test.cc.s
 .PHONY : util/dynamic_bloom_test.cc.s
 
 util/event_logger.obj: util/event_logger.cc.obj
@@ -9389,7 +9637,8 @@ util/event_logger.obj: util/event_logger.cc.obj
 
 # target to build an object file
 util/event_logger.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/event_logger.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/event_logger.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/event_logger.cc.obj
 .PHONY : util/event_logger.cc.obj
 
 util/event_logger.i: util/event_logger.cc.i
@@ -9398,7 +9647,8 @@ util/event_logger.i: util/event_logger.cc.i
 
 # target to preprocess a source file
 util/event_logger.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/event_logger.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/event_logger.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/event_logger.cc.i
 .PHONY : util/event_logger.cc.i
 
 util/event_logger.s: util/event_logger.cc.s
@@ -9407,7 +9657,8 @@ util/event_logger.s: util/event_logger.cc.s
 
 # target to generate assembly for a file
 util/event_logger.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/event_logger.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/event_logger.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/event_logger.cc.s
 .PHONY : util/event_logger.cc.s
 
 util/event_logger_test.obj: util/event_logger_test.cc.obj
@@ -9416,7 +9667,7 @@ util/event_logger_test.obj: util/event_logger_test.cc.obj
 
 # target to build an object file
 util/event_logger_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/event_logger_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_event_logger_test.dir\build.make CMakeFiles/rocksdb_event_logger_test.dir/util/event_logger_test.cc.obj
 .PHONY : util/event_logger_test.cc.obj
 
 util/event_logger_test.i: util/event_logger_test.cc.i
@@ -9425,7 +9676,7 @@ util/event_logger_test.i: util/event_logger_test.cc.i
 
 # target to preprocess a source file
 util/event_logger_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/event_logger_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_event_logger_test.dir\build.make CMakeFiles/rocksdb_event_logger_test.dir/util/event_logger_test.cc.i
 .PHONY : util/event_logger_test.cc.i
 
 util/event_logger_test.s: util/event_logger_test.cc.s
@@ -9434,7 +9685,7 @@ util/event_logger_test.s: util/event_logger_test.cc.s
 
 # target to generate assembly for a file
 util/event_logger_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/event_logger_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_event_logger_test.dir\build.make CMakeFiles/rocksdb_event_logger_test.dir/util/event_logger_test.cc.s
 .PHONY : util/event_logger_test.cc.s
 
 util/fault_injection_test_env.obj: util/fault_injection_test_env.cc.obj
@@ -9443,7 +9694,7 @@ util/fault_injection_test_env.obj: util/fault_injection_test_env.cc.obj
 
 # target to build an object file
 util/fault_injection_test_env.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/fault_injection_test_env.cc.obj
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/util/fault_injection_test_env.cc.obj
 .PHONY : util/fault_injection_test_env.cc.obj
 
 util/fault_injection_test_env.i: util/fault_injection_test_env.cc.i
@@ -9452,7 +9703,7 @@ util/fault_injection_test_env.i: util/fault_injection_test_env.cc.i
 
 # target to preprocess a source file
 util/fault_injection_test_env.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/fault_injection_test_env.cc.i
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/util/fault_injection_test_env.cc.i
 .PHONY : util/fault_injection_test_env.cc.i
 
 util/fault_injection_test_env.s: util/fault_injection_test_env.cc.s
@@ -9461,7 +9712,7 @@ util/fault_injection_test_env.s: util/fault_injection_test_env.cc.s
 
 # target to generate assembly for a file
 util/fault_injection_test_env.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/fault_injection_test_env.cc.s
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/util/fault_injection_test_env.cc.s
 .PHONY : util/fault_injection_test_env.cc.s
 
 util/file_reader_writer.obj: util/file_reader_writer.cc.obj
@@ -9470,7 +9721,8 @@ util/file_reader_writer.obj: util/file_reader_writer.cc.obj
 
 # target to build an object file
 util/file_reader_writer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_reader_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/file_reader_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/file_reader_writer.cc.obj
 .PHONY : util/file_reader_writer.cc.obj
 
 util/file_reader_writer.i: util/file_reader_writer.cc.i
@@ -9479,7 +9731,8 @@ util/file_reader_writer.i: util/file_reader_writer.cc.i
 
 # target to preprocess a source file
 util/file_reader_writer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_reader_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/file_reader_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/file_reader_writer.cc.i
 .PHONY : util/file_reader_writer.cc.i
 
 util/file_reader_writer.s: util/file_reader_writer.cc.s
@@ -9488,7 +9741,8 @@ util/file_reader_writer.s: util/file_reader_writer.cc.s
 
 # target to generate assembly for a file
 util/file_reader_writer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_reader_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/file_reader_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/file_reader_writer.cc.s
 .PHONY : util/file_reader_writer.cc.s
 
 util/file_reader_writer_test.obj: util/file_reader_writer_test.cc.obj
@@ -9497,7 +9751,7 @@ util/file_reader_writer_test.obj: util/file_reader_writer_test.cc.obj
 
 # target to build an object file
 util/file_reader_writer_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_reader_writer_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_file_reader_writer_test.dir\build.make CMakeFiles/rocksdb_file_reader_writer_test.dir/util/file_reader_writer_test.cc.obj
 .PHONY : util/file_reader_writer_test.cc.obj
 
 util/file_reader_writer_test.i: util/file_reader_writer_test.cc.i
@@ -9506,7 +9760,7 @@ util/file_reader_writer_test.i: util/file_reader_writer_test.cc.i
 
 # target to preprocess a source file
 util/file_reader_writer_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_reader_writer_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_file_reader_writer_test.dir\build.make CMakeFiles/rocksdb_file_reader_writer_test.dir/util/file_reader_writer_test.cc.i
 .PHONY : util/file_reader_writer_test.cc.i
 
 util/file_reader_writer_test.s: util/file_reader_writer_test.cc.s
@@ -9515,7 +9769,7 @@ util/file_reader_writer_test.s: util/file_reader_writer_test.cc.s
 
 # target to generate assembly for a file
 util/file_reader_writer_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_reader_writer_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_file_reader_writer_test.dir\build.make CMakeFiles/rocksdb_file_reader_writer_test.dir/util/file_reader_writer_test.cc.s
 .PHONY : util/file_reader_writer_test.cc.s
 
 util/file_util.obj: util/file_util.cc.obj
@@ -9524,7 +9778,8 @@ util/file_util.obj: util/file_util.cc.obj
 
 # target to build an object file
 util/file_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/file_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/file_util.cc.obj
 .PHONY : util/file_util.cc.obj
 
 util/file_util.i: util/file_util.cc.i
@@ -9533,7 +9788,8 @@ util/file_util.i: util/file_util.cc.i
 
 # target to preprocess a source file
 util/file_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/file_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/file_util.cc.i
 .PHONY : util/file_util.cc.i
 
 util/file_util.s: util/file_util.cc.s
@@ -9542,7 +9798,8 @@ util/file_util.s: util/file_util.cc.s
 
 # target to generate assembly for a file
 util/file_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/file_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/file_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/file_util.cc.s
 .PHONY : util/file_util.cc.s
 
 util/filelock_test.obj: util/filelock_test.cc.obj
@@ -9551,7 +9808,7 @@ util/filelock_test.obj: util/filelock_test.cc.obj
 
 # target to build an object file
 util/filelock_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filelock_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_filelock_test.dir\build.make CMakeFiles/rocksdb_filelock_test.dir/util/filelock_test.cc.obj
 .PHONY : util/filelock_test.cc.obj
 
 util/filelock_test.i: util/filelock_test.cc.i
@@ -9560,7 +9817,7 @@ util/filelock_test.i: util/filelock_test.cc.i
 
 # target to preprocess a source file
 util/filelock_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filelock_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_filelock_test.dir\build.make CMakeFiles/rocksdb_filelock_test.dir/util/filelock_test.cc.i
 .PHONY : util/filelock_test.cc.i
 
 util/filelock_test.s: util/filelock_test.cc.s
@@ -9569,7 +9826,7 @@ util/filelock_test.s: util/filelock_test.cc.s
 
 # target to generate assembly for a file
 util/filelock_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filelock_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_filelock_test.dir\build.make CMakeFiles/rocksdb_filelock_test.dir/util/filelock_test.cc.s
 .PHONY : util/filelock_test.cc.s
 
 util/filename.obj: util/filename.cc.obj
@@ -9578,7 +9835,8 @@ util/filename.obj: util/filename.cc.obj
 
 # target to build an object file
 util/filename.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filename.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/filename.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/filename.cc.obj
 .PHONY : util/filename.cc.obj
 
 util/filename.i: util/filename.cc.i
@@ -9587,7 +9845,8 @@ util/filename.i: util/filename.cc.i
 
 # target to preprocess a source file
 util/filename.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filename.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/filename.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/filename.cc.i
 .PHONY : util/filename.cc.i
 
 util/filename.s: util/filename.cc.s
@@ -9596,7 +9855,8 @@ util/filename.s: util/filename.cc.s
 
 # target to generate assembly for a file
 util/filename.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filename.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/filename.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/filename.cc.s
 .PHONY : util/filename.cc.s
 
 util/filter_policy.obj: util/filter_policy.cc.obj
@@ -9605,7 +9865,8 @@ util/filter_policy.obj: util/filter_policy.cc.obj
 
 # target to build an object file
 util/filter_policy.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filter_policy.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/filter_policy.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/filter_policy.cc.obj
 .PHONY : util/filter_policy.cc.obj
 
 util/filter_policy.i: util/filter_policy.cc.i
@@ -9614,7 +9875,8 @@ util/filter_policy.i: util/filter_policy.cc.i
 
 # target to preprocess a source file
 util/filter_policy.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filter_policy.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/filter_policy.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/filter_policy.cc.i
 .PHONY : util/filter_policy.cc.i
 
 util/filter_policy.s: util/filter_policy.cc.s
@@ -9623,7 +9885,8 @@ util/filter_policy.s: util/filter_policy.cc.s
 
 # target to generate assembly for a file
 util/filter_policy.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/filter_policy.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/filter_policy.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/filter_policy.cc.s
 .PHONY : util/filter_policy.cc.s
 
 util/hash.obj: util/hash.cc.obj
@@ -9632,7 +9895,8 @@ util/hash.obj: util/hash.cc.obj
 
 # target to build an object file
 util/hash.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/hash.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/hash.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/hash.cc.obj
 .PHONY : util/hash.cc.obj
 
 util/hash.i: util/hash.cc.i
@@ -9641,7 +9905,8 @@ util/hash.i: util/hash.cc.i
 
 # target to preprocess a source file
 util/hash.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/hash.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/hash.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/hash.cc.i
 .PHONY : util/hash.cc.i
 
 util/hash.s: util/hash.cc.s
@@ -9650,7 +9915,8 @@ util/hash.s: util/hash.cc.s
 
 # target to generate assembly for a file
 util/hash.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/hash.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/hash.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/hash.cc.s
 .PHONY : util/hash.cc.s
 
 util/hash_test.obj: util/hash_test.cc.obj
@@ -9659,7 +9925,7 @@ util/hash_test.obj: util/hash_test.cc.obj
 
 # target to build an object file
 util/hash_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/hash_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_hash_test.dir\build.make CMakeFiles/rocksdb_hash_test.dir/util/hash_test.cc.obj
 .PHONY : util/hash_test.cc.obj
 
 util/hash_test.i: util/hash_test.cc.i
@@ -9668,7 +9934,7 @@ util/hash_test.i: util/hash_test.cc.i
 
 # target to preprocess a source file
 util/hash_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/hash_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_hash_test.dir\build.make CMakeFiles/rocksdb_hash_test.dir/util/hash_test.cc.i
 .PHONY : util/hash_test.cc.i
 
 util/hash_test.s: util/hash_test.cc.s
@@ -9677,7 +9943,7 @@ util/hash_test.s: util/hash_test.cc.s
 
 # target to generate assembly for a file
 util/hash_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/hash_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_hash_test.dir\build.make CMakeFiles/rocksdb_hash_test.dir/util/hash_test.cc.s
 .PHONY : util/hash_test.cc.s
 
 util/heap_test.obj: util/heap_test.cc.obj
@@ -9686,7 +9952,7 @@ util/heap_test.obj: util/heap_test.cc.obj
 
 # target to build an object file
 util/heap_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/heap_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_heap_test.dir\build.make CMakeFiles/rocksdb_heap_test.dir/util/heap_test.cc.obj
 .PHONY : util/heap_test.cc.obj
 
 util/heap_test.i: util/heap_test.cc.i
@@ -9695,7 +9961,7 @@ util/heap_test.i: util/heap_test.cc.i
 
 # target to preprocess a source file
 util/heap_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/heap_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_heap_test.dir\build.make CMakeFiles/rocksdb_heap_test.dir/util/heap_test.cc.i
 .PHONY : util/heap_test.cc.i
 
 util/heap_test.s: util/heap_test.cc.s
@@ -9704,7 +9970,7 @@ util/heap_test.s: util/heap_test.cc.s
 
 # target to generate assembly for a file
 util/heap_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/heap_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_heap_test.dir\build.make CMakeFiles/rocksdb_heap_test.dir/util/heap_test.cc.s
 .PHONY : util/heap_test.cc.s
 
 util/jemalloc_nodump_allocator.obj: util/jemalloc_nodump_allocator.cc.obj
@@ -9713,7 +9979,8 @@ util/jemalloc_nodump_allocator.obj: util/jemalloc_nodump_allocator.cc.obj
 
 # target to build an object file
 util/jemalloc_nodump_allocator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/jemalloc_nodump_allocator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/jemalloc_nodump_allocator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/jemalloc_nodump_allocator.cc.obj
 .PHONY : util/jemalloc_nodump_allocator.cc.obj
 
 util/jemalloc_nodump_allocator.i: util/jemalloc_nodump_allocator.cc.i
@@ -9722,7 +9989,8 @@ util/jemalloc_nodump_allocator.i: util/jemalloc_nodump_allocator.cc.i
 
 # target to preprocess a source file
 util/jemalloc_nodump_allocator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/jemalloc_nodump_allocator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/jemalloc_nodump_allocator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/jemalloc_nodump_allocator.cc.i
 .PHONY : util/jemalloc_nodump_allocator.cc.i
 
 util/jemalloc_nodump_allocator.s: util/jemalloc_nodump_allocator.cc.s
@@ -9731,7 +9999,8 @@ util/jemalloc_nodump_allocator.s: util/jemalloc_nodump_allocator.cc.s
 
 # target to generate assembly for a file
 util/jemalloc_nodump_allocator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/jemalloc_nodump_allocator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/jemalloc_nodump_allocator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/jemalloc_nodump_allocator.cc.s
 .PHONY : util/jemalloc_nodump_allocator.cc.s
 
 util/log_buffer.obj: util/log_buffer.cc.obj
@@ -9740,7 +10009,8 @@ util/log_buffer.obj: util/log_buffer.cc.obj
 
 # target to build an object file
 util/log_buffer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/log_buffer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/log_buffer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/log_buffer.cc.obj
 .PHONY : util/log_buffer.cc.obj
 
 util/log_buffer.i: util/log_buffer.cc.i
@@ -9749,7 +10019,8 @@ util/log_buffer.i: util/log_buffer.cc.i
 
 # target to preprocess a source file
 util/log_buffer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/log_buffer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/log_buffer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/log_buffer.cc.i
 .PHONY : util/log_buffer.cc.i
 
 util/log_buffer.s: util/log_buffer.cc.s
@@ -9758,35 +10029,9 @@ util/log_buffer.s: util/log_buffer.cc.s
 
 # target to generate assembly for a file
 util/log_buffer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/log_buffer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/log_buffer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/log_buffer.cc.s
 .PHONY : util/log_buffer.cc.s
-
-util/log_write_bench.obj: util/log_write_bench.cc.obj
-
-.PHONY : util/log_write_bench.obj
-
-# target to build an object file
-util/log_write_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/log_write_bench.cc.obj
-.PHONY : util/log_write_bench.cc.obj
-
-util/log_write_bench.i: util/log_write_bench.cc.i
-
-.PHONY : util/log_write_bench.i
-
-# target to preprocess a source file
-util/log_write_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/log_write_bench.cc.i
-.PHONY : util/log_write_bench.cc.i
-
-util/log_write_bench.s: util/log_write_bench.cc.s
-
-.PHONY : util/log_write_bench.s
-
-# target to generate assembly for a file
-util/log_write_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/log_write_bench.cc.s
-.PHONY : util/log_write_bench.cc.s
 
 util/murmurhash.obj: util/murmurhash.cc.obj
 
@@ -9794,7 +10039,8 @@ util/murmurhash.obj: util/murmurhash.cc.obj
 
 # target to build an object file
 util/murmurhash.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/murmurhash.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/murmurhash.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/murmurhash.cc.obj
 .PHONY : util/murmurhash.cc.obj
 
 util/murmurhash.i: util/murmurhash.cc.i
@@ -9803,7 +10049,8 @@ util/murmurhash.i: util/murmurhash.cc.i
 
 # target to preprocess a source file
 util/murmurhash.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/murmurhash.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/murmurhash.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/murmurhash.cc.i
 .PHONY : util/murmurhash.cc.i
 
 util/murmurhash.s: util/murmurhash.cc.s
@@ -9812,7 +10059,8 @@ util/murmurhash.s: util/murmurhash.cc.s
 
 # target to generate assembly for a file
 util/murmurhash.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/murmurhash.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/murmurhash.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/murmurhash.cc.s
 .PHONY : util/murmurhash.cc.s
 
 util/random.obj: util/random.cc.obj
@@ -9821,7 +10069,8 @@ util/random.obj: util/random.cc.obj
 
 # target to build an object file
 util/random.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/random.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/random.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/random.cc.obj
 .PHONY : util/random.cc.obj
 
 util/random.i: util/random.cc.i
@@ -9830,7 +10079,8 @@ util/random.i: util/random.cc.i
 
 # target to preprocess a source file
 util/random.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/random.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/random.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/random.cc.i
 .PHONY : util/random.cc.i
 
 util/random.s: util/random.cc.s
@@ -9839,7 +10089,8 @@ util/random.s: util/random.cc.s
 
 # target to generate assembly for a file
 util/random.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/random.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/random.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/random.cc.s
 .PHONY : util/random.cc.s
 
 util/rate_limiter.obj: util/rate_limiter.cc.obj
@@ -9848,7 +10099,8 @@ util/rate_limiter.obj: util/rate_limiter.cc.obj
 
 # target to build an object file
 util/rate_limiter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/rate_limiter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/rate_limiter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/rate_limiter.cc.obj
 .PHONY : util/rate_limiter.cc.obj
 
 util/rate_limiter.i: util/rate_limiter.cc.i
@@ -9857,7 +10109,8 @@ util/rate_limiter.i: util/rate_limiter.cc.i
 
 # target to preprocess a source file
 util/rate_limiter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/rate_limiter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/rate_limiter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/rate_limiter.cc.i
 .PHONY : util/rate_limiter.cc.i
 
 util/rate_limiter.s: util/rate_limiter.cc.s
@@ -9866,7 +10119,8 @@ util/rate_limiter.s: util/rate_limiter.cc.s
 
 # target to generate assembly for a file
 util/rate_limiter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/rate_limiter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/rate_limiter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/rate_limiter.cc.s
 .PHONY : util/rate_limiter.cc.s
 
 util/rate_limiter_test.obj: util/rate_limiter_test.cc.obj
@@ -9875,7 +10129,7 @@ util/rate_limiter_test.obj: util/rate_limiter_test.cc.obj
 
 # target to build an object file
 util/rate_limiter_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/rate_limiter_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_rate_limiter_test.dir\build.make CMakeFiles/rocksdb_rate_limiter_test.dir/util/rate_limiter_test.cc.obj
 .PHONY : util/rate_limiter_test.cc.obj
 
 util/rate_limiter_test.i: util/rate_limiter_test.cc.i
@@ -9884,7 +10138,7 @@ util/rate_limiter_test.i: util/rate_limiter_test.cc.i
 
 # target to preprocess a source file
 util/rate_limiter_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/rate_limiter_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_rate_limiter_test.dir\build.make CMakeFiles/rocksdb_rate_limiter_test.dir/util/rate_limiter_test.cc.i
 .PHONY : util/rate_limiter_test.cc.i
 
 util/rate_limiter_test.s: util/rate_limiter_test.cc.s
@@ -9893,7 +10147,7 @@ util/rate_limiter_test.s: util/rate_limiter_test.cc.s
 
 # target to generate assembly for a file
 util/rate_limiter_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/rate_limiter_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_rate_limiter_test.dir\build.make CMakeFiles/rocksdb_rate_limiter_test.dir/util/rate_limiter_test.cc.s
 .PHONY : util/rate_limiter_test.cc.s
 
 util/repeatable_thread_test.obj: util/repeatable_thread_test.cc.obj
@@ -9902,7 +10156,7 @@ util/repeatable_thread_test.obj: util/repeatable_thread_test.cc.obj
 
 # target to build an object file
 util/repeatable_thread_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/repeatable_thread_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_repeatable_thread_test.dir\build.make CMakeFiles/rocksdb_repeatable_thread_test.dir/util/repeatable_thread_test.cc.obj
 .PHONY : util/repeatable_thread_test.cc.obj
 
 util/repeatable_thread_test.i: util/repeatable_thread_test.cc.i
@@ -9911,7 +10165,7 @@ util/repeatable_thread_test.i: util/repeatable_thread_test.cc.i
 
 # target to preprocess a source file
 util/repeatable_thread_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/repeatable_thread_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_repeatable_thread_test.dir\build.make CMakeFiles/rocksdb_repeatable_thread_test.dir/util/repeatable_thread_test.cc.i
 .PHONY : util/repeatable_thread_test.cc.i
 
 util/repeatable_thread_test.s: util/repeatable_thread_test.cc.s
@@ -9920,7 +10174,7 @@ util/repeatable_thread_test.s: util/repeatable_thread_test.cc.s
 
 # target to generate assembly for a file
 util/repeatable_thread_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/repeatable_thread_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_repeatable_thread_test.dir\build.make CMakeFiles/rocksdb_repeatable_thread_test.dir/util/repeatable_thread_test.cc.s
 .PHONY : util/repeatable_thread_test.cc.s
 
 util/slice.obj: util/slice.cc.obj
@@ -9929,7 +10183,8 @@ util/slice.obj: util/slice.cc.obj
 
 # target to build an object file
 util/slice.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/slice.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/slice.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/slice.cc.obj
 .PHONY : util/slice.cc.obj
 
 util/slice.i: util/slice.cc.i
@@ -9938,7 +10193,8 @@ util/slice.i: util/slice.cc.i
 
 # target to preprocess a source file
 util/slice.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/slice.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/slice.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/slice.cc.i
 .PHONY : util/slice.cc.i
 
 util/slice.s: util/slice.cc.s
@@ -9947,7 +10203,8 @@ util/slice.s: util/slice.cc.s
 
 # target to generate assembly for a file
 util/slice.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/slice.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/slice.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/slice.cc.s
 .PHONY : util/slice.cc.s
 
 util/slice_transform_test.obj: util/slice_transform_test.cc.obj
@@ -9956,7 +10213,7 @@ util/slice_transform_test.obj: util/slice_transform_test.cc.obj
 
 # target to build an object file
 util/slice_transform_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/slice_transform_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_slice_transform_test.dir\build.make CMakeFiles/rocksdb_slice_transform_test.dir/util/slice_transform_test.cc.obj
 .PHONY : util/slice_transform_test.cc.obj
 
 util/slice_transform_test.i: util/slice_transform_test.cc.i
@@ -9965,7 +10222,7 @@ util/slice_transform_test.i: util/slice_transform_test.cc.i
 
 # target to preprocess a source file
 util/slice_transform_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/slice_transform_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_slice_transform_test.dir\build.make CMakeFiles/rocksdb_slice_transform_test.dir/util/slice_transform_test.cc.i
 .PHONY : util/slice_transform_test.cc.i
 
 util/slice_transform_test.s: util/slice_transform_test.cc.s
@@ -9974,7 +10231,7 @@ util/slice_transform_test.s: util/slice_transform_test.cc.s
 
 # target to generate assembly for a file
 util/slice_transform_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/slice_transform_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_slice_transform_test.dir\build.make CMakeFiles/rocksdb_slice_transform_test.dir/util/slice_transform_test.cc.s
 .PHONY : util/slice_transform_test.cc.s
 
 util/sst_file_manager_impl.obj: util/sst_file_manager_impl.cc.obj
@@ -9983,7 +10240,8 @@ util/sst_file_manager_impl.obj: util/sst_file_manager_impl.cc.obj
 
 # target to build an object file
 util/sst_file_manager_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sst_file_manager_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sst_file_manager_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sst_file_manager_impl.cc.obj
 .PHONY : util/sst_file_manager_impl.cc.obj
 
 util/sst_file_manager_impl.i: util/sst_file_manager_impl.cc.i
@@ -9992,7 +10250,8 @@ util/sst_file_manager_impl.i: util/sst_file_manager_impl.cc.i
 
 # target to preprocess a source file
 util/sst_file_manager_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sst_file_manager_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sst_file_manager_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sst_file_manager_impl.cc.i
 .PHONY : util/sst_file_manager_impl.cc.i
 
 util/sst_file_manager_impl.s: util/sst_file_manager_impl.cc.s
@@ -10001,7 +10260,8 @@ util/sst_file_manager_impl.s: util/sst_file_manager_impl.cc.s
 
 # target to generate assembly for a file
 util/sst_file_manager_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sst_file_manager_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sst_file_manager_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sst_file_manager_impl.cc.s
 .PHONY : util/sst_file_manager_impl.cc.s
 
 util/status.obj: util/status.cc.obj
@@ -10010,7 +10270,8 @@ util/status.obj: util/status.cc.obj
 
 # target to build an object file
 util/status.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/status.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/status.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/status.cc.obj
 .PHONY : util/status.cc.obj
 
 util/status.i: util/status.cc.i
@@ -10019,7 +10280,8 @@ util/status.i: util/status.cc.i
 
 # target to preprocess a source file
 util/status.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/status.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/status.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/status.cc.i
 .PHONY : util/status.cc.i
 
 util/status.s: util/status.cc.s
@@ -10028,7 +10290,8 @@ util/status.s: util/status.cc.s
 
 # target to generate assembly for a file
 util/status.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/status.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/status.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/status.cc.s
 .PHONY : util/status.cc.s
 
 util/string_util.obj: util/string_util.cc.obj
@@ -10037,7 +10300,8 @@ util/string_util.obj: util/string_util.cc.obj
 
 # target to build an object file
 util/string_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/string_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/string_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/string_util.cc.obj
 .PHONY : util/string_util.cc.obj
 
 util/string_util.i: util/string_util.cc.i
@@ -10046,7 +10310,8 @@ util/string_util.i: util/string_util.cc.i
 
 # target to preprocess a source file
 util/string_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/string_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/string_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/string_util.cc.i
 .PHONY : util/string_util.cc.i
 
 util/string_util.s: util/string_util.cc.s
@@ -10055,7 +10320,8 @@ util/string_util.s: util/string_util.cc.s
 
 # target to generate assembly for a file
 util/string_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/string_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/string_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/string_util.cc.s
 .PHONY : util/string_util.cc.s
 
 util/sync_point.obj: util/sync_point.cc.obj
@@ -10064,7 +10330,8 @@ util/sync_point.obj: util/sync_point.cc.obj
 
 # target to build an object file
 util/sync_point.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sync_point.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sync_point.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sync_point.cc.obj
 .PHONY : util/sync_point.cc.obj
 
 util/sync_point.i: util/sync_point.cc.i
@@ -10073,7 +10340,8 @@ util/sync_point.i: util/sync_point.cc.i
 
 # target to preprocess a source file
 util/sync_point.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sync_point.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sync_point.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sync_point.cc.i
 .PHONY : util/sync_point.cc.i
 
 util/sync_point.s: util/sync_point.cc.s
@@ -10082,7 +10350,8 @@ util/sync_point.s: util/sync_point.cc.s
 
 # target to generate assembly for a file
 util/sync_point.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sync_point.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sync_point.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sync_point.cc.s
 .PHONY : util/sync_point.cc.s
 
 util/sync_point_impl.obj: util/sync_point_impl.cc.obj
@@ -10091,7 +10360,8 @@ util/sync_point_impl.obj: util/sync_point_impl.cc.obj
 
 # target to build an object file
 util/sync_point_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sync_point_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sync_point_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sync_point_impl.cc.obj
 .PHONY : util/sync_point_impl.cc.obj
 
 util/sync_point_impl.i: util/sync_point_impl.cc.i
@@ -10100,7 +10370,8 @@ util/sync_point_impl.i: util/sync_point_impl.cc.i
 
 # target to preprocess a source file
 util/sync_point_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sync_point_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sync_point_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sync_point_impl.cc.i
 .PHONY : util/sync_point_impl.cc.i
 
 util/sync_point_impl.s: util/sync_point_impl.cc.s
@@ -10109,7 +10380,8 @@ util/sync_point_impl.s: util/sync_point_impl.cc.s
 
 # target to generate assembly for a file
 util/sync_point_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/sync_point_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/sync_point_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/sync_point_impl.cc.s
 .PHONY : util/sync_point_impl.cc.s
 
 util/testharness.obj: util/testharness.cc.obj
@@ -10118,7 +10390,7 @@ util/testharness.obj: util/testharness.cc.obj
 
 # target to build an object file
 util/testharness.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/testharness.cc.obj
+	$(MAKE) -f CMakeFiles\testharness.dir\build.make CMakeFiles/testharness.dir/util/testharness.cc.obj
 .PHONY : util/testharness.cc.obj
 
 util/testharness.i: util/testharness.cc.i
@@ -10127,7 +10399,7 @@ util/testharness.i: util/testharness.cc.i
 
 # target to preprocess a source file
 util/testharness.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/testharness.cc.i
+	$(MAKE) -f CMakeFiles\testharness.dir\build.make CMakeFiles/testharness.dir/util/testharness.cc.i
 .PHONY : util/testharness.cc.i
 
 util/testharness.s: util/testharness.cc.s
@@ -10136,7 +10408,7 @@ util/testharness.s: util/testharness.cc.s
 
 # target to generate assembly for a file
 util/testharness.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/testharness.cc.s
+	$(MAKE) -f CMakeFiles\testharness.dir\build.make CMakeFiles/testharness.dir/util/testharness.cc.s
 .PHONY : util/testharness.cc.s
 
 util/testutil.obj: util/testutil.cc.obj
@@ -10145,7 +10417,8 @@ util/testutil.obj: util/testutil.cc.obj
 
 # target to build an object file
 util/testutil.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/testutil.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/testutil.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/testutil.cc.obj
 .PHONY : util/testutil.cc.obj
 
 util/testutil.i: util/testutil.cc.i
@@ -10154,7 +10427,8 @@ util/testutil.i: util/testutil.cc.i
 
 # target to preprocess a source file
 util/testutil.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/testutil.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/testutil.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/testutil.cc.i
 .PHONY : util/testutil.cc.i
 
 util/testutil.s: util/testutil.cc.s
@@ -10163,7 +10437,8 @@ util/testutil.s: util/testutil.cc.s
 
 # target to generate assembly for a file
 util/testutil.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/testutil.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/testutil.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/testutil.cc.s
 .PHONY : util/testutil.cc.s
 
 util/thread_list_test.obj: util/thread_list_test.cc.obj
@@ -10172,7 +10447,7 @@ util/thread_list_test.obj: util/thread_list_test.cc.obj
 
 # target to build an object file
 util/thread_list_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_list_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_thread_list_test.dir\build.make CMakeFiles/rocksdb_thread_list_test.dir/util/thread_list_test.cc.obj
 .PHONY : util/thread_list_test.cc.obj
 
 util/thread_list_test.i: util/thread_list_test.cc.i
@@ -10181,7 +10456,7 @@ util/thread_list_test.i: util/thread_list_test.cc.i
 
 # target to preprocess a source file
 util/thread_list_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_list_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_thread_list_test.dir\build.make CMakeFiles/rocksdb_thread_list_test.dir/util/thread_list_test.cc.i
 .PHONY : util/thread_list_test.cc.i
 
 util/thread_list_test.s: util/thread_list_test.cc.s
@@ -10190,7 +10465,7 @@ util/thread_list_test.s: util/thread_list_test.cc.s
 
 # target to generate assembly for a file
 util/thread_list_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_list_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_thread_list_test.dir\build.make CMakeFiles/rocksdb_thread_list_test.dir/util/thread_list_test.cc.s
 .PHONY : util/thread_list_test.cc.s
 
 util/thread_local.obj: util/thread_local.cc.obj
@@ -10199,7 +10474,8 @@ util/thread_local.obj: util/thread_local.cc.obj
 
 # target to build an object file
 util/thread_local.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_local.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/thread_local.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/thread_local.cc.obj
 .PHONY : util/thread_local.cc.obj
 
 util/thread_local.i: util/thread_local.cc.i
@@ -10208,7 +10484,8 @@ util/thread_local.i: util/thread_local.cc.i
 
 # target to preprocess a source file
 util/thread_local.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_local.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/thread_local.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/thread_local.cc.i
 .PHONY : util/thread_local.cc.i
 
 util/thread_local.s: util/thread_local.cc.s
@@ -10217,7 +10494,8 @@ util/thread_local.s: util/thread_local.cc.s
 
 # target to generate assembly for a file
 util/thread_local.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_local.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/thread_local.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/thread_local.cc.s
 .PHONY : util/thread_local.cc.s
 
 util/thread_local_test.obj: util/thread_local_test.cc.obj
@@ -10226,7 +10504,7 @@ util/thread_local_test.obj: util/thread_local_test.cc.obj
 
 # target to build an object file
 util/thread_local_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_local_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_thread_local_test.dir\build.make CMakeFiles/rocksdb_thread_local_test.dir/util/thread_local_test.cc.obj
 .PHONY : util/thread_local_test.cc.obj
 
 util/thread_local_test.i: util/thread_local_test.cc.i
@@ -10235,7 +10513,7 @@ util/thread_local_test.i: util/thread_local_test.cc.i
 
 # target to preprocess a source file
 util/thread_local_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_local_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_thread_local_test.dir\build.make CMakeFiles/rocksdb_thread_local_test.dir/util/thread_local_test.cc.i
 .PHONY : util/thread_local_test.cc.i
 
 util/thread_local_test.s: util/thread_local_test.cc.s
@@ -10244,7 +10522,7 @@ util/thread_local_test.s: util/thread_local_test.cc.s
 
 # target to generate assembly for a file
 util/thread_local_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/thread_local_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_thread_local_test.dir\build.make CMakeFiles/rocksdb_thread_local_test.dir/util/thread_local_test.cc.s
 .PHONY : util/thread_local_test.cc.s
 
 util/threadpool_imp.obj: util/threadpool_imp.cc.obj
@@ -10253,7 +10531,8 @@ util/threadpool_imp.obj: util/threadpool_imp.cc.obj
 
 # target to build an object file
 util/threadpool_imp.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/threadpool_imp.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/threadpool_imp.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/threadpool_imp.cc.obj
 .PHONY : util/threadpool_imp.cc.obj
 
 util/threadpool_imp.i: util/threadpool_imp.cc.i
@@ -10262,7 +10541,8 @@ util/threadpool_imp.i: util/threadpool_imp.cc.i
 
 # target to preprocess a source file
 util/threadpool_imp.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/threadpool_imp.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/threadpool_imp.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/threadpool_imp.cc.i
 .PHONY : util/threadpool_imp.cc.i
 
 util/threadpool_imp.s: util/threadpool_imp.cc.s
@@ -10271,7 +10551,8 @@ util/threadpool_imp.s: util/threadpool_imp.cc.s
 
 # target to generate assembly for a file
 util/threadpool_imp.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/threadpool_imp.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/threadpool_imp.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/threadpool_imp.cc.s
 .PHONY : util/threadpool_imp.cc.s
 
 util/timer_queue_test.obj: util/timer_queue_test.cc.obj
@@ -10280,7 +10561,7 @@ util/timer_queue_test.obj: util/timer_queue_test.cc.obj
 
 # target to build an object file
 util/timer_queue_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/timer_queue_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_timer_queue_test.dir\build.make CMakeFiles/rocksdb_timer_queue_test.dir/util/timer_queue_test.cc.obj
 .PHONY : util/timer_queue_test.cc.obj
 
 util/timer_queue_test.i: util/timer_queue_test.cc.i
@@ -10289,7 +10570,7 @@ util/timer_queue_test.i: util/timer_queue_test.cc.i
 
 # target to preprocess a source file
 util/timer_queue_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/timer_queue_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_timer_queue_test.dir\build.make CMakeFiles/rocksdb_timer_queue_test.dir/util/timer_queue_test.cc.i
 .PHONY : util/timer_queue_test.cc.i
 
 util/timer_queue_test.s: util/timer_queue_test.cc.s
@@ -10298,7 +10579,7 @@ util/timer_queue_test.s: util/timer_queue_test.cc.s
 
 # target to generate assembly for a file
 util/timer_queue_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/timer_queue_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_timer_queue_test.dir\build.make CMakeFiles/rocksdb_timer_queue_test.dir/util/timer_queue_test.cc.s
 .PHONY : util/timer_queue_test.cc.s
 
 util/trace_replay.obj: util/trace_replay.cc.obj
@@ -10307,7 +10588,8 @@ util/trace_replay.obj: util/trace_replay.cc.obj
 
 # target to build an object file
 util/trace_replay.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/trace_replay.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/trace_replay.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/trace_replay.cc.obj
 .PHONY : util/trace_replay.cc.obj
 
 util/trace_replay.i: util/trace_replay.cc.i
@@ -10316,7 +10598,8 @@ util/trace_replay.i: util/trace_replay.cc.i
 
 # target to preprocess a source file
 util/trace_replay.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/trace_replay.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/trace_replay.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/trace_replay.cc.i
 .PHONY : util/trace_replay.cc.i
 
 util/trace_replay.s: util/trace_replay.cc.s
@@ -10325,7 +10608,8 @@ util/trace_replay.s: util/trace_replay.cc.s
 
 # target to generate assembly for a file
 util/trace_replay.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/trace_replay.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/trace_replay.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/trace_replay.cc.s
 .PHONY : util/trace_replay.cc.s
 
 util/transaction_test_util.obj: util/transaction_test_util.cc.obj
@@ -10334,7 +10618,8 @@ util/transaction_test_util.obj: util/transaction_test_util.cc.obj
 
 # target to build an object file
 util/transaction_test_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/transaction_test_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/transaction_test_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/transaction_test_util.cc.obj
 .PHONY : util/transaction_test_util.cc.obj
 
 util/transaction_test_util.i: util/transaction_test_util.cc.i
@@ -10343,7 +10628,8 @@ util/transaction_test_util.i: util/transaction_test_util.cc.i
 
 # target to preprocess a source file
 util/transaction_test_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/transaction_test_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/transaction_test_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/transaction_test_util.cc.i
 .PHONY : util/transaction_test_util.cc.i
 
 util/transaction_test_util.s: util/transaction_test_util.cc.s
@@ -10352,7 +10638,8 @@ util/transaction_test_util.s: util/transaction_test_util.cc.s
 
 # target to generate assembly for a file
 util/transaction_test_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/transaction_test_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/transaction_test_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/transaction_test_util.cc.s
 .PHONY : util/transaction_test_util.cc.s
 
 util/xxhash.obj: util/xxhash.cc.obj
@@ -10361,7 +10648,8 @@ util/xxhash.obj: util/xxhash.cc.obj
 
 # target to build an object file
 util/xxhash.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/xxhash.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/xxhash.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/xxhash.cc.obj
 .PHONY : util/xxhash.cc.obj
 
 util/xxhash.i: util/xxhash.cc.i
@@ -10370,7 +10658,8 @@ util/xxhash.i: util/xxhash.cc.i
 
 # target to preprocess a source file
 util/xxhash.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/xxhash.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/xxhash.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/xxhash.cc.i
 .PHONY : util/xxhash.cc.i
 
 util/xxhash.s: util/xxhash.cc.s
@@ -10379,7 +10668,8 @@ util/xxhash.s: util/xxhash.cc.s
 
 # target to generate assembly for a file
 util/xxhash.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/util/xxhash.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/util/xxhash.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/util/xxhash.cc.s
 .PHONY : util/xxhash.cc.s
 
 utilities/backupable/backupable_db.obj: utilities/backupable/backupable_db.cc.obj
@@ -10388,7 +10678,8 @@ utilities/backupable/backupable_db.obj: utilities/backupable/backupable_db.cc.ob
 
 # target to build an object file
 utilities/backupable/backupable_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/backupable/backupable_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/backupable/backupable_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/backupable/backupable_db.cc.obj
 .PHONY : utilities/backupable/backupable_db.cc.obj
 
 utilities/backupable/backupable_db.i: utilities/backupable/backupable_db.cc.i
@@ -10397,7 +10688,8 @@ utilities/backupable/backupable_db.i: utilities/backupable/backupable_db.cc.i
 
 # target to preprocess a source file
 utilities/backupable/backupable_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/backupable/backupable_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/backupable/backupable_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/backupable/backupable_db.cc.i
 .PHONY : utilities/backupable/backupable_db.cc.i
 
 utilities/backupable/backupable_db.s: utilities/backupable/backupable_db.cc.s
@@ -10406,7 +10698,8 @@ utilities/backupable/backupable_db.s: utilities/backupable/backupable_db.cc.s
 
 # target to generate assembly for a file
 utilities/backupable/backupable_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/backupable/backupable_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/backupable/backupable_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/backupable/backupable_db.cc.s
 .PHONY : utilities/backupable/backupable_db.cc.s
 
 utilities/backupable/backupable_db_test.obj: utilities/backupable/backupable_db_test.cc.obj
@@ -10415,7 +10708,7 @@ utilities/backupable/backupable_db_test.obj: utilities/backupable/backupable_db_
 
 # target to build an object file
 utilities/backupable/backupable_db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/backupable/backupable_db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_backupable_db_test.dir\build.make CMakeFiles/rocksdb_backupable_db_test.dir/utilities/backupable/backupable_db_test.cc.obj
 .PHONY : utilities/backupable/backupable_db_test.cc.obj
 
 utilities/backupable/backupable_db_test.i: utilities/backupable/backupable_db_test.cc.i
@@ -10424,7 +10717,7 @@ utilities/backupable/backupable_db_test.i: utilities/backupable/backupable_db_te
 
 # target to preprocess a source file
 utilities/backupable/backupable_db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/backupable/backupable_db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_backupable_db_test.dir\build.make CMakeFiles/rocksdb_backupable_db_test.dir/utilities/backupable/backupable_db_test.cc.i
 .PHONY : utilities/backupable/backupable_db_test.cc.i
 
 utilities/backupable/backupable_db_test.s: utilities/backupable/backupable_db_test.cc.s
@@ -10433,7 +10726,7 @@ utilities/backupable/backupable_db_test.s: utilities/backupable/backupable_db_te
 
 # target to generate assembly for a file
 utilities/backupable/backupable_db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/backupable/backupable_db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_backupable_db_test.dir\build.make CMakeFiles/rocksdb_backupable_db_test.dir/utilities/backupable/backupable_db_test.cc.s
 .PHONY : utilities/backupable/backupable_db_test.cc.s
 
 utilities/blob_db/blob_compaction_filter.obj: utilities/blob_db/blob_compaction_filter.cc.obj
@@ -10442,7 +10735,8 @@ utilities/blob_db/blob_compaction_filter.obj: utilities/blob_db/blob_compaction_
 
 # target to build an object file
 utilities/blob_db/blob_compaction_filter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_compaction_filter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_compaction_filter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_compaction_filter.cc.obj
 .PHONY : utilities/blob_db/blob_compaction_filter.cc.obj
 
 utilities/blob_db/blob_compaction_filter.i: utilities/blob_db/blob_compaction_filter.cc.i
@@ -10451,7 +10745,8 @@ utilities/blob_db/blob_compaction_filter.i: utilities/blob_db/blob_compaction_fi
 
 # target to preprocess a source file
 utilities/blob_db/blob_compaction_filter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_compaction_filter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_compaction_filter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_compaction_filter.cc.i
 .PHONY : utilities/blob_db/blob_compaction_filter.cc.i
 
 utilities/blob_db/blob_compaction_filter.s: utilities/blob_db/blob_compaction_filter.cc.s
@@ -10460,7 +10755,8 @@ utilities/blob_db/blob_compaction_filter.s: utilities/blob_db/blob_compaction_fi
 
 # target to generate assembly for a file
 utilities/blob_db/blob_compaction_filter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_compaction_filter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_compaction_filter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_compaction_filter.cc.s
 .PHONY : utilities/blob_db/blob_compaction_filter.cc.s
 
 utilities/blob_db/blob_db.obj: utilities/blob_db/blob_db.cc.obj
@@ -10469,7 +10765,8 @@ utilities/blob_db/blob_db.obj: utilities/blob_db/blob_db.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db.cc.obj
 .PHONY : utilities/blob_db/blob_db.cc.obj
 
 utilities/blob_db/blob_db.i: utilities/blob_db/blob_db.cc.i
@@ -10478,7 +10775,8 @@ utilities/blob_db/blob_db.i: utilities/blob_db/blob_db.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db.cc.i
 .PHONY : utilities/blob_db/blob_db.cc.i
 
 utilities/blob_db/blob_db.s: utilities/blob_db/blob_db.cc.s
@@ -10487,7 +10785,8 @@ utilities/blob_db/blob_db.s: utilities/blob_db/blob_db.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db.cc.s
 .PHONY : utilities/blob_db/blob_db.cc.s
 
 utilities/blob_db/blob_db_impl.obj: utilities/blob_db/blob_db_impl.cc.obj
@@ -10496,7 +10795,8 @@ utilities/blob_db/blob_db_impl.obj: utilities/blob_db/blob_db_impl.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_db_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db_impl.cc.obj
 .PHONY : utilities/blob_db/blob_db_impl.cc.obj
 
 utilities/blob_db/blob_db_impl.i: utilities/blob_db/blob_db_impl.cc.i
@@ -10505,7 +10805,8 @@ utilities/blob_db/blob_db_impl.i: utilities/blob_db/blob_db_impl.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_db_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db_impl.cc.i
 .PHONY : utilities/blob_db/blob_db_impl.cc.i
 
 utilities/blob_db/blob_db_impl.s: utilities/blob_db/blob_db_impl.cc.s
@@ -10514,7 +10815,8 @@ utilities/blob_db/blob_db_impl.s: utilities/blob_db/blob_db_impl.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_db_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db_impl.cc.s
 .PHONY : utilities/blob_db/blob_db_impl.cc.s
 
 utilities/blob_db/blob_db_impl_filesnapshot.obj: utilities/blob_db/blob_db_impl_filesnapshot.cc.obj
@@ -10523,7 +10825,8 @@ utilities/blob_db/blob_db_impl_filesnapshot.obj: utilities/blob_db/blob_db_impl_
 
 # target to build an object file
 utilities/blob_db/blob_db_impl_filesnapshot.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.obj
 .PHONY : utilities/blob_db/blob_db_impl_filesnapshot.cc.obj
 
 utilities/blob_db/blob_db_impl_filesnapshot.i: utilities/blob_db/blob_db_impl_filesnapshot.cc.i
@@ -10532,7 +10835,8 @@ utilities/blob_db/blob_db_impl_filesnapshot.i: utilities/blob_db/blob_db_impl_fi
 
 # target to preprocess a source file
 utilities/blob_db/blob_db_impl_filesnapshot.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.i
 .PHONY : utilities/blob_db/blob_db_impl_filesnapshot.cc.i
 
 utilities/blob_db/blob_db_impl_filesnapshot.s: utilities/blob_db/blob_db_impl_filesnapshot.cc.s
@@ -10541,7 +10845,8 @@ utilities/blob_db/blob_db_impl_filesnapshot.s: utilities/blob_db/blob_db_impl_fi
 
 # target to generate assembly for a file
 utilities/blob_db/blob_db_impl_filesnapshot.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_db_impl_filesnapshot.cc.s
 .PHONY : utilities/blob_db/blob_db_impl_filesnapshot.cc.s
 
 utilities/blob_db/blob_db_test.obj: utilities/blob_db/blob_db_test.cc.obj
@@ -10550,7 +10855,7 @@ utilities/blob_db/blob_db_test.obj: utilities/blob_db/blob_db_test.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_blob_db_test.dir\build.make CMakeFiles/rocksdb_blob_db_test.dir/utilities/blob_db/blob_db_test.cc.obj
 .PHONY : utilities/blob_db/blob_db_test.cc.obj
 
 utilities/blob_db/blob_db_test.i: utilities/blob_db/blob_db_test.cc.i
@@ -10559,7 +10864,7 @@ utilities/blob_db/blob_db_test.i: utilities/blob_db/blob_db_test.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_blob_db_test.dir\build.make CMakeFiles/rocksdb_blob_db_test.dir/utilities/blob_db/blob_db_test.cc.i
 .PHONY : utilities/blob_db/blob_db_test.cc.i
 
 utilities/blob_db/blob_db_test.s: utilities/blob_db/blob_db_test.cc.s
@@ -10568,7 +10873,7 @@ utilities/blob_db/blob_db_test.s: utilities/blob_db/blob_db_test.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_blob_db_test.dir\build.make CMakeFiles/rocksdb_blob_db_test.dir/utilities/blob_db/blob_db_test.cc.s
 .PHONY : utilities/blob_db/blob_db_test.cc.s
 
 utilities/blob_db/blob_dump_tool.obj: utilities/blob_db/blob_dump_tool.cc.obj
@@ -10577,7 +10882,8 @@ utilities/blob_db/blob_dump_tool.obj: utilities/blob_db/blob_dump_tool.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_dump_tool.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_dump_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_dump_tool.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_dump_tool.cc.obj
 .PHONY : utilities/blob_db/blob_dump_tool.cc.obj
 
 utilities/blob_db/blob_dump_tool.i: utilities/blob_db/blob_dump_tool.cc.i
@@ -10586,7 +10892,8 @@ utilities/blob_db/blob_dump_tool.i: utilities/blob_db/blob_dump_tool.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_dump_tool.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_dump_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_dump_tool.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_dump_tool.cc.i
 .PHONY : utilities/blob_db/blob_dump_tool.cc.i
 
 utilities/blob_db/blob_dump_tool.s: utilities/blob_db/blob_dump_tool.cc.s
@@ -10595,7 +10902,8 @@ utilities/blob_db/blob_dump_tool.s: utilities/blob_db/blob_dump_tool.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_dump_tool.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_dump_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_dump_tool.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_dump_tool.cc.s
 .PHONY : utilities/blob_db/blob_dump_tool.cc.s
 
 utilities/blob_db/blob_file.obj: utilities/blob_db/blob_file.cc.obj
@@ -10604,7 +10912,8 @@ utilities/blob_db/blob_file.obj: utilities/blob_db/blob_file.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_file.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_file.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_file.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_file.cc.obj
 .PHONY : utilities/blob_db/blob_file.cc.obj
 
 utilities/blob_db/blob_file.i: utilities/blob_db/blob_file.cc.i
@@ -10613,7 +10922,8 @@ utilities/blob_db/blob_file.i: utilities/blob_db/blob_file.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_file.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_file.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_file.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_file.cc.i
 .PHONY : utilities/blob_db/blob_file.cc.i
 
 utilities/blob_db/blob_file.s: utilities/blob_db/blob_file.cc.s
@@ -10622,7 +10932,8 @@ utilities/blob_db/blob_file.s: utilities/blob_db/blob_file.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_file.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_file.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_file.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_file.cc.s
 .PHONY : utilities/blob_db/blob_file.cc.s
 
 utilities/blob_db/blob_log_format.obj: utilities/blob_db/blob_log_format.cc.obj
@@ -10631,7 +10942,8 @@ utilities/blob_db/blob_log_format.obj: utilities/blob_db/blob_log_format.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_log_format.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_format.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_format.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_format.cc.obj
 .PHONY : utilities/blob_db/blob_log_format.cc.obj
 
 utilities/blob_db/blob_log_format.i: utilities/blob_db/blob_log_format.cc.i
@@ -10640,7 +10952,8 @@ utilities/blob_db/blob_log_format.i: utilities/blob_db/blob_log_format.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_log_format.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_format.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_format.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_format.cc.i
 .PHONY : utilities/blob_db/blob_log_format.cc.i
 
 utilities/blob_db/blob_log_format.s: utilities/blob_db/blob_log_format.cc.s
@@ -10649,7 +10962,8 @@ utilities/blob_db/blob_log_format.s: utilities/blob_db/blob_log_format.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_log_format.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_format.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_format.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_format.cc.s
 .PHONY : utilities/blob_db/blob_log_format.cc.s
 
 utilities/blob_db/blob_log_reader.obj: utilities/blob_db/blob_log_reader.cc.obj
@@ -10658,7 +10972,8 @@ utilities/blob_db/blob_log_reader.obj: utilities/blob_db/blob_log_reader.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_log_reader.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_reader.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_reader.cc.obj
 .PHONY : utilities/blob_db/blob_log_reader.cc.obj
 
 utilities/blob_db/blob_log_reader.i: utilities/blob_db/blob_log_reader.cc.i
@@ -10667,7 +10982,8 @@ utilities/blob_db/blob_log_reader.i: utilities/blob_db/blob_log_reader.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_log_reader.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_reader.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_reader.cc.i
 .PHONY : utilities/blob_db/blob_log_reader.cc.i
 
 utilities/blob_db/blob_log_reader.s: utilities/blob_db/blob_log_reader.cc.s
@@ -10676,7 +10992,8 @@ utilities/blob_db/blob_log_reader.s: utilities/blob_db/blob_log_reader.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_log_reader.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_reader.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_reader.cc.s
 .PHONY : utilities/blob_db/blob_log_reader.cc.s
 
 utilities/blob_db/blob_log_writer.obj: utilities/blob_db/blob_log_writer.cc.obj
@@ -10685,7 +11002,8 @@ utilities/blob_db/blob_log_writer.obj: utilities/blob_db/blob_log_writer.cc.obj
 
 # target to build an object file
 utilities/blob_db/blob_log_writer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_writer.cc.obj
 .PHONY : utilities/blob_db/blob_log_writer.cc.obj
 
 utilities/blob_db/blob_log_writer.i: utilities/blob_db/blob_log_writer.cc.i
@@ -10694,7 +11012,8 @@ utilities/blob_db/blob_log_writer.i: utilities/blob_db/blob_log_writer.cc.i
 
 # target to preprocess a source file
 utilities/blob_db/blob_log_writer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_writer.cc.i
 .PHONY : utilities/blob_db/blob_log_writer.cc.i
 
 utilities/blob_db/blob_log_writer.s: utilities/blob_db/blob_log_writer.cc.s
@@ -10703,7 +11022,8 @@ utilities/blob_db/blob_log_writer.s: utilities/blob_db/blob_log_writer.cc.s
 
 # target to generate assembly for a file
 utilities/blob_db/blob_log_writer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/blob_db/blob_log_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/blob_db/blob_log_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/blob_db/blob_log_writer.cc.s
 .PHONY : utilities/blob_db/blob_log_writer.cc.s
 
 utilities/cassandra/cassandra_compaction_filter.obj: utilities/cassandra/cassandra_compaction_filter.cc.obj
@@ -10712,7 +11032,8 @@ utilities/cassandra/cassandra_compaction_filter.obj: utilities/cassandra/cassand
 
 # target to build an object file
 utilities/cassandra/cassandra_compaction_filter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_compaction_filter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/cassandra_compaction_filter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/cassandra_compaction_filter.cc.obj
 .PHONY : utilities/cassandra/cassandra_compaction_filter.cc.obj
 
 utilities/cassandra/cassandra_compaction_filter.i: utilities/cassandra/cassandra_compaction_filter.cc.i
@@ -10721,7 +11042,8 @@ utilities/cassandra/cassandra_compaction_filter.i: utilities/cassandra/cassandra
 
 # target to preprocess a source file
 utilities/cassandra/cassandra_compaction_filter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_compaction_filter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/cassandra_compaction_filter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/cassandra_compaction_filter.cc.i
 .PHONY : utilities/cassandra/cassandra_compaction_filter.cc.i
 
 utilities/cassandra/cassandra_compaction_filter.s: utilities/cassandra/cassandra_compaction_filter.cc.s
@@ -10730,7 +11052,8 @@ utilities/cassandra/cassandra_compaction_filter.s: utilities/cassandra/cassandra
 
 # target to generate assembly for a file
 utilities/cassandra/cassandra_compaction_filter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_compaction_filter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/cassandra_compaction_filter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/cassandra_compaction_filter.cc.s
 .PHONY : utilities/cassandra/cassandra_compaction_filter.cc.s
 
 utilities/cassandra/cassandra_format_test.obj: utilities/cassandra/cassandra_format_test.cc.obj
@@ -10739,7 +11062,7 @@ utilities/cassandra/cassandra_format_test.obj: utilities/cassandra/cassandra_for
 
 # target to build an object file
 utilities/cassandra/cassandra_format_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_format_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_format_test.dir\build.make CMakeFiles/rocksdb_cassandra_format_test.dir/utilities/cassandra/cassandra_format_test.cc.obj
 .PHONY : utilities/cassandra/cassandra_format_test.cc.obj
 
 utilities/cassandra/cassandra_format_test.i: utilities/cassandra/cassandra_format_test.cc.i
@@ -10748,7 +11071,7 @@ utilities/cassandra/cassandra_format_test.i: utilities/cassandra/cassandra_forma
 
 # target to preprocess a source file
 utilities/cassandra/cassandra_format_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_format_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_format_test.dir\build.make CMakeFiles/rocksdb_cassandra_format_test.dir/utilities/cassandra/cassandra_format_test.cc.i
 .PHONY : utilities/cassandra/cassandra_format_test.cc.i
 
 utilities/cassandra/cassandra_format_test.s: utilities/cassandra/cassandra_format_test.cc.s
@@ -10757,7 +11080,7 @@ utilities/cassandra/cassandra_format_test.s: utilities/cassandra/cassandra_forma
 
 # target to generate assembly for a file
 utilities/cassandra/cassandra_format_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_format_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_format_test.dir\build.make CMakeFiles/rocksdb_cassandra_format_test.dir/utilities/cassandra/cassandra_format_test.cc.s
 .PHONY : utilities/cassandra/cassandra_format_test.cc.s
 
 utilities/cassandra/cassandra_functional_test.obj: utilities/cassandra/cassandra_functional_test.cc.obj
@@ -10766,7 +11089,7 @@ utilities/cassandra/cassandra_functional_test.obj: utilities/cassandra/cassandra
 
 # target to build an object file
 utilities/cassandra/cassandra_functional_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_functional_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_functional_test.dir\build.make CMakeFiles/rocksdb_cassandra_functional_test.dir/utilities/cassandra/cassandra_functional_test.cc.obj
 .PHONY : utilities/cassandra/cassandra_functional_test.cc.obj
 
 utilities/cassandra/cassandra_functional_test.i: utilities/cassandra/cassandra_functional_test.cc.i
@@ -10775,7 +11098,7 @@ utilities/cassandra/cassandra_functional_test.i: utilities/cassandra/cassandra_f
 
 # target to preprocess a source file
 utilities/cassandra/cassandra_functional_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_functional_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_functional_test.dir\build.make CMakeFiles/rocksdb_cassandra_functional_test.dir/utilities/cassandra/cassandra_functional_test.cc.i
 .PHONY : utilities/cassandra/cassandra_functional_test.cc.i
 
 utilities/cassandra/cassandra_functional_test.s: utilities/cassandra/cassandra_functional_test.cc.s
@@ -10784,7 +11107,7 @@ utilities/cassandra/cassandra_functional_test.s: utilities/cassandra/cassandra_f
 
 # target to generate assembly for a file
 utilities/cassandra/cassandra_functional_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_functional_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_functional_test.dir\build.make CMakeFiles/rocksdb_cassandra_functional_test.dir/utilities/cassandra/cassandra_functional_test.cc.s
 .PHONY : utilities/cassandra/cassandra_functional_test.cc.s
 
 utilities/cassandra/cassandra_row_merge_test.obj: utilities/cassandra/cassandra_row_merge_test.cc.obj
@@ -10793,7 +11116,7 @@ utilities/cassandra/cassandra_row_merge_test.obj: utilities/cassandra/cassandra_
 
 # target to build an object file
 utilities/cassandra/cassandra_row_merge_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_row_merge_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_row_merge_test.dir\build.make CMakeFiles/rocksdb_cassandra_row_merge_test.dir/utilities/cassandra/cassandra_row_merge_test.cc.obj
 .PHONY : utilities/cassandra/cassandra_row_merge_test.cc.obj
 
 utilities/cassandra/cassandra_row_merge_test.i: utilities/cassandra/cassandra_row_merge_test.cc.i
@@ -10802,7 +11125,7 @@ utilities/cassandra/cassandra_row_merge_test.i: utilities/cassandra/cassandra_ro
 
 # target to preprocess a source file
 utilities/cassandra/cassandra_row_merge_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_row_merge_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_row_merge_test.dir\build.make CMakeFiles/rocksdb_cassandra_row_merge_test.dir/utilities/cassandra/cassandra_row_merge_test.cc.i
 .PHONY : utilities/cassandra/cassandra_row_merge_test.cc.i
 
 utilities/cassandra/cassandra_row_merge_test.s: utilities/cassandra/cassandra_row_merge_test.cc.s
@@ -10811,7 +11134,7 @@ utilities/cassandra/cassandra_row_merge_test.s: utilities/cassandra/cassandra_ro
 
 # target to generate assembly for a file
 utilities/cassandra/cassandra_row_merge_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_row_merge_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_row_merge_test.dir\build.make CMakeFiles/rocksdb_cassandra_row_merge_test.dir/utilities/cassandra/cassandra_row_merge_test.cc.s
 .PHONY : utilities/cassandra/cassandra_row_merge_test.cc.s
 
 utilities/cassandra/cassandra_serialize_test.obj: utilities/cassandra/cassandra_serialize_test.cc.obj
@@ -10820,7 +11143,7 @@ utilities/cassandra/cassandra_serialize_test.obj: utilities/cassandra/cassandra_
 
 # target to build an object file
 utilities/cassandra/cassandra_serialize_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_serialize_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_serialize_test.dir\build.make CMakeFiles/rocksdb_cassandra_serialize_test.dir/utilities/cassandra/cassandra_serialize_test.cc.obj
 .PHONY : utilities/cassandra/cassandra_serialize_test.cc.obj
 
 utilities/cassandra/cassandra_serialize_test.i: utilities/cassandra/cassandra_serialize_test.cc.i
@@ -10829,7 +11152,7 @@ utilities/cassandra/cassandra_serialize_test.i: utilities/cassandra/cassandra_se
 
 # target to preprocess a source file
 utilities/cassandra/cassandra_serialize_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_serialize_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_serialize_test.dir\build.make CMakeFiles/rocksdb_cassandra_serialize_test.dir/utilities/cassandra/cassandra_serialize_test.cc.i
 .PHONY : utilities/cassandra/cassandra_serialize_test.cc.i
 
 utilities/cassandra/cassandra_serialize_test.s: utilities/cassandra/cassandra_serialize_test.cc.s
@@ -10838,7 +11161,7 @@ utilities/cassandra/cassandra_serialize_test.s: utilities/cassandra/cassandra_se
 
 # target to generate assembly for a file
 utilities/cassandra/cassandra_serialize_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/cassandra_serialize_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_cassandra_serialize_test.dir\build.make CMakeFiles/rocksdb_cassandra_serialize_test.dir/utilities/cassandra/cassandra_serialize_test.cc.s
 .PHONY : utilities/cassandra/cassandra_serialize_test.cc.s
 
 utilities/cassandra/format.obj: utilities/cassandra/format.cc.obj
@@ -10847,7 +11170,8 @@ utilities/cassandra/format.obj: utilities/cassandra/format.cc.obj
 
 # target to build an object file
 utilities/cassandra/format.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/format.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/format.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/format.cc.obj
 .PHONY : utilities/cassandra/format.cc.obj
 
 utilities/cassandra/format.i: utilities/cassandra/format.cc.i
@@ -10856,7 +11180,8 @@ utilities/cassandra/format.i: utilities/cassandra/format.cc.i
 
 # target to preprocess a source file
 utilities/cassandra/format.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/format.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/format.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/format.cc.i
 .PHONY : utilities/cassandra/format.cc.i
 
 utilities/cassandra/format.s: utilities/cassandra/format.cc.s
@@ -10865,7 +11190,8 @@ utilities/cassandra/format.s: utilities/cassandra/format.cc.s
 
 # target to generate assembly for a file
 utilities/cassandra/format.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/format.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/format.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/format.cc.s
 .PHONY : utilities/cassandra/format.cc.s
 
 utilities/cassandra/merge_operator.obj: utilities/cassandra/merge_operator.cc.obj
@@ -10874,7 +11200,8 @@ utilities/cassandra/merge_operator.obj: utilities/cassandra/merge_operator.cc.ob
 
 # target to build an object file
 utilities/cassandra/merge_operator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/merge_operator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/merge_operator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/merge_operator.cc.obj
 .PHONY : utilities/cassandra/merge_operator.cc.obj
 
 utilities/cassandra/merge_operator.i: utilities/cassandra/merge_operator.cc.i
@@ -10883,7 +11210,8 @@ utilities/cassandra/merge_operator.i: utilities/cassandra/merge_operator.cc.i
 
 # target to preprocess a source file
 utilities/cassandra/merge_operator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/merge_operator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/merge_operator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/merge_operator.cc.i
 .PHONY : utilities/cassandra/merge_operator.cc.i
 
 utilities/cassandra/merge_operator.s: utilities/cassandra/merge_operator.cc.s
@@ -10892,7 +11220,8 @@ utilities/cassandra/merge_operator.s: utilities/cassandra/merge_operator.cc.s
 
 # target to generate assembly for a file
 utilities/cassandra/merge_operator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/merge_operator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/cassandra/merge_operator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/cassandra/merge_operator.cc.s
 .PHONY : utilities/cassandra/merge_operator.cc.s
 
 utilities/cassandra/test_utils.obj: utilities/cassandra/test_utils.cc.obj
@@ -10901,7 +11230,7 @@ utilities/cassandra/test_utils.obj: utilities/cassandra/test_utils.cc.obj
 
 # target to build an object file
 utilities/cassandra/test_utils.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/test_utils.cc.obj
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/utilities/cassandra/test_utils.cc.obj
 .PHONY : utilities/cassandra/test_utils.cc.obj
 
 utilities/cassandra/test_utils.i: utilities/cassandra/test_utils.cc.i
@@ -10910,7 +11239,7 @@ utilities/cassandra/test_utils.i: utilities/cassandra/test_utils.cc.i
 
 # target to preprocess a source file
 utilities/cassandra/test_utils.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/test_utils.cc.i
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/utilities/cassandra/test_utils.cc.i
 .PHONY : utilities/cassandra/test_utils.cc.i
 
 utilities/cassandra/test_utils.s: utilities/cassandra/test_utils.cc.s
@@ -10919,7 +11248,7 @@ utilities/cassandra/test_utils.s: utilities/cassandra/test_utils.cc.s
 
 # target to generate assembly for a file
 utilities/cassandra/test_utils.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/cassandra/test_utils.cc.s
+	$(MAKE) -f CMakeFiles\testutillib.dir\build.make CMakeFiles/testutillib.dir/utilities/cassandra/test_utils.cc.s
 .PHONY : utilities/cassandra/test_utils.cc.s
 
 utilities/checkpoint/checkpoint_impl.obj: utilities/checkpoint/checkpoint_impl.cc.obj
@@ -10928,7 +11257,8 @@ utilities/checkpoint/checkpoint_impl.obj: utilities/checkpoint/checkpoint_impl.c
 
 # target to build an object file
 utilities/checkpoint/checkpoint_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/checkpoint/checkpoint_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/checkpoint/checkpoint_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/checkpoint/checkpoint_impl.cc.obj
 .PHONY : utilities/checkpoint/checkpoint_impl.cc.obj
 
 utilities/checkpoint/checkpoint_impl.i: utilities/checkpoint/checkpoint_impl.cc.i
@@ -10937,7 +11267,8 @@ utilities/checkpoint/checkpoint_impl.i: utilities/checkpoint/checkpoint_impl.cc.
 
 # target to preprocess a source file
 utilities/checkpoint/checkpoint_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/checkpoint/checkpoint_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/checkpoint/checkpoint_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/checkpoint/checkpoint_impl.cc.i
 .PHONY : utilities/checkpoint/checkpoint_impl.cc.i
 
 utilities/checkpoint/checkpoint_impl.s: utilities/checkpoint/checkpoint_impl.cc.s
@@ -10946,7 +11277,8 @@ utilities/checkpoint/checkpoint_impl.s: utilities/checkpoint/checkpoint_impl.cc.
 
 # target to generate assembly for a file
 utilities/checkpoint/checkpoint_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/checkpoint/checkpoint_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/checkpoint/checkpoint_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/checkpoint/checkpoint_impl.cc.s
 .PHONY : utilities/checkpoint/checkpoint_impl.cc.s
 
 utilities/checkpoint/checkpoint_test.obj: utilities/checkpoint/checkpoint_test.cc.obj
@@ -10955,7 +11287,7 @@ utilities/checkpoint/checkpoint_test.obj: utilities/checkpoint/checkpoint_test.c
 
 # target to build an object file
 utilities/checkpoint/checkpoint_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/checkpoint/checkpoint_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_checkpoint_test.dir\build.make CMakeFiles/rocksdb_checkpoint_test.dir/utilities/checkpoint/checkpoint_test.cc.obj
 .PHONY : utilities/checkpoint/checkpoint_test.cc.obj
 
 utilities/checkpoint/checkpoint_test.i: utilities/checkpoint/checkpoint_test.cc.i
@@ -10964,7 +11296,7 @@ utilities/checkpoint/checkpoint_test.i: utilities/checkpoint/checkpoint_test.cc.
 
 # target to preprocess a source file
 utilities/checkpoint/checkpoint_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/checkpoint/checkpoint_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_checkpoint_test.dir\build.make CMakeFiles/rocksdb_checkpoint_test.dir/utilities/checkpoint/checkpoint_test.cc.i
 .PHONY : utilities/checkpoint/checkpoint_test.cc.i
 
 utilities/checkpoint/checkpoint_test.s: utilities/checkpoint/checkpoint_test.cc.s
@@ -10973,7 +11305,7 @@ utilities/checkpoint/checkpoint_test.s: utilities/checkpoint/checkpoint_test.cc.
 
 # target to generate assembly for a file
 utilities/checkpoint/checkpoint_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/checkpoint/checkpoint_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_checkpoint_test.dir\build.make CMakeFiles/rocksdb_checkpoint_test.dir/utilities/checkpoint/checkpoint_test.cc.s
 .PHONY : utilities/checkpoint/checkpoint_test.cc.s
 
 utilities/col_buf_decoder.obj: utilities/col_buf_decoder.cc.obj
@@ -10982,7 +11314,8 @@ utilities/col_buf_decoder.obj: utilities/col_buf_decoder.cc.obj
 
 # target to build an object file
 utilities/col_buf_decoder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/col_buf_decoder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/col_buf_decoder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/col_buf_decoder.cc.obj
 .PHONY : utilities/col_buf_decoder.cc.obj
 
 utilities/col_buf_decoder.i: utilities/col_buf_decoder.cc.i
@@ -10991,7 +11324,8 @@ utilities/col_buf_decoder.i: utilities/col_buf_decoder.cc.i
 
 # target to preprocess a source file
 utilities/col_buf_decoder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/col_buf_decoder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/col_buf_decoder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/col_buf_decoder.cc.i
 .PHONY : utilities/col_buf_decoder.cc.i
 
 utilities/col_buf_decoder.s: utilities/col_buf_decoder.cc.s
@@ -11000,7 +11334,8 @@ utilities/col_buf_decoder.s: utilities/col_buf_decoder.cc.s
 
 # target to generate assembly for a file
 utilities/col_buf_decoder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/col_buf_decoder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/col_buf_decoder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/col_buf_decoder.cc.s
 .PHONY : utilities/col_buf_decoder.cc.s
 
 utilities/col_buf_encoder.obj: utilities/col_buf_encoder.cc.obj
@@ -11009,7 +11344,8 @@ utilities/col_buf_encoder.obj: utilities/col_buf_encoder.cc.obj
 
 # target to build an object file
 utilities/col_buf_encoder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/col_buf_encoder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/col_buf_encoder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/col_buf_encoder.cc.obj
 .PHONY : utilities/col_buf_encoder.cc.obj
 
 utilities/col_buf_encoder.i: utilities/col_buf_encoder.cc.i
@@ -11018,7 +11354,8 @@ utilities/col_buf_encoder.i: utilities/col_buf_encoder.cc.i
 
 # target to preprocess a source file
 utilities/col_buf_encoder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/col_buf_encoder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/col_buf_encoder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/col_buf_encoder.cc.i
 .PHONY : utilities/col_buf_encoder.cc.i
 
 utilities/col_buf_encoder.s: utilities/col_buf_encoder.cc.s
@@ -11027,7 +11364,8 @@ utilities/col_buf_encoder.s: utilities/col_buf_encoder.cc.s
 
 # target to generate assembly for a file
 utilities/col_buf_encoder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/col_buf_encoder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/col_buf_encoder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/col_buf_encoder.cc.s
 .PHONY : utilities/col_buf_encoder.cc.s
 
 utilities/column_aware_encoding_exp.obj: utilities/column_aware_encoding_exp.cc.obj
@@ -11036,7 +11374,7 @@ utilities/column_aware_encoding_exp.obj: utilities/column_aware_encoding_exp.cc.
 
 # target to build an object file
 utilities/column_aware_encoding_exp.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_exp.cc.obj
+	$(MAKE) -f CMakeFiles\column_aware_encoding_exp.dir\build.make CMakeFiles/column_aware_encoding_exp.dir/utilities/column_aware_encoding_exp.cc.obj
 .PHONY : utilities/column_aware_encoding_exp.cc.obj
 
 utilities/column_aware_encoding_exp.i: utilities/column_aware_encoding_exp.cc.i
@@ -11045,7 +11383,7 @@ utilities/column_aware_encoding_exp.i: utilities/column_aware_encoding_exp.cc.i
 
 # target to preprocess a source file
 utilities/column_aware_encoding_exp.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_exp.cc.i
+	$(MAKE) -f CMakeFiles\column_aware_encoding_exp.dir\build.make CMakeFiles/column_aware_encoding_exp.dir/utilities/column_aware_encoding_exp.cc.i
 .PHONY : utilities/column_aware_encoding_exp.cc.i
 
 utilities/column_aware_encoding_exp.s: utilities/column_aware_encoding_exp.cc.s
@@ -11054,7 +11392,7 @@ utilities/column_aware_encoding_exp.s: utilities/column_aware_encoding_exp.cc.s
 
 # target to generate assembly for a file
 utilities/column_aware_encoding_exp.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_exp.cc.s
+	$(MAKE) -f CMakeFiles\column_aware_encoding_exp.dir\build.make CMakeFiles/column_aware_encoding_exp.dir/utilities/column_aware_encoding_exp.cc.s
 .PHONY : utilities/column_aware_encoding_exp.cc.s
 
 utilities/column_aware_encoding_test.obj: utilities/column_aware_encoding_test.cc.obj
@@ -11063,7 +11401,7 @@ utilities/column_aware_encoding_test.obj: utilities/column_aware_encoding_test.c
 
 # target to build an object file
 utilities/column_aware_encoding_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_column_aware_encoding_test.dir\build.make CMakeFiles/rocksdb_column_aware_encoding_test.dir/utilities/column_aware_encoding_test.cc.obj
 .PHONY : utilities/column_aware_encoding_test.cc.obj
 
 utilities/column_aware_encoding_test.i: utilities/column_aware_encoding_test.cc.i
@@ -11072,7 +11410,7 @@ utilities/column_aware_encoding_test.i: utilities/column_aware_encoding_test.cc.
 
 # target to preprocess a source file
 utilities/column_aware_encoding_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_column_aware_encoding_test.dir\build.make CMakeFiles/rocksdb_column_aware_encoding_test.dir/utilities/column_aware_encoding_test.cc.i
 .PHONY : utilities/column_aware_encoding_test.cc.i
 
 utilities/column_aware_encoding_test.s: utilities/column_aware_encoding_test.cc.s
@@ -11081,7 +11419,7 @@ utilities/column_aware_encoding_test.s: utilities/column_aware_encoding_test.cc.
 
 # target to generate assembly for a file
 utilities/column_aware_encoding_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_column_aware_encoding_test.dir\build.make CMakeFiles/rocksdb_column_aware_encoding_test.dir/utilities/column_aware_encoding_test.cc.s
 .PHONY : utilities/column_aware_encoding_test.cc.s
 
 utilities/column_aware_encoding_util.obj: utilities/column_aware_encoding_util.cc.obj
@@ -11090,7 +11428,8 @@ utilities/column_aware_encoding_util.obj: utilities/column_aware_encoding_util.c
 
 # target to build an object file
 utilities/column_aware_encoding_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/column_aware_encoding_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/column_aware_encoding_util.cc.obj
 .PHONY : utilities/column_aware_encoding_util.cc.obj
 
 utilities/column_aware_encoding_util.i: utilities/column_aware_encoding_util.cc.i
@@ -11099,7 +11438,8 @@ utilities/column_aware_encoding_util.i: utilities/column_aware_encoding_util.cc.
 
 # target to preprocess a source file
 utilities/column_aware_encoding_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/column_aware_encoding_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/column_aware_encoding_util.cc.i
 .PHONY : utilities/column_aware_encoding_util.cc.i
 
 utilities/column_aware_encoding_util.s: utilities/column_aware_encoding_util.cc.s
@@ -11108,7 +11448,8 @@ utilities/column_aware_encoding_util.s: utilities/column_aware_encoding_util.cc.
 
 # target to generate assembly for a file
 utilities/column_aware_encoding_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/column_aware_encoding_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/column_aware_encoding_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/column_aware_encoding_util.cc.s
 .PHONY : utilities/column_aware_encoding_util.cc.s
 
 utilities/compaction_filters/remove_emptyvalue_compactionfilter.obj: utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.obj
@@ -11117,7 +11458,8 @@ utilities/compaction_filters/remove_emptyvalue_compactionfilter.obj: utilities/c
 
 # target to build an object file
 utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.obj
 .PHONY : utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.obj
 
 utilities/compaction_filters/remove_emptyvalue_compactionfilter.i: utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.i
@@ -11126,7 +11468,8 @@ utilities/compaction_filters/remove_emptyvalue_compactionfilter.i: utilities/com
 
 # target to preprocess a source file
 utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.i
 .PHONY : utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.i
 
 utilities/compaction_filters/remove_emptyvalue_compactionfilter.s: utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.s
@@ -11135,35 +11478,9 @@ utilities/compaction_filters/remove_emptyvalue_compactionfilter.s: utilities/com
 
 # target to generate assembly for a file
 utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.s
 .PHONY : utilities/compaction_filters/remove_emptyvalue_compactionfilter.cc.s
-
-utilities/convenience/info_log_finder.obj: utilities/convenience/info_log_finder.cc.obj
-
-.PHONY : utilities/convenience/info_log_finder.obj
-
-# target to build an object file
-utilities/convenience/info_log_finder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/convenience/info_log_finder.cc.obj
-.PHONY : utilities/convenience/info_log_finder.cc.obj
-
-utilities/convenience/info_log_finder.i: utilities/convenience/info_log_finder.cc.i
-
-.PHONY : utilities/convenience/info_log_finder.i
-
-# target to preprocess a source file
-utilities/convenience/info_log_finder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/convenience/info_log_finder.cc.i
-.PHONY : utilities/convenience/info_log_finder.cc.i
-
-utilities/convenience/info_log_finder.s: utilities/convenience/info_log_finder.cc.s
-
-.PHONY : utilities/convenience/info_log_finder.s
-
-# target to generate assembly for a file
-utilities/convenience/info_log_finder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/convenience/info_log_finder.cc.s
-.PHONY : utilities/convenience/info_log_finder.cc.s
 
 utilities/date_tiered/date_tiered_db_impl.obj: utilities/date_tiered/date_tiered_db_impl.cc.obj
 
@@ -11171,7 +11488,8 @@ utilities/date_tiered/date_tiered_db_impl.obj: utilities/date_tiered/date_tiered
 
 # target to build an object file
 utilities/date_tiered/date_tiered_db_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/date_tiered/date_tiered_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/date_tiered/date_tiered_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/date_tiered/date_tiered_db_impl.cc.obj
 .PHONY : utilities/date_tiered/date_tiered_db_impl.cc.obj
 
 utilities/date_tiered/date_tiered_db_impl.i: utilities/date_tiered/date_tiered_db_impl.cc.i
@@ -11180,7 +11498,8 @@ utilities/date_tiered/date_tiered_db_impl.i: utilities/date_tiered/date_tiered_d
 
 # target to preprocess a source file
 utilities/date_tiered/date_tiered_db_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/date_tiered/date_tiered_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/date_tiered/date_tiered_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/date_tiered/date_tiered_db_impl.cc.i
 .PHONY : utilities/date_tiered/date_tiered_db_impl.cc.i
 
 utilities/date_tiered/date_tiered_db_impl.s: utilities/date_tiered/date_tiered_db_impl.cc.s
@@ -11189,7 +11508,8 @@ utilities/date_tiered/date_tiered_db_impl.s: utilities/date_tiered/date_tiered_d
 
 # target to generate assembly for a file
 utilities/date_tiered/date_tiered_db_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/date_tiered/date_tiered_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/date_tiered/date_tiered_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/date_tiered/date_tiered_db_impl.cc.s
 .PHONY : utilities/date_tiered/date_tiered_db_impl.cc.s
 
 utilities/date_tiered/date_tiered_test.obj: utilities/date_tiered/date_tiered_test.cc.obj
@@ -11198,7 +11518,7 @@ utilities/date_tiered/date_tiered_test.obj: utilities/date_tiered/date_tiered_te
 
 # target to build an object file
 utilities/date_tiered/date_tiered_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/date_tiered/date_tiered_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_date_tiered_test.dir\build.make CMakeFiles/rocksdb_date_tiered_test.dir/utilities/date_tiered/date_tiered_test.cc.obj
 .PHONY : utilities/date_tiered/date_tiered_test.cc.obj
 
 utilities/date_tiered/date_tiered_test.i: utilities/date_tiered/date_tiered_test.cc.i
@@ -11207,7 +11527,7 @@ utilities/date_tiered/date_tiered_test.i: utilities/date_tiered/date_tiered_test
 
 # target to preprocess a source file
 utilities/date_tiered/date_tiered_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/date_tiered/date_tiered_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_date_tiered_test.dir\build.make CMakeFiles/rocksdb_date_tiered_test.dir/utilities/date_tiered/date_tiered_test.cc.i
 .PHONY : utilities/date_tiered/date_tiered_test.cc.i
 
 utilities/date_tiered/date_tiered_test.s: utilities/date_tiered/date_tiered_test.cc.s
@@ -11216,7 +11536,7 @@ utilities/date_tiered/date_tiered_test.s: utilities/date_tiered/date_tiered_test
 
 # target to generate assembly for a file
 utilities/date_tiered/date_tiered_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/date_tiered/date_tiered_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_date_tiered_test.dir\build.make CMakeFiles/rocksdb_date_tiered_test.dir/utilities/date_tiered/date_tiered_test.cc.s
 .PHONY : utilities/date_tiered/date_tiered_test.cc.s
 
 utilities/debug.obj: utilities/debug.cc.obj
@@ -11225,7 +11545,8 @@ utilities/debug.obj: utilities/debug.cc.obj
 
 # target to build an object file
 utilities/debug.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/debug.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/debug.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/debug.cc.obj
 .PHONY : utilities/debug.cc.obj
 
 utilities/debug.i: utilities/debug.cc.i
@@ -11234,7 +11555,8 @@ utilities/debug.i: utilities/debug.cc.i
 
 # target to preprocess a source file
 utilities/debug.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/debug.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/debug.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/debug.cc.i
 .PHONY : utilities/debug.cc.i
 
 utilities/debug.s: utilities/debug.cc.s
@@ -11243,7 +11565,8 @@ utilities/debug.s: utilities/debug.cc.s
 
 # target to generate assembly for a file
 utilities/debug.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/debug.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/debug.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/debug.cc.s
 .PHONY : utilities/debug.cc.s
 
 utilities/document/document_db.obj: utilities/document/document_db.cc.obj
@@ -11252,7 +11575,8 @@ utilities/document/document_db.obj: utilities/document/document_db.cc.obj
 
 # target to build an object file
 utilities/document/document_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/document_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/document_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/document_db.cc.obj
 .PHONY : utilities/document/document_db.cc.obj
 
 utilities/document/document_db.i: utilities/document/document_db.cc.i
@@ -11261,7 +11585,8 @@ utilities/document/document_db.i: utilities/document/document_db.cc.i
 
 # target to preprocess a source file
 utilities/document/document_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/document_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/document_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/document_db.cc.i
 .PHONY : utilities/document/document_db.cc.i
 
 utilities/document/document_db.s: utilities/document/document_db.cc.s
@@ -11270,7 +11595,8 @@ utilities/document/document_db.s: utilities/document/document_db.cc.s
 
 # target to generate assembly for a file
 utilities/document/document_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/document_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/document_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/document_db.cc.s
 .PHONY : utilities/document/document_db.cc.s
 
 utilities/document/document_db_test.obj: utilities/document/document_db_test.cc.obj
@@ -11279,7 +11605,7 @@ utilities/document/document_db_test.obj: utilities/document/document_db_test.cc.
 
 # target to build an object file
 utilities/document/document_db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/document_db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_document_db_test.dir\build.make CMakeFiles/rocksdb_document_db_test.dir/utilities/document/document_db_test.cc.obj
 .PHONY : utilities/document/document_db_test.cc.obj
 
 utilities/document/document_db_test.i: utilities/document/document_db_test.cc.i
@@ -11288,7 +11614,7 @@ utilities/document/document_db_test.i: utilities/document/document_db_test.cc.i
 
 # target to preprocess a source file
 utilities/document/document_db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/document_db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_document_db_test.dir\build.make CMakeFiles/rocksdb_document_db_test.dir/utilities/document/document_db_test.cc.i
 .PHONY : utilities/document/document_db_test.cc.i
 
 utilities/document/document_db_test.s: utilities/document/document_db_test.cc.s
@@ -11297,7 +11623,7 @@ utilities/document/document_db_test.s: utilities/document/document_db_test.cc.s
 
 # target to generate assembly for a file
 utilities/document/document_db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/document_db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_document_db_test.dir\build.make CMakeFiles/rocksdb_document_db_test.dir/utilities/document/document_db_test.cc.s
 .PHONY : utilities/document/document_db_test.cc.s
 
 utilities/document/json_document.obj: utilities/document/json_document.cc.obj
@@ -11306,7 +11632,8 @@ utilities/document/json_document.obj: utilities/document/json_document.cc.obj
 
 # target to build an object file
 utilities/document/json_document.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/json_document.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/json_document.cc.obj
 .PHONY : utilities/document/json_document.cc.obj
 
 utilities/document/json_document.i: utilities/document/json_document.cc.i
@@ -11315,7 +11642,8 @@ utilities/document/json_document.i: utilities/document/json_document.cc.i
 
 # target to preprocess a source file
 utilities/document/json_document.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/json_document.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/json_document.cc.i
 .PHONY : utilities/document/json_document.cc.i
 
 utilities/document/json_document.s: utilities/document/json_document.cc.s
@@ -11324,7 +11652,8 @@ utilities/document/json_document.s: utilities/document/json_document.cc.s
 
 # target to generate assembly for a file
 utilities/document/json_document.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/json_document.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/json_document.cc.s
 .PHONY : utilities/document/json_document.cc.s
 
 utilities/document/json_document_builder.obj: utilities/document/json_document_builder.cc.obj
@@ -11333,7 +11662,8 @@ utilities/document/json_document_builder.obj: utilities/document/json_document_b
 
 # target to build an object file
 utilities/document/json_document_builder.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/json_document_builder.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/json_document_builder.cc.obj
 .PHONY : utilities/document/json_document_builder.cc.obj
 
 utilities/document/json_document_builder.i: utilities/document/json_document_builder.cc.i
@@ -11342,7 +11672,8 @@ utilities/document/json_document_builder.i: utilities/document/json_document_bui
 
 # target to preprocess a source file
 utilities/document/json_document_builder.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/json_document_builder.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/json_document_builder.cc.i
 .PHONY : utilities/document/json_document_builder.cc.i
 
 utilities/document/json_document_builder.s: utilities/document/json_document_builder.cc.s
@@ -11351,7 +11682,8 @@ utilities/document/json_document_builder.s: utilities/document/json_document_bui
 
 # target to generate assembly for a file
 utilities/document/json_document_builder.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/document/json_document_builder.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/document/json_document_builder.cc.s
 .PHONY : utilities/document/json_document_builder.cc.s
 
 utilities/document/json_document_test.obj: utilities/document/json_document_test.cc.obj
@@ -11360,7 +11692,7 @@ utilities/document/json_document_test.obj: utilities/document/json_document_test
 
 # target to build an object file
 utilities/document/json_document_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_json_document_test.dir\build.make CMakeFiles/rocksdb_json_document_test.dir/utilities/document/json_document_test.cc.obj
 .PHONY : utilities/document/json_document_test.cc.obj
 
 utilities/document/json_document_test.i: utilities/document/json_document_test.cc.i
@@ -11369,7 +11701,7 @@ utilities/document/json_document_test.i: utilities/document/json_document_test.c
 
 # target to preprocess a source file
 utilities/document/json_document_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_json_document_test.dir\build.make CMakeFiles/rocksdb_json_document_test.dir/utilities/document/json_document_test.cc.i
 .PHONY : utilities/document/json_document_test.cc.i
 
 utilities/document/json_document_test.s: utilities/document/json_document_test.cc.s
@@ -11378,62 +11710,8 @@ utilities/document/json_document_test.s: utilities/document/json_document_test.c
 
 # target to generate assembly for a file
 utilities/document/json_document_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/document/json_document_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_json_document_test.dir\build.make CMakeFiles/rocksdb_json_document_test.dir/utilities/document/json_document_test.cc.s
 .PHONY : utilities/document/json_document_test.cc.s
-
-utilities/env_librados.obj: utilities/env_librados.cc.obj
-
-.PHONY : utilities/env_librados.obj
-
-# target to build an object file
-utilities/env_librados.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_librados.cc.obj
-.PHONY : utilities/env_librados.cc.obj
-
-utilities/env_librados.i: utilities/env_librados.cc.i
-
-.PHONY : utilities/env_librados.i
-
-# target to preprocess a source file
-utilities/env_librados.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_librados.cc.i
-.PHONY : utilities/env_librados.cc.i
-
-utilities/env_librados.s: utilities/env_librados.cc.s
-
-.PHONY : utilities/env_librados.s
-
-# target to generate assembly for a file
-utilities/env_librados.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_librados.cc.s
-.PHONY : utilities/env_librados.cc.s
-
-utilities/env_librados_test.obj: utilities/env_librados_test.cc.obj
-
-.PHONY : utilities/env_librados_test.obj
-
-# target to build an object file
-utilities/env_librados_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_librados_test.cc.obj
-.PHONY : utilities/env_librados_test.cc.obj
-
-utilities/env_librados_test.i: utilities/env_librados_test.cc.i
-
-.PHONY : utilities/env_librados_test.i
-
-# target to preprocess a source file
-utilities/env_librados_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_librados_test.cc.i
-.PHONY : utilities/env_librados_test.cc.i
-
-utilities/env_librados_test.s: utilities/env_librados_test.cc.s
-
-.PHONY : utilities/env_librados_test.s
-
-# target to generate assembly for a file
-utilities/env_librados_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_librados_test.cc.s
-.PHONY : utilities/env_librados_test.cc.s
 
 utilities/env_mirror.obj: utilities/env_mirror.cc.obj
 
@@ -11441,7 +11719,8 @@ utilities/env_mirror.obj: utilities/env_mirror.cc.obj
 
 # target to build an object file
 utilities/env_mirror.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_mirror.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/env_mirror.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/env_mirror.cc.obj
 .PHONY : utilities/env_mirror.cc.obj
 
 utilities/env_mirror.i: utilities/env_mirror.cc.i
@@ -11450,7 +11729,8 @@ utilities/env_mirror.i: utilities/env_mirror.cc.i
 
 # target to preprocess a source file
 utilities/env_mirror.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_mirror.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/env_mirror.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/env_mirror.cc.i
 .PHONY : utilities/env_mirror.cc.i
 
 utilities/env_mirror.s: utilities/env_mirror.cc.s
@@ -11459,35 +11739,9 @@ utilities/env_mirror.s: utilities/env_mirror.cc.s
 
 # target to generate assembly for a file
 utilities/env_mirror.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_mirror.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/env_mirror.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/env_mirror.cc.s
 .PHONY : utilities/env_mirror.cc.s
-
-utilities/env_mirror_test.obj: utilities/env_mirror_test.cc.obj
-
-.PHONY : utilities/env_mirror_test.obj
-
-# target to build an object file
-utilities/env_mirror_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_mirror_test.cc.obj
-.PHONY : utilities/env_mirror_test.cc.obj
-
-utilities/env_mirror_test.i: utilities/env_mirror_test.cc.i
-
-.PHONY : utilities/env_mirror_test.i
-
-# target to preprocess a source file
-utilities/env_mirror_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_mirror_test.cc.i
-.PHONY : utilities/env_mirror_test.cc.i
-
-utilities/env_mirror_test.s: utilities/env_mirror_test.cc.s
-
-.PHONY : utilities/env_mirror_test.s
-
-# target to generate assembly for a file
-utilities/env_mirror_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_mirror_test.cc.s
-.PHONY : utilities/env_mirror_test.cc.s
 
 utilities/env_timed.obj: utilities/env_timed.cc.obj
 
@@ -11495,7 +11749,8 @@ utilities/env_timed.obj: utilities/env_timed.cc.obj
 
 # target to build an object file
 utilities/env_timed.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_timed.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/env_timed.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/env_timed.cc.obj
 .PHONY : utilities/env_timed.cc.obj
 
 utilities/env_timed.i: utilities/env_timed.cc.i
@@ -11504,7 +11759,8 @@ utilities/env_timed.i: utilities/env_timed.cc.i
 
 # target to preprocess a source file
 utilities/env_timed.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_timed.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/env_timed.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/env_timed.cc.i
 .PHONY : utilities/env_timed.cc.i
 
 utilities/env_timed.s: utilities/env_timed.cc.s
@@ -11513,35 +11769,9 @@ utilities/env_timed.s: utilities/env_timed.cc.s
 
 # target to generate assembly for a file
 utilities/env_timed.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_timed.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/env_timed.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/env_timed.cc.s
 .PHONY : utilities/env_timed.cc.s
-
-utilities/env_timed_test.obj: utilities/env_timed_test.cc.obj
-
-.PHONY : utilities/env_timed_test.obj
-
-# target to build an object file
-utilities/env_timed_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_timed_test.cc.obj
-.PHONY : utilities/env_timed_test.cc.obj
-
-utilities/env_timed_test.i: utilities/env_timed_test.cc.i
-
-.PHONY : utilities/env_timed_test.i
-
-# target to preprocess a source file
-utilities/env_timed_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_timed_test.cc.i
-.PHONY : utilities/env_timed_test.cc.i
-
-utilities/env_timed_test.s: utilities/env_timed_test.cc.s
-
-.PHONY : utilities/env_timed_test.s
-
-# target to generate assembly for a file
-utilities/env_timed_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/env_timed_test.cc.s
-.PHONY : utilities/env_timed_test.cc.s
 
 utilities/geodb/geodb_impl.obj: utilities/geodb/geodb_impl.cc.obj
 
@@ -11549,7 +11779,8 @@ utilities/geodb/geodb_impl.obj: utilities/geodb/geodb_impl.cc.obj
 
 # target to build an object file
 utilities/geodb/geodb_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/geodb/geodb_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/geodb/geodb_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/geodb/geodb_impl.cc.obj
 .PHONY : utilities/geodb/geodb_impl.cc.obj
 
 utilities/geodb/geodb_impl.i: utilities/geodb/geodb_impl.cc.i
@@ -11558,7 +11789,8 @@ utilities/geodb/geodb_impl.i: utilities/geodb/geodb_impl.cc.i
 
 # target to preprocess a source file
 utilities/geodb/geodb_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/geodb/geodb_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/geodb/geodb_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/geodb/geodb_impl.cc.i
 .PHONY : utilities/geodb/geodb_impl.cc.i
 
 utilities/geodb/geodb_impl.s: utilities/geodb/geodb_impl.cc.s
@@ -11567,7 +11799,8 @@ utilities/geodb/geodb_impl.s: utilities/geodb/geodb_impl.cc.s
 
 # target to generate assembly for a file
 utilities/geodb/geodb_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/geodb/geodb_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/geodb/geodb_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/geodb/geodb_impl.cc.s
 .PHONY : utilities/geodb/geodb_impl.cc.s
 
 utilities/geodb/geodb_test.obj: utilities/geodb/geodb_test.cc.obj
@@ -11576,7 +11809,7 @@ utilities/geodb/geodb_test.obj: utilities/geodb/geodb_test.cc.obj
 
 # target to build an object file
 utilities/geodb/geodb_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/geodb/geodb_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_geodb_test.dir\build.make CMakeFiles/rocksdb_geodb_test.dir/utilities/geodb/geodb_test.cc.obj
 .PHONY : utilities/geodb/geodb_test.cc.obj
 
 utilities/geodb/geodb_test.i: utilities/geodb/geodb_test.cc.i
@@ -11585,7 +11818,7 @@ utilities/geodb/geodb_test.i: utilities/geodb/geodb_test.cc.i
 
 # target to preprocess a source file
 utilities/geodb/geodb_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/geodb/geodb_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_geodb_test.dir\build.make CMakeFiles/rocksdb_geodb_test.dir/utilities/geodb/geodb_test.cc.i
 .PHONY : utilities/geodb/geodb_test.cc.i
 
 utilities/geodb/geodb_test.s: utilities/geodb/geodb_test.cc.s
@@ -11594,7 +11827,7 @@ utilities/geodb/geodb_test.s: utilities/geodb/geodb_test.cc.s
 
 # target to generate assembly for a file
 utilities/geodb/geodb_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/geodb/geodb_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_geodb_test.dir\build.make CMakeFiles/rocksdb_geodb_test.dir/utilities/geodb/geodb_test.cc.s
 .PHONY : utilities/geodb/geodb_test.cc.s
 
 utilities/leveldb_options/leveldb_options.obj: utilities/leveldb_options/leveldb_options.cc.obj
@@ -11603,7 +11836,8 @@ utilities/leveldb_options/leveldb_options.obj: utilities/leveldb_options/leveldb
 
 # target to build an object file
 utilities/leveldb_options/leveldb_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/leveldb_options/leveldb_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/leveldb_options/leveldb_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/leveldb_options/leveldb_options.cc.obj
 .PHONY : utilities/leveldb_options/leveldb_options.cc.obj
 
 utilities/leveldb_options/leveldb_options.i: utilities/leveldb_options/leveldb_options.cc.i
@@ -11612,7 +11846,8 @@ utilities/leveldb_options/leveldb_options.i: utilities/leveldb_options/leveldb_o
 
 # target to preprocess a source file
 utilities/leveldb_options/leveldb_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/leveldb_options/leveldb_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/leveldb_options/leveldb_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/leveldb_options/leveldb_options.cc.i
 .PHONY : utilities/leveldb_options/leveldb_options.cc.i
 
 utilities/leveldb_options/leveldb_options.s: utilities/leveldb_options/leveldb_options.cc.s
@@ -11621,7 +11856,8 @@ utilities/leveldb_options/leveldb_options.s: utilities/leveldb_options/leveldb_o
 
 # target to generate assembly for a file
 utilities/leveldb_options/leveldb_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/leveldb_options/leveldb_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/leveldb_options/leveldb_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/leveldb_options/leveldb_options.cc.s
 .PHONY : utilities/leveldb_options/leveldb_options.cc.s
 
 utilities/lua/rocks_lua_compaction_filter.obj: utilities/lua/rocks_lua_compaction_filter.cc.obj
@@ -11630,7 +11866,8 @@ utilities/lua/rocks_lua_compaction_filter.obj: utilities/lua/rocks_lua_compactio
 
 # target to build an object file
 utilities/lua/rocks_lua_compaction_filter.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/lua/rocks_lua_compaction_filter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/lua/rocks_lua_compaction_filter.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/lua/rocks_lua_compaction_filter.cc.obj
 .PHONY : utilities/lua/rocks_lua_compaction_filter.cc.obj
 
 utilities/lua/rocks_lua_compaction_filter.i: utilities/lua/rocks_lua_compaction_filter.cc.i
@@ -11639,7 +11876,8 @@ utilities/lua/rocks_lua_compaction_filter.i: utilities/lua/rocks_lua_compaction_
 
 # target to preprocess a source file
 utilities/lua/rocks_lua_compaction_filter.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/lua/rocks_lua_compaction_filter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/lua/rocks_lua_compaction_filter.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/lua/rocks_lua_compaction_filter.cc.i
 .PHONY : utilities/lua/rocks_lua_compaction_filter.cc.i
 
 utilities/lua/rocks_lua_compaction_filter.s: utilities/lua/rocks_lua_compaction_filter.cc.s
@@ -11648,7 +11886,8 @@ utilities/lua/rocks_lua_compaction_filter.s: utilities/lua/rocks_lua_compaction_
 
 # target to generate assembly for a file
 utilities/lua/rocks_lua_compaction_filter.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/lua/rocks_lua_compaction_filter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/lua/rocks_lua_compaction_filter.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/lua/rocks_lua_compaction_filter.cc.s
 .PHONY : utilities/lua/rocks_lua_compaction_filter.cc.s
 
 utilities/lua/rocks_lua_test.obj: utilities/lua/rocks_lua_test.cc.obj
@@ -11657,7 +11896,7 @@ utilities/lua/rocks_lua_test.obj: utilities/lua/rocks_lua_test.cc.obj
 
 # target to build an object file
 utilities/lua/rocks_lua_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/lua/rocks_lua_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_rocks_lua_test.dir\build.make CMakeFiles/rocksdb_rocks_lua_test.dir/utilities/lua/rocks_lua_test.cc.obj
 .PHONY : utilities/lua/rocks_lua_test.cc.obj
 
 utilities/lua/rocks_lua_test.i: utilities/lua/rocks_lua_test.cc.i
@@ -11666,7 +11905,7 @@ utilities/lua/rocks_lua_test.i: utilities/lua/rocks_lua_test.cc.i
 
 # target to preprocess a source file
 utilities/lua/rocks_lua_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/lua/rocks_lua_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_rocks_lua_test.dir\build.make CMakeFiles/rocksdb_rocks_lua_test.dir/utilities/lua/rocks_lua_test.cc.i
 .PHONY : utilities/lua/rocks_lua_test.cc.i
 
 utilities/lua/rocks_lua_test.s: utilities/lua/rocks_lua_test.cc.s
@@ -11675,7 +11914,7 @@ utilities/lua/rocks_lua_test.s: utilities/lua/rocks_lua_test.cc.s
 
 # target to generate assembly for a file
 utilities/lua/rocks_lua_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/lua/rocks_lua_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_rocks_lua_test.dir\build.make CMakeFiles/rocksdb_rocks_lua_test.dir/utilities/lua/rocks_lua_test.cc.s
 .PHONY : utilities/lua/rocks_lua_test.cc.s
 
 utilities/memory/memory_test.obj: utilities/memory/memory_test.cc.obj
@@ -11684,7 +11923,7 @@ utilities/memory/memory_test.obj: utilities/memory/memory_test.cc.obj
 
 # target to build an object file
 utilities/memory/memory_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/memory/memory_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_memory_test.dir\build.make CMakeFiles/rocksdb_memory_test.dir/utilities/memory/memory_test.cc.obj
 .PHONY : utilities/memory/memory_test.cc.obj
 
 utilities/memory/memory_test.i: utilities/memory/memory_test.cc.i
@@ -11693,7 +11932,7 @@ utilities/memory/memory_test.i: utilities/memory/memory_test.cc.i
 
 # target to preprocess a source file
 utilities/memory/memory_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/memory/memory_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_memory_test.dir\build.make CMakeFiles/rocksdb_memory_test.dir/utilities/memory/memory_test.cc.i
 .PHONY : utilities/memory/memory_test.cc.i
 
 utilities/memory/memory_test.s: utilities/memory/memory_test.cc.s
@@ -11702,7 +11941,7 @@ utilities/memory/memory_test.s: utilities/memory/memory_test.cc.s
 
 # target to generate assembly for a file
 utilities/memory/memory_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/memory/memory_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_memory_test.dir\build.make CMakeFiles/rocksdb_memory_test.dir/utilities/memory/memory_test.cc.s
 .PHONY : utilities/memory/memory_test.cc.s
 
 utilities/memory/memory_util.obj: utilities/memory/memory_util.cc.obj
@@ -11711,7 +11950,8 @@ utilities/memory/memory_util.obj: utilities/memory/memory_util.cc.obj
 
 # target to build an object file
 utilities/memory/memory_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/memory/memory_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/memory/memory_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/memory/memory_util.cc.obj
 .PHONY : utilities/memory/memory_util.cc.obj
 
 utilities/memory/memory_util.i: utilities/memory/memory_util.cc.i
@@ -11720,7 +11960,8 @@ utilities/memory/memory_util.i: utilities/memory/memory_util.cc.i
 
 # target to preprocess a source file
 utilities/memory/memory_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/memory/memory_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/memory/memory_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/memory/memory_util.cc.i
 .PHONY : utilities/memory/memory_util.cc.i
 
 utilities/memory/memory_util.s: utilities/memory/memory_util.cc.s
@@ -11729,7 +11970,8 @@ utilities/memory/memory_util.s: utilities/memory/memory_util.cc.s
 
 # target to generate assembly for a file
 utilities/memory/memory_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/memory/memory_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/memory/memory_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/memory/memory_util.cc.s
 .PHONY : utilities/memory/memory_util.cc.s
 
 utilities/merge_operators/bytesxor.obj: utilities/merge_operators/bytesxor.cc.obj
@@ -11738,7 +11980,8 @@ utilities/merge_operators/bytesxor.obj: utilities/merge_operators/bytesxor.cc.ob
 
 # target to build an object file
 utilities/merge_operators/bytesxor.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/bytesxor.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/bytesxor.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/bytesxor.cc.obj
 .PHONY : utilities/merge_operators/bytesxor.cc.obj
 
 utilities/merge_operators/bytesxor.i: utilities/merge_operators/bytesxor.cc.i
@@ -11747,7 +11990,8 @@ utilities/merge_operators/bytesxor.i: utilities/merge_operators/bytesxor.cc.i
 
 # target to preprocess a source file
 utilities/merge_operators/bytesxor.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/bytesxor.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/bytesxor.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/bytesxor.cc.i
 .PHONY : utilities/merge_operators/bytesxor.cc.i
 
 utilities/merge_operators/bytesxor.s: utilities/merge_operators/bytesxor.cc.s
@@ -11756,7 +12000,8 @@ utilities/merge_operators/bytesxor.s: utilities/merge_operators/bytesxor.cc.s
 
 # target to generate assembly for a file
 utilities/merge_operators/bytesxor.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/bytesxor.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/bytesxor.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/bytesxor.cc.s
 .PHONY : utilities/merge_operators/bytesxor.cc.s
 
 utilities/merge_operators/max.obj: utilities/merge_operators/max.cc.obj
@@ -11765,7 +12010,8 @@ utilities/merge_operators/max.obj: utilities/merge_operators/max.cc.obj
 
 # target to build an object file
 utilities/merge_operators/max.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/max.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/max.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/max.cc.obj
 .PHONY : utilities/merge_operators/max.cc.obj
 
 utilities/merge_operators/max.i: utilities/merge_operators/max.cc.i
@@ -11774,7 +12020,8 @@ utilities/merge_operators/max.i: utilities/merge_operators/max.cc.i
 
 # target to preprocess a source file
 utilities/merge_operators/max.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/max.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/max.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/max.cc.i
 .PHONY : utilities/merge_operators/max.cc.i
 
 utilities/merge_operators/max.s: utilities/merge_operators/max.cc.s
@@ -11783,7 +12030,8 @@ utilities/merge_operators/max.s: utilities/merge_operators/max.cc.s
 
 # target to generate assembly for a file
 utilities/merge_operators/max.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/max.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/max.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/max.cc.s
 .PHONY : utilities/merge_operators/max.cc.s
 
 utilities/merge_operators/put.obj: utilities/merge_operators/put.cc.obj
@@ -11792,7 +12040,8 @@ utilities/merge_operators/put.obj: utilities/merge_operators/put.cc.obj
 
 # target to build an object file
 utilities/merge_operators/put.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/put.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/put.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/put.cc.obj
 .PHONY : utilities/merge_operators/put.cc.obj
 
 utilities/merge_operators/put.i: utilities/merge_operators/put.cc.i
@@ -11801,7 +12050,8 @@ utilities/merge_operators/put.i: utilities/merge_operators/put.cc.i
 
 # target to preprocess a source file
 utilities/merge_operators/put.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/put.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/put.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/put.cc.i
 .PHONY : utilities/merge_operators/put.cc.i
 
 utilities/merge_operators/put.s: utilities/merge_operators/put.cc.s
@@ -11810,7 +12060,8 @@ utilities/merge_operators/put.s: utilities/merge_operators/put.cc.s
 
 # target to generate assembly for a file
 utilities/merge_operators/put.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/put.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/put.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/put.cc.s
 .PHONY : utilities/merge_operators/put.cc.s
 
 utilities/merge_operators/string_append/stringappend.obj: utilities/merge_operators/string_append/stringappend.cc.obj
@@ -11819,7 +12070,8 @@ utilities/merge_operators/string_append/stringappend.obj: utilities/merge_operat
 
 # target to build an object file
 utilities/merge_operators/string_append/stringappend.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/string_append/stringappend.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/string_append/stringappend.cc.obj
 .PHONY : utilities/merge_operators/string_append/stringappend.cc.obj
 
 utilities/merge_operators/string_append/stringappend.i: utilities/merge_operators/string_append/stringappend.cc.i
@@ -11828,7 +12080,8 @@ utilities/merge_operators/string_append/stringappend.i: utilities/merge_operator
 
 # target to preprocess a source file
 utilities/merge_operators/string_append/stringappend.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/string_append/stringappend.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/string_append/stringappend.cc.i
 .PHONY : utilities/merge_operators/string_append/stringappend.cc.i
 
 utilities/merge_operators/string_append/stringappend.s: utilities/merge_operators/string_append/stringappend.cc.s
@@ -11837,7 +12090,8 @@ utilities/merge_operators/string_append/stringappend.s: utilities/merge_operator
 
 # target to generate assembly for a file
 utilities/merge_operators/string_append/stringappend.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/string_append/stringappend.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/string_append/stringappend.cc.s
 .PHONY : utilities/merge_operators/string_append/stringappend.cc.s
 
 utilities/merge_operators/string_append/stringappend2.obj: utilities/merge_operators/string_append/stringappend2.cc.obj
@@ -11846,7 +12100,8 @@ utilities/merge_operators/string_append/stringappend2.obj: utilities/merge_opera
 
 # target to build an object file
 utilities/merge_operators/string_append/stringappend2.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend2.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/string_append/stringappend2.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/string_append/stringappend2.cc.obj
 .PHONY : utilities/merge_operators/string_append/stringappend2.cc.obj
 
 utilities/merge_operators/string_append/stringappend2.i: utilities/merge_operators/string_append/stringappend2.cc.i
@@ -11855,7 +12110,8 @@ utilities/merge_operators/string_append/stringappend2.i: utilities/merge_operato
 
 # target to preprocess a source file
 utilities/merge_operators/string_append/stringappend2.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend2.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/string_append/stringappend2.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/string_append/stringappend2.cc.i
 .PHONY : utilities/merge_operators/string_append/stringappend2.cc.i
 
 utilities/merge_operators/string_append/stringappend2.s: utilities/merge_operators/string_append/stringappend2.cc.s
@@ -11864,7 +12120,8 @@ utilities/merge_operators/string_append/stringappend2.s: utilities/merge_operato
 
 # target to generate assembly for a file
 utilities/merge_operators/string_append/stringappend2.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend2.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/string_append/stringappend2.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/string_append/stringappend2.cc.s
 .PHONY : utilities/merge_operators/string_append/stringappend2.cc.s
 
 utilities/merge_operators/string_append/stringappend_test.obj: utilities/merge_operators/string_append/stringappend_test.cc.obj
@@ -11873,7 +12130,7 @@ utilities/merge_operators/string_append/stringappend_test.obj: utilities/merge_o
 
 # target to build an object file
 utilities/merge_operators/string_append/stringappend_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_stringappend_test.dir\build.make CMakeFiles/rocksdb_stringappend_test.dir/utilities/merge_operators/string_append/stringappend_test.cc.obj
 .PHONY : utilities/merge_operators/string_append/stringappend_test.cc.obj
 
 utilities/merge_operators/string_append/stringappend_test.i: utilities/merge_operators/string_append/stringappend_test.cc.i
@@ -11882,7 +12139,7 @@ utilities/merge_operators/string_append/stringappend_test.i: utilities/merge_ope
 
 # target to preprocess a source file
 utilities/merge_operators/string_append/stringappend_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_stringappend_test.dir\build.make CMakeFiles/rocksdb_stringappend_test.dir/utilities/merge_operators/string_append/stringappend_test.cc.i
 .PHONY : utilities/merge_operators/string_append/stringappend_test.cc.i
 
 utilities/merge_operators/string_append/stringappend_test.s: utilities/merge_operators/string_append/stringappend_test.cc.s
@@ -11891,7 +12148,7 @@ utilities/merge_operators/string_append/stringappend_test.s: utilities/merge_ope
 
 # target to generate assembly for a file
 utilities/merge_operators/string_append/stringappend_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/string_append/stringappend_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_stringappend_test.dir\build.make CMakeFiles/rocksdb_stringappend_test.dir/utilities/merge_operators/string_append/stringappend_test.cc.s
 .PHONY : utilities/merge_operators/string_append/stringappend_test.cc.s
 
 utilities/merge_operators/uint64add.obj: utilities/merge_operators/uint64add.cc.obj
@@ -11900,7 +12157,8 @@ utilities/merge_operators/uint64add.obj: utilities/merge_operators/uint64add.cc.
 
 # target to build an object file
 utilities/merge_operators/uint64add.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/uint64add.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/uint64add.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/uint64add.cc.obj
 .PHONY : utilities/merge_operators/uint64add.cc.obj
 
 utilities/merge_operators/uint64add.i: utilities/merge_operators/uint64add.cc.i
@@ -11909,7 +12167,8 @@ utilities/merge_operators/uint64add.i: utilities/merge_operators/uint64add.cc.i
 
 # target to preprocess a source file
 utilities/merge_operators/uint64add.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/uint64add.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/uint64add.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/uint64add.cc.i
 .PHONY : utilities/merge_operators/uint64add.cc.i
 
 utilities/merge_operators/uint64add.s: utilities/merge_operators/uint64add.cc.s
@@ -11918,7 +12177,8 @@ utilities/merge_operators/uint64add.s: utilities/merge_operators/uint64add.cc.s
 
 # target to generate assembly for a file
 utilities/merge_operators/uint64add.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/merge_operators/uint64add.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/merge_operators/uint64add.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/merge_operators/uint64add.cc.s
 .PHONY : utilities/merge_operators/uint64add.cc.s
 
 utilities/nvm_write_cache/chunk.obj: utilities/nvm_write_cache/chunk.cc.obj
@@ -11927,7 +12187,8 @@ utilities/nvm_write_cache/chunk.obj: utilities/nvm_write_cache/chunk.cc.obj
 
 # target to build an object file
 utilities/nvm_write_cache/chunk.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/chunk.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/chunk.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/chunk.cc.obj
 .PHONY : utilities/nvm_write_cache/chunk.cc.obj
 
 utilities/nvm_write_cache/chunk.i: utilities/nvm_write_cache/chunk.cc.i
@@ -11936,7 +12197,8 @@ utilities/nvm_write_cache/chunk.i: utilities/nvm_write_cache/chunk.cc.i
 
 # target to preprocess a source file
 utilities/nvm_write_cache/chunk.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/chunk.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/chunk.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/chunk.cc.i
 .PHONY : utilities/nvm_write_cache/chunk.cc.i
 
 utilities/nvm_write_cache/chunk.s: utilities/nvm_write_cache/chunk.cc.s
@@ -11945,7 +12207,8 @@ utilities/nvm_write_cache/chunk.s: utilities/nvm_write_cache/chunk.cc.s
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/chunk.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/chunk.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/chunk.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/chunk.cc.s
 .PHONY : utilities/nvm_write_cache/chunk.cc.s
 
 utilities/nvm_write_cache/fixed_range_based_flush_job.obj: utilities/nvm_write_cache/fixed_range_based_flush_job.cc.obj
@@ -11954,7 +12217,8 @@ utilities/nvm_write_cache/fixed_range_based_flush_job.obj: utilities/nvm_write_c
 
 # target to build an object file
 utilities/nvm_write_cache/fixed_range_based_flush_job.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.obj
 .PHONY : utilities/nvm_write_cache/fixed_range_based_flush_job.cc.obj
 
 utilities/nvm_write_cache/fixed_range_based_flush_job.i: utilities/nvm_write_cache/fixed_range_based_flush_job.cc.i
@@ -11963,7 +12227,8 @@ utilities/nvm_write_cache/fixed_range_based_flush_job.i: utilities/nvm_write_cac
 
 # target to preprocess a source file
 utilities/nvm_write_cache/fixed_range_based_flush_job.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.i
 .PHONY : utilities/nvm_write_cache/fixed_range_based_flush_job.cc.i
 
 utilities/nvm_write_cache/fixed_range_based_flush_job.s: utilities/nvm_write_cache/fixed_range_based_flush_job.cc.s
@@ -11972,35 +12237,9 @@ utilities/nvm_write_cache/fixed_range_based_flush_job.s: utilities/nvm_write_cac
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/fixed_range_based_flush_job.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_based_flush_job.cc.s
 .PHONY : utilities/nvm_write_cache/fixed_range_based_flush_job.cc.s
-
-utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.obj: utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.obj
-
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.obj
-
-# target to build an object file
-utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.obj
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.obj
-
-utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.i: utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.i
-
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.i
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.i
-
-utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.s: utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.s
-
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.s
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc.s
 
 utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.obj: utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.obj
 
@@ -12008,7 +12247,8 @@ utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.obj: utilities
 
 # target to build an object file
 utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.obj
 .PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.obj
 
 utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.i: utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.i
@@ -12017,7 +12257,8 @@ utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.i: utilities/n
 
 # target to preprocess a source file
 utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.i
 .PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.i
 
 utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.s: utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s
@@ -12026,35 +12267,9 @@ utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.s: utilities/n
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s
 .PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s
-
-utilities/nvm_write_cache/fixed_range_chunk_test.obj: utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
-
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.obj
-
-# target to build an object file
-utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
-
-utilities/nvm_write_cache/fixed_range_chunk_test.i: utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
-
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/fixed_range_chunk_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
-
-utilities/nvm_write_cache/fixed_range_chunk_test.s: utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
-
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/fixed_range_chunk_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
-.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
 
 utilities/nvm_write_cache/fixed_range_tab.obj: utilities/nvm_write_cache/fixed_range_tab.cc.obj
 
@@ -12062,7 +12277,8 @@ utilities/nvm_write_cache/fixed_range_tab.obj: utilities/nvm_write_cache/fixed_r
 
 # target to build an object file
 utilities/nvm_write_cache/fixed_range_tab.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_tab.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_tab.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_tab.cc.obj
 .PHONY : utilities/nvm_write_cache/fixed_range_tab.cc.obj
 
 utilities/nvm_write_cache/fixed_range_tab.i: utilities/nvm_write_cache/fixed_range_tab.cc.i
@@ -12071,7 +12287,8 @@ utilities/nvm_write_cache/fixed_range_tab.i: utilities/nvm_write_cache/fixed_ran
 
 # target to preprocess a source file
 utilities/nvm_write_cache/fixed_range_tab.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_tab.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_tab.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_tab.cc.i
 .PHONY : utilities/nvm_write_cache/fixed_range_tab.cc.i
 
 utilities/nvm_write_cache/fixed_range_tab.s: utilities/nvm_write_cache/fixed_range_tab.cc.s
@@ -12080,7 +12297,8 @@ utilities/nvm_write_cache/fixed_range_tab.s: utilities/nvm_write_cache/fixed_ran
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/fixed_range_tab.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/fixed_range_tab.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_tab.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_tab.cc.s
 .PHONY : utilities/nvm_write_cache/fixed_range_tab.cc.s
 
 utilities/nvm_write_cache/nv_range_tab.obj: utilities/nvm_write_cache/nv_range_tab.cc.obj
@@ -12089,7 +12307,8 @@ utilities/nvm_write_cache/nv_range_tab.obj: utilities/nvm_write_cache/nv_range_t
 
 # target to build an object file
 utilities/nvm_write_cache/nv_range_tab.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nv_range_tab.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nv_range_tab.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nv_range_tab.cc.obj
 .PHONY : utilities/nvm_write_cache/nv_range_tab.cc.obj
 
 utilities/nvm_write_cache/nv_range_tab.i: utilities/nvm_write_cache/nv_range_tab.cc.i
@@ -12098,7 +12317,8 @@ utilities/nvm_write_cache/nv_range_tab.i: utilities/nvm_write_cache/nv_range_tab
 
 # target to preprocess a source file
 utilities/nvm_write_cache/nv_range_tab.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nv_range_tab.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nv_range_tab.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nv_range_tab.cc.i
 .PHONY : utilities/nvm_write_cache/nv_range_tab.cc.i
 
 utilities/nvm_write_cache/nv_range_tab.s: utilities/nvm_write_cache/nv_range_tab.cc.s
@@ -12107,7 +12327,8 @@ utilities/nvm_write_cache/nv_range_tab.s: utilities/nvm_write_cache/nv_range_tab
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/nv_range_tab.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nv_range_tab.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nv_range_tab.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nv_range_tab.cc.s
 .PHONY : utilities/nvm_write_cache/nv_range_tab.cc.s
 
 utilities/nvm_write_cache/nvm_cache_options.obj: utilities/nvm_write_cache/nvm_cache_options.cc.obj
@@ -12116,7 +12337,8 @@ utilities/nvm_write_cache/nvm_cache_options.obj: utilities/nvm_write_cache/nvm_c
 
 # target to build an object file
 utilities/nvm_write_cache/nvm_cache_options.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_cache_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_cache_options.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_cache_options.cc.obj
 .PHONY : utilities/nvm_write_cache/nvm_cache_options.cc.obj
 
 utilities/nvm_write_cache/nvm_cache_options.i: utilities/nvm_write_cache/nvm_cache_options.cc.i
@@ -12125,7 +12347,8 @@ utilities/nvm_write_cache/nvm_cache_options.i: utilities/nvm_write_cache/nvm_cac
 
 # target to preprocess a source file
 utilities/nvm_write_cache/nvm_cache_options.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_cache_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_cache_options.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_cache_options.cc.i
 .PHONY : utilities/nvm_write_cache/nvm_cache_options.cc.i
 
 utilities/nvm_write_cache/nvm_cache_options.s: utilities/nvm_write_cache/nvm_cache_options.cc.s
@@ -12134,7 +12357,8 @@ utilities/nvm_write_cache/nvm_cache_options.s: utilities/nvm_write_cache/nvm_cac
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/nvm_cache_options.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_cache_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_cache_options.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_cache_options.cc.s
 .PHONY : utilities/nvm_write_cache/nvm_cache_options.cc.s
 
 utilities/nvm_write_cache/nvm_flush_job.obj: utilities/nvm_write_cache/nvm_flush_job.cc.obj
@@ -12143,7 +12367,8 @@ utilities/nvm_write_cache/nvm_flush_job.obj: utilities/nvm_write_cache/nvm_flush
 
 # target to build an object file
 utilities/nvm_write_cache/nvm_flush_job.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_flush_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_flush_job.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_flush_job.cc.obj
 .PHONY : utilities/nvm_write_cache/nvm_flush_job.cc.obj
 
 utilities/nvm_write_cache/nvm_flush_job.i: utilities/nvm_write_cache/nvm_flush_job.cc.i
@@ -12152,7 +12377,8 @@ utilities/nvm_write_cache/nvm_flush_job.i: utilities/nvm_write_cache/nvm_flush_j
 
 # target to preprocess a source file
 utilities/nvm_write_cache/nvm_flush_job.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_flush_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_flush_job.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_flush_job.cc.i
 .PHONY : utilities/nvm_write_cache/nvm_flush_job.cc.i
 
 utilities/nvm_write_cache/nvm_flush_job.s: utilities/nvm_write_cache/nvm_flush_job.cc.s
@@ -12161,7 +12387,8 @@ utilities/nvm_write_cache/nvm_flush_job.s: utilities/nvm_write_cache/nvm_flush_j
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/nvm_flush_job.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_flush_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_flush_job.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_flush_job.cc.s
 .PHONY : utilities/nvm_write_cache/nvm_flush_job.cc.s
 
 utilities/nvm_write_cache/nvm_write_cache.obj: utilities/nvm_write_cache/nvm_write_cache.cc.obj
@@ -12170,7 +12397,8 @@ utilities/nvm_write_cache/nvm_write_cache.obj: utilities/nvm_write_cache/nvm_wri
 
 # target to build an object file
 utilities/nvm_write_cache/nvm_write_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_write_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_write_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_write_cache.cc.obj
 .PHONY : utilities/nvm_write_cache/nvm_write_cache.cc.obj
 
 utilities/nvm_write_cache/nvm_write_cache.i: utilities/nvm_write_cache/nvm_write_cache.cc.i
@@ -12179,7 +12407,8 @@ utilities/nvm_write_cache/nvm_write_cache.i: utilities/nvm_write_cache/nvm_write
 
 # target to preprocess a source file
 utilities/nvm_write_cache/nvm_write_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_write_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_write_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_write_cache.cc.i
 .PHONY : utilities/nvm_write_cache/nvm_write_cache.cc.i
 
 utilities/nvm_write_cache/nvm_write_cache.s: utilities/nvm_write_cache/nvm_write_cache.cc.s
@@ -12188,7 +12417,8 @@ utilities/nvm_write_cache/nvm_write_cache.s: utilities/nvm_write_cache/nvm_write
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/nvm_write_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/nvm_write_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/nvm_write_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/nvm_write_cache.cc.s
 .PHONY : utilities/nvm_write_cache/nvm_write_cache.cc.s
 
 utilities/nvm_write_cache/persistent_chunk.obj: utilities/nvm_write_cache/persistent_chunk.cc.obj
@@ -12197,7 +12427,8 @@ utilities/nvm_write_cache/persistent_chunk.obj: utilities/nvm_write_cache/persis
 
 # target to build an object file
 utilities/nvm_write_cache/persistent_chunk.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/persistent_chunk.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/persistent_chunk.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/persistent_chunk.cc.obj
 .PHONY : utilities/nvm_write_cache/persistent_chunk.cc.obj
 
 utilities/nvm_write_cache/persistent_chunk.i: utilities/nvm_write_cache/persistent_chunk.cc.i
@@ -12206,7 +12437,8 @@ utilities/nvm_write_cache/persistent_chunk.i: utilities/nvm_write_cache/persiste
 
 # target to preprocess a source file
 utilities/nvm_write_cache/persistent_chunk.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/persistent_chunk.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/persistent_chunk.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/persistent_chunk.cc.i
 .PHONY : utilities/nvm_write_cache/persistent_chunk.cc.i
 
 utilities/nvm_write_cache/persistent_chunk.s: utilities/nvm_write_cache/persistent_chunk.cc.s
@@ -12215,7 +12447,8 @@ utilities/nvm_write_cache/persistent_chunk.s: utilities/nvm_write_cache/persiste
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/persistent_chunk.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/persistent_chunk.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/persistent_chunk.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/persistent_chunk.cc.s
 .PHONY : utilities/nvm_write_cache/persistent_chunk.cc.s
 
 utilities/nvm_write_cache/persistent_chunk_iterator.obj: utilities/nvm_write_cache/persistent_chunk_iterator.cc.obj
@@ -12224,7 +12457,8 @@ utilities/nvm_write_cache/persistent_chunk_iterator.obj: utilities/nvm_write_cac
 
 # target to build an object file
 utilities/nvm_write_cache/persistent_chunk_iterator.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.obj
 .PHONY : utilities/nvm_write_cache/persistent_chunk_iterator.cc.obj
 
 utilities/nvm_write_cache/persistent_chunk_iterator.i: utilities/nvm_write_cache/persistent_chunk_iterator.cc.i
@@ -12233,7 +12467,8 @@ utilities/nvm_write_cache/persistent_chunk_iterator.i: utilities/nvm_write_cache
 
 # target to preprocess a source file
 utilities/nvm_write_cache/persistent_chunk_iterator.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.i
 .PHONY : utilities/nvm_write_cache/persistent_chunk_iterator.cc.i
 
 utilities/nvm_write_cache/persistent_chunk_iterator.s: utilities/nvm_write_cache/persistent_chunk_iterator.cc.s
@@ -12242,7 +12477,8 @@ utilities/nvm_write_cache/persistent_chunk_iterator.s: utilities/nvm_write_cache
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/persistent_chunk_iterator.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/persistent_chunk_iterator.cc.s
 .PHONY : utilities/nvm_write_cache/persistent_chunk_iterator.cc.s
 
 utilities/nvm_write_cache/pmem_hash_map.obj: utilities/nvm_write_cache/pmem_hash_map.cc.obj
@@ -12251,7 +12487,8 @@ utilities/nvm_write_cache/pmem_hash_map.obj: utilities/nvm_write_cache/pmem_hash
 
 # target to build an object file
 utilities/nvm_write_cache/pmem_hash_map.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/pmem_hash_map.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/pmem_hash_map.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/pmem_hash_map.cc.obj
 .PHONY : utilities/nvm_write_cache/pmem_hash_map.cc.obj
 
 utilities/nvm_write_cache/pmem_hash_map.i: utilities/nvm_write_cache/pmem_hash_map.cc.i
@@ -12260,7 +12497,8 @@ utilities/nvm_write_cache/pmem_hash_map.i: utilities/nvm_write_cache/pmem_hash_m
 
 # target to preprocess a source file
 utilities/nvm_write_cache/pmem_hash_map.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/pmem_hash_map.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/pmem_hash_map.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/pmem_hash_map.cc.i
 .PHONY : utilities/nvm_write_cache/pmem_hash_map.cc.i
 
 utilities/nvm_write_cache/pmem_hash_map.s: utilities/nvm_write_cache/pmem_hash_map.cc.s
@@ -12269,7 +12507,8 @@ utilities/nvm_write_cache/pmem_hash_map.s: utilities/nvm_write_cache/pmem_hash_m
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/pmem_hash_map.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/pmem_hash_map.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/pmem_hash_map.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/pmem_hash_map.cc.s
 .PHONY : utilities/nvm_write_cache/pmem_hash_map.cc.s
 
 utilities/nvm_write_cache/prefix_extractor.obj: utilities/nvm_write_cache/prefix_extractor.cc.obj
@@ -12278,7 +12517,8 @@ utilities/nvm_write_cache/prefix_extractor.obj: utilities/nvm_write_cache/prefix
 
 # target to build an object file
 utilities/nvm_write_cache/prefix_extractor.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/prefix_extractor.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/prefix_extractor.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/prefix_extractor.cc.obj
 .PHONY : utilities/nvm_write_cache/prefix_extractor.cc.obj
 
 utilities/nvm_write_cache/prefix_extractor.i: utilities/nvm_write_cache/prefix_extractor.cc.i
@@ -12287,7 +12527,8 @@ utilities/nvm_write_cache/prefix_extractor.i: utilities/nvm_write_cache/prefix_e
 
 # target to preprocess a source file
 utilities/nvm_write_cache/prefix_extractor.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/prefix_extractor.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/prefix_extractor.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/prefix_extractor.cc.i
 .PHONY : utilities/nvm_write_cache/prefix_extractor.cc.i
 
 utilities/nvm_write_cache/prefix_extractor.s: utilities/nvm_write_cache/prefix_extractor.cc.s
@@ -12296,7 +12537,8 @@ utilities/nvm_write_cache/prefix_extractor.s: utilities/nvm_write_cache/prefix_e
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/prefix_extractor.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/prefix_extractor.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/prefix_extractor.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/prefix_extractor.cc.s
 .PHONY : utilities/nvm_write_cache/prefix_extractor.cc.s
 
 utilities/nvm_write_cache/range_tab_test.obj: utilities/nvm_write_cache/range_tab_test.cc.obj
@@ -12305,7 +12547,9 @@ utilities/nvm_write_cache/range_tab_test.obj: utilities/nvm_write_cache/range_ta
 
 # target to build an object file
 utilities/nvm_write_cache/range_tab_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/range_tab_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/range_tab_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/range_tab_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/utilities/nvm_write_cache/range_tab_test.cc.obj
 .PHONY : utilities/nvm_write_cache/range_tab_test.cc.obj
 
 utilities/nvm_write_cache/range_tab_test.i: utilities/nvm_write_cache/range_tab_test.cc.i
@@ -12314,7 +12558,9 @@ utilities/nvm_write_cache/range_tab_test.i: utilities/nvm_write_cache/range_tab_
 
 # target to preprocess a source file
 utilities/nvm_write_cache/range_tab_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/range_tab_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/range_tab_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/range_tab_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/utilities/nvm_write_cache/range_tab_test.cc.i
 .PHONY : utilities/nvm_write_cache/range_tab_test.cc.i
 
 utilities/nvm_write_cache/range_tab_test.s: utilities/nvm_write_cache/range_tab_test.cc.s
@@ -12323,251 +12569,10 @@ utilities/nvm_write_cache/range_tab_test.s: utilities/nvm_write_cache/range_tab_
 
 # target to generate assembly for a file
 utilities/nvm_write_cache/range_tab_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/range_tab_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/range_tab_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/range_tab_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_range_tab_test.dir\build.make CMakeFiles/rocksdb_range_tab_test.dir/utilities/nvm_write_cache/range_tab_test.cc.s
 .PHONY : utilities/nvm_write_cache/range_tab_test.cc.s
-
-utilities/nvm_write_cache/skiplist/batch_skiplist.obj: utilities/nvm_write_cache/skiplist/batch_skiplist.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/batch_skiplist.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/batch_skiplist.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist.cc.obj
-
-utilities/nvm_write_cache/skiplist/batch_skiplist.i: utilities/nvm_write_cache/skiplist/batch_skiplist.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/batch_skiplist.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/batch_skiplist.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist.cc.i
-
-utilities/nvm_write_cache/skiplist/batch_skiplist.s: utilities/nvm_write_cache/skiplist/batch_skiplist.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/batch_skiplist.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/batch_skiplist.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist.cc.s
-
-utilities/nvm_write_cache/skiplist/batch_skiplist_test.obj: utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist_test.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.obj
-
-utilities/nvm_write_cache/skiplist/batch_skiplist_test.i: utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist_test.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.i
-
-utilities/nvm_write_cache/skiplist/batch_skiplist_test.s: utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist_test.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/batch_skiplist_test.cc.s
-
-utilities/nvm_write_cache/skiplist/half_persistent_skiplist.obj: utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/half_persistent_skiplist.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.obj
-
-utilities/nvm_write_cache/skiplist/half_persistent_skiplist.i: utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/half_persistent_skiplist.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.i
-
-utilities/nvm_write_cache/skiplist/half_persistent_skiplist.s: utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/half_persistent_skiplist.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/half_persistent_skiplist.cc.s
-
-utilities/nvm_write_cache/skiplist/nvm_test.obj: utilities/nvm_write_cache/skiplist/nvm_test.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/nvm_test.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/nvm_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/nvm_test.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/nvm_test.cc.obj
-
-utilities/nvm_write_cache/skiplist/nvm_test.i: utilities/nvm_write_cache/skiplist/nvm_test.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/nvm_test.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/nvm_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/nvm_test.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/nvm_test.cc.i
-
-utilities/nvm_write_cache/skiplist/nvm_test.s: utilities/nvm_write_cache/skiplist/nvm_test.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/nvm_test.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/nvm_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/nvm_test.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/nvm_test.cc.s
-
-utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.obj: utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.obj
-
-utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.i: utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.i
-
-utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.s: utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.cc.s
-
-utilities/nvm_write_cache/skiplist/persistent_skip_list.obj: utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skip_list.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.obj
-
-utilities/nvm_write_cache/skiplist/persistent_skip_list.i: utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skip_list.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.i
-
-utilities/nvm_write_cache/skiplist/persistent_skip_list.s: utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skip_list.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skip_list.cc.s
-
-utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.obj: utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.obj
-
-utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.i: utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.i
-
-utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.s: utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.cc.s
-
-utilities/nvm_write_cache/skiplist/persistentptr_test.obj: utilities/nvm_write_cache/skiplist/persistentptr_test.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistentptr_test.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/persistentptr_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistentptr_test.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/persistentptr_test.cc.obj
-
-utilities/nvm_write_cache/skiplist/persistentptr_test.i: utilities/nvm_write_cache/skiplist/persistentptr_test.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistentptr_test.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/persistentptr_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistentptr_test.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/persistentptr_test.cc.i
-
-utilities/nvm_write_cache/skiplist/persistentptr_test.s: utilities/nvm_write_cache/skiplist/persistentptr_test.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/persistentptr_test.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/persistentptr_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/persistentptr_test.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/persistentptr_test.cc.s
-
-utilities/nvm_write_cache/skiplist/volatile_skip_list.obj: utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.obj
-
-.PHONY : utilities/nvm_write_cache/skiplist/volatile_skip_list.obj
-
-# target to build an object file
-utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.obj
-.PHONY : utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.obj
-
-utilities/nvm_write_cache/skiplist/volatile_skip_list.i: utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.i
-
-.PHONY : utilities/nvm_write_cache/skiplist/volatile_skip_list.i
-
-# target to preprocess a source file
-utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.i
-.PHONY : utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.i
-
-utilities/nvm_write_cache/skiplist/volatile_skip_list.s: utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.s
-
-.PHONY : utilities/nvm_write_cache/skiplist/volatile_skip_list.s
-
-# target to generate assembly for a file
-utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.s
-.PHONY : utilities/nvm_write_cache/skiplist/volatile_skip_list.cc.s
 
 utilities/object_registry_test.obj: utilities/object_registry_test.cc.obj
 
@@ -12575,7 +12580,7 @@ utilities/object_registry_test.obj: utilities/object_registry_test.cc.obj
 
 # target to build an object file
 utilities/object_registry_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/object_registry_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_object_registry_test.dir\build.make CMakeFiles/rocksdb_object_registry_test.dir/utilities/object_registry_test.cc.obj
 .PHONY : utilities/object_registry_test.cc.obj
 
 utilities/object_registry_test.i: utilities/object_registry_test.cc.i
@@ -12584,7 +12589,7 @@ utilities/object_registry_test.i: utilities/object_registry_test.cc.i
 
 # target to preprocess a source file
 utilities/object_registry_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/object_registry_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_object_registry_test.dir\build.make CMakeFiles/rocksdb_object_registry_test.dir/utilities/object_registry_test.cc.i
 .PHONY : utilities/object_registry_test.cc.i
 
 utilities/object_registry_test.s: utilities/object_registry_test.cc.s
@@ -12593,7 +12598,7 @@ utilities/object_registry_test.s: utilities/object_registry_test.cc.s
 
 # target to generate assembly for a file
 utilities/object_registry_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/object_registry_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_object_registry_test.dir\build.make CMakeFiles/rocksdb_object_registry_test.dir/utilities/object_registry_test.cc.s
 .PHONY : utilities/object_registry_test.cc.s
 
 utilities/option_change_migration/option_change_migration.obj: utilities/option_change_migration/option_change_migration.cc.obj
@@ -12602,7 +12607,8 @@ utilities/option_change_migration/option_change_migration.obj: utilities/option_
 
 # target to build an object file
 utilities/option_change_migration/option_change_migration.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/option_change_migration/option_change_migration.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/option_change_migration/option_change_migration.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/option_change_migration/option_change_migration.cc.obj
 .PHONY : utilities/option_change_migration/option_change_migration.cc.obj
 
 utilities/option_change_migration/option_change_migration.i: utilities/option_change_migration/option_change_migration.cc.i
@@ -12611,7 +12617,8 @@ utilities/option_change_migration/option_change_migration.i: utilities/option_ch
 
 # target to preprocess a source file
 utilities/option_change_migration/option_change_migration.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/option_change_migration/option_change_migration.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/option_change_migration/option_change_migration.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/option_change_migration/option_change_migration.cc.i
 .PHONY : utilities/option_change_migration/option_change_migration.cc.i
 
 utilities/option_change_migration/option_change_migration.s: utilities/option_change_migration/option_change_migration.cc.s
@@ -12620,7 +12627,8 @@ utilities/option_change_migration/option_change_migration.s: utilities/option_ch
 
 # target to generate assembly for a file
 utilities/option_change_migration/option_change_migration.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/option_change_migration/option_change_migration.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/option_change_migration/option_change_migration.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/option_change_migration/option_change_migration.cc.s
 .PHONY : utilities/option_change_migration/option_change_migration.cc.s
 
 utilities/option_change_migration/option_change_migration_test.obj: utilities/option_change_migration/option_change_migration_test.cc.obj
@@ -12629,7 +12637,7 @@ utilities/option_change_migration/option_change_migration_test.obj: utilities/op
 
 # target to build an object file
 utilities/option_change_migration/option_change_migration_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/option_change_migration/option_change_migration_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_option_change_migration_test.dir\build.make CMakeFiles/rocksdb_option_change_migration_test.dir/utilities/option_change_migration/option_change_migration_test.cc.obj
 .PHONY : utilities/option_change_migration/option_change_migration_test.cc.obj
 
 utilities/option_change_migration/option_change_migration_test.i: utilities/option_change_migration/option_change_migration_test.cc.i
@@ -12638,7 +12646,7 @@ utilities/option_change_migration/option_change_migration_test.i: utilities/opti
 
 # target to preprocess a source file
 utilities/option_change_migration/option_change_migration_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/option_change_migration/option_change_migration_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_option_change_migration_test.dir\build.make CMakeFiles/rocksdb_option_change_migration_test.dir/utilities/option_change_migration/option_change_migration_test.cc.i
 .PHONY : utilities/option_change_migration/option_change_migration_test.cc.i
 
 utilities/option_change_migration/option_change_migration_test.s: utilities/option_change_migration/option_change_migration_test.cc.s
@@ -12647,7 +12655,7 @@ utilities/option_change_migration/option_change_migration_test.s: utilities/opti
 
 # target to generate assembly for a file
 utilities/option_change_migration/option_change_migration_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/option_change_migration/option_change_migration_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_option_change_migration_test.dir\build.make CMakeFiles/rocksdb_option_change_migration_test.dir/utilities/option_change_migration/option_change_migration_test.cc.s
 .PHONY : utilities/option_change_migration/option_change_migration_test.cc.s
 
 utilities/options/options_util.obj: utilities/options/options_util.cc.obj
@@ -12656,7 +12664,8 @@ utilities/options/options_util.obj: utilities/options/options_util.cc.obj
 
 # target to build an object file
 utilities/options/options_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/options/options_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/options/options_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/options/options_util.cc.obj
 .PHONY : utilities/options/options_util.cc.obj
 
 utilities/options/options_util.i: utilities/options/options_util.cc.i
@@ -12665,7 +12674,8 @@ utilities/options/options_util.i: utilities/options/options_util.cc.i
 
 # target to preprocess a source file
 utilities/options/options_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/options/options_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/options/options_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/options/options_util.cc.i
 .PHONY : utilities/options/options_util.cc.i
 
 utilities/options/options_util.s: utilities/options/options_util.cc.s
@@ -12674,7 +12684,8 @@ utilities/options/options_util.s: utilities/options/options_util.cc.s
 
 # target to generate assembly for a file
 utilities/options/options_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/options/options_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/options/options_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/options/options_util.cc.s
 .PHONY : utilities/options/options_util.cc.s
 
 utilities/options/options_util_test.obj: utilities/options/options_util_test.cc.obj
@@ -12683,7 +12694,7 @@ utilities/options/options_util_test.obj: utilities/options/options_util_test.cc.
 
 # target to build an object file
 utilities/options/options_util_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/options/options_util_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_options_util_test.dir\build.make CMakeFiles/rocksdb_options_util_test.dir/utilities/options/options_util_test.cc.obj
 .PHONY : utilities/options/options_util_test.cc.obj
 
 utilities/options/options_util_test.i: utilities/options/options_util_test.cc.i
@@ -12692,7 +12703,7 @@ utilities/options/options_util_test.i: utilities/options/options_util_test.cc.i
 
 # target to preprocess a source file
 utilities/options/options_util_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/options/options_util_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_options_util_test.dir\build.make CMakeFiles/rocksdb_options_util_test.dir/utilities/options/options_util_test.cc.i
 .PHONY : utilities/options/options_util_test.cc.i
 
 utilities/options/options_util_test.s: utilities/options/options_util_test.cc.s
@@ -12701,7 +12712,7 @@ utilities/options/options_util_test.s: utilities/options/options_util_test.cc.s
 
 # target to generate assembly for a file
 utilities/options/options_util_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/options/options_util_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_options_util_test.dir\build.make CMakeFiles/rocksdb_options_util_test.dir/utilities/options/options_util_test.cc.s
 .PHONY : utilities/options/options_util_test.cc.s
 
 utilities/persistent_cache/block_cache_tier.obj: utilities/persistent_cache/block_cache_tier.cc.obj
@@ -12710,7 +12721,8 @@ utilities/persistent_cache/block_cache_tier.obj: utilities/persistent_cache/bloc
 
 # target to build an object file
 utilities/persistent_cache/block_cache_tier.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier.cc.obj
 .PHONY : utilities/persistent_cache/block_cache_tier.cc.obj
 
 utilities/persistent_cache/block_cache_tier.i: utilities/persistent_cache/block_cache_tier.cc.i
@@ -12719,7 +12731,8 @@ utilities/persistent_cache/block_cache_tier.i: utilities/persistent_cache/block_
 
 # target to preprocess a source file
 utilities/persistent_cache/block_cache_tier.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier.cc.i
 .PHONY : utilities/persistent_cache/block_cache_tier.cc.i
 
 utilities/persistent_cache/block_cache_tier.s: utilities/persistent_cache/block_cache_tier.cc.s
@@ -12728,7 +12741,8 @@ utilities/persistent_cache/block_cache_tier.s: utilities/persistent_cache/block_
 
 # target to generate assembly for a file
 utilities/persistent_cache/block_cache_tier.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier.cc.s
 .PHONY : utilities/persistent_cache/block_cache_tier.cc.s
 
 utilities/persistent_cache/block_cache_tier_file.obj: utilities/persistent_cache/block_cache_tier_file.cc.obj
@@ -12737,7 +12751,8 @@ utilities/persistent_cache/block_cache_tier_file.obj: utilities/persistent_cache
 
 # target to build an object file
 utilities/persistent_cache/block_cache_tier_file.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier_file.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier_file.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier_file.cc.obj
 .PHONY : utilities/persistent_cache/block_cache_tier_file.cc.obj
 
 utilities/persistent_cache/block_cache_tier_file.i: utilities/persistent_cache/block_cache_tier_file.cc.i
@@ -12746,7 +12761,8 @@ utilities/persistent_cache/block_cache_tier_file.i: utilities/persistent_cache/b
 
 # target to preprocess a source file
 utilities/persistent_cache/block_cache_tier_file.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier_file.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier_file.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier_file.cc.i
 .PHONY : utilities/persistent_cache/block_cache_tier_file.cc.i
 
 utilities/persistent_cache/block_cache_tier_file.s: utilities/persistent_cache/block_cache_tier_file.cc.s
@@ -12755,7 +12771,8 @@ utilities/persistent_cache/block_cache_tier_file.s: utilities/persistent_cache/b
 
 # target to generate assembly for a file
 utilities/persistent_cache/block_cache_tier_file.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier_file.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier_file.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier_file.cc.s
 .PHONY : utilities/persistent_cache/block_cache_tier_file.cc.s
 
 utilities/persistent_cache/block_cache_tier_metadata.obj: utilities/persistent_cache/block_cache_tier_metadata.cc.obj
@@ -12764,7 +12781,8 @@ utilities/persistent_cache/block_cache_tier_metadata.obj: utilities/persistent_c
 
 # target to build an object file
 utilities/persistent_cache/block_cache_tier_metadata.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.obj
 .PHONY : utilities/persistent_cache/block_cache_tier_metadata.cc.obj
 
 utilities/persistent_cache/block_cache_tier_metadata.i: utilities/persistent_cache/block_cache_tier_metadata.cc.i
@@ -12773,7 +12791,8 @@ utilities/persistent_cache/block_cache_tier_metadata.i: utilities/persistent_cac
 
 # target to preprocess a source file
 utilities/persistent_cache/block_cache_tier_metadata.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.i
 .PHONY : utilities/persistent_cache/block_cache_tier_metadata.cc.i
 
 utilities/persistent_cache/block_cache_tier_metadata.s: utilities/persistent_cache/block_cache_tier_metadata.cc.s
@@ -12782,7 +12801,8 @@ utilities/persistent_cache/block_cache_tier_metadata.s: utilities/persistent_cac
 
 # target to generate assembly for a file
 utilities/persistent_cache/block_cache_tier_metadata.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/block_cache_tier_metadata.cc.s
 .PHONY : utilities/persistent_cache/block_cache_tier_metadata.cc.s
 
 utilities/persistent_cache/hash_table_bench.obj: utilities/persistent_cache/hash_table_bench.cc.obj
@@ -12791,7 +12811,7 @@ utilities/persistent_cache/hash_table_bench.obj: utilities/persistent_cache/hash
 
 # target to build an object file
 utilities/persistent_cache/hash_table_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/hash_table_bench.cc.obj
+	$(MAKE) -f CMakeFiles\hash_table_bench.dir\build.make CMakeFiles/hash_table_bench.dir/utilities/persistent_cache/hash_table_bench.cc.obj
 .PHONY : utilities/persistent_cache/hash_table_bench.cc.obj
 
 utilities/persistent_cache/hash_table_bench.i: utilities/persistent_cache/hash_table_bench.cc.i
@@ -12800,7 +12820,7 @@ utilities/persistent_cache/hash_table_bench.i: utilities/persistent_cache/hash_t
 
 # target to preprocess a source file
 utilities/persistent_cache/hash_table_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/hash_table_bench.cc.i
+	$(MAKE) -f CMakeFiles\hash_table_bench.dir\build.make CMakeFiles/hash_table_bench.dir/utilities/persistent_cache/hash_table_bench.cc.i
 .PHONY : utilities/persistent_cache/hash_table_bench.cc.i
 
 utilities/persistent_cache/hash_table_bench.s: utilities/persistent_cache/hash_table_bench.cc.s
@@ -12809,7 +12829,7 @@ utilities/persistent_cache/hash_table_bench.s: utilities/persistent_cache/hash_t
 
 # target to generate assembly for a file
 utilities/persistent_cache/hash_table_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/hash_table_bench.cc.s
+	$(MAKE) -f CMakeFiles\hash_table_bench.dir\build.make CMakeFiles/hash_table_bench.dir/utilities/persistent_cache/hash_table_bench.cc.s
 .PHONY : utilities/persistent_cache/hash_table_bench.cc.s
 
 utilities/persistent_cache/hash_table_test.obj: utilities/persistent_cache/hash_table_test.cc.obj
@@ -12818,7 +12838,7 @@ utilities/persistent_cache/hash_table_test.obj: utilities/persistent_cache/hash_
 
 # target to build an object file
 utilities/persistent_cache/hash_table_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/hash_table_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_hash_table_test.dir\build.make CMakeFiles/rocksdb_hash_table_test.dir/utilities/persistent_cache/hash_table_test.cc.obj
 .PHONY : utilities/persistent_cache/hash_table_test.cc.obj
 
 utilities/persistent_cache/hash_table_test.i: utilities/persistent_cache/hash_table_test.cc.i
@@ -12827,7 +12847,7 @@ utilities/persistent_cache/hash_table_test.i: utilities/persistent_cache/hash_ta
 
 # target to preprocess a source file
 utilities/persistent_cache/hash_table_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/hash_table_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_hash_table_test.dir\build.make CMakeFiles/rocksdb_hash_table_test.dir/utilities/persistent_cache/hash_table_test.cc.i
 .PHONY : utilities/persistent_cache/hash_table_test.cc.i
 
 utilities/persistent_cache/hash_table_test.s: utilities/persistent_cache/hash_table_test.cc.s
@@ -12836,35 +12856,8 @@ utilities/persistent_cache/hash_table_test.s: utilities/persistent_cache/hash_ta
 
 # target to generate assembly for a file
 utilities/persistent_cache/hash_table_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/hash_table_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_hash_table_test.dir\build.make CMakeFiles/rocksdb_hash_table_test.dir/utilities/persistent_cache/hash_table_test.cc.s
 .PHONY : utilities/persistent_cache/hash_table_test.cc.s
-
-utilities/persistent_cache/persistent_cache_bench.obj: utilities/persistent_cache/persistent_cache_bench.cc.obj
-
-.PHONY : utilities/persistent_cache/persistent_cache_bench.obj
-
-# target to build an object file
-utilities/persistent_cache/persistent_cache_bench.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_bench.cc.obj
-.PHONY : utilities/persistent_cache/persistent_cache_bench.cc.obj
-
-utilities/persistent_cache/persistent_cache_bench.i: utilities/persistent_cache/persistent_cache_bench.cc.i
-
-.PHONY : utilities/persistent_cache/persistent_cache_bench.i
-
-# target to preprocess a source file
-utilities/persistent_cache/persistent_cache_bench.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_bench.cc.i
-.PHONY : utilities/persistent_cache/persistent_cache_bench.cc.i
-
-utilities/persistent_cache/persistent_cache_bench.s: utilities/persistent_cache/persistent_cache_bench.cc.s
-
-.PHONY : utilities/persistent_cache/persistent_cache_bench.s
-
-# target to generate assembly for a file
-utilities/persistent_cache/persistent_cache_bench.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_bench.cc.s
-.PHONY : utilities/persistent_cache/persistent_cache_bench.cc.s
 
 utilities/persistent_cache/persistent_cache_test.obj: utilities/persistent_cache/persistent_cache_test.cc.obj
 
@@ -12872,7 +12865,7 @@ utilities/persistent_cache/persistent_cache_test.obj: utilities/persistent_cache
 
 # target to build an object file
 utilities/persistent_cache/persistent_cache_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_persistent_cache_test.dir\build.make CMakeFiles/rocksdb_persistent_cache_test.dir/utilities/persistent_cache/persistent_cache_test.cc.obj
 .PHONY : utilities/persistent_cache/persistent_cache_test.cc.obj
 
 utilities/persistent_cache/persistent_cache_test.i: utilities/persistent_cache/persistent_cache_test.cc.i
@@ -12881,7 +12874,7 @@ utilities/persistent_cache/persistent_cache_test.i: utilities/persistent_cache/p
 
 # target to preprocess a source file
 utilities/persistent_cache/persistent_cache_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_persistent_cache_test.dir\build.make CMakeFiles/rocksdb_persistent_cache_test.dir/utilities/persistent_cache/persistent_cache_test.cc.i
 .PHONY : utilities/persistent_cache/persistent_cache_test.cc.i
 
 utilities/persistent_cache/persistent_cache_test.s: utilities/persistent_cache/persistent_cache_test.cc.s
@@ -12890,7 +12883,7 @@ utilities/persistent_cache/persistent_cache_test.s: utilities/persistent_cache/p
 
 # target to generate assembly for a file
 utilities/persistent_cache/persistent_cache_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_persistent_cache_test.dir\build.make CMakeFiles/rocksdb_persistent_cache_test.dir/utilities/persistent_cache/persistent_cache_test.cc.s
 .PHONY : utilities/persistent_cache/persistent_cache_test.cc.s
 
 utilities/persistent_cache/persistent_cache_tier.obj: utilities/persistent_cache/persistent_cache_tier.cc.obj
@@ -12899,7 +12892,8 @@ utilities/persistent_cache/persistent_cache_tier.obj: utilities/persistent_cache
 
 # target to build an object file
 utilities/persistent_cache/persistent_cache_tier.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_tier.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/persistent_cache_tier.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/persistent_cache_tier.cc.obj
 .PHONY : utilities/persistent_cache/persistent_cache_tier.cc.obj
 
 utilities/persistent_cache/persistent_cache_tier.i: utilities/persistent_cache/persistent_cache_tier.cc.i
@@ -12908,7 +12902,8 @@ utilities/persistent_cache/persistent_cache_tier.i: utilities/persistent_cache/p
 
 # target to preprocess a source file
 utilities/persistent_cache/persistent_cache_tier.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_tier.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/persistent_cache_tier.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/persistent_cache_tier.cc.i
 .PHONY : utilities/persistent_cache/persistent_cache_tier.cc.i
 
 utilities/persistent_cache/persistent_cache_tier.s: utilities/persistent_cache/persistent_cache_tier.cc.s
@@ -12917,7 +12912,8 @@ utilities/persistent_cache/persistent_cache_tier.s: utilities/persistent_cache/p
 
 # target to generate assembly for a file
 utilities/persistent_cache/persistent_cache_tier.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/persistent_cache_tier.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/persistent_cache_tier.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/persistent_cache_tier.cc.s
 .PHONY : utilities/persistent_cache/persistent_cache_tier.cc.s
 
 utilities/persistent_cache/volatile_tier_impl.obj: utilities/persistent_cache/volatile_tier_impl.cc.obj
@@ -12926,7 +12922,8 @@ utilities/persistent_cache/volatile_tier_impl.obj: utilities/persistent_cache/vo
 
 # target to build an object file
 utilities/persistent_cache/volatile_tier_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/volatile_tier_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/volatile_tier_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/volatile_tier_impl.cc.obj
 .PHONY : utilities/persistent_cache/volatile_tier_impl.cc.obj
 
 utilities/persistent_cache/volatile_tier_impl.i: utilities/persistent_cache/volatile_tier_impl.cc.i
@@ -12935,7 +12932,8 @@ utilities/persistent_cache/volatile_tier_impl.i: utilities/persistent_cache/vola
 
 # target to preprocess a source file
 utilities/persistent_cache/volatile_tier_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/volatile_tier_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/volatile_tier_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/volatile_tier_impl.cc.i
 .PHONY : utilities/persistent_cache/volatile_tier_impl.cc.i
 
 utilities/persistent_cache/volatile_tier_impl.s: utilities/persistent_cache/volatile_tier_impl.cc.s
@@ -12944,7 +12942,8 @@ utilities/persistent_cache/volatile_tier_impl.s: utilities/persistent_cache/vola
 
 # target to generate assembly for a file
 utilities/persistent_cache/volatile_tier_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/persistent_cache/volatile_tier_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/persistent_cache/volatile_tier_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/persistent_cache/volatile_tier_impl.cc.s
 .PHONY : utilities/persistent_cache/volatile_tier_impl.cc.s
 
 utilities/redis/redis_lists.obj: utilities/redis/redis_lists.cc.obj
@@ -12953,7 +12952,8 @@ utilities/redis/redis_lists.obj: utilities/redis/redis_lists.cc.obj
 
 # target to build an object file
 utilities/redis/redis_lists.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/redis/redis_lists.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/redis/redis_lists.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/redis/redis_lists.cc.obj
 .PHONY : utilities/redis/redis_lists.cc.obj
 
 utilities/redis/redis_lists.i: utilities/redis/redis_lists.cc.i
@@ -12962,7 +12962,8 @@ utilities/redis/redis_lists.i: utilities/redis/redis_lists.cc.i
 
 # target to preprocess a source file
 utilities/redis/redis_lists.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/redis/redis_lists.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/redis/redis_lists.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/redis/redis_lists.cc.i
 .PHONY : utilities/redis/redis_lists.cc.i
 
 utilities/redis/redis_lists.s: utilities/redis/redis_lists.cc.s
@@ -12971,7 +12972,8 @@ utilities/redis/redis_lists.s: utilities/redis/redis_lists.cc.s
 
 # target to generate assembly for a file
 utilities/redis/redis_lists.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/redis/redis_lists.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/redis/redis_lists.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/redis/redis_lists.cc.s
 .PHONY : utilities/redis/redis_lists.cc.s
 
 utilities/redis/redis_lists_test.obj: utilities/redis/redis_lists_test.cc.obj
@@ -12980,7 +12982,7 @@ utilities/redis/redis_lists_test.obj: utilities/redis/redis_lists_test.cc.obj
 
 # target to build an object file
 utilities/redis/redis_lists_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/redis/redis_lists_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_redis_lists_test.dir\build.make CMakeFiles/rocksdb_redis_lists_test.dir/utilities/redis/redis_lists_test.cc.obj
 .PHONY : utilities/redis/redis_lists_test.cc.obj
 
 utilities/redis/redis_lists_test.i: utilities/redis/redis_lists_test.cc.i
@@ -12989,7 +12991,7 @@ utilities/redis/redis_lists_test.i: utilities/redis/redis_lists_test.cc.i
 
 # target to preprocess a source file
 utilities/redis/redis_lists_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/redis/redis_lists_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_redis_lists_test.dir\build.make CMakeFiles/rocksdb_redis_lists_test.dir/utilities/redis/redis_lists_test.cc.i
 .PHONY : utilities/redis/redis_lists_test.cc.i
 
 utilities/redis/redis_lists_test.s: utilities/redis/redis_lists_test.cc.s
@@ -12998,7 +13000,7 @@ utilities/redis/redis_lists_test.s: utilities/redis/redis_lists_test.cc.s
 
 # target to generate assembly for a file
 utilities/redis/redis_lists_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/redis/redis_lists_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_redis_lists_test.dir\build.make CMakeFiles/rocksdb_redis_lists_test.dir/utilities/redis/redis_lists_test.cc.s
 .PHONY : utilities/redis/redis_lists_test.cc.s
 
 utilities/simulator_cache/sim_cache.obj: utilities/simulator_cache/sim_cache.cc.obj
@@ -13007,7 +13009,8 @@ utilities/simulator_cache/sim_cache.obj: utilities/simulator_cache/sim_cache.cc.
 
 # target to build an object file
 utilities/simulator_cache/sim_cache.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/simulator_cache/sim_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/simulator_cache/sim_cache.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/simulator_cache/sim_cache.cc.obj
 .PHONY : utilities/simulator_cache/sim_cache.cc.obj
 
 utilities/simulator_cache/sim_cache.i: utilities/simulator_cache/sim_cache.cc.i
@@ -13016,7 +13019,8 @@ utilities/simulator_cache/sim_cache.i: utilities/simulator_cache/sim_cache.cc.i
 
 # target to preprocess a source file
 utilities/simulator_cache/sim_cache.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/simulator_cache/sim_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/simulator_cache/sim_cache.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/simulator_cache/sim_cache.cc.i
 .PHONY : utilities/simulator_cache/sim_cache.cc.i
 
 utilities/simulator_cache/sim_cache.s: utilities/simulator_cache/sim_cache.cc.s
@@ -13025,7 +13029,8 @@ utilities/simulator_cache/sim_cache.s: utilities/simulator_cache/sim_cache.cc.s
 
 # target to generate assembly for a file
 utilities/simulator_cache/sim_cache.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/simulator_cache/sim_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/simulator_cache/sim_cache.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/simulator_cache/sim_cache.cc.s
 .PHONY : utilities/simulator_cache/sim_cache.cc.s
 
 utilities/simulator_cache/sim_cache_test.obj: utilities/simulator_cache/sim_cache_test.cc.obj
@@ -13034,7 +13039,7 @@ utilities/simulator_cache/sim_cache_test.obj: utilities/simulator_cache/sim_cach
 
 # target to build an object file
 utilities/simulator_cache/sim_cache_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/simulator_cache/sim_cache_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_sim_cache_test.dir\build.make CMakeFiles/rocksdb_sim_cache_test.dir/utilities/simulator_cache/sim_cache_test.cc.obj
 .PHONY : utilities/simulator_cache/sim_cache_test.cc.obj
 
 utilities/simulator_cache/sim_cache_test.i: utilities/simulator_cache/sim_cache_test.cc.i
@@ -13043,7 +13048,7 @@ utilities/simulator_cache/sim_cache_test.i: utilities/simulator_cache/sim_cache_
 
 # target to preprocess a source file
 utilities/simulator_cache/sim_cache_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/simulator_cache/sim_cache_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_sim_cache_test.dir\build.make CMakeFiles/rocksdb_sim_cache_test.dir/utilities/simulator_cache/sim_cache_test.cc.i
 .PHONY : utilities/simulator_cache/sim_cache_test.cc.i
 
 utilities/simulator_cache/sim_cache_test.s: utilities/simulator_cache/sim_cache_test.cc.s
@@ -13052,7 +13057,7 @@ utilities/simulator_cache/sim_cache_test.s: utilities/simulator_cache/sim_cache_
 
 # target to generate assembly for a file
 utilities/simulator_cache/sim_cache_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/simulator_cache/sim_cache_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_sim_cache_test.dir\build.make CMakeFiles/rocksdb_sim_cache_test.dir/utilities/simulator_cache/sim_cache_test.cc.s
 .PHONY : utilities/simulator_cache/sim_cache_test.cc.s
 
 utilities/spatialdb/spatial_db.obj: utilities/spatialdb/spatial_db.cc.obj
@@ -13061,7 +13066,8 @@ utilities/spatialdb/spatial_db.obj: utilities/spatialdb/spatial_db.cc.obj
 
 # target to build an object file
 utilities/spatialdb/spatial_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/spatialdb/spatial_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/spatialdb/spatial_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/spatialdb/spatial_db.cc.obj
 .PHONY : utilities/spatialdb/spatial_db.cc.obj
 
 utilities/spatialdb/spatial_db.i: utilities/spatialdb/spatial_db.cc.i
@@ -13070,7 +13076,8 @@ utilities/spatialdb/spatial_db.i: utilities/spatialdb/spatial_db.cc.i
 
 # target to preprocess a source file
 utilities/spatialdb/spatial_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/spatialdb/spatial_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/spatialdb/spatial_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/spatialdb/spatial_db.cc.i
 .PHONY : utilities/spatialdb/spatial_db.cc.i
 
 utilities/spatialdb/spatial_db.s: utilities/spatialdb/spatial_db.cc.s
@@ -13079,7 +13086,8 @@ utilities/spatialdb/spatial_db.s: utilities/spatialdb/spatial_db.cc.s
 
 # target to generate assembly for a file
 utilities/spatialdb/spatial_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/spatialdb/spatial_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/spatialdb/spatial_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/spatialdb/spatial_db.cc.s
 .PHONY : utilities/spatialdb/spatial_db.cc.s
 
 utilities/spatialdb/spatial_db_test.obj: utilities/spatialdb/spatial_db_test.cc.obj
@@ -13088,7 +13096,7 @@ utilities/spatialdb/spatial_db_test.obj: utilities/spatialdb/spatial_db_test.cc.
 
 # target to build an object file
 utilities/spatialdb/spatial_db_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/spatialdb/spatial_db_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_spatial_db_test.dir\build.make CMakeFiles/rocksdb_spatial_db_test.dir/utilities/spatialdb/spatial_db_test.cc.obj
 .PHONY : utilities/spatialdb/spatial_db_test.cc.obj
 
 utilities/spatialdb/spatial_db_test.i: utilities/spatialdb/spatial_db_test.cc.i
@@ -13097,7 +13105,7 @@ utilities/spatialdb/spatial_db_test.i: utilities/spatialdb/spatial_db_test.cc.i
 
 # target to preprocess a source file
 utilities/spatialdb/spatial_db_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/spatialdb/spatial_db_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_spatial_db_test.dir\build.make CMakeFiles/rocksdb_spatial_db_test.dir/utilities/spatialdb/spatial_db_test.cc.i
 .PHONY : utilities/spatialdb/spatial_db_test.cc.i
 
 utilities/spatialdb/spatial_db_test.s: utilities/spatialdb/spatial_db_test.cc.s
@@ -13106,7 +13114,7 @@ utilities/spatialdb/spatial_db_test.s: utilities/spatialdb/spatial_db_test.cc.s
 
 # target to generate assembly for a file
 utilities/spatialdb/spatial_db_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/spatialdb/spatial_db_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_spatial_db_test.dir\build.make CMakeFiles/rocksdb_spatial_db_test.dir/utilities/spatialdb/spatial_db_test.cc.s
 .PHONY : utilities/spatialdb/spatial_db_test.cc.s
 
 utilities/table_properties_collectors/compact_on_deletion_collector.obj: utilities/table_properties_collectors/compact_on_deletion_collector.cc.obj
@@ -13115,7 +13123,8 @@ utilities/table_properties_collectors/compact_on_deletion_collector.obj: utiliti
 
 # target to build an object file
 utilities/table_properties_collectors/compact_on_deletion_collector.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.obj
 .PHONY : utilities/table_properties_collectors/compact_on_deletion_collector.cc.obj
 
 utilities/table_properties_collectors/compact_on_deletion_collector.i: utilities/table_properties_collectors/compact_on_deletion_collector.cc.i
@@ -13124,7 +13133,8 @@ utilities/table_properties_collectors/compact_on_deletion_collector.i: utilities
 
 # target to preprocess a source file
 utilities/table_properties_collectors/compact_on_deletion_collector.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.i
 .PHONY : utilities/table_properties_collectors/compact_on_deletion_collector.cc.i
 
 utilities/table_properties_collectors/compact_on_deletion_collector.s: utilities/table_properties_collectors/compact_on_deletion_collector.cc.s
@@ -13133,7 +13143,8 @@ utilities/table_properties_collectors/compact_on_deletion_collector.s: utilities
 
 # target to generate assembly for a file
 utilities/table_properties_collectors/compact_on_deletion_collector.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/table_properties_collectors/compact_on_deletion_collector.cc.s
 .PHONY : utilities/table_properties_collectors/compact_on_deletion_collector.cc.s
 
 utilities/table_properties_collectors/compact_on_deletion_collector_test.obj: utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.obj
@@ -13142,7 +13153,7 @@ utilities/table_properties_collectors/compact_on_deletion_collector_test.obj: ut
 
 # target to build an object file
 utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_compact_on_deletion_collector_test.dir\build.make CMakeFiles/rocksdb_compact_on_deletion_collector_test.dir/utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.obj
 .PHONY : utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.obj
 
 utilities/table_properties_collectors/compact_on_deletion_collector_test.i: utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.i
@@ -13151,7 +13162,7 @@ utilities/table_properties_collectors/compact_on_deletion_collector_test.i: util
 
 # target to preprocess a source file
 utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_compact_on_deletion_collector_test.dir\build.make CMakeFiles/rocksdb_compact_on_deletion_collector_test.dir/utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.i
 .PHONY : utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.i
 
 utilities/table_properties_collectors/compact_on_deletion_collector_test.s: utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.s
@@ -13160,7 +13171,7 @@ utilities/table_properties_collectors/compact_on_deletion_collector_test.s: util
 
 # target to generate assembly for a file
 utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_compact_on_deletion_collector_test.dir\build.make CMakeFiles/rocksdb_compact_on_deletion_collector_test.dir/utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.s
 .PHONY : utilities/table_properties_collectors/compact_on_deletion_collector_test.cc.s
 
 utilities/trace/file_trace_reader_writer.obj: utilities/trace/file_trace_reader_writer.cc.obj
@@ -13169,7 +13180,8 @@ utilities/trace/file_trace_reader_writer.obj: utilities/trace/file_trace_reader_
 
 # target to build an object file
 utilities/trace/file_trace_reader_writer.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/trace/file_trace_reader_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/trace/file_trace_reader_writer.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/trace/file_trace_reader_writer.cc.obj
 .PHONY : utilities/trace/file_trace_reader_writer.cc.obj
 
 utilities/trace/file_trace_reader_writer.i: utilities/trace/file_trace_reader_writer.cc.i
@@ -13178,7 +13190,8 @@ utilities/trace/file_trace_reader_writer.i: utilities/trace/file_trace_reader_wr
 
 # target to preprocess a source file
 utilities/trace/file_trace_reader_writer.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/trace/file_trace_reader_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/trace/file_trace_reader_writer.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/trace/file_trace_reader_writer.cc.i
 .PHONY : utilities/trace/file_trace_reader_writer.cc.i
 
 utilities/trace/file_trace_reader_writer.s: utilities/trace/file_trace_reader_writer.cc.s
@@ -13187,7 +13200,8 @@ utilities/trace/file_trace_reader_writer.s: utilities/trace/file_trace_reader_wr
 
 # target to generate assembly for a file
 utilities/trace/file_trace_reader_writer.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/trace/file_trace_reader_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/trace/file_trace_reader_writer.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/trace/file_trace_reader_writer.cc.s
 .PHONY : utilities/trace/file_trace_reader_writer.cc.s
 
 utilities/transactions/optimistic_transaction.obj: utilities/transactions/optimistic_transaction.cc.obj
@@ -13196,7 +13210,8 @@ utilities/transactions/optimistic_transaction.obj: utilities/transactions/optimi
 
 # target to build an object file
 utilities/transactions/optimistic_transaction.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/optimistic_transaction.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/optimistic_transaction.cc.obj
 .PHONY : utilities/transactions/optimistic_transaction.cc.obj
 
 utilities/transactions/optimistic_transaction.i: utilities/transactions/optimistic_transaction.cc.i
@@ -13205,7 +13220,8 @@ utilities/transactions/optimistic_transaction.i: utilities/transactions/optimist
 
 # target to preprocess a source file
 utilities/transactions/optimistic_transaction.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/optimistic_transaction.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/optimistic_transaction.cc.i
 .PHONY : utilities/transactions/optimistic_transaction.cc.i
 
 utilities/transactions/optimistic_transaction.s: utilities/transactions/optimistic_transaction.cc.s
@@ -13214,7 +13230,8 @@ utilities/transactions/optimistic_transaction.s: utilities/transactions/optimist
 
 # target to generate assembly for a file
 utilities/transactions/optimistic_transaction.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/optimistic_transaction.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/optimistic_transaction.cc.s
 .PHONY : utilities/transactions/optimistic_transaction.cc.s
 
 utilities/transactions/optimistic_transaction_db_impl.obj: utilities/transactions/optimistic_transaction_db_impl.cc.obj
@@ -13223,7 +13240,8 @@ utilities/transactions/optimistic_transaction_db_impl.obj: utilities/transaction
 
 # target to build an object file
 utilities/transactions/optimistic_transaction_db_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/optimistic_transaction_db_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/optimistic_transaction_db_impl.cc.obj
 .PHONY : utilities/transactions/optimistic_transaction_db_impl.cc.obj
 
 utilities/transactions/optimistic_transaction_db_impl.i: utilities/transactions/optimistic_transaction_db_impl.cc.i
@@ -13232,7 +13250,8 @@ utilities/transactions/optimistic_transaction_db_impl.i: utilities/transactions/
 
 # target to preprocess a source file
 utilities/transactions/optimistic_transaction_db_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/optimistic_transaction_db_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/optimistic_transaction_db_impl.cc.i
 .PHONY : utilities/transactions/optimistic_transaction_db_impl.cc.i
 
 utilities/transactions/optimistic_transaction_db_impl.s: utilities/transactions/optimistic_transaction_db_impl.cc.s
@@ -13241,7 +13260,8 @@ utilities/transactions/optimistic_transaction_db_impl.s: utilities/transactions/
 
 # target to generate assembly for a file
 utilities/transactions/optimistic_transaction_db_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/optimistic_transaction_db_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/optimistic_transaction_db_impl.cc.s
 .PHONY : utilities/transactions/optimistic_transaction_db_impl.cc.s
 
 utilities/transactions/optimistic_transaction_test.obj: utilities/transactions/optimistic_transaction_test.cc.obj
@@ -13250,7 +13270,7 @@ utilities/transactions/optimistic_transaction_test.obj: utilities/transactions/o
 
 # target to build an object file
 utilities/transactions/optimistic_transaction_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_optimistic_transaction_test.dir\build.make CMakeFiles/rocksdb_optimistic_transaction_test.dir/utilities/transactions/optimistic_transaction_test.cc.obj
 .PHONY : utilities/transactions/optimistic_transaction_test.cc.obj
 
 utilities/transactions/optimistic_transaction_test.i: utilities/transactions/optimistic_transaction_test.cc.i
@@ -13259,7 +13279,7 @@ utilities/transactions/optimistic_transaction_test.i: utilities/transactions/opt
 
 # target to preprocess a source file
 utilities/transactions/optimistic_transaction_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_optimistic_transaction_test.dir\build.make CMakeFiles/rocksdb_optimistic_transaction_test.dir/utilities/transactions/optimistic_transaction_test.cc.i
 .PHONY : utilities/transactions/optimistic_transaction_test.cc.i
 
 utilities/transactions/optimistic_transaction_test.s: utilities/transactions/optimistic_transaction_test.cc.s
@@ -13268,7 +13288,7 @@ utilities/transactions/optimistic_transaction_test.s: utilities/transactions/opt
 
 # target to generate assembly for a file
 utilities/transactions/optimistic_transaction_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/optimistic_transaction_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_optimistic_transaction_test.dir\build.make CMakeFiles/rocksdb_optimistic_transaction_test.dir/utilities/transactions/optimistic_transaction_test.cc.s
 .PHONY : utilities/transactions/optimistic_transaction_test.cc.s
 
 utilities/transactions/pessimistic_transaction.obj: utilities/transactions/pessimistic_transaction.cc.obj
@@ -13277,7 +13297,8 @@ utilities/transactions/pessimistic_transaction.obj: utilities/transactions/pessi
 
 # target to build an object file
 utilities/transactions/pessimistic_transaction.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/pessimistic_transaction.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/pessimistic_transaction.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/pessimistic_transaction.cc.obj
 .PHONY : utilities/transactions/pessimistic_transaction.cc.obj
 
 utilities/transactions/pessimistic_transaction.i: utilities/transactions/pessimistic_transaction.cc.i
@@ -13286,7 +13307,8 @@ utilities/transactions/pessimistic_transaction.i: utilities/transactions/pessimi
 
 # target to preprocess a source file
 utilities/transactions/pessimistic_transaction.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/pessimistic_transaction.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/pessimistic_transaction.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/pessimistic_transaction.cc.i
 .PHONY : utilities/transactions/pessimistic_transaction.cc.i
 
 utilities/transactions/pessimistic_transaction.s: utilities/transactions/pessimistic_transaction.cc.s
@@ -13295,7 +13317,8 @@ utilities/transactions/pessimistic_transaction.s: utilities/transactions/pessimi
 
 # target to generate assembly for a file
 utilities/transactions/pessimistic_transaction.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/pessimistic_transaction.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/pessimistic_transaction.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/pessimistic_transaction.cc.s
 .PHONY : utilities/transactions/pessimistic_transaction.cc.s
 
 utilities/transactions/pessimistic_transaction_db.obj: utilities/transactions/pessimistic_transaction_db.cc.obj
@@ -13304,7 +13327,8 @@ utilities/transactions/pessimistic_transaction_db.obj: utilities/transactions/pe
 
 # target to build an object file
 utilities/transactions/pessimistic_transaction_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/pessimistic_transaction_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/pessimistic_transaction_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/pessimistic_transaction_db.cc.obj
 .PHONY : utilities/transactions/pessimistic_transaction_db.cc.obj
 
 utilities/transactions/pessimistic_transaction_db.i: utilities/transactions/pessimistic_transaction_db.cc.i
@@ -13313,7 +13337,8 @@ utilities/transactions/pessimistic_transaction_db.i: utilities/transactions/pess
 
 # target to preprocess a source file
 utilities/transactions/pessimistic_transaction_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/pessimistic_transaction_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/pessimistic_transaction_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/pessimistic_transaction_db.cc.i
 .PHONY : utilities/transactions/pessimistic_transaction_db.cc.i
 
 utilities/transactions/pessimistic_transaction_db.s: utilities/transactions/pessimistic_transaction_db.cc.s
@@ -13322,7 +13347,8 @@ utilities/transactions/pessimistic_transaction_db.s: utilities/transactions/pess
 
 # target to generate assembly for a file
 utilities/transactions/pessimistic_transaction_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/pessimistic_transaction_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/pessimistic_transaction_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/pessimistic_transaction_db.cc.s
 .PHONY : utilities/transactions/pessimistic_transaction_db.cc.s
 
 utilities/transactions/snapshot_checker.obj: utilities/transactions/snapshot_checker.cc.obj
@@ -13331,7 +13357,8 @@ utilities/transactions/snapshot_checker.obj: utilities/transactions/snapshot_che
 
 # target to build an object file
 utilities/transactions/snapshot_checker.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/snapshot_checker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/snapshot_checker.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/snapshot_checker.cc.obj
 .PHONY : utilities/transactions/snapshot_checker.cc.obj
 
 utilities/transactions/snapshot_checker.i: utilities/transactions/snapshot_checker.cc.i
@@ -13340,7 +13367,8 @@ utilities/transactions/snapshot_checker.i: utilities/transactions/snapshot_check
 
 # target to preprocess a source file
 utilities/transactions/snapshot_checker.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/snapshot_checker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/snapshot_checker.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/snapshot_checker.cc.i
 .PHONY : utilities/transactions/snapshot_checker.cc.i
 
 utilities/transactions/snapshot_checker.s: utilities/transactions/snapshot_checker.cc.s
@@ -13349,7 +13377,8 @@ utilities/transactions/snapshot_checker.s: utilities/transactions/snapshot_check
 
 # target to generate assembly for a file
 utilities/transactions/snapshot_checker.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/snapshot_checker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/snapshot_checker.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/snapshot_checker.cc.s
 .PHONY : utilities/transactions/snapshot_checker.cc.s
 
 utilities/transactions/transaction_base.obj: utilities/transactions/transaction_base.cc.obj
@@ -13358,7 +13387,8 @@ utilities/transactions/transaction_base.obj: utilities/transactions/transaction_
 
 # target to build an object file
 utilities/transactions/transaction_base.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_base.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_base.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_base.cc.obj
 .PHONY : utilities/transactions/transaction_base.cc.obj
 
 utilities/transactions/transaction_base.i: utilities/transactions/transaction_base.cc.i
@@ -13367,7 +13397,8 @@ utilities/transactions/transaction_base.i: utilities/transactions/transaction_ba
 
 # target to preprocess a source file
 utilities/transactions/transaction_base.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_base.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_base.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_base.cc.i
 .PHONY : utilities/transactions/transaction_base.cc.i
 
 utilities/transactions/transaction_base.s: utilities/transactions/transaction_base.cc.s
@@ -13376,7 +13407,8 @@ utilities/transactions/transaction_base.s: utilities/transactions/transaction_ba
 
 # target to generate assembly for a file
 utilities/transactions/transaction_base.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_base.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_base.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_base.cc.s
 .PHONY : utilities/transactions/transaction_base.cc.s
 
 utilities/transactions/transaction_db_mutex_impl.obj: utilities/transactions/transaction_db_mutex_impl.cc.obj
@@ -13385,7 +13417,8 @@ utilities/transactions/transaction_db_mutex_impl.obj: utilities/transactions/tra
 
 # target to build an object file
 utilities/transactions/transaction_db_mutex_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_db_mutex_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_db_mutex_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_db_mutex_impl.cc.obj
 .PHONY : utilities/transactions/transaction_db_mutex_impl.cc.obj
 
 utilities/transactions/transaction_db_mutex_impl.i: utilities/transactions/transaction_db_mutex_impl.cc.i
@@ -13394,7 +13427,8 @@ utilities/transactions/transaction_db_mutex_impl.i: utilities/transactions/trans
 
 # target to preprocess a source file
 utilities/transactions/transaction_db_mutex_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_db_mutex_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_db_mutex_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_db_mutex_impl.cc.i
 .PHONY : utilities/transactions/transaction_db_mutex_impl.cc.i
 
 utilities/transactions/transaction_db_mutex_impl.s: utilities/transactions/transaction_db_mutex_impl.cc.s
@@ -13403,7 +13437,8 @@ utilities/transactions/transaction_db_mutex_impl.s: utilities/transactions/trans
 
 # target to generate assembly for a file
 utilities/transactions/transaction_db_mutex_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_db_mutex_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_db_mutex_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_db_mutex_impl.cc.s
 .PHONY : utilities/transactions/transaction_db_mutex_impl.cc.s
 
 utilities/transactions/transaction_lock_mgr.obj: utilities/transactions/transaction_lock_mgr.cc.obj
@@ -13412,7 +13447,8 @@ utilities/transactions/transaction_lock_mgr.obj: utilities/transactions/transact
 
 # target to build an object file
 utilities/transactions/transaction_lock_mgr.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_lock_mgr.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_lock_mgr.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_lock_mgr.cc.obj
 .PHONY : utilities/transactions/transaction_lock_mgr.cc.obj
 
 utilities/transactions/transaction_lock_mgr.i: utilities/transactions/transaction_lock_mgr.cc.i
@@ -13421,7 +13457,8 @@ utilities/transactions/transaction_lock_mgr.i: utilities/transactions/transactio
 
 # target to preprocess a source file
 utilities/transactions/transaction_lock_mgr.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_lock_mgr.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_lock_mgr.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_lock_mgr.cc.i
 .PHONY : utilities/transactions/transaction_lock_mgr.cc.i
 
 utilities/transactions/transaction_lock_mgr.s: utilities/transactions/transaction_lock_mgr.cc.s
@@ -13430,7 +13467,8 @@ utilities/transactions/transaction_lock_mgr.s: utilities/transactions/transactio
 
 # target to generate assembly for a file
 utilities/transactions/transaction_lock_mgr.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_lock_mgr.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_lock_mgr.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_lock_mgr.cc.s
 .PHONY : utilities/transactions/transaction_lock_mgr.cc.s
 
 utilities/transactions/transaction_test.obj: utilities/transactions/transaction_test.cc.obj
@@ -13439,7 +13477,7 @@ utilities/transactions/transaction_test.obj: utilities/transactions/transaction_
 
 # target to build an object file
 utilities/transactions/transaction_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_transaction_test.dir\build.make CMakeFiles/rocksdb_transaction_test.dir/utilities/transactions/transaction_test.cc.obj
 .PHONY : utilities/transactions/transaction_test.cc.obj
 
 utilities/transactions/transaction_test.i: utilities/transactions/transaction_test.cc.i
@@ -13448,7 +13486,7 @@ utilities/transactions/transaction_test.i: utilities/transactions/transaction_te
 
 # target to preprocess a source file
 utilities/transactions/transaction_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_transaction_test.dir\build.make CMakeFiles/rocksdb_transaction_test.dir/utilities/transactions/transaction_test.cc.i
 .PHONY : utilities/transactions/transaction_test.cc.i
 
 utilities/transactions/transaction_test.s: utilities/transactions/transaction_test.cc.s
@@ -13457,7 +13495,7 @@ utilities/transactions/transaction_test.s: utilities/transactions/transaction_te
 
 # target to generate assembly for a file
 utilities/transactions/transaction_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_transaction_test.dir\build.make CMakeFiles/rocksdb_transaction_test.dir/utilities/transactions/transaction_test.cc.s
 .PHONY : utilities/transactions/transaction_test.cc.s
 
 utilities/transactions/transaction_util.obj: utilities/transactions/transaction_util.cc.obj
@@ -13466,7 +13504,8 @@ utilities/transactions/transaction_util.obj: utilities/transactions/transaction_
 
 # target to build an object file
 utilities/transactions/transaction_util.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_util.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_util.cc.obj
 .PHONY : utilities/transactions/transaction_util.cc.obj
 
 utilities/transactions/transaction_util.i: utilities/transactions/transaction_util.cc.i
@@ -13475,7 +13514,8 @@ utilities/transactions/transaction_util.i: utilities/transactions/transaction_ut
 
 # target to preprocess a source file
 utilities/transactions/transaction_util.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_util.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_util.cc.i
 .PHONY : utilities/transactions/transaction_util.cc.i
 
 utilities/transactions/transaction_util.s: utilities/transactions/transaction_util.cc.s
@@ -13484,7 +13524,8 @@ utilities/transactions/transaction_util.s: utilities/transactions/transaction_ut
 
 # target to generate assembly for a file
 utilities/transactions/transaction_util.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/transaction_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/transaction_util.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/transaction_util.cc.s
 .PHONY : utilities/transactions/transaction_util.cc.s
 
 utilities/transactions/write_prepared_transaction_test.obj: utilities/transactions/write_prepared_transaction_test.cc.obj
@@ -13493,7 +13534,7 @@ utilities/transactions/write_prepared_transaction_test.obj: utilities/transactio
 
 # target to build an object file
 utilities/transactions/write_prepared_transaction_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_transaction_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_write_prepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_prepared_transaction_test.dir/utilities/transactions/write_prepared_transaction_test.cc.obj
 .PHONY : utilities/transactions/write_prepared_transaction_test.cc.obj
 
 utilities/transactions/write_prepared_transaction_test.i: utilities/transactions/write_prepared_transaction_test.cc.i
@@ -13502,7 +13543,7 @@ utilities/transactions/write_prepared_transaction_test.i: utilities/transactions
 
 # target to preprocess a source file
 utilities/transactions/write_prepared_transaction_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_transaction_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_write_prepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_prepared_transaction_test.dir/utilities/transactions/write_prepared_transaction_test.cc.i
 .PHONY : utilities/transactions/write_prepared_transaction_test.cc.i
 
 utilities/transactions/write_prepared_transaction_test.s: utilities/transactions/write_prepared_transaction_test.cc.s
@@ -13511,7 +13552,7 @@ utilities/transactions/write_prepared_transaction_test.s: utilities/transactions
 
 # target to generate assembly for a file
 utilities/transactions/write_prepared_transaction_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_transaction_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_write_prepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_prepared_transaction_test.dir/utilities/transactions/write_prepared_transaction_test.cc.s
 .PHONY : utilities/transactions/write_prepared_transaction_test.cc.s
 
 utilities/transactions/write_prepared_txn.obj: utilities/transactions/write_prepared_txn.cc.obj
@@ -13520,7 +13561,8 @@ utilities/transactions/write_prepared_txn.obj: utilities/transactions/write_prep
 
 # target to build an object file
 utilities/transactions/write_prepared_txn.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_txn.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_prepared_txn.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_prepared_txn.cc.obj
 .PHONY : utilities/transactions/write_prepared_txn.cc.obj
 
 utilities/transactions/write_prepared_txn.i: utilities/transactions/write_prepared_txn.cc.i
@@ -13529,7 +13571,8 @@ utilities/transactions/write_prepared_txn.i: utilities/transactions/write_prepar
 
 # target to preprocess a source file
 utilities/transactions/write_prepared_txn.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_txn.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_prepared_txn.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_prepared_txn.cc.i
 .PHONY : utilities/transactions/write_prepared_txn.cc.i
 
 utilities/transactions/write_prepared_txn.s: utilities/transactions/write_prepared_txn.cc.s
@@ -13538,7 +13581,8 @@ utilities/transactions/write_prepared_txn.s: utilities/transactions/write_prepar
 
 # target to generate assembly for a file
 utilities/transactions/write_prepared_txn.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_txn.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_prepared_txn.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_prepared_txn.cc.s
 .PHONY : utilities/transactions/write_prepared_txn.cc.s
 
 utilities/transactions/write_prepared_txn_db.obj: utilities/transactions/write_prepared_txn_db.cc.obj
@@ -13547,7 +13591,8 @@ utilities/transactions/write_prepared_txn_db.obj: utilities/transactions/write_p
 
 # target to build an object file
 utilities/transactions/write_prepared_txn_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_txn_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_prepared_txn_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_prepared_txn_db.cc.obj
 .PHONY : utilities/transactions/write_prepared_txn_db.cc.obj
 
 utilities/transactions/write_prepared_txn_db.i: utilities/transactions/write_prepared_txn_db.cc.i
@@ -13556,7 +13601,8 @@ utilities/transactions/write_prepared_txn_db.i: utilities/transactions/write_pre
 
 # target to preprocess a source file
 utilities/transactions/write_prepared_txn_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_txn_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_prepared_txn_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_prepared_txn_db.cc.i
 .PHONY : utilities/transactions/write_prepared_txn_db.cc.i
 
 utilities/transactions/write_prepared_txn_db.s: utilities/transactions/write_prepared_txn_db.cc.s
@@ -13565,7 +13611,8 @@ utilities/transactions/write_prepared_txn_db.s: utilities/transactions/write_pre
 
 # target to generate assembly for a file
 utilities/transactions/write_prepared_txn_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_prepared_txn_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_prepared_txn_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_prepared_txn_db.cc.s
 .PHONY : utilities/transactions/write_prepared_txn_db.cc.s
 
 utilities/transactions/write_unprepared_transaction_test.obj: utilities/transactions/write_unprepared_transaction_test.cc.obj
@@ -13574,7 +13621,7 @@ utilities/transactions/write_unprepared_transaction_test.obj: utilities/transact
 
 # target to build an object file
 utilities/transactions/write_unprepared_transaction_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_transaction_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_write_unprepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_unprepared_transaction_test.dir/utilities/transactions/write_unprepared_transaction_test.cc.obj
 .PHONY : utilities/transactions/write_unprepared_transaction_test.cc.obj
 
 utilities/transactions/write_unprepared_transaction_test.i: utilities/transactions/write_unprepared_transaction_test.cc.i
@@ -13583,7 +13630,7 @@ utilities/transactions/write_unprepared_transaction_test.i: utilities/transactio
 
 # target to preprocess a source file
 utilities/transactions/write_unprepared_transaction_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_transaction_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_write_unprepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_unprepared_transaction_test.dir/utilities/transactions/write_unprepared_transaction_test.cc.i
 .PHONY : utilities/transactions/write_unprepared_transaction_test.cc.i
 
 utilities/transactions/write_unprepared_transaction_test.s: utilities/transactions/write_unprepared_transaction_test.cc.s
@@ -13592,7 +13639,7 @@ utilities/transactions/write_unprepared_transaction_test.s: utilities/transactio
 
 # target to generate assembly for a file
 utilities/transactions/write_unprepared_transaction_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_transaction_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_write_unprepared_transaction_test.dir\build.make CMakeFiles/rocksdb_write_unprepared_transaction_test.dir/utilities/transactions/write_unprepared_transaction_test.cc.s
 .PHONY : utilities/transactions/write_unprepared_transaction_test.cc.s
 
 utilities/transactions/write_unprepared_txn.obj: utilities/transactions/write_unprepared_txn.cc.obj
@@ -13601,7 +13648,8 @@ utilities/transactions/write_unprepared_txn.obj: utilities/transactions/write_un
 
 # target to build an object file
 utilities/transactions/write_unprepared_txn.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_txn.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_unprepared_txn.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_unprepared_txn.cc.obj
 .PHONY : utilities/transactions/write_unprepared_txn.cc.obj
 
 utilities/transactions/write_unprepared_txn.i: utilities/transactions/write_unprepared_txn.cc.i
@@ -13610,7 +13658,8 @@ utilities/transactions/write_unprepared_txn.i: utilities/transactions/write_unpr
 
 # target to preprocess a source file
 utilities/transactions/write_unprepared_txn.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_txn.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_unprepared_txn.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_unprepared_txn.cc.i
 .PHONY : utilities/transactions/write_unprepared_txn.cc.i
 
 utilities/transactions/write_unprepared_txn.s: utilities/transactions/write_unprepared_txn.cc.s
@@ -13619,7 +13668,8 @@ utilities/transactions/write_unprepared_txn.s: utilities/transactions/write_unpr
 
 # target to generate assembly for a file
 utilities/transactions/write_unprepared_txn.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_txn.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_unprepared_txn.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_unprepared_txn.cc.s
 .PHONY : utilities/transactions/write_unprepared_txn.cc.s
 
 utilities/transactions/write_unprepared_txn_db.obj: utilities/transactions/write_unprepared_txn_db.cc.obj
@@ -13628,7 +13678,8 @@ utilities/transactions/write_unprepared_txn_db.obj: utilities/transactions/write
 
 # target to build an object file
 utilities/transactions/write_unprepared_txn_db.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_txn_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_unprepared_txn_db.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_unprepared_txn_db.cc.obj
 .PHONY : utilities/transactions/write_unprepared_txn_db.cc.obj
 
 utilities/transactions/write_unprepared_txn_db.i: utilities/transactions/write_unprepared_txn_db.cc.i
@@ -13637,7 +13688,8 @@ utilities/transactions/write_unprepared_txn_db.i: utilities/transactions/write_u
 
 # target to preprocess a source file
 utilities/transactions/write_unprepared_txn_db.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_txn_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_unprepared_txn_db.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_unprepared_txn_db.cc.i
 .PHONY : utilities/transactions/write_unprepared_txn_db.cc.i
 
 utilities/transactions/write_unprepared_txn_db.s: utilities/transactions/write_unprepared_txn_db.cc.s
@@ -13646,7 +13698,8 @@ utilities/transactions/write_unprepared_txn_db.s: utilities/transactions/write_u
 
 # target to generate assembly for a file
 utilities/transactions/write_unprepared_txn_db.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/transactions/write_unprepared_txn_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/transactions/write_unprepared_txn_db.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/transactions/write_unprepared_txn_db.cc.s
 .PHONY : utilities/transactions/write_unprepared_txn_db.cc.s
 
 utilities/ttl/db_ttl_impl.obj: utilities/ttl/db_ttl_impl.cc.obj
@@ -13655,7 +13708,8 @@ utilities/ttl/db_ttl_impl.obj: utilities/ttl/db_ttl_impl.cc.obj
 
 # target to build an object file
 utilities/ttl/db_ttl_impl.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/ttl/db_ttl_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/ttl/db_ttl_impl.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/ttl/db_ttl_impl.cc.obj
 .PHONY : utilities/ttl/db_ttl_impl.cc.obj
 
 utilities/ttl/db_ttl_impl.i: utilities/ttl/db_ttl_impl.cc.i
@@ -13664,7 +13718,8 @@ utilities/ttl/db_ttl_impl.i: utilities/ttl/db_ttl_impl.cc.i
 
 # target to preprocess a source file
 utilities/ttl/db_ttl_impl.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/ttl/db_ttl_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/ttl/db_ttl_impl.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/ttl/db_ttl_impl.cc.i
 .PHONY : utilities/ttl/db_ttl_impl.cc.i
 
 utilities/ttl/db_ttl_impl.s: utilities/ttl/db_ttl_impl.cc.s
@@ -13673,7 +13728,8 @@ utilities/ttl/db_ttl_impl.s: utilities/ttl/db_ttl_impl.cc.s
 
 # target to generate assembly for a file
 utilities/ttl/db_ttl_impl.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/ttl/db_ttl_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/ttl/db_ttl_impl.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/ttl/db_ttl_impl.cc.s
 .PHONY : utilities/ttl/db_ttl_impl.cc.s
 
 utilities/ttl/ttl_test.obj: utilities/ttl/ttl_test.cc.obj
@@ -13682,7 +13738,7 @@ utilities/ttl/ttl_test.obj: utilities/ttl/ttl_test.cc.obj
 
 # target to build an object file
 utilities/ttl/ttl_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/ttl/ttl_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_ttl_test.dir\build.make CMakeFiles/rocksdb_ttl_test.dir/utilities/ttl/ttl_test.cc.obj
 .PHONY : utilities/ttl/ttl_test.cc.obj
 
 utilities/ttl/ttl_test.i: utilities/ttl/ttl_test.cc.i
@@ -13691,7 +13747,7 @@ utilities/ttl/ttl_test.i: utilities/ttl/ttl_test.cc.i
 
 # target to preprocess a source file
 utilities/ttl/ttl_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/ttl/ttl_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_ttl_test.dir\build.make CMakeFiles/rocksdb_ttl_test.dir/utilities/ttl/ttl_test.cc.i
 .PHONY : utilities/ttl/ttl_test.cc.i
 
 utilities/ttl/ttl_test.s: utilities/ttl/ttl_test.cc.s
@@ -13700,35 +13756,8 @@ utilities/ttl/ttl_test.s: utilities/ttl/ttl_test.cc.s
 
 # target to generate assembly for a file
 utilities/ttl/ttl_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/ttl/ttl_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_ttl_test.dir\build.make CMakeFiles/rocksdb_ttl_test.dir/utilities/ttl/ttl_test.cc.s
 .PHONY : utilities/ttl/ttl_test.cc.s
-
-utilities/util_merge_operators_test.obj: utilities/util_merge_operators_test.cc.obj
-
-.PHONY : utilities/util_merge_operators_test.obj
-
-# target to build an object file
-utilities/util_merge_operators_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/util_merge_operators_test.cc.obj
-.PHONY : utilities/util_merge_operators_test.cc.obj
-
-utilities/util_merge_operators_test.i: utilities/util_merge_operators_test.cc.i
-
-.PHONY : utilities/util_merge_operators_test.i
-
-# target to preprocess a source file
-utilities/util_merge_operators_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/util_merge_operators_test.cc.i
-.PHONY : utilities/util_merge_operators_test.cc.i
-
-utilities/util_merge_operators_test.s: utilities/util_merge_operators_test.cc.s
-
-.PHONY : utilities/util_merge_operators_test.s
-
-# target to generate assembly for a file
-utilities/util_merge_operators_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/util_merge_operators_test.cc.s
-.PHONY : utilities/util_merge_operators_test.cc.s
 
 utilities/write_batch_with_index/write_batch_with_index.obj: utilities/write_batch_with_index/write_batch_with_index.cc.obj
 
@@ -13736,7 +13765,8 @@ utilities/write_batch_with_index/write_batch_with_index.obj: utilities/write_bat
 
 # target to build an object file
 utilities/write_batch_with_index/write_batch_with_index.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/write_batch_with_index/write_batch_with_index.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/write_batch_with_index/write_batch_with_index.cc.obj
 .PHONY : utilities/write_batch_with_index/write_batch_with_index.cc.obj
 
 utilities/write_batch_with_index/write_batch_with_index.i: utilities/write_batch_with_index/write_batch_with_index.cc.i
@@ -13745,7 +13775,8 @@ utilities/write_batch_with_index/write_batch_with_index.i: utilities/write_batch
 
 # target to preprocess a source file
 utilities/write_batch_with_index/write_batch_with_index.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/write_batch_with_index/write_batch_with_index.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/write_batch_with_index/write_batch_with_index.cc.i
 .PHONY : utilities/write_batch_with_index/write_batch_with_index.cc.i
 
 utilities/write_batch_with_index/write_batch_with_index.s: utilities/write_batch_with_index/write_batch_with_index.cc.s
@@ -13754,7 +13785,8 @@ utilities/write_batch_with_index/write_batch_with_index.s: utilities/write_batch
 
 # target to generate assembly for a file
 utilities/write_batch_with_index/write_batch_with_index.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/write_batch_with_index/write_batch_with_index.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/write_batch_with_index/write_batch_with_index.cc.s
 .PHONY : utilities/write_batch_with_index/write_batch_with_index.cc.s
 
 utilities/write_batch_with_index/write_batch_with_index_internal.obj: utilities/write_batch_with_index/write_batch_with_index_internal.cc.obj
@@ -13763,7 +13795,8 @@ utilities/write_batch_with_index/write_batch_with_index_internal.obj: utilities/
 
 # target to build an object file
 utilities/write_batch_with_index/write_batch_with_index_internal.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.obj
 .PHONY : utilities/write_batch_with_index/write_batch_with_index_internal.cc.obj
 
 utilities/write_batch_with_index/write_batch_with_index_internal.i: utilities/write_batch_with_index/write_batch_with_index_internal.cc.i
@@ -13772,7 +13805,8 @@ utilities/write_batch_with_index/write_batch_with_index_internal.i: utilities/wr
 
 # target to preprocess a source file
 utilities/write_batch_with_index/write_batch_with_index_internal.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.i
 .PHONY : utilities/write_batch_with_index/write_batch_with_index_internal.cc.i
 
 utilities/write_batch_with_index/write_batch_with_index_internal.s: utilities/write_batch_with_index/write_batch_with_index_internal.cc.s
@@ -13781,7 +13815,8 @@ utilities/write_batch_with_index/write_batch_with_index_internal.s: utilities/wr
 
 # target to generate assembly for a file
 utilities/write_batch_with_index/write_batch_with_index_internal.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/write_batch_with_index/write_batch_with_index_internal.cc.s
 .PHONY : utilities/write_batch_with_index/write_batch_with_index_internal.cc.s
 
 utilities/write_batch_with_index/write_batch_with_index_test.obj: utilities/write_batch_with_index/write_batch_with_index_test.cc.obj
@@ -13790,7 +13825,7 @@ utilities/write_batch_with_index/write_batch_with_index_test.obj: utilities/writ
 
 # target to build an object file
 utilities/write_batch_with_index/write_batch_with_index_test.cc.obj:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_with_index_test.dir\build.make CMakeFiles/rocksdb_write_batch_with_index_test.dir/utilities/write_batch_with_index/write_batch_with_index_test.cc.obj
 .PHONY : utilities/write_batch_with_index/write_batch_with_index_test.cc.obj
 
 utilities/write_batch_with_index/write_batch_with_index_test.i: utilities/write_batch_with_index/write_batch_with_index_test.cc.i
@@ -13799,7 +13834,7 @@ utilities/write_batch_with_index/write_batch_with_index_test.i: utilities/write_
 
 # target to preprocess a source file
 utilities/write_batch_with_index/write_batch_with_index_test.cc.i:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_with_index_test.dir\build.make CMakeFiles/rocksdb_write_batch_with_index_test.dir/utilities/write_batch_with_index/write_batch_with_index_test.cc.i
 .PHONY : utilities/write_batch_with_index/write_batch_with_index_test.cc.i
 
 utilities/write_batch_with_index/write_batch_with_index_test.s: utilities/write_batch_with_index/write_batch_with_index_test.cc.s
@@ -13808,7 +13843,7 @@ utilities/write_batch_with_index/write_batch_with_index_test.s: utilities/write_
 
 # target to generate assembly for a file
 utilities/write_batch_with_index/write_batch_with_index_test.cc.s:
-	$(MAKE) -f CMakeFiles\rocksdb_flush_full.dir\build.make CMakeFiles/rocksdb_flush_full.dir/utilities/write_batch_with_index/write_batch_with_index_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_write_batch_with_index_test.dir\build.make CMakeFiles/rocksdb_write_batch_with_index_test.dir/utilities/write_batch_with_index/write_batch_with_index_test.cc.s
 .PHONY : utilities/write_batch_with_index/write_batch_with_index_test.cc.s
 
 # Help Target
@@ -13817,9 +13852,181 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... rocksdb_flush_full
-	@echo ... edit_cache
+	@echo ... build_version
+	@echo ... testharness
+	@echo ... rocksdb
+	@echo ... rocksdb_db_io_failure_test
+	@echo ... rocksdb_manual_compaction_test
+	@echo ... rocksdb-shared
+	@echo ... rocksdb_cassandra_serialize_test
+	@echo ... memtablerep_bench
+	@echo ... rocksdb_db_blob_index_test
+	@echo ... rocksdb_bloom_test
+	@echo ... cache_bench
+	@echo ... range_del_aggregator_bench
+	@echo ... rocksdb_external_sst_file_basic_test
+	@echo ... rocksdb_lru_cache_test
+	@echo ... rocksdb_error_handler_test
+	@echo ... rocksdb_column_aware_encoding_test
+	@echo ... rocksdb_corruption_test
+	@echo ... rocksdb_db_iterator_test
+	@echo ... rocksdb_repair_test
+	@echo ... rocksdb_db_iter_test
+	@echo ... table_reader_bench
+	@echo ... db_bench
+	@echo ... rocksdb_compact_files_test
+	@echo ... column_aware_encoding_exp
+	@echo ... rocksdb_db_tailing_iter_test
+	@echo ... check
+	@echo ... hash_table_bench
+	@echo ... testutillib
+	@echo ... rocksdb_cache_test
+	@echo ... rocksdb_db_test2
+	@echo ... rocksdb_column_family_test
+	@echo ... rocksdb_db_basic_test
+	@echo ... rocksdb_compaction_iterator_test
+	@echo ... rocksdb_dbformat_test
+	@echo ... rocksdb_backupable_db_test
+	@echo ... rocksdb_range_del_aggregator_test
+	@echo ... rocksdb_compaction_job_stats_test
+	@echo ... rocksdb_db_dynamic_level_test
+	@echo ... rocksdb_compaction_job_test
+	@echo ... rocksdb_crc32c_test
+	@echo ... rocksdb_compaction_picker_test
+	@echo ... rocksdb_db_table_properties_test
+	@echo ... rocksdb_comparator_db_test
+	@echo ... rocksdb_log_test
+	@echo ... rocksdb_cuckoo_table_db_test
+	@echo ... rocksdb_deletefile_test
+	@echo ... rocksdb_db_compaction_filter_test
+	@echo ... rocksdb_range_tab_test
+	@echo ... rocksdb_db_block_cache_test
+	@echo ... rocksdb_dynamic_bloom_test
+	@echo ... rocksdb_db_bloom_filter_test
+	@echo ... rocksdb_coding_test
+	@echo ... rocksdb_db_range_del_test
+	@echo ... rocksdb_db_compaction_test
+	@echo ... rocksdb_db_options_test
+	@echo ... rocksdb_db_sst_test
+	@echo ... rocksdb_db_flush_test
+	@echo ... rocksdb_db_inplace_update_test
+	@echo ... rocksdb_flush_job_test
+	@echo ... rocksdb_db_iter_stress_test
+	@echo ... rocksdb_fault_injection_test
+	@echo ... rocksdb_db_log_iter_test
+	@echo ... rocksdb_db_memtable_test
+	@echo ... rocksdb_db_properties_test
+	@echo ... rocksdb_db_merge_operator_test
+	@echo ... rocksdb_db_statistics_test
+	@echo ... rocksdb_sim_cache_test
+	@echo ... rocksdb_db_test
+	@echo ... rocksdb_db_universal_compaction_test
+	@echo ... rocksdb_db_wal_test
+	@echo ... rocksdb_db_write_test
+	@echo ... rocksdb_file_indexer_test
+	@echo ... rocksdb_obsolete_files_test
+	@echo ... rocksdb_option_change_migration_test
+	@echo ... rocksdb_external_sst_file_test
+	@echo ... rocksdb_filename_test
+	@echo ... rocksdb_listener_test
+	@echo ... rocksdb_memtable_list_test
+	@echo ... rocksdb_merge_helper_test
+	@echo ... rocksdb_merge_test
+	@echo ... rocksdb_options_file_test
+	@echo ... rocksdb_perf_context_test
+	@echo ... rocksdb_plain_table_db_test
 	@echo ... rebuild_cache
+	@echo ... rocksdb_prefix_test
+	@echo ... rocksdb_range_tombstone_fragmenter_test
+	@echo ... rocksdb_write_controller_test
+	@echo ... rocksdb_table_properties_collector_test
+	@echo ... rocksdb_version_builder_test
+	@echo ... rocksdb_version_edit_test
+	@echo ... rocksdb_version_set_test
+	@echo ... rocksdb_wal_manager_test
+	@echo ... rocksdb_write_batch_test
+	@echo ... rocksdb_write_callback_test
+	@echo ... rocksdb_env_basic_test
+	@echo ... rocksdb_env_test
+	@echo ... rocksdb_mock_env_test
+	@echo ... rocksdb_inlineskiplist_test
+	@echo ... rocksdb_skiplist_test
+	@echo ... rocksdb_blob_db_test
+	@echo ... rocksdb_write_buffer_manager_test
+	@echo ... rocksdb_histogram_test
+	@echo ... rocksdb_iostats_context_test
+	@echo ... rocksdb_statistics_test
+	@echo ... rocksdb_options_settable_test
+	@echo ... rocksdb_options_test
+	@echo ... rocksdb_block_based_filter_block_test
+	@echo ... rocksdb_block_test
+	@echo ... rocksdb_cleanable_test
+	@echo ... rocksdb_cuckoo_table_builder_test
+	@echo ... rocksdb_cuckoo_table_reader_test
+	@echo ... rocksdb_data_block_hash_index_test
+	@echo ... rocksdb_merger_test
+	@echo ... rocksdb_full_filter_block_test
+	@echo ... rocksdb_date_tiered_test
+	@echo ... rocksdb_table_test
+	@echo ... rocksdb_ldb_cmd_test
+	@echo ... rocksdb_reduce_levels_test
+	@echo ... rocksdb_sst_dump_test
+	@echo ... rocksdb_trace_analyzer_test
+	@echo ... rocksdb_arena_test
+	@echo ... rocksdb_auto_roll_logger_test
+	@echo ... rocksdb_ttl_test
+	@echo ... rocksdb_autovector_test
+	@echo ... rocksdb_delete_scheduler_test
+	@echo ... rocksdb_event_logger_test
+	@echo ... rocksdb_file_reader_writer_test
+	@echo ... rocksdb_filelock_test
+	@echo ... rocksdb_hash_test
+	@echo ... rocksdb_heap_test
+	@echo ... rocksdb_rate_limiter_test
+	@echo ... rocksdb_repeatable_thread_test
+	@echo ... rocksdb_slice_transform_test
+	@echo ... rocksdb_timer_queue_test
+	@echo ... rocksdb_thread_list_test
+	@echo ... rocksdb_thread_local_test
+	@echo ... rocksdb_json_document_test
+	@echo ... rocksdb_cassandra_functional_test
+	@echo ... rocksdb_cassandra_format_test
+	@echo ... rocksdb_cassandra_row_merge_test
+	@echo ... rocksdb_checkpoint_test
+	@echo ... rocksdb_document_db_test
+	@echo ... rocksdb_geodb_test
+	@echo ... rocksdb_rocks_lua_test
+	@echo ... rocksdb_memory_test
+	@echo ... rocksdb_stringappend_test
+	@echo ... rocksdb_object_registry_test
+	@echo ... rocksdb_options_util_test
+	@echo ... rocksdb_hash_table_test
+	@echo ... rocksdb_persistent_cache_test
+	@echo ... rocksdb_redis_lists_test
+	@echo ... rocksdb_spatial_db_test
+	@echo ... rocksdb_compact_on_deletion_collector_test
+	@echo ... rocksdb_optimistic_transaction_test
+	@echo ... rocksdb_transaction_test
+	@echo ... rocksdb_write_prepared_transaction_test
+	@echo ... rocksdb_write_unprepared_transaction_test
+	@echo ... rocksdb_write_batch_with_index_test
+	@echo ... c_test
+	@echo ... test
+	@echo ... edit_cache
+	@echo ... gtest
+	@echo ... tools
+	@echo ... sst_dump
+	@echo ... db_sanity_test
+	@echo ... db_stress
+	@echo ... rocksdb_undump
+	@echo ... write_stress
+	@echo ... ldb
+	@echo ... db_repl_stress
+	@echo ... rocksdb_dump
+	@echo ... ldb_tests
+	@echo ... build_version.obj
+	@echo ... build_version.i
+	@echo ... build_version.s
 	@echo ... cache/cache_bench.obj
 	@echo ... cache/cache_bench.i
 	@echo ... cache/cache_bench.s
@@ -13919,9 +14126,6 @@ help:
 	@echo ... db/db_dynamic_level_test.obj
 	@echo ... db/db_dynamic_level_test.i
 	@echo ... db/db_dynamic_level_test.s
-	@echo ... db/db_encryption_test.obj
-	@echo ... db/db_encryption_test.i
-	@echo ... db/db_encryption_test.s
 	@echo ... db/db_filesnapshot.obj
 	@echo ... db/db_filesnapshot.i
 	@echo ... db/db_filesnapshot.s
@@ -14075,9 +14279,6 @@ help:
 	@echo ... db/forward_iterator.obj
 	@echo ... db/forward_iterator.i
 	@echo ... db/forward_iterator.s
-	@echo ... db/forward_iterator_bench.obj
-	@echo ... db/forward_iterator_bench.i
-	@echo ... db/forward_iterator_bench.s
 	@echo ... db/internal_stats.obj
 	@echo ... db/internal_stats.i
 	@echo ... db/internal_stats.s
@@ -14234,219 +14435,15 @@ help:
 	@echo ... env/env_hdfs.obj
 	@echo ... env/env_hdfs.i
 	@echo ... env/env_hdfs.s
-	@echo ... env/env_posix.obj
-	@echo ... env/env_posix.i
-	@echo ... env/env_posix.s
 	@echo ... env/env_test.obj
 	@echo ... env/env_test.i
 	@echo ... env/env_test.s
-	@echo ... env/io_posix.obj
-	@echo ... env/io_posix.i
-	@echo ... env/io_posix.s
 	@echo ... env/mock_env.obj
 	@echo ... env/mock_env.i
 	@echo ... env/mock_env.s
 	@echo ... env/mock_env_test.obj
 	@echo ... env/mock_env_test.i
 	@echo ... env/mock_env_test.s
-	@echo ... examples/c_simple_example.obj
-	@echo ... examples/c_simple_example.i
-	@echo ... examples/c_simple_example.s
-	@echo ... examples/column_families_example.obj
-	@echo ... examples/column_families_example.i
-	@echo ... examples/column_families_example.s
-	@echo ... examples/compact_files_example.obj
-	@echo ... examples/compact_files_example.i
-	@echo ... examples/compact_files_example.s
-	@echo ... examples/compaction_filter_example.obj
-	@echo ... examples/compaction_filter_example.i
-	@echo ... examples/compaction_filter_example.s
-	@echo ... examples/optimistic_transaction_example.obj
-	@echo ... examples/optimistic_transaction_example.i
-	@echo ... examples/optimistic_transaction_example.s
-	@echo ... examples/options_file_example.obj
-	@echo ... examples/options_file_example.i
-	@echo ... examples/options_file_example.s
-	@echo ... examples/simple_example.obj
-	@echo ... examples/simple_example.i
-	@echo ... examples/simple_example.s
-	@echo ... examples/transaction_example.obj
-	@echo ... examples/transaction_example.i
-	@echo ... examples/transaction_example.s
-	@echo ... java/rocksjni/backupablejni.obj
-	@echo ... java/rocksjni/backupablejni.i
-	@echo ... java/rocksjni/backupablejni.s
-	@echo ... java/rocksjni/backupenginejni.obj
-	@echo ... java/rocksjni/backupenginejni.i
-	@echo ... java/rocksjni/backupenginejni.s
-	@echo ... java/rocksjni/cassandra_compactionfilterjni.obj
-	@echo ... java/rocksjni/cassandra_compactionfilterjni.i
-	@echo ... java/rocksjni/cassandra_compactionfilterjni.s
-	@echo ... java/rocksjni/cassandra_value_operator.obj
-	@echo ... java/rocksjni/cassandra_value_operator.i
-	@echo ... java/rocksjni/cassandra_value_operator.s
-	@echo ... java/rocksjni/checkpoint.obj
-	@echo ... java/rocksjni/checkpoint.i
-	@echo ... java/rocksjni/checkpoint.s
-	@echo ... java/rocksjni/clock_cache.obj
-	@echo ... java/rocksjni/clock_cache.i
-	@echo ... java/rocksjni/clock_cache.s
-	@echo ... java/rocksjni/columnfamilyhandle.obj
-	@echo ... java/rocksjni/columnfamilyhandle.i
-	@echo ... java/rocksjni/columnfamilyhandle.s
-	@echo ... java/rocksjni/compact_range_options.obj
-	@echo ... java/rocksjni/compact_range_options.i
-	@echo ... java/rocksjni/compact_range_options.s
-	@echo ... java/rocksjni/compaction_filter.obj
-	@echo ... java/rocksjni/compaction_filter.i
-	@echo ... java/rocksjni/compaction_filter.s
-	@echo ... java/rocksjni/compaction_filter_factory.obj
-	@echo ... java/rocksjni/compaction_filter_factory.i
-	@echo ... java/rocksjni/compaction_filter_factory.s
-	@echo ... java/rocksjni/compaction_filter_factory_jnicallback.obj
-	@echo ... java/rocksjni/compaction_filter_factory_jnicallback.i
-	@echo ... java/rocksjni/compaction_filter_factory_jnicallback.s
-	@echo ... java/rocksjni/compaction_options_fifo.obj
-	@echo ... java/rocksjni/compaction_options_fifo.i
-	@echo ... java/rocksjni/compaction_options_fifo.s
-	@echo ... java/rocksjni/compaction_options_universal.obj
-	@echo ... java/rocksjni/compaction_options_universal.i
-	@echo ... java/rocksjni/compaction_options_universal.s
-	@echo ... java/rocksjni/comparator.obj
-	@echo ... java/rocksjni/comparator.i
-	@echo ... java/rocksjni/comparator.s
-	@echo ... java/rocksjni/comparatorjnicallback.obj
-	@echo ... java/rocksjni/comparatorjnicallback.i
-	@echo ... java/rocksjni/comparatorjnicallback.s
-	@echo ... java/rocksjni/compression_options.obj
-	@echo ... java/rocksjni/compression_options.i
-	@echo ... java/rocksjni/compression_options.s
-	@echo ... java/rocksjni/env.obj
-	@echo ... java/rocksjni/env.i
-	@echo ... java/rocksjni/env.s
-	@echo ... java/rocksjni/env_options.obj
-	@echo ... java/rocksjni/env_options.i
-	@echo ... java/rocksjni/env_options.s
-	@echo ... java/rocksjni/filter.obj
-	@echo ... java/rocksjni/filter.i
-	@echo ... java/rocksjni/filter.s
-	@echo ... java/rocksjni/ingest_external_file_options.obj
-	@echo ... java/rocksjni/ingest_external_file_options.i
-	@echo ... java/rocksjni/ingest_external_file_options.s
-	@echo ... java/rocksjni/iterator.obj
-	@echo ... java/rocksjni/iterator.i
-	@echo ... java/rocksjni/iterator.s
-	@echo ... java/rocksjni/jnicallback.obj
-	@echo ... java/rocksjni/jnicallback.i
-	@echo ... java/rocksjni/jnicallback.s
-	@echo ... java/rocksjni/loggerjnicallback.obj
-	@echo ... java/rocksjni/loggerjnicallback.i
-	@echo ... java/rocksjni/loggerjnicallback.s
-	@echo ... java/rocksjni/lru_cache.obj
-	@echo ... java/rocksjni/lru_cache.i
-	@echo ... java/rocksjni/lru_cache.s
-	@echo ... java/rocksjni/memory_util.obj
-	@echo ... java/rocksjni/memory_util.i
-	@echo ... java/rocksjni/memory_util.s
-	@echo ... java/rocksjni/memtablejni.obj
-	@echo ... java/rocksjni/memtablejni.i
-	@echo ... java/rocksjni/memtablejni.s
-	@echo ... java/rocksjni/merge_operator.obj
-	@echo ... java/rocksjni/merge_operator.i
-	@echo ... java/rocksjni/merge_operator.s
-	@echo ... java/rocksjni/native_comparator_wrapper_test.obj
-	@echo ... java/rocksjni/native_comparator_wrapper_test.i
-	@echo ... java/rocksjni/native_comparator_wrapper_test.s
-	@echo ... java/rocksjni/optimistic_transaction_db.obj
-	@echo ... java/rocksjni/optimistic_transaction_db.i
-	@echo ... java/rocksjni/optimistic_transaction_db.s
-	@echo ... java/rocksjni/optimistic_transaction_options.obj
-	@echo ... java/rocksjni/optimistic_transaction_options.i
-	@echo ... java/rocksjni/optimistic_transaction_options.s
-	@echo ... java/rocksjni/options.obj
-	@echo ... java/rocksjni/options.i
-	@echo ... java/rocksjni/options.s
-	@echo ... java/rocksjni/options_util.obj
-	@echo ... java/rocksjni/options_util.i
-	@echo ... java/rocksjni/options_util.s
-	@echo ... java/rocksjni/ratelimiterjni.obj
-	@echo ... java/rocksjni/ratelimiterjni.i
-	@echo ... java/rocksjni/ratelimiterjni.s
-	@echo ... java/rocksjni/remove_emptyvalue_compactionfilterjni.obj
-	@echo ... java/rocksjni/remove_emptyvalue_compactionfilterjni.i
-	@echo ... java/rocksjni/remove_emptyvalue_compactionfilterjni.s
-	@echo ... java/rocksjni/restorejni.obj
-	@echo ... java/rocksjni/restorejni.i
-	@echo ... java/rocksjni/restorejni.s
-	@echo ... java/rocksjni/rocks_callback_object.obj
-	@echo ... java/rocksjni/rocks_callback_object.i
-	@echo ... java/rocksjni/rocks_callback_object.s
-	@echo ... java/rocksjni/rocksdb_exception_test.obj
-	@echo ... java/rocksjni/rocksdb_exception_test.i
-	@echo ... java/rocksjni/rocksdb_exception_test.s
-	@echo ... java/rocksjni/rocksjni.obj
-	@echo ... java/rocksjni/rocksjni.i
-	@echo ... java/rocksjni/rocksjni.s
-	@echo ... java/rocksjni/slice.obj
-	@echo ... java/rocksjni/slice.i
-	@echo ... java/rocksjni/slice.s
-	@echo ... java/rocksjni/snapshot.obj
-	@echo ... java/rocksjni/snapshot.i
-	@echo ... java/rocksjni/snapshot.s
-	@echo ... java/rocksjni/sst_file_manager.obj
-	@echo ... java/rocksjni/sst_file_manager.i
-	@echo ... java/rocksjni/sst_file_manager.s
-	@echo ... java/rocksjni/sst_file_writerjni.obj
-	@echo ... java/rocksjni/sst_file_writerjni.i
-	@echo ... java/rocksjni/sst_file_writerjni.s
-	@echo ... java/rocksjni/statistics.obj
-	@echo ... java/rocksjni/statistics.i
-	@echo ... java/rocksjni/statistics.s
-	@echo ... java/rocksjni/statisticsjni.obj
-	@echo ... java/rocksjni/statisticsjni.i
-	@echo ... java/rocksjni/statisticsjni.s
-	@echo ... java/rocksjni/table.obj
-	@echo ... java/rocksjni/table.i
-	@echo ... java/rocksjni/table.s
-	@echo ... java/rocksjni/transaction.obj
-	@echo ... java/rocksjni/transaction.i
-	@echo ... java/rocksjni/transaction.s
-	@echo ... java/rocksjni/transaction_db.obj
-	@echo ... java/rocksjni/transaction_db.i
-	@echo ... java/rocksjni/transaction_db.s
-	@echo ... java/rocksjni/transaction_db_options.obj
-	@echo ... java/rocksjni/transaction_db_options.i
-	@echo ... java/rocksjni/transaction_db_options.s
-	@echo ... java/rocksjni/transaction_log.obj
-	@echo ... java/rocksjni/transaction_log.i
-	@echo ... java/rocksjni/transaction_log.s
-	@echo ... java/rocksjni/transaction_notifier.obj
-	@echo ... java/rocksjni/transaction_notifier.i
-	@echo ... java/rocksjni/transaction_notifier.s
-	@echo ... java/rocksjni/transaction_notifier_jnicallback.obj
-	@echo ... java/rocksjni/transaction_notifier_jnicallback.i
-	@echo ... java/rocksjni/transaction_notifier_jnicallback.s
-	@echo ... java/rocksjni/transaction_options.obj
-	@echo ... java/rocksjni/transaction_options.i
-	@echo ... java/rocksjni/transaction_options.s
-	@echo ... java/rocksjni/ttl.obj
-	@echo ... java/rocksjni/ttl.i
-	@echo ... java/rocksjni/ttl.s
-	@echo ... java/rocksjni/write_batch.obj
-	@echo ... java/rocksjni/write_batch.i
-	@echo ... java/rocksjni/write_batch.s
-	@echo ... java/rocksjni/write_batch_test.obj
-	@echo ... java/rocksjni/write_batch_test.i
-	@echo ... java/rocksjni/write_batch_test.s
-	@echo ... java/rocksjni/write_batch_with_index.obj
-	@echo ... java/rocksjni/write_batch_with_index.i
-	@echo ... java/rocksjni/write_batch_with_index.s
-	@echo ... java/rocksjni/write_buffer_manager.obj
-	@echo ... java/rocksjni/write_buffer_manager.i
-	@echo ... java/rocksjni/write_buffer_manager.s
-	@echo ... java/rocksjni/writebatchhandlerjnicallback.obj
-	@echo ... java/rocksjni/writebatchhandlerjnicallback.i
-	@echo ... java/rocksjni/writebatchhandlerjnicallback.s
 	@echo ... memtable/alloc_tracker.obj
 	@echo ... memtable/alloc_tracker.i
 	@echo ... memtable/alloc_tracker.s
@@ -14549,9 +14546,6 @@ help:
 	@echo ... options/options_test.obj
 	@echo ... options/options_test.i
 	@echo ... options/options_test.s
-	@echo ... port/port_posix.obj
-	@echo ... port/port_posix.i
-	@echo ... port/port_posix.s
 	@echo ... port/stack_trace.obj
 	@echo ... port/stack_trace.i
 	@echo ... port/stack_trace.s
@@ -14567,18 +14561,12 @@ help:
 	@echo ... port/win/port_win.obj
 	@echo ... port/win/port_win.i
 	@echo ... port/win/port_win.s
-	@echo ... port/win/win_jemalloc.obj
-	@echo ... port/win/win_jemalloc.i
-	@echo ... port/win/win_jemalloc.s
 	@echo ... port/win/win_logger.obj
 	@echo ... port/win/win_logger.i
 	@echo ... port/win/win_logger.s
 	@echo ... port/win/win_thread.obj
 	@echo ... port/win/win_thread.i
 	@echo ... port/win/win_thread.s
-	@echo ... port/win/xpress_win.obj
-	@echo ... port/win/xpress_win.i
-	@echo ... port/win/xpress_win.s
 	@echo ... table/adaptive_table_factory.obj
 	@echo ... table/adaptive_table_factory.i
 	@echo ... table/adaptive_table_factory.s
@@ -14678,9 +14666,6 @@ help:
 	@echo ... table/partitioned_filter_block.obj
 	@echo ... table/partitioned_filter_block.i
 	@echo ... table/partitioned_filter_block.s
-	@echo ... table/partitioned_filter_block_test.obj
-	@echo ... table/partitioned_filter_block_test.i
-	@echo ... table/partitioned_filter_block_test.s
 	@echo ... table/persistent_cache_helper.obj
 	@echo ... table/persistent_cache_helper.i
 	@echo ... table/persistent_cache_helper.s
@@ -14714,42 +14699,15 @@ help:
 	@echo ... table/two_level_iterator.obj
 	@echo ... table/two_level_iterator.i
 	@echo ... table/two_level_iterator.s
-	@echo ... third-party/gtest-1.7.0/fused-src/gtest/gtest-all.obj
-	@echo ... third-party/gtest-1.7.0/fused-src/gtest/gtest-all.i
-	@echo ... third-party/gtest-1.7.0/fused-src/gtest/gtest-all.s
-	@echo ... tools/blob_dump.obj
-	@echo ... tools/blob_dump.i
-	@echo ... tools/blob_dump.s
 	@echo ... tools/db_bench.obj
 	@echo ... tools/db_bench.i
 	@echo ... tools/db_bench.s
 	@echo ... tools/db_bench_tool.obj
 	@echo ... tools/db_bench_tool.i
 	@echo ... tools/db_bench_tool.s
-	@echo ... tools/db_bench_tool_test.obj
-	@echo ... tools/db_bench_tool_test.i
-	@echo ... tools/db_bench_tool_test.s
-	@echo ... tools/db_repl_stress.obj
-	@echo ... tools/db_repl_stress.i
-	@echo ... tools/db_repl_stress.s
-	@echo ... tools/db_sanity_test.obj
-	@echo ... tools/db_sanity_test.i
-	@echo ... tools/db_sanity_test.s
-	@echo ... tools/db_stress.obj
-	@echo ... tools/db_stress.i
-	@echo ... tools/db_stress.s
 	@echo ... tools/dump/db_dump_tool.obj
 	@echo ... tools/dump/db_dump_tool.i
 	@echo ... tools/dump/db_dump_tool.s
-	@echo ... tools/dump/rocksdb_dump.obj
-	@echo ... tools/dump/rocksdb_dump.i
-	@echo ... tools/dump/rocksdb_dump.s
-	@echo ... tools/dump/rocksdb_undump.obj
-	@echo ... tools/dump/rocksdb_undump.i
-	@echo ... tools/dump/rocksdb_undump.s
-	@echo ... tools/ldb.obj
-	@echo ... tools/ldb.i
-	@echo ... tools/ldb.s
 	@echo ... tools/ldb_cmd.obj
 	@echo ... tools/ldb_cmd.i
 	@echo ... tools/ldb_cmd.s
@@ -14759,36 +14717,21 @@ help:
 	@echo ... tools/ldb_tool.obj
 	@echo ... tools/ldb_tool.i
 	@echo ... tools/ldb_tool.s
-	@echo ... tools/rdb/db_wrapper.obj
-	@echo ... tools/rdb/db_wrapper.i
-	@echo ... tools/rdb/db_wrapper.s
-	@echo ... tools/rdb/rdb.obj
-	@echo ... tools/rdb/rdb.i
-	@echo ... tools/rdb/rdb.s
 	@echo ... tools/reduce_levels_test.obj
 	@echo ... tools/reduce_levels_test.i
 	@echo ... tools/reduce_levels_test.s
-	@echo ... tools/sst_dump.obj
-	@echo ... tools/sst_dump.i
-	@echo ... tools/sst_dump.s
 	@echo ... tools/sst_dump_test.obj
 	@echo ... tools/sst_dump_test.i
 	@echo ... tools/sst_dump_test.s
 	@echo ... tools/sst_dump_tool.obj
 	@echo ... tools/sst_dump_tool.i
 	@echo ... tools/sst_dump_tool.s
-	@echo ... tools/trace_analyzer.obj
-	@echo ... tools/trace_analyzer.i
-	@echo ... tools/trace_analyzer.s
 	@echo ... tools/trace_analyzer_test.obj
 	@echo ... tools/trace_analyzer_test.i
 	@echo ... tools/trace_analyzer_test.s
 	@echo ... tools/trace_analyzer_tool.obj
 	@echo ... tools/trace_analyzer_tool.i
 	@echo ... tools/trace_analyzer_tool.s
-	@echo ... tools/write_stress.obj
-	@echo ... tools/write_stress.i
-	@echo ... tools/write_stress.s
 	@echo ... util/arena.obj
 	@echo ... util/arena.i
 	@echo ... util/arena.s
@@ -14831,9 +14774,6 @@ help:
 	@echo ... util/crc32c.obj
 	@echo ... util/crc32c.i
 	@echo ... util/crc32c.s
-	@echo ... util/crc32c_ppc.obj
-	@echo ... util/crc32c_ppc.i
-	@echo ... util/crc32c_ppc.s
 	@echo ... util/crc32c_test.obj
 	@echo ... util/crc32c_test.i
 	@echo ... util/crc32c_test.s
@@ -14891,9 +14831,6 @@ help:
 	@echo ... util/log_buffer.obj
 	@echo ... util/log_buffer.i
 	@echo ... util/log_buffer.s
-	@echo ... util/log_write_bench.obj
-	@echo ... util/log_write_bench.i
-	@echo ... util/log_write_bench.s
 	@echo ... util/murmurhash.obj
 	@echo ... util/murmurhash.i
 	@echo ... util/murmurhash.s
@@ -15044,9 +14981,6 @@ help:
 	@echo ... utilities/compaction_filters/remove_emptyvalue_compactionfilter.obj
 	@echo ... utilities/compaction_filters/remove_emptyvalue_compactionfilter.i
 	@echo ... utilities/compaction_filters/remove_emptyvalue_compactionfilter.s
-	@echo ... utilities/convenience/info_log_finder.obj
-	@echo ... utilities/convenience/info_log_finder.i
-	@echo ... utilities/convenience/info_log_finder.s
 	@echo ... utilities/date_tiered/date_tiered_db_impl.obj
 	@echo ... utilities/date_tiered/date_tiered_db_impl.i
 	@echo ... utilities/date_tiered/date_tiered_db_impl.s
@@ -15071,24 +15005,12 @@ help:
 	@echo ... utilities/document/json_document_test.obj
 	@echo ... utilities/document/json_document_test.i
 	@echo ... utilities/document/json_document_test.s
-	@echo ... utilities/env_librados.obj
-	@echo ... utilities/env_librados.i
-	@echo ... utilities/env_librados.s
-	@echo ... utilities/env_librados_test.obj
-	@echo ... utilities/env_librados_test.i
-	@echo ... utilities/env_librados_test.s
 	@echo ... utilities/env_mirror.obj
 	@echo ... utilities/env_mirror.i
 	@echo ... utilities/env_mirror.s
-	@echo ... utilities/env_mirror_test.obj
-	@echo ... utilities/env_mirror_test.i
-	@echo ... utilities/env_mirror_test.s
 	@echo ... utilities/env_timed.obj
 	@echo ... utilities/env_timed.i
 	@echo ... utilities/env_timed.s
-	@echo ... utilities/env_timed_test.obj
-	@echo ... utilities/env_timed_test.i
-	@echo ... utilities/env_timed_test.s
 	@echo ... utilities/geodb/geodb_impl.obj
 	@echo ... utilities/geodb/geodb_impl.i
 	@echo ... utilities/geodb/geodb_impl.s
@@ -15137,15 +15059,9 @@ help:
 	@echo ... utilities/nvm_write_cache/fixed_range_based_flush_job.obj
 	@echo ... utilities/nvm_write_cache/fixed_range_based_flush_job.i
 	@echo ... utilities/nvm_write_cache/fixed_range_based_flush_job.s
-	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.obj
-	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.i
-	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.s
 	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.obj
 	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.i
 	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.s
-	@echo ... utilities/nvm_write_cache/fixed_range_chunk_test.obj
-	@echo ... utilities/nvm_write_cache/fixed_range_chunk_test.i
-	@echo ... utilities/nvm_write_cache/fixed_range_chunk_test.s
 	@echo ... utilities/nvm_write_cache/fixed_range_tab.obj
 	@echo ... utilities/nvm_write_cache/fixed_range_tab.i
 	@echo ... utilities/nvm_write_cache/fixed_range_tab.s
@@ -15176,33 +15092,6 @@ help:
 	@echo ... utilities/nvm_write_cache/range_tab_test.obj
 	@echo ... utilities/nvm_write_cache/range_tab_test.i
 	@echo ... utilities/nvm_write_cache/range_tab_test.s
-	@echo ... utilities/nvm_write_cache/skiplist/batch_skiplist.obj
-	@echo ... utilities/nvm_write_cache/skiplist/batch_skiplist.i
-	@echo ... utilities/nvm_write_cache/skiplist/batch_skiplist.s
-	@echo ... utilities/nvm_write_cache/skiplist/batch_skiplist_test.obj
-	@echo ... utilities/nvm_write_cache/skiplist/batch_skiplist_test.i
-	@echo ... utilities/nvm_write_cache/skiplist/batch_skiplist_test.s
-	@echo ... utilities/nvm_write_cache/skiplist/half_persistent_skiplist.obj
-	@echo ... utilities/nvm_write_cache/skiplist/half_persistent_skiplist.i
-	@echo ... utilities/nvm_write_cache/skiplist/half_persistent_skiplist.s
-	@echo ... utilities/nvm_write_cache/skiplist/nvm_test.obj
-	@echo ... utilities/nvm_write_cache/skiplist/nvm_test.i
-	@echo ... utilities/nvm_write_cache/skiplist/nvm_test.s
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.obj
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.i
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_batchupdate_skiplist.s
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_skip_list.obj
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_skip_list.i
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_skip_list.s
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.obj
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.i
-	@echo ... utilities/nvm_write_cache/skiplist/persistent_skiplist_without_transaction.s
-	@echo ... utilities/nvm_write_cache/skiplist/persistentptr_test.obj
-	@echo ... utilities/nvm_write_cache/skiplist/persistentptr_test.i
-	@echo ... utilities/nvm_write_cache/skiplist/persistentptr_test.s
-	@echo ... utilities/nvm_write_cache/skiplist/volatile_skip_list.obj
-	@echo ... utilities/nvm_write_cache/skiplist/volatile_skip_list.i
-	@echo ... utilities/nvm_write_cache/skiplist/volatile_skip_list.s
 	@echo ... utilities/object_registry_test.obj
 	@echo ... utilities/object_registry_test.i
 	@echo ... utilities/object_registry_test.s
@@ -15233,9 +15122,6 @@ help:
 	@echo ... utilities/persistent_cache/hash_table_test.obj
 	@echo ... utilities/persistent_cache/hash_table_test.i
 	@echo ... utilities/persistent_cache/hash_table_test.s
-	@echo ... utilities/persistent_cache/persistent_cache_bench.obj
-	@echo ... utilities/persistent_cache/persistent_cache_bench.i
-	@echo ... utilities/persistent_cache/persistent_cache_bench.s
 	@echo ... utilities/persistent_cache/persistent_cache_test.obj
 	@echo ... utilities/persistent_cache/persistent_cache_test.i
 	@echo ... utilities/persistent_cache/persistent_cache_test.s
@@ -15329,9 +15215,6 @@ help:
 	@echo ... utilities/ttl/ttl_test.obj
 	@echo ... utilities/ttl/ttl_test.i
 	@echo ... utilities/ttl/ttl_test.s
-	@echo ... utilities/util_merge_operators_test.obj
-	@echo ... utilities/util_merge_operators_test.i
-	@echo ... utilities/util_merge_operators_test.s
 	@echo ... utilities/write_batch_with_index/write_batch_with_index.obj
 	@echo ... utilities/write_batch_with_index/write_batch_with_index.i
 	@echo ... utilities/write_batch_with_index/write_batch_with_index.s
