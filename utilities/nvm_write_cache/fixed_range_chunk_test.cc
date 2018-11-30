@@ -213,6 +213,8 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         std::string* output_data = pending_output_chunk[prefix_chunk]->Finish(bloom_data,
             meta.cur_start, meta.cur_end);
         //Slice chunk_data(*output_data);
+        DBG_PRINT("output_data: size[%lu], bloom_data: size[%lu]", output_data->size(), bloom_data.size());
+        DBG_PRINT("meta.cur_start: [%s], cur_end: [%s]", meta.cur_start.data(), meta.cur_end.data());
         fixed_range_chunk_->AppendToRange(icmp_, bloom_data, output_data->c_str(), meta);
         delete output_data;
     };

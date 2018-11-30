@@ -55,12 +55,15 @@ FixedRangeChunkBasedNVMWriteCache::~FixedRangeChunkBasedNVMWriteCache() {
 Status FixedRangeChunkBasedNVMWriteCache::Get(const InternalKeyComparator &internal_comparator, const LookupKey &lkey,
                                               std::string *value) {
     std::string prefix = (*vinfo_->internal_options_->prefix_extractor_)(lkey.user_key().data(), lkey.user_key().size());
+    DBG_PRINT("prefix: [%s], size[%lu]", prefix.c_str(), prefix.size());
     auto found_tab = vinfo_->prefix2range.find(prefix);
     if (found_tab == vinfo_->prefix2range.end()) {
         // not found
+        DBG_PRINT("NotFound Key");
         return Status::NotFound("no this range");
     } else {
         // found
+        DBG_PRINT("Found key");
         FixedRangeTab *tab = found_tab->second;
         return tab->Get(internal_comparator, lkey, value);
     }
