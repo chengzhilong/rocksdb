@@ -120,13 +120,14 @@ class FixedRangeChunkTest : public testing::Test {
 public:
     FixedRangeChunkTest() : file_name_("/pmem/fixed_range_chunk_test"),
                     prefix("fixRange_pref"),
-                    pmem_size_(1<<32),
                     icmp_(BytewiseComparator()) {
         foptions_ = new FixedRangeBasedOptions(
                             16, prefix.size(),
                             new SimplePrefixExtractor(prefix.size()),
                             NewBloomFilterPolicy(16, false),
                             1 << 27);
+        base_size_ = (1 << 20);
+        pmem_size_ = (base_size_ << 12);
         fixed_range_chunk_ = new FixedRangeChunkBasedNVMWriteCache(foptions_, file_name_, pmem_size_, true);
         value_size_ = 4 * 1024;
         last_prefix.clear();
@@ -141,6 +142,7 @@ public:
     std::string file_name_;
     std::string prefix;
     uint64_t pmem_size_;
+    uint64_t base_size_;
     bool reset;
 
     FixedRangeBasedOptions* foptions_;
@@ -165,12 +167,13 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
             char key[17];
-            sprintf(key, "016lu", key_gen.Next());
+            sprintf(key, "%016lu", key_gen.Next());
             key[16] = 0;
             InternalKey ikey;
             ikey.Set(Slice(key, 17), static_cast<uint64_t>(i * 10 + j), kTypeValue);
-            std::string now_prefix = (*foptions_->prefix_extractor_)(ikey.user_key.data(),
-                    ikey.user_key.size());
+            Slice i_user_key = ikey.user_key();
+            std::string now_prefix = (*foptions_->prefix_extractor_)(i_user_key.data(),
+                    i_user_key.size());
             if (now_prefix == last_prefix && last_chunk != nullptr) {
                 last_chunk->Insert(ikey.Encode(), value_gen.Generate(value_size_));
             } else {
@@ -187,7 +190,7 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
                     now_chunk = chunk_found->second;
                 }
 
-                now_chunk->Insert(key, value);
+                now_chunk->Insert(ikey.Encode(), value_gen.Generate(value_size_));
                 last_chunk = now_chunk;
                 last_prefix = now_prefix;
             }
@@ -199,11 +202,11 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         fixed_range_chunk_->RangeExistsOrCreat(pending_chunk.first);
     }
 
-    auto finish_build_chunk = [&](std::string prefix) {
+    auto finish_build_chunk = [&](std::string prefix_chunk) {
         string bloom_data;
         ChunkMeta meta;
-        meta.prefix = prefix;
-        std::string* output_data = pending_output_chunk[prefix]->Finish(bloom_data,
+        meta.prefix = prefix_chunk;
+        std::string* output_data = pending_output_chunk[prefix_chunk]->Finish(bloom_data,
             meta.cur_start, meta.cur_end);
         //Slice chunk_data(*output_data);
         fixed_range_chunk_->AppendToRange(icmp_, bloom_data, output_data->c_str(), meta);
@@ -219,8 +222,8 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
     DBG_PRINT("prepare to test Get method");
     for (auto key : insert_key) {
         LookupKey lkey(Slice(key), 100);
-        Slice *get_value = new String();
-        Status s = tab->Get(icmp_, lkey, get_value);
+        string *get_value = new string();
+        Status s = fixed_range_chunk_->Get(icmp_, lkey, get_value);
         ASSERT_OK(s);
         delete get_value;
     }
