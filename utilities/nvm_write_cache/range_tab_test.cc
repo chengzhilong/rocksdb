@@ -150,6 +150,7 @@ public:
     ~RangeTabTest(){
         delete tab;
         pop_.close();
+		delete foptions_;
     }
 
     string pmem_path_;
@@ -197,6 +198,7 @@ TEST_F(RangeTabTest, Append){
             string* get_value = new string();
             Status s = tab->Get(icmp_, lkey, get_value);
             ASSERT_OK(s);
+			delete get_value;
         }
 
         tab->GetProperties();
