@@ -115,7 +115,8 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         // bloom data
         char* chunk_head = buf + blk.offset_;
         uint64_t bloom_bytes = blk.bloom_bytes_;
-        DBG_PRINT("blk.offset_:[%lu]    bloom_bytes:[%lu]", blk.offset_, bloom_bytes);
+        DBG_PRINT("blk.offset_:[%lu]    bloom_bytes:[%lu]   blk.chunkLen_[%lu]  blk.getDatOffset[%lu]",
+                blk.offset_, bloom_bytes, blk.chunkLen_, blk.getDatOffset());
         if (interal_options_->filter_policy_->KeyMayMatch(lkey.user_key(), Slice(chunk_head + 8, bloom_bytes))) {
             // 3.如果有则读取元数据进行chunk内的查找
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_, nullptr);
