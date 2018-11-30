@@ -703,7 +703,7 @@ set(SOURCES
         utilities/nvm_write_cache/persistent_chunk_iterator.cc
         #utilities/nvm_write_cache/skiplist/persistentptr_test.cc
         utilities/nvm_write_cache/fixed_range_chunk_test.cc
-        utilities/nvm_write_cache/range_tab_test.cc
+        #utilities/nvm_write_cache/range_tab_test.cc
         utilities/nvm_write_cache/nv_range_tab.cc
         $<TARGET_OBJECTS:build_version>)
 
@@ -1019,7 +1019,7 @@ if (WITH_TESTS)
             utilities/write_batch_with_index/write_batch_with_index_test.cc
             #utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc
             utilities/nvm_write_cache/fixed_range_chunk_test.cc
-            utilities/nvm_write_cache/range_tab_test.cc
+            #utilities/nvm_write_cache/range_tab_test.cc
             )
     if (WITH_LIBRADOS)
         list(APPEND TESTS utilities/env_librados_test.cc)
