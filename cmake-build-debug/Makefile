@@ -2162,6 +2162,19 @@ rocksdb_write_batch_with_index_test/fast:
 .PHONY : rocksdb_write_batch_with_index_test/fast
 
 #=============================================================================
+# Target rules for targets named rocksdb_fixed_range_chunk_test
+
+# Build rule for target.
+rocksdb_fixed_range_chunk_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 rocksdb_fixed_range_chunk_test
+.PHONY : rocksdb_fixed_range_chunk_test
+
+# fast build rule for target.
+rocksdb_fixed_range_chunk_test/fast:
+	$(MAKE) -f CMakeFiles\rocksdb_fixed_range_chunk_test.dir\build.make CMakeFiles/rocksdb_fixed_range_chunk_test.dir/build
+.PHONY : rocksdb_fixed_range_chunk_test/fast
+
+#=============================================================================
 # Target rules for targets named c_test
 
 # Build rule for target.
@@ -12271,6 +12284,39 @@ utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s:
 	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s
 .PHONY : utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.cc.s
 
+utilities/nvm_write_cache/fixed_range_chunk_test.obj: utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
+
+.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.obj
+
+# target to build an object file
+utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj:
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
+	$(MAKE) -f CMakeFiles\rocksdb_fixed_range_chunk_test.dir\build.make CMakeFiles/rocksdb_fixed_range_chunk_test.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
+.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.cc.obj
+
+utilities/nvm_write_cache/fixed_range_chunk_test.i: utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
+
+.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.i
+
+# target to preprocess a source file
+utilities/nvm_write_cache/fixed_range_chunk_test.cc.i:
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
+	$(MAKE) -f CMakeFiles\rocksdb_fixed_range_chunk_test.dir\build.make CMakeFiles/rocksdb_fixed_range_chunk_test.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
+.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.cc.i
+
+utilities/nvm_write_cache/fixed_range_chunk_test.s: utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
+
+.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.s
+
+# target to generate assembly for a file
+utilities/nvm_write_cache/fixed_range_chunk_test.cc.s:
+	$(MAKE) -f CMakeFiles\rocksdb.dir\build.make CMakeFiles/rocksdb.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb-shared.dir\build.make CMakeFiles/rocksdb-shared.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
+	$(MAKE) -f CMakeFiles\rocksdb_fixed_range_chunk_test.dir\build.make CMakeFiles/rocksdb_fixed_range_chunk_test.dir/utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
+.PHONY : utilities/nvm_write_cache/fixed_range_chunk_test.cc.s
+
 utilities/nvm_write_cache/fixed_range_tab.obj: utilities/nvm_write_cache/fixed_range_tab.cc.obj
 
 .PHONY : utilities/nvm_write_cache/fixed_range_tab.obj
@@ -14010,6 +14056,7 @@ help:
 	@echo ... rocksdb_write_prepared_transaction_test
 	@echo ... rocksdb_write_unprepared_transaction_test
 	@echo ... rocksdb_write_batch_with_index_test
+	@echo ... rocksdb_fixed_range_chunk_test
 	@echo ... c_test
 	@echo ... test
 	@echo ... edit_cache
@@ -15062,6 +15109,9 @@ help:
 	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.obj
 	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.i
 	@echo ... utilities/nvm_write_cache/fixed_range_chunk_based_nvm_write_cache.s
+	@echo ... utilities/nvm_write_cache/fixed_range_chunk_test.obj
+	@echo ... utilities/nvm_write_cache/fixed_range_chunk_test.i
+	@echo ... utilities/nvm_write_cache/fixed_range_chunk_test.s
 	@echo ... utilities/nvm_write_cache/fixed_range_tab.obj
 	@echo ... utilities/nvm_write_cache/fixed_range_tab.i
 	@echo ... utilities/nvm_write_cache/fixed_range_tab.s

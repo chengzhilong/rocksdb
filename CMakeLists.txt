@@ -702,6 +702,7 @@ set(SOURCES
         utilities/nvm_write_cache/persistent_chunk.cc
         utilities/nvm_write_cache/persistent_chunk_iterator.cc
         #utilities/nvm_write_cache/skiplist/persistentptr_test.cc
+        utilities/nvm_write_cache/fixed_range_chunk_test.cc
         utilities/nvm_write_cache/range_tab_test.cc
         utilities/nvm_write_cache/nv_range_tab.cc
         $<TARGET_OBJECTS:build_version>)
@@ -1017,6 +1018,7 @@ if (WITH_TESTS)
             utilities/ttl/ttl_test.cc
             utilities/write_batch_with_index/write_batch_with_index_test.cc
             #utilities/nvm_write_cache/fixed_range_chunk_based_flush_job_test.cc
+            utilities/nvm_write_cache/fixed_range_chunk_test.cc
             utilities/nvm_write_cache/range_tab_test.cc
             )
     if (WITH_LIBRADOS)
@@ -1075,7 +1077,12 @@ if (WITH_TESTS)
                 OUTPUT_NAME ${exename}${ARTIFACT_SUFFIX}
                 )
         target_link_libraries(${CMAKE_PROJECT_NAME}_${exename}${ARTIFACT_SUFFIX} testutillib${ARTIFACT_SUFFIX} gtest ${LIBS} )
-        if("${exename}" MATCHES "range_tab_test")
+        if("${exename}" MATCHES "fixed_range_chunk_test")
+            link_directories(/usr/local/lib)
+            target_link_libraries(${CMAKE_PROJECT_NAME}_${exename}${ARTIFACT_SUFFIX} libcityhash)
+            include_directories(/usr/local/include ${LIBPMEMOBJ++_INCLUDE_DIRS})
+        endif()
+        if ("${exename}" MATCHES "range_tab_test")
             link_directories(/usr/local/lib)
             target_link_libraries(${CMAKE_PROJECT_NAME}_${exename}${ARTIFACT_SUFFIX} libcityhash)
             include_directories(/usr/local/include ${LIBPMEMOBJ++_INCLUDE_DIRS})
