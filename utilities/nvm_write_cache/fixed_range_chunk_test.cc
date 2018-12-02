@@ -28,7 +28,7 @@ namespace rocksdb {
 enum WriteMode {
     RANDOM = 0,
     SEQUENTIAL,
-    SEQUENTIAL_1000,
+    SEQUENTIAL_10K,
     UNIQUE_RANDOM
 };
 
@@ -56,8 +56,8 @@ public:
         switch (mode_) {
             case SEQUENTIAL:
                 return next_++;
-            case SEQUENTIAL_1000:
-                return (next_++) + 1000;
+            case SEQUENTIAL_10K:
+                return (next_++)*1000 + 10;
             case RANDOM:
                 return rand_->Next() % num_;
             case UNIQUE_RANDOM:
@@ -159,7 +159,7 @@ public:
 
 TEST_F(FixedRangeChunkTest, BuildChunk) {
     Random64 rand(16);
-    KeyGenerator key_gen(&rand, SEQUENTIAL_1000, 100);
+    KeyGenerator key_gen(&rand, SEQUENTIAL_10K, 100);
     RandomGenerator value_gen;
 
     vector<string> insert_key;
