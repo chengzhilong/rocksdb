@@ -215,7 +215,8 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         //Slice chunk_data(*output_data);
         DBG_PRINT("output_data: size[%lu], bloom_data: size[%lu]", output_data->size(), bloom_data.size());
         DBG_PRINT("meta.cur_start: [%s], cur_end: [%s]", meta.cur_start.data(), meta.cur_end.data());
-        fixed_range_chunk_->AppendToRange(icmp_, bloom_data, output_data->c_str(), meta);
+		const Slice output_(output_data->c_str(), output_data.size());
+        fixed_range_chunk_->AppendToRange(icmp_, bloom_data, output_, meta);
         delete output_data;
     };
 
