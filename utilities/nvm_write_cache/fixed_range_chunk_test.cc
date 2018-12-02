@@ -57,7 +57,7 @@ public:
             case SEQUENTIAL:
                 return next_++;
             case SEQUENTIAL_10K:
-                return (next_++)*1000 + 10;
+                return (next_++)*100 + 10;
             case RANDOM:
                 return rand_->Next() % num_;
             case UNIQUE_RANDOM:
