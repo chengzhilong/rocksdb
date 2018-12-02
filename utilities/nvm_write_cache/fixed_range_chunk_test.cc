@@ -159,7 +159,7 @@ public:
 
 TEST_F(FixedRangeChunkTest, BuildChunk) {
     Random64 rand(16);
-    KeyGenerator key_gen(&rand, SEQUENTIAL_10K, 100);
+    KeyGenerator key_gen(&rand, RANDOM, 10000);
     RandomGenerator value_gen;
 
     vector<string> insert_key;
