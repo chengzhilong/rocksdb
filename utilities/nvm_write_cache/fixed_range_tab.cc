@@ -185,6 +185,8 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     memcpy(dst, chunk_data.data(), chunk_data.size()); //+chunk data size
 
     {
+    	DBG_PRINT("write bloom size [%lu]", bloom_data.size());
+		DBG_PRINT("write chunk size [%lu]", chunk_data.size());
         //debug
         char* debug = raw_ + raw_cur;
         uint64_t chunk_size, bloom_size;
