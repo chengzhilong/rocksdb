@@ -119,7 +119,7 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         DBG_PRINT("blk.offset_:[%lu]    bloom_bytes:[%lu]   blk.chunkLen_[%lu]  blk.getDatOffset[%lu]",
                 blk.offset_, bloom_bytes, blk.chunkLen_, blk.getDatOffset());
 
-		size_t cut_num_ = blklist.size() - pendding_clean_;
+		int cut_num_ = (int)(blklist.size() - pendding_clean_);
 		if (i < cut_num_) {
 			NvRangeTab* compacting_tab_ = nonVolatileTab_.get();
 			buf = compacting_tab_->buf.get() + 2 * sizeof(uint64_t);
@@ -193,7 +193,8 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     memcpy(dst, chunk_data.data(), chunk_data.size()); //+chunk data size
 
     {
-    	DBG_PRINT("write bloom size [%lu]", bloom_data.size());
+    	DBG_PRINT(
+"write bloom size [%lu]", bloom_data.size());
 		DBG_PRINT("write chunk size [%lu]", chunk_data.size());
         //debug
         char* debug = raw_ + raw_cur;
