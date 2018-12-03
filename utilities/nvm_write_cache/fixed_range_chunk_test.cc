@@ -269,6 +269,10 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         insert_key_2.emplace_back(key, 17);
 	}
 
+	for (auto pending_chunk : pending_output_chunk) {
+        fixed_range_chunk_->RangeExistsOrCreat(pending_chunk.first);
+    }
+
     // test Get
     DBG_PRINT("prepare to test Get method");
     for (auto key : insert_key) {
