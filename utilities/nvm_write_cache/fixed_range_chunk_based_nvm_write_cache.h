@@ -118,6 +118,8 @@ public:
 
     void RangeExistsOrCreat(const std::string &prefix);
 
+	FixedRangeTab* GetRangeTab(const std::string &prefix);
+
 private:
 
     persistent_ptr<NvRangeTab> NewContent(const string& prefix, size_t bufSize);

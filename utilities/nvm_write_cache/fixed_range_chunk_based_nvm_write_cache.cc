@@ -182,6 +182,12 @@ void FixedRangeChunkBasedNVMWriteCache::RangeExistsOrCreat(const std::string &pr
     }
 }
 
+// IMPORTANT!!!
+// ONLY FOR TEST
+FixedRangeTab* FixedRangeChunkBasedNVMWriteCache::GetRangeTab(const std::string &prefix) {
+	return vinfo_->prefix2range.find(prefix);
+}
+
 
 } // namespace rocksdb
 

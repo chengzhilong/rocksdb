@@ -159,12 +159,13 @@ public:
 
 TEST_F(FixedRangeChunkTest, BuildChunk) {
     Random64 rand(16);
-    KeyGenerator key_gen(&rand, SEQUENTIAL_10K, 100);
+    KeyGenerator key_gen(&rand, SEQUENTIAL, 100);
     RandomGenerator value_gen;
 
     vector<string> insert_key;
+	vector<string> insert_key_2;
     
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 20; i++) {
         for (int j = 0; j < 10; j++) {
             char key[17];
             sprintf(key, "%016lu", key_gen.Next());
@@ -194,7 +195,7 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
                 last_chunk = now_chunk;
                 last_prefix = now_prefix;
 
-                DBG_PRINT("end insert");
+                //DBG_PRINT("end insert");
             }
             insert_key.emplace_back(key, 17);
         }
@@ -221,10 +222,50 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
     };
 
     DBG_PRINT("Prepare to call finish_build_chunk()");
+	FixedRangeTab* tab_;
     for (auto pending_chunk = pending_output_chunk.begin(); pending_chunk != pending_output_chunk.end();
             pending_chunk++) {
         finish_build_chunk(pending_chunk->first);
+		tab_ = fixed_range_chunk->GetRangeTab(pending_chunk->first);
+		tab_->SetCompactionWorking(true);
     }
+
+	DBG_PRINT("Insert kv pairs again");
+	pending_output_chunk.clear();
+	
+	for (int i = 20; i < 60; i++) {
+		char key[17];
+        sprintf(key, "%016lu", key_gen.Next());
+		key[16] = 0;
+        InternalKey ikey;
+        ikey.Set(Slice(key, 17), static_cast<uint64_t>(i * 10 + j), kTypeValue);
+        Slice i_user_key = ikey.user_key();
+        std::string now_prefix = (*foptions_->prefix_extractor_)(i_user_key.data(),
+               i_user_key.size());
+        if (now_prefix == last_prefix && last_chunk != nullptr) {
+            last_chunk->Insert(ikey.Encode(), value_gen.Generate(value_size_));
+        } else {
+            BuildingChunk* now_chunk = nullptr;
+            auto chunk_found = pending_output_chunk.find(now_prefix);
+            if (chunk_found == pending_output_chunk.end()) {
+                DBG_PRINT("prepare to create new chunk: last_prefix[%s], now_prefix[%s]", 
+                    last_prefix.c_str(), now_prefix.c_str());
+                auto new_chunk = new BuildingChunk(foptions_->filter_policy_, now_prefix);
+                DBG_PRINT("end create chunk");
+                pending_output_chunk[now_prefix] = new_chunk;
+                now_chunk = new_chunk;
+            } else {
+                now_chunk = chunk_found->second;
+            }
+
+            now_chunk->Insert(ikey.Encode(), value_gen.Generate(value_size_));
+            last_chunk = now_chunk;
+            last_prefix = now_prefix;
+
+                //DBG_PRINT("end insert");
+        }
+        insert_key_2.emplace_back(key, 17);
+	}
 
     // test Get
     DBG_PRINT("prepare to test Get method");
@@ -236,8 +277,23 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         delete get_value;
     }
 
-    DBG_PRINT("end of Get");
+	DBG_PRINT("prepare to test Get method second time!")
+	int times_ = 0;
+	for (auto key : insert_key_2) {
+		if (times_ == 10) {
+			tab_->CleanUp();
+			tab_->SetCompactionWorking(false);
+		}
+		LookupKey lkey(Slice(key), 100);
+        string *get_value = new string();
+        Status s = fixed_range_chunk_->Get(icmp_, lkey, get_value);
+        ASSERT_OK(s);
+        delete get_value;
+	}
+
+    DBG_PRINT("end of TEST");
 }
+
 
 }
 
