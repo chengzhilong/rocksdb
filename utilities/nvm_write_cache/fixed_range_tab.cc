@@ -84,13 +84,21 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
     MergeIteratorBuilder merge_iter_builder(icmp,
                                             arena);
 
-    char* pbuf = nonVolatileTab_->buf.get() + 2 * sizeof(uint64_t);
+	assert(blklist.size() >= pendding_clean_);
+	char* pbuf = nullptr;
     // TODO
     // 预设 range 持久化
     //  char *chunkBlkOffset = data_ + sizeof(stat.used_bits_) + sizeof(stat.start_)
     //      + sizeof(stat.end_);
     PersistentChunk pchk;
-    for (ChunkBlk &blk : blklist) {
+    for (size_t i = 0; i < blklist.size(); i++) {
+		ChunkBlk &blk = blklist.at(i);
+		if (i < pendding_clean_) {
+			NvRangeTab* compacting_tab_ = nonVolatileTab_->get();
+			pbuf = compacting_tab_->buf.get() + 2 * sizeof(uint64_t);
+		} else {
+			pbuf = raw_;
+		}
         pchk.reset(blk.bloom_bytes_, blk.chunkLen_, pbuf + blk.getDatOffset());
         merge_iter_builder.AddIterator(pchk.NewIterator(arena));
     }
