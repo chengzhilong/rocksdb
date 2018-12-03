@@ -94,7 +94,7 @@ InternalIterator *FixedRangeTab::NewInternalIterator(
     for (size_t i = 0; i < blklist.size(); i++) {
 		ChunkBlk &blk = blklist.at(i);
 		if (i < pendding_clean_) {
-			NvRangeTab* compacting_tab_ = nonVolatileTab_->get();
+			NvRangeTab* compacting_tab_ = nonVolatileTab_.get();
 			pbuf = compacting_tab_->buf.get() + 2 * sizeof(uint64_t);
 		} else {
 			pbuf = raw_;
