@@ -316,6 +316,7 @@ void FixedRangeTab::CleanUp() {
         persistent_ptr<NvRangeTab> obsolete_tab = nonVolatileTab_;
         NvRangeTab *vtab = obsolete_tab.get();
         nonVolatileTab_ = nonVolatileTab_->extra_buf;
+		nonVolatileTab_->extra_buf = nullptr;		// Clear it!
         Slice start, end;
         GetRealRange(start, end);
         transaction::run(pop_, [&] {
@@ -435,6 +436,10 @@ void FixedRangeTab::SetExtraBuf(persistent_ptr<rocksdb::NvRangeTab> extra_buf) {
     vtab->extra_buf = extra_buf;
     extra_buf->seq_num_ = vtab->seq_num_;
     raw_ = extra_buf->buf.get();
+	EncodeFixed64(raw_, 0);
+    // set seq_
+    EncodeFixed64(raw_ + sizeof(uint64_t), 0);
+    raw_ += 2 * sizeof(uint64_t);
 }
 
 //#ifdef TAB_DEBUG
