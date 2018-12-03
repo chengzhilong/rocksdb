@@ -202,7 +202,7 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     // transaction
 
     {
-    	if (raw_cur + chunk_blk_len < max_range_size()) {
+    	if (raw_cur + chunk_blk_len >= max_range_size()) {
 			DBG_PRINT("assert: raw_cur[%lu] chunk_blk_len[%lu] max_range_size()[%lu]", raw_cur, chunk_blk_len, max_range_size());
 		}
         assert(raw_cur + chunk_blk_len < max_range_size());
