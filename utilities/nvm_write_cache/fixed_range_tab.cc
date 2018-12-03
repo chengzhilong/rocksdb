@@ -105,7 +105,8 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
     PersistentChunkIterator *iter = new PersistentChunkIterator();
     // shared_ptr能够保证资源回收
     char* buf = raw_;
-    DBG_PRINT("blklist: size[%lu]", blklist.size());
+    DBG_PRINT("blklist: size[%lu], pendding_clean[%lu]", blklist.size(), pendding_clean_);
+	assert(blklist.size() >= pendding_clean_);
     for (int i = blklist.size() - 1; i >= 0; i--) {
         assert(i >= 0);
         ChunkBlk &blk = blklist.at(i);
@@ -117,6 +118,13 @@ Status FixedRangeTab::Get(const InternalKeyComparator &internal_comparator,
         uint64_t bloom_bytes = blk.bloom_bytes_;
         DBG_PRINT("blk.offset_:[%lu]    bloom_bytes:[%lu]   blk.chunkLen_[%lu]  blk.getDatOffset[%lu]",
                 blk.offset_, bloom_bytes, blk.chunkLen_, blk.getDatOffset());
+
+		size_t cut_num_ = blklist.size() - pendding_clean_;
+		if (i < cut_num_) {
+			NvRangeTab* compacting_tab_ = nonVolatileTab_.get();
+			buf = compacting_tab_->buf.get() + 2 * sizeof(uint64_t);
+		}
+		
         if (interal_options_->filter_policy_->KeyMayMatch(lkey.user_key(), Slice(chunk_head + 8, bloom_bytes))) {
             // 3.如果有则读取元数据进行chunk内的查找
             new(iter) PersistentChunkIterator(buf + blk.getDatOffset(), blk.chunkLen_, nullptr);
