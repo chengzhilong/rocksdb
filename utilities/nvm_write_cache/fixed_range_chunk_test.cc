@@ -232,8 +232,10 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
 
 	DBG_PRINT("Insert kv pairs again");
 	pending_output_chunk.clear();
-	last_prefix = nullptr;
+	last_prefix = "";
 	last_chunk = nullptr;
+
+	DBG_PRINT("begin to for circle");
 	
 	for (int i = 20; i < 60; i++) {
 		char key[17];
@@ -264,13 +266,19 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
             last_chunk = now_chunk;
             last_prefix = now_prefix;
 
-                //DBG_PRINT("end insert");
+            //DBG_PRINT("end insert");
         }
         insert_key_2.emplace_back(key, 17);
 	}
 
+	DBG_PRINT("pending_output_chunk: size[%lu]", pending_output_chunk.size());
 	for (auto pending_chunk : pending_output_chunk) {
         fixed_range_chunk_->RangeExistsOrCreat(pending_chunk.first);
+    }
+
+    for (auto pending_chunk = pending_output_chunk.begin(); pending_chunk != pending_output_chunk.end();
+             pending_chunk++) {
+        finish_build_chunk(pending_chunk->first);
     }
 
     // test Get
