@@ -201,8 +201,7 @@ Status FixedRangeTab::Append(const InternalKeyComparator &icmp,
     memcpy(dst, chunk_data.data(), chunk_data.size()); //+chunk data size
 
     {
-    	DBG_PRINT(
-"write bloom size [%lu]", bloom_data.size());
+    	DBG_PRINT("write bloom size [%lu]", bloom_data.size());
 		DBG_PRINT("write chunk size [%lu]", chunk_data.size());
         //debug
         char* debug = raw_ + raw_cur;
@@ -455,7 +454,8 @@ void FixedRangeTab::SetExtraBuf(persistent_ptr<rocksdb::NvRangeTab> extra_buf) {
     raw_ = extra_buf->buf.get();
 	EncodeFixed64(raw_, 0);
     // set seq_
-    EncodeFixed64(raw_ + sizeof(uint64_t), 0);
+    uint64_t seq_ = DecodeFixed64(vtab->buf.get() + sizeof(uint64_t));
+    EncodeFixed64(raw_ + sizeof(uint64_t), seq_);
     raw_ += 2 * sizeof(uint64_t);
 }
 
