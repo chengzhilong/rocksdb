@@ -226,7 +226,7 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
     for (auto pending_chunk = pending_output_chunk.begin(); pending_chunk != pending_output_chunk.end();
             pending_chunk++) {
         finish_build_chunk(pending_chunk->first);
-		tab_ = fixed_range_chunk->GetRangeTab(pending_chunk->first);
+		tab_ = fixed_range_chunk_->GetRangeTab(pending_chunk->first);
 		tab_->SetCompactionWorking(true);
     }
 
@@ -238,7 +238,7 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         sprintf(key, "%016lu", key_gen.Next());
 		key[16] = 0;
         InternalKey ikey;
-        ikey.Set(Slice(key, 17), static_cast<uint64_t>(i * 10 + j), kTypeValue);
+        ikey.Set(Slice(key, 17), static_cast<uint64_t>(1000 + i), kTypeValue);
         Slice i_user_key = ikey.user_key();
         std::string now_prefix = (*foptions_->prefix_extractor_)(i_user_key.data(),
                i_user_key.size());
@@ -277,13 +277,14 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
         delete get_value;
     }
 
-	DBG_PRINT("prepare to test Get method second time!")
+	DBG_PRINT("prepare to test Get method second time!");
 	int times_ = 0;
 	for (auto key : insert_key_2) {
 		if (times_ == 10) {
 			tab_->CleanUp();
 			tab_->SetCompactionWorking(false);
 		}
+		times_++;
 		LookupKey lkey(Slice(key), 100);
         string *get_value = new string();
         Status s = fixed_range_chunk_->Get(icmp_, lkey, get_value);
