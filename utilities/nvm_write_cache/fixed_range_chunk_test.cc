@@ -232,8 +232,8 @@ TEST_F(FixedRangeChunkTest, BuildChunk) {
 
 	DBG_PRINT("Insert kv pairs again");
 	pending_output_chunk.clear();
-	last_prefix = null;
-	last_chunk = null;
+	last_prefix = nullptr;
+	last_chunk = nullptr;
 	
 	for (int i = 20; i < 60; i++) {
 		char key[17];
